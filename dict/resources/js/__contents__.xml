@@ -1,0 +1,39 @@
+<collection xmlns="http://exist.sourceforge.net/NS/exist" name="/db/apps/dict/resources/js" version="1" owner="Pietro" group="dba" mode="775" created="2017-06-01T10:16:10+02:00">
+    <acl entries="0" version="1"/>
+    <resource type="BinaryResource" name="attestations.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="attestations.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="addMeaning.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="addMeaning.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="ACEsettings.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="ACEsettings.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="diacriticskeyboard.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="diacriticskeyboard.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="videas.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="videas.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="enablecreatenew.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="enablecreatenew.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="diacriticskeyboardOLD.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="diacriticskeyboardOLD.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="dataTables.bootstrap.min.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="dataTables.bootstrap.min.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="jquery.scrollExtend.min.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="jquery.scrollExtend.min.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="NewBiblio.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="NewBiblio.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="buttons.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="buttons.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="videash.js" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="videash.js" mimetype="application/javascript">
+        <acl entries="0" version="1"/>
+    </resource>
+</collection>

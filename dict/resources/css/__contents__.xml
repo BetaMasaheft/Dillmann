@@ -1,0 +1,9 @@
+<collection xmlns="http://exist.sourceforge.net/NS/exist" name="/db/apps/dict/resources/css" version="1" owner="Pietro" group="dba" mode="775" created="2017-06-01T10:16:10+02:00">
+    <acl entries="0" version="1"/>
+    <resource type="BinaryResource" name="dataTables.bootstrap.css" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="dataTables.bootstrap.css" mimetype="text/css">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="style.css" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T14:09:59+02:00" filename="style.css" mimetype="text/css">
+        <acl entries="0" version="1"/>
+    </resource>
+</collection>

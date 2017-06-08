@@ -1,0 +1,45 @@
+<collection xmlns="http://exist.sourceforge.net/NS/exist" name="/db/apps/dict/resources/font-awesome-4.7.0/less" version="1" owner="Pietro" group="dba" mode="775" created="2017-06-01T10:16:10+02:00">
+    <acl entries="0" version="1"/>
+    <resource type="BinaryResource" name="core.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="core.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="mixins.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="mixins.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="path.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="path.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="icons.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="icons.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="variables.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="variables.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="list.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="list.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="stacked.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="stacked.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="animated.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="animated.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="screen-reader.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="screen-reader.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="bordered-pulled.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="bordered-pulled.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="fixed-width.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="fixed-width.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="font-awesome.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="font-awesome.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="larger.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="larger.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+    <resource type="BinaryResource" name="rotated-flipped.less" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="rotated-flipped.less" mimetype="application/less">
+        <acl entries="0" version="1"/>
+    </resource>
+</collection>
