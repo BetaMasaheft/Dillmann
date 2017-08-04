@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ማእከል </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      <change who="VP" when="2017-05-19">reference and new use of the term from Marrassini added</change>
+            <change who="VP" when="2017-05-19">pipetro: fixed further uüpconversion problem in bibl template</change>
+            <change who="PL" when="2017-05-19">tested for #103</change>
+        </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L2ffdf5c9580545c9a8b89a10165e18c3" n="5782">
+               <form>
+                  <foreign xml:lang="gez">ማእከል</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> <gramGrp> <pos expand="not found">subst.</pos> </gramGrp> (id quod continetur re i.e.) <cit type="translation" xml:lang="la">
+                            <quote> medium </quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                            <quote> media pars </quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                            <quote> medius locus </quote>
+                        </cit>: <foreign xml:lang="gez">እስመ፡ ይነሥእዎ፡ እማእከል፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> nam tollunt eum de medio </quote>
+                        </cit> <ref cRef="Jes." loc="57,2">Jes. 57,2</ref>; <ref cRef="2 Thess." loc="2,7">2 Thess. 2,7</ref> Platt; <foreign xml:lang="gez">እሙንቱ፡ ከመ፡ ሠርዌ፡ ይውዕዩ፡ በማእከል፡</foreign> <ref cRef="Ep. Jer." loc="54">Ep. Jer. 54</ref>; <ref cRef="Lev." loc="11,3">Lev. 11,3</ref>; <ref cRef="Lev." loc="11,7">Lev. 11,7</ref>; <ref cRef="Gen. " loc="15,10">Gen.  15,10</ref>; <foreign xml:lang="gez">ያንቅዕከ፡ እማእከልከ፡</foreign> <ref cRef="Dan. apocr." loc="1,55">Dan. apocr. 1,55</ref>; <ref cRef="Hez." loc="28,18">Hez. 28,18</ref>; <foreign xml:lang="gez">መተሮ፡ ማእከሎ፡ ኀበ፡ ለምለሙ፡</foreign> <ref cRef="Hez." loc="17,4">Hez. 17,4</ref>; <foreign xml:lang="gez">ወስተ፡ ማእከለ፡ ሰማይ፡</foreign> <foreign xml:lang="grc">ἐν μεσουρανήματι</foreign> <ref cRef="Apoc." loc="19,17">Apoc. 19,17</ref>; <foreign xml:lang="gez">በማእከል፡</foreign> <ref cRef="Rom." loc="5,20">Rom. 5,20</ref>. <sense n="a"> In Genitivo: <cit type="translation" xml:lang="la">
+                                <quote> medius </quote>
+                            </cit>, ut: <foreign xml:lang="gez">አዕማድ፡ እለ፡ ማእከል፡</foreign> <cit type="translation" xml:lang="la">
+                                <quote> columnae </quote>
+                            </cit> (medii i.e.) <cit type="translation" xml:lang="la">
+                                <quote> mediae </quote>
+                            </cit> <ref cRef="Jud." loc="16,29">Jud. 16,29</ref>; <foreign xml:lang="gez">መክፈልተ፡ ሀገር፡ ዘማእከል፡</foreign> <ref cRef="Hez." loc="48,22">Hez. 48,22</ref>; <foreign xml:lang="gez">አረፍተ፡ ማእከል፡</foreign> <ref cRef="Eph." loc="2,14">Eph. 2,14</ref>; idem est <foreign xml:lang="gez">ዘበማእከል፡</foreign> <cit type="translation" xml:lang="la">
+                                <quote> qui in medio </quote>
+                            </cit> i.e. <cit type="translation" xml:lang="la">
+                                <quote> medius </quote>
+                            </cit> <ref cRef="Hen." loc="74,5">Hen. 74,5</ref>.</sense> <sense n="b"> In <gramGrp> <case value="accusativus">Acc.</case> </gramGrp> <foreign xml:lang="gez">ማእከለ፡</foreign> <cit type="translation" xml:lang="la">
+                                <quote> in medio </quote>
+                            </cit>vel <cit type="translation" xml:lang="la">
+                                <quote> medium </quote>
+                            </cit>, <ref cRef="Asc. Jes." loc="7,14">Asc. Jes. 7,14</ref>; <ref cRef="Asc. Jes." loc="7,19">Asc. Jes. 7,19</ref>; <ref cRef="Asc. Jes." loc="7,24">Asc. Jes. 7,24</ref>; <ref cRef="Asc. Jes." loc="7,29">Asc. Jes. 7,29</ref>; <ref cRef="Marc." loc="3,3">Marc. 3,3</ref>; <ref cRef="Apoc." loc="3,16">Apoc. 3,16</ref> <lbl expand="romanae editionis">rom.</lbl> </sense> <sense n="c"> In specie <sense n="α"> de tempore: <foreign xml:lang="gez">ማእከለ፡ መዋዕል፡</foreign> <foreign xml:lang="grc">μεσότης χρόνων</foreign> <ref cRef="Sap. " loc="7,18">Sap.  7,18</ref>;</sense> <sense n="β"> <cit type="translation" xml:lang="la">
+                                    <quote> centrum </quote>
+                                </cit>: <foreign xml:lang="gez">ዝንቱ፡ መካን፡ ማእከለ፡ ምድር፡ ውእቱ፡</foreign> <ref cRef="Clem." loc="28">Clem. f. 28</ref>; <foreign xml:lang="gez">ያንብርዎ፡ ለሥጋየ፡ ውስተ፡ ማእከለ፡ ምድር፡</foreign> <ref cRef="Clem." loc="10">Clem. f. 10</ref>; <ref cRef="Clem." loc="27.">Clem. f. 27.</ref> </sense> <sense n="γ"> <cit type="translation" xml:lang="la">
+                                    <quote> truncus </quote>
+                                </cit> corporis (abscisis capite manibus pedibus) <ref cRef="1 Reg." loc="5,4">1 Reg. 5,4</ref>.</sense> <sense n="δ"> <foreign xml:lang="gez">ማእከለ፡ አፍላግ፡</foreign> <cit type="translation" xml:lang="la">
+                                    <quote> regio media </quote>
+                                </cit> inter fluvios i.e. <cit type="translation" xml:lang="la">
+                                    <quote> Mesopotamia </quote>
+                                </cit> <ref cRef="Gen." loc="24,10">Gen. 24,10</ref>; <ref cRef="Gen." loc="27,43">Gen. 27,43</ref>; <ref cRef="Gen." loc="28,2">Gen. 28,2</ref>; <ref cRef="Gen." loc="28,5">Gen. 28,5</ref>. — <gramGrp> <case value="accusativus">Acc.</case> </gramGrp> <foreign xml:lang="gez">ማእከለ፡</foreign> frequentatur pro praepositione.</sense> </sense> </sense>
+               <sense xml:lang="en" source="#traces">
+                        <foreign xml:lang="gez">ማእከል፡</foreign> <cit type="transcription" xml:lang="gez">
+                            <quote>māʾǝkal</quote>
+                        </cit>; office name; in <bibl>
+                            <ptr target="bm:Marrassini1993AmdaSeyon"/>
+                            <citedRange unit="page">52:17</citedRange>
+                        </bibl> (<foreign xml:lang="gez">ወማእከለ፡ አንጎት፡</foreign>) <ref cRef="Chron. Am." loc="52.17">Chron. Am. 52.17</ref>, <bibl>
+                            <ptr target="bm:Marrassini1993AmdaSeyon"/>
+                            <citedRange unit="page">52:17-18</citedRange>
+                        </bibl> (<foreign xml:lang="gez">፩ወማእከለ፡ ተዋዛት፡</foreign>) <ref cRef="Chron. Am." loc="52.17-18">Chron. Am. 52.17-18</ref>, <bibl>
+                            <ptr target="bm:Marrassini1993AmdaSeyon"/>
+                            <citedRange unit="page">52:18</citedRange>
+                        </bibl> (<foreign xml:lang="gez">፩ማእከለ፡ ባሕር፡</foreign>) <ref cRef="Chron. Am." loc="52.18">Chron. Am. 52.18</ref> </sense>
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

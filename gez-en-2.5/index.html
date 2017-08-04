@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/home.html" data-template-at="content">
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <form action="" class="form form-horizontal" id="searchForm">
+                <div class="form-group">
+                    <span class="input-group">
+                        <span data-template="app:queryinput"/>
+                        <span class="input-group-btn">
+                            <a class="kb btn btn-success">
+                                <i class="fa fa-keyboard-o" aria-hidden="true"/>
+                            </a>
+                            
+                            <a href="#" class="btn btn-default" data-toggle="modal" data-target="#searchHelp">
+                                <i class="fa fa-info-circle" aria-hidden="true"/>
+                            </a>
+                            <span class="btn btn-info" id="erweitertesuche">
+                                    <i class="fa fa-plus" aria-hidden="true"/>
+                                </span>
+                            
+                            <button id="f-btn-search" type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-search"/>
+                            </button>
+                        </span>
+                    </span>
+                   
+                     </div>
+                <div class="form-group ">
+                    <div class="col-md-6">
+                <span class="input-group">
+                    <small class="form-text text-muted">Search mode</small>
+                    <select name="mode" class="form-control" data-template="templates:form-control" id="searchmode">
+                        <option value="none" selected="selected">Normal, with homophones</option>
+                        <option value="any">Any of the search terms</option>
+                        <option value="all">All Search Terms</option>
+                        <option value="phrase">Phrase Search</option>
+                        <option value="near-ordered">Proximity Search (Ordered)</option>
+                        <option value="near-unordered">Proximity Search (Unordered)</option>
+                        <option value="fuzzy">Fuzzy Search</option>
+                        <option value="wildcard">Wildcard Search</option>
+                        <option value="regex">Regex Search</option>
+                    </select>
+                    
+                </span> 
+                    </div>
+                    <div class="col-md-6">
+                    <span class="input-group">
+                        <small class="form-text text-muted">Search only in citations</small>
+                            <br/>
+                        <label class="switch">
+                            <input type="checkbox" value="ref" name="ref" id="citationsOnly"/>
+                            <div class="slider round" data-toggle="tooltip" title="Search only ref elements."/>
+                        </label>
+                </span>
+                    </div>
+                    </div>
+            </form>
+            
+            
+        </div>
+        <div class="col-md-6">
+        <div data-template="app:gotocolumn"/>
+        </div>
+        <div class="col-md-6">
+            
+            <div data-template="app:newentry"/>
+        </div>
+    <div class="col-md-12">
+        <div data-template="app:query">
+            <div>
+                <a href="." class="nav-link" data-template="app:copy-params"/>
+                <div data-template="app:hit-count"/>
+                <div class="hidden-xs">
+                    <ul class="pagination" data-template="app:paginate" data-template-per-page="20" data-template-max-pages="9" data-template-min-hits="21"/>
+                </div>
+                
+                <!-- query results -->
+                <div data-template="app:fullRes" data-template-per-page="20" id="results" class="col-md-12"/>
+                
+                <!-- bottom pagination for larger device -->
+                <div class="hidden-xs">
+                    <ul class="pagination" data-template="app:paginate" data-template-per-page="20" data-template-max-pages="9" data-template-min-hits="21"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+    <div class="col-md-6">
+        <div data-template="app:showitem"/>
+    </div>
+</div>

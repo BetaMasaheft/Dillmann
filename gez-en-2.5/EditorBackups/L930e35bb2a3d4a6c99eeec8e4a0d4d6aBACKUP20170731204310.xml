@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ደኀየ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L930e35bb2a3d4a6c99eeec8e4a0d4d6a" n="8035">
+               <form>
+                  <foreign xml:lang="gez">ደኀየ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> I,1 [vid. <foreign xml:lang="gez">ደኀኀ፡</foreign>] <sense n="l">
+                     <cit type="translation" xml:lang="la">
+                        <quote>effodere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>excavare</quote>
+                     </cit>: <foreign xml:lang="gez">ግበ፡ ከረየ፡ ወደኀየ፡ </foreign>
+                     <foreign xml:lang="grc">λάκκον ὤρυξε καὶ ἀνέσκαψεν αὐτόν Ρ</foreign>s. 7,16;
+                        <foreign xml:lang="gez">ጸናሒ፡ ግበ፡ ዘይድኂ፡</foreign>
+                     <ref cRef="III Sal. Mar." loc="4">III Sal. Mar. 4</ref>; <foreign xml:lang="gez">ሰሎሞን፡ ይቤ፡ ግበ፡ ከረየ፡ ወደኀየ፡ ወይወድቅ፡ ውስተ፡ ግበ፡ ዘገብረ፡</foreign>
+                     <ref cRef="Did." loc="17.">Did. 17.</ref>
+                     <sense n="2">
+                        <cit type="translation" xml:lang="la">
+                           <quote>defodere</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>infodere</quote>
+                        </cit> (vel <cit type="translation" xml:lang="la">
+                           <quote>sepelire</quote>
+                        </cit>): <foreign xml:lang="gez">ወይድኅይዎሙ፡</foreign> (gloss.: <foreign xml:lang="gez">ይቀብርዎሙ፡</foreign>) <foreign xml:lang="gez">ቤተ፡ እስራኤል፡ ፯
+                           ወርኀ፡</foreign>
+                        <foreign xml:lang="grc">κατορύξουσιν αὐτούς</foreign>
+                        <ref cRef="Hez." loc="39,13">Hez. 39,13</ref>. — <cit type="translation" xml:lang="la">
+                           <quote>Voc. Ae.</quote>
+                        </cit>: <foreign xml:lang="gez">ደኀየ፡ ዘ፡ አጐደጐደ፡</foreign>; <cit type="translation" xml:lang="la">
+                           <quote>aliud</quote>
+                        </cit>: <foreign xml:lang="gez">ዘ፡ አጠለቀ፡ አጐደጐደሂ፡</foreign>; <cit type="translation" xml:lang="la">
+                           <quote>aliud</quote>
+                        </cit>: <foreign xml:lang="gez">ከረየ፡ ወደኀየ፡ ዘ፡ መሐሰ።</foreign>
+                     </sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

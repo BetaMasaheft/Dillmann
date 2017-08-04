@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ብጹዕ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L3210d55b9f714114911303a0d6092fe6" n="4205">
+               <form>
+                  <foreign xml:lang="gez">ብጹዕ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann">
+                  <gramGrp>
+                     <pos expand="participium">part.</pos>
+                  </gramGrp>
+                  <sense n="l">
+                     <cit type="translation" xml:lang="la">
+                        <quote>votus</quote>
+                     </cit>: <foreign xml:lang="gez">ኵሉ፡ ዘብጹዕ፡ ዘበጽዑ፡ መሃይምናን፡</foreign>
+                     <ref cRef="II Abt." loc="3.">II Abt. 3.</ref>
+                     <sense n="2"> voti compos (<foreign xml:lang="grc">ἐπιτυγχάνων</foreign>
+                        <ref cRef="Gen. " loc="39,2">Gen. 39,2</ref>) i.e. <cit type="translation" xml:lang="la">
+                           <quote>felix</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>fortunatus</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>beatus</quote>
+                        </cit>, <foreign xml:lang="gez">ብጹዕ፡ ወባዕል፡</foreign>
+                        <ref cRef="Gen." loc="13,2">Gen. 13,2</ref>; <ref cRef="Gen." loc="39,2">Gen. 39,2</ref>; <foreign xml:lang="gez">ብጹዐ፡ ረሰይከኒ፡</foreign>
+                        <ref cRef="4 Esr." loc="12,14">4 Esr. 12,14</ref>; saepe interjectionis vel
+                        exclamationis instar: <foreign xml:lang="gez">ብፁዕ፡ ብእሲ፡</foreign>
+                        <ref cRef="Ps." loc="1,1">Ps. 1,1</ref>; <ref cRef="Ps. " loc="2,13">Ps.
+                           2,13</ref>; <ref cRef="Ps." loc="136,11">Ps. 136,11</ref>; <ref cRef="Ps." loc="136,12">Ps. 136,12</ref>; <ref cRef="Jes." loc="30,18">Jes. 30,18</ref>; <ref cRef="Jes." loc="56,2">Jes. 56,2</ref>; <ref cRef="Job" loc="5,17">Job 5,17</ref>; <ref cRef="Sir." loc="14,1">Sir.
+                           14,1</ref>; <ref cRef="Sir. " loc="14,20">Sir. 14,20</ref>; <ref cRef="Sir." loc="25,8">Sir. 25,8</ref>; <ref cRef="Sir." loc="25,9">Sir.
+                           25,9</ref>; <ref cRef="Sir." loc="28,19">Sir. 28,19</ref>; <ref cRef="Sir." loc="48,11">Sir. 48,11</ref>; <foreign xml:lang="gez">ብፅዕት፡
+                           ነፍስ፡ እንተ፡ ትፈርሆ፡ ለእግዚአብሔር፡</foreign>
+                        <ref cRef="Sir." loc="31,17">Sir. 31,17</ref>; <ref cRef="Koh." loc="10,17">Koh. 10,17</ref>; <foreign xml:lang="gez">ብፁዓን፡ ንሕነ፡ እስራኤል፡</foreign>
+                        <ref cRef="Bar." loc="4,4">Bar. 4,4</ref>; <ref cRef="Act." loc="26,2">Act.
+                           26,2</ref>; <ref cRef="Matth." loc="5,3">Matth. 5,3</ref>; <ref cRef="Matth." loc="5,4">Matth. 5,4</ref>; <ref cRef="Matth." loc="5,5">Matth. 5,5</ref>; <ref cRef="Matth." loc="5,6">Matth. 5,6</ref>; <ref cRef="Matth." loc="5,7">Matth. 5,7</ref>; <ref cRef="Matth." loc="5,8">Matth. 5,8</ref>; <ref cRef="Matth." loc="5,9">Matth. 5,9</ref>; <ref cRef="Matth. " loc="5,10">Matth. 5,10</ref>; <ref cRef="Matth." loc="5,11">Matth. 5,11</ref>; <ref cRef="Matth." loc="11,6">Matth.
+                           11,6</ref>; <foreign xml:lang="gez">ኢትበሎ፡ ብፁዕ፡ </foreign>
+                        <ref cRef="Sir." loc="11,28">Sir. 11,28</ref>; <ref cRef="4 Esr." loc="6,18">4 Esr. 6,18</ref>; de <ref cRef="Deo" loc="1 ">Deo 1 </ref>
+                        <ref cRef="Tim." loc="1,11">Tim. 1,11</ref>; <ref cRef="1 Tim." loc="6,15">1
+                           Tim. 6,15</ref>; de mortuis ad coelicolarum beatitudinem evectis <ref cRef="Apoc." loc="14,13">Apoc. 14,13</ref>; <foreign xml:lang="gez">ብፁዕ፡
+                           ጳውሎስ፡</foreign> Cyr. de r. fid. f. 33; <foreign xml:lang="gez">ቅዱስ፡ ወብፁዕ፡
+                           ሐኑልዮስ፡</foreign>
+                        <ref cRef="Sx. Mag." loc="4">Sx. Mag. 4</ref>; al.</sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

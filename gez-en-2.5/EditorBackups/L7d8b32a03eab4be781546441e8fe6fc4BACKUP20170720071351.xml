@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ኀሠሣ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L7d8b32a03eab4be781546441e8fe6fc4" n="4478">
+               <form>
+                  <foreign xml:lang="gez">ኀሠሣ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann">
+                  <gramGrp>
+                     <pos expand="Substantivum">subst.</pos>
+                  </gramGrp>, <lbl expand="pluralis">Pl.</lbl>
+                  <foreign xml:lang="gez">ኀሠሣት፡</foreign>
+                  <sense n="l">
+                     <cit type="translation" xml:lang="la">
+                        <quote>petitio</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>desiderium</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>studium</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>appetitus</quote>
+                     </cit>: <foreign xml:lang="gez">ኀሠሣሆሙ፡</foreign>
+                     <cit type="translation" xml:lang="la">
+                        <quote>eorum desiderium</quote>
+                     </cit>, <ref cRef="Sx. Masc." loc="3">Sx. Masc. 3</ref>; <foreign xml:lang="gez">ብየ፡ ኀሠሣ፡ እምኂሩትክሙ፡</foreign>
+                     <ref cRef="Sx. Jac." loc="28 ">Sx. Jac. 28 </ref>Enc.; <foreign xml:lang="gez">ተተክለት፡ ፍትወት፡ በጠባይዕ፡ እንስሳዊት፡ከመ፡ ይትፈጸም፡ ኀሠሣ፡ ተራክቦ፡ </foreign> (<cit type="translation" xml:lang="la">
+                        <quote>coitus</quote>
+                     </cit>) <foreign xml:lang="gez">ዘይከውን፡ እምኔሁ፡ ዘርእ፡ </foreign> F.N. 24,1;
+                        <foreign xml:lang="gez">ይኩን፡ ፈቃዱ፡ ወኀሠሣሁ፡</foreign> (<foreign xml:lang="gez">ለመምህር፡</foreign>) <foreign xml:lang="gez">ከመ፡ ይኩኑ፡ </foreign> (<foreign xml:lang="gez">ተመሃርያን፡</foreign>) <foreign xml:lang="gez">ትሑታነ፡</foreign>
+                     F.N. 10. <sense n="2">
+                        <cit type="translation" xml:lang="la">
+                           <quote>percontatio</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>inquisitio</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>quaestio</quote>
+                        </cit>: <foreign xml:lang="gez">ንኄሊ፡ በእንቲአሁ፡ በብዙኅ፡ ኀሠሣ፡</foreign>
+                        <foreign xml:lang="grc">πολλὰ περὶ αὐτοῦ </foreign> (<foreign xml:lang="grc">θεοῦ</foreign>) <foreign xml:lang="grc">νοοῦμεν</foreign>
+                        <ref cRef="Chrys. ho." loc="2">Chrys. ho. 2</ref>; <foreign xml:lang="grc">ζήτησις </foreign> (quaestio, controversia) <ref cRef="Chrys. ho." loc="22">Chrys. ho. 22</ref>; Abush.; <foreign xml:lang="gez">ኀሠሣት፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>quaestiones</quote>
+                        </cit> (de jure) F.N. proleg.; inquisitio ope tormentorum facta <ref cRef="Sx. Hed." loc="11 ">Sx. Hed. 11 </ref>Enc.</sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

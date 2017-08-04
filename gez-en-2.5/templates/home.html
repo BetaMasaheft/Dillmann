@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head> <link rel="shortcut icon" href="resources/images/minilogo.ico"/>
+        <title data-template="config:app-title">App Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta data-template="config:app-meta"/>
+        <link rel="stylesheet" type="text/css" href="$shared/resources/css/bootstrap-3.0.3.min.css"/>
+        <link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css"/>
+        <link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/css/keyboard-basic.min.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+        <script type="text/javascript" src="$shared/resources/scripts/jquery/jquery-1.7.1.min.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/loadsource.js"/>
+        <script type="text/javascript" src="$shared/resources/scripts/bootstrap-3.0.3.min.js"/>
+        <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"/>
+        <script src="resources/js/dataTables.bootstrap.min.js"/><!--
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"/> breaks tooltips-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.keyboard.js"/>
+        
+        <!-- keyboard extensions (optional) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.mousewheel.min.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.keyboard.extension-typing.min.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.keyboard.extension-altkeyspopup.min.js"/>
+        <script src="resources/js/diacriticskeyboard.js" type="text/javascript"/>
+    </head>
+    <body id="body">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"/>
+                    <span class="icon-bar"/>
+                    <span class="icon-bar"/>
+                </button>
+                <a data-template="config:app-title" class="navbar-brand" href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/">App Title</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    
+                    <div data-template="app:login"/>
+                    <li id="greetings">
+                    <a href="#">
+                        <div data-template="app:greetings"/>
+                    </a>
+                </li>
+                    <li class="dropdown" id="about">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About</a>
+                        <ul class="dropdown-menu">
+                            <li class="list-group-item">
+                                <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/about.html">About this app</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="list">
+                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/list">Browse</a>
+                    </li>
+                    
+                    <li id="reverse">
+                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/reverse">Reverse Index</a>
+                    </li>
+                    <li id="abbreviations">
+                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/abbreviations">Abbreviations</a>
+                    </li>
+                    <li id="quotes">
+                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/citations">Citations</a>
+                    </li>
+                    <li id="downloads">
+                        <div data-template="app:downloadbutton"/>
+                    </li>
+                    <li id="BM">
+                        <a href="http://betamasaheft.aai.uni-hamburg.de/" target="_blank">Beta maṣāḥǝft</a>
+                    </li>
+                         
+                </ul>
+                   <a class="navbar-btn btn btn-warning btn-xs" href="https://github.com/SChAth/dillmann/issues/new?title=something%20is%20very%20wrong&amp;assignee=PietroLiuzzo">
+                       <i class="fa fa-exclamation-circle" aria-hidden="true"/> report issue</a>
+                    
+                
+            </div>
+                
+                
+            
+        </nav>
+        <div data-template="app:searchhelp"/>
+         
+        <div id="content" class="col-md-12"/>
+        <div data-template="app:footer"/>
+       
+        <script src="resources/js/jquery.scrollExtend.min.js" type="text/javascript"/>
+        <script src="resources/js/NewBiblio.js" type="text/javascript"/>
+        <script src="resources/js/videash.js" type="text/javascript"/>
+        <script type="text/javascript" src="resources/js/attestations.js"/>
+        <script type="text/javascript" src="resources/js/tooltipsandpopovers.js"/>
+        </body>
+</html>

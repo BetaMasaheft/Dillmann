@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ኪያ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L86969135974947b98d6a86922a925109" n="6328">
+               <form>
+                  <foreign xml:lang="gez">ኪያ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann">
+                  <gramGrp>
+                     <pos expand="pronomen">pron.</pos>
+                  </gramGrp> non nisi cum pronominibus suffixis usitatum [<bibl>
+                     <ptr target="bm:Dillmann1857Gramm"/>gramm.</bibl> § 65; <bibl>
+                     <ptr target="bm:Dillmann1857Gramm"/>gramm.</bibl> § 150,a.]; plerumque verbo
+                  (in <gramGrp>
+                     <case value="accusativus">Acc.</case>
+                  </gramGrp>), rarius praepositioni subjunctum vel subjecti loco positum. <sense n="1">
+                     <sense n="a">
+                        <cit type="translation" xml:lang="la">
+                           <quote>ipse</quote>
+                        </cit>, in Nominativo: <foreign xml:lang="gez">መኑ፡ ውእቱ፡ ዘመሐለ፤ ንብሎ፡ ወልድ፡ ውእቱ፡
+                           ወእመ፡ ትቤለኒ፡ አልቦ፡ እብለከ፡ እወ፡ ውእቱ፡ ኪያሁ፡</foreign>
+                        <foreign xml:lang="grc">μάλιστα μὲν γὰρ αὐτός</foreign>
+                        <ref cRef="Chrys. ho." loc="11">Chrys. ho. 11</ref>; <ref cRef="Hen." loc="67,11">Hen. 67,11</ref>; in. <gramGrp>
+                           <case value="accusativus">Acc.</case>
+                        </gramGrp>: <foreign xml:lang="gez">ጸውዖ፡ ኪያሁኒ፡ ውስተ፡ በዓል፡</foreign>
+                        <ref cRef="Tob." loc="9,2">Tob. 9,2</ref>; <foreign xml:lang="gez">ኪያሁ፡</foreign>
+                        <foreign xml:lang="grc">αὐτοῦ</foreign> ({ihn selbst}) <ref cRef="Job" loc="1,12">Job 1,12</ref>.</sense>
+                     <sense n="b">
+                        <cit type="translation" xml:lang="la">
+                           <quote>i</quote>
+                        </cit>
+                        <cit type="translation" xml:lang="la">
+                           <quote>pse</quote>
+                        </cit>, plerumque addito <foreign xml:lang="gez">መ፡</foreign> vel <foreign xml:lang="gez">ክመ፡</foreign> vel <foreign xml:lang="gez">ሰ፡</foreign>,
+                        ut: <foreign xml:lang="gez">ኪያሃመ፡ ፍኖተ፡ ይሐውሩ፡ </foreign>
+                        <foreign xml:lang="grc">τὴν αὐτὴν ἐρχόμενοι τρίβον</foreign> Cyr. <lbl expand="cum">c.</lbl>
+                        <ref cRef="Pall." loc="66">Pall. f. 66</ref>; <foreign xml:lang="gez">ከመ፡
+                           ኪያሁ፡ ክመ፡ ተኀልዩ፡</foreign>
+                        <foreign xml:lang="grc">τὸ αὐτὸ φρονεῖν</foreign>
+                        <ref cRef="Phil." loc="2,2">Phil. 2,2</ref>; <foreign xml:lang="gez">ኪያሃ፡
+                           ክመ፡ መሥዋዕተ፡</foreign>
+                        <ref cRef="Hebr." loc="10,11">Hebr. 10,11</ref> Platt; <foreign xml:lang="gez">ኪያሁሰ፡ </foreign>
+                        <ref cRef="Matth." loc="5,47">Matth. 5,47</ref>; eo omisso: <foreign xml:lang="gez">ኪያሁ፡ መንፈሰ፡ ነሢኦሙ፡ </foreign>
+                        <ref cRef="Sx. Genb." loc="18 ">Sx. Genb. 18 </ref>Enc.</sense>
+                     <sense n="2"> Ei pronomini, cui praefixum est, vim quandam addit, eique
+                        distinguendo vel restringendo inservit: <foreign xml:lang="gez">ዘኪያሃ፡ አፍቀረ፡
+                           አፍቀረ፡ ሕይወቶ፡ </foreign>
+                        <ref cRef="Sir." loc="4,12">Sir. 4,12</ref>; <ref cRef="Sir." loc="4,14">Sir. 4,14</ref>; <ref cRef="Sir." loc="25,11">Sir. 25,11</ref>; <ref cRef="Sir." loc="31,15">Sir. 31,15</ref>; <foreign xml:lang="gez">ኪያሁ፡
+                           ኀረየ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>eum</quote>
+                        </cit> (non alium quendam) <ref cRef="Sir." loc="45,4">Sir. 45,4</ref>;
+                           <foreign xml:lang="gez">ኪያየኑ፡ የኀሥሡ፡</foreign>
+                        <ref cRef="Jes." loc="58,2">Jes. 58,2</ref>; <foreign xml:lang="gez">ቦኑ፡
+                           ኪያየ፡ ኢትፈርሁ፡</foreign>
+                        <ref cRef="Jer." loc="5,22">Jer. 5,22</ref>; <foreign xml:lang="gez">ኪያከ፡</foreign>
+                        <ref cRef="Ps. " loc="21,5">Ps. 21,5</ref>; <foreign xml:lang="gez">ኪያክሙ፡</foreign>
+                        <ref cRef="Hen." loc="5,6">Hen. 5,6</ref>; <ref cRef="Prov." loc="8,4">Prov.
+                           8,4</ref>; <foreign xml:lang="gez">ኪያሆሙ፡</foreign>
+                        <foreign xml:lang="grc">ἐκείνους </foreign>
+                        <ref cRef="Hez." loc="32,31">Hez. 32,31</ref>; <foreign xml:lang="gez">ኪያሃ፡
+                           ፈቀድኩ፡</foreign>
+                        <ref cRef="Ps." loc="118,35">Ps. 118,35</ref>; <foreign xml:lang="gez">ኪያሁ፡</foreign>
+                        <foreign xml:lang="grc">ταῦτα </foreign>
+                        <ref cRef="Phil." loc="4,9">Phil. 4,9</ref>; <ref cRef="Matth." loc="10,40">Matth. 10,40</ref>; (Joannes interrogatus, an Christus esset, ait)
+                           <foreign xml:lang="gez">ኢኮንኩ፡ ኪያሁ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>is (hic) non sum</quote>
+                        </cit> Deg.; <foreign xml:lang="gez">በኀይል፡ ኢኮነት፡ ኪያሃ፡</foreign> ({der Kraft
+                        nach ist es nicht sie – sondern eine andere}) <ref cRef="Chrys. ho." loc="17">Chrys. ho. 17</ref>; <cb n="0870" xml:id="c0870"/>
+                        <foreign xml:lang="gez">ኪያሁኒ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>(eos quoque)</quote>
+                        </cit>
+                        <foreign xml:lang="gez">ይወስዱ፡ ባቢሎን፡</foreign>
+                        <ref cRef="Jer." loc="34,18">Jer. 34,18</ref>; <ref cRef="Ruth" loc="4,5">Ruth 4,5</ref>; <foreign xml:lang="gez">ኪያሁኒ፡ ዘቦ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>eum quoque quem habet</quote>
+                        </cit>
+                        <ref cRef="Prov." loc="19,4">Prov. 19,4</ref>; <foreign xml:lang="gez">ኪያሁኒ፡
+                           ወኪያሆን፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>et eum et eas</quote>
+                        </cit>
+                        <ref cRef="Lev. " loc="20,14">Lev. 20,14</ref>; <foreign xml:lang="gez">ወኪያሃሰ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>eam autem</quote>
+                        </cit>
+                        <ref cRef="Dan. apocr. " loc="1,40">Dan. apocr. 1,40</ref>; <foreign xml:lang="gez">ኪያሁ፡ ባሕቲቶ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>eum solum</quote>
+                        </cit>
+                        <ref cRef="Matth." loc="4,10">Matth. 4,10</ref>; <foreign xml:lang="gez">እፎ፡
+                           እንከ፡ ፈድፋደ፡ ኪያክሙ፡</foreign>
+                        <ref cRef="Matth." loc="6,30">Matth. 6,30</ref>. Crebro idem pronomen et
+                        voci <foreign xml:lang="gez">ኪያ፡</foreign> et verbo suffixum occurrit:
+                           <foreign xml:lang="gez">ባርከኒ፡ ኪያየኒ፡</foreign>
+                        <ref cRef="Gen." loc="27,34">Gen. 27,34</ref>; <foreign xml:lang="gez">ኪያየ፡
+                           ያጸምኡኒ፡ ወይሰምዑ፡</foreign>
+                        <ref cRef="Job" loc="29,21">Job 29,21</ref>; <foreign xml:lang="gez">እፎ፡
+                           እንከ፡ ኪያነ፡ ያድኅኑነ፡</foreign>
+                        <ref cRef="Jes." loc="20,6">Jes. 20,6</ref>; <ref cRef="Jer." loc="2,13">Jer. 2,13</ref>; <ref cRef="Jer. " loc="7,19">Jer. 7,19</ref>; <ref cRef="Asc. Jes." loc="10,28">Asc. Jes. 10,28</ref>; <ref cRef="Rom." loc="11,21">Rom. 11,21</ref>.</sense>
+                     <sense n="3"> Sine emphasi usurpatur</sense>
+                     <sense n="a"> ubi pronomen (Objectum verbi) verbo vel praedicato suffigere non
+                        possunt vel nolunt, ad circumscribendum Accusativum pronominis <lbl expand="persona">pers.</lbl> (sicut <foreign xml:lang="he">אֵת</foreign>
+                        et <foreign xml:lang="ar">إِيّا</foreign>): <foreign xml:lang="gez">እለ፡ ኪያሃ፡
+                           ቦሙ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>qui eam habent</quote>
+                        </cit>
+                        <ref cRef="Ps." loc="93,15">Ps. 93,15</ref>; <foreign xml:lang="gez">በእንተ፡
+                           ፈጢሮትየ፡ ኪያሆሙ፡ </foreign>
+                        <ref cRef="Gen." loc="6,7">Gen. 6,7</ref>; <foreign xml:lang="gez">ወወሀባ፡</foreign> (sc. <foreign xml:lang="gez">ለወለቱ፡</foreign>) <foreign xml:lang="gez">ኪያሃ፡</foreign> (pro <foreign xml:lang="gez">ወወሀባሃ፡</foreign>) <ref cRef="Jos." loc="16,10">Jos. 16,10</ref>.</sense>
+                     <sense n="b"> pro pronomine <foreign xml:lang="gez">ውእቱ፡</foreign>, ubi
+                        substantivis apponitur: <cit type="translation" xml:lang="la">
+                           <quote>is</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>ille</quote>
+                        </cit>, ut: <foreign xml:lang="gez">ዘሀለወ፡ በኪያሆን፡ መዋዕል፡</foreign>
+                        <foreign xml:lang="grc">ἐν ταῖς ἡμέραις ἐκείναις </foreign>
+                        <ref cRef="Judith" loc="4,6">Judith 4,6</ref>; <ref cRef="Judith" loc="6,15">Judith 6,15</ref>; <ref cRef="Judith" loc="8,1">Judith 8,1</ref> (v.
+                           <foreign xml:lang="gez">በውእቶን፡</foreign>); <foreign xml:lang="gez">ኪያሃ፡
+                           ሌሊተ፡</foreign>
+                        <ref cRef="Ex." loc="12,42">Ex. 12,42</ref>; <ref cRef="Jos." loc="12,6">Jos. 12,6</ref>; <ref cRef="Hen." loc="89,70">Hen. 89,70</ref>; <ref cRef="Hen." loc="89,77">Hen. 89,77</ref>.</sense>
+                     <sense n="c"> ad <gramGrp>
+                           <pos expand="pronomen">pron.</pos>
+                        </gramGrp> relativum pronomine personali complendum: <foreign xml:lang="gez">ነዋ፡ አምላክነ፡ ዘኪያሁ፡ ተወከልነ፡</foreign>
+                        <foreign xml:lang="grc">ἐφ᾽ ᾧ</foreign>
+                        <ref cRef="Jes." loc="25,9">Jes. 25,9</ref>; <foreign xml:lang="gez">እለ፡
+                           ኪያሆሙ፡ ተአመነ፡ </foreign>
+                        <ref cRef="Jes." loc="30,32">Jes. 30,32</ref>.</sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

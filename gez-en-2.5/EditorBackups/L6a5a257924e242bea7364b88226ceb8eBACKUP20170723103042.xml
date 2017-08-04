@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ሌለየ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L6a5a257924e242bea7364b88226ceb8e" n="436">
+               <form>
+                  <foreign xml:lang="gez">ሌለየ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> quadril. I [reduplicatum e simplici <foreign xml:lang="gez">ለየ፡</foreign>, quod Amharenses in usu habent (<lbl expand="videas">vid.</lbl> etiam <foreign xml:lang="gez">መለየ፡</foreign>); huic
+                  ut cognato <foreign xml:lang="gez">ለወወ፡</foreign> (<lbl expand="videas">vid.</lbl>
+                  supra <lbl expand="columna">col.</lbl> 53) prima notio <cit type="translation" xml:lang="la">
+                     <quote>flectendi</quote>
+                  </cit> et <cit type="translation" xml:lang="la">
+                     <quote>inclinandi</quote>
+                  </cit> inest (cfr. <foreign xml:lang="ar">لَوَى</foreign> et <foreign xml:lang="ar">وَلِيَ</foreign>). Ab hac primaria notione derivantur <sense n="1">
+                     <cit type="translation" xml:lang="la">
+                        <quote>adhaerere, propinquum, adjunctum esse</quote>
+                     </cit>
+                     <foreign xml:lang="ar">وَلِيَ</foreign>
+                     <foreign xml:lang="he">לָוָה</foreign> 2) <cit type="translation" xml:lang="la">
+                        <quote>avertere, declinare, retrocedere</quote>
+                     </cit> ut <foreign xml:lang="ar">لَوَى</foreign>
+                     <lbl expand="cum">c.</lbl>
+                     <foreign xml:lang="ar">عَنْ</foreign>
+                     <cit type="translation" xml:lang="la">
+                        <quote>devertit</quote>
+                     </cit> et <cit type="translation" xml:lang="la">
+                        <quote>occultavit</quote>
+                     </cit>, <foreign xml:lang="ar">وَلَى</foreign>
+                     <lbl expand="cum">c.</lbl>
+                     <foreign xml:lang="ar">عَنْ</foreign> II V (et <foreign xml:lang="ar">لَوْلَى</foreign>) <cit type="translation" xml:lang="la">
+                        <quote>retrocessit</quote>
+                     </cit> III <cit type="translation" xml:lang="la">
+                        <quote>separavit alios ab aliis</quote>
+                     </cit>; inde <foreign xml:lang="gez">ሌለየ፡</foreign> reduplicatum <cit type="translation" xml:lang="la">
+                        <quote>duas</quote>
+                     </cit> vel <cit type="translation" xml:lang="la">
+                        <quote>plures res a se invicem avertere</quote>
+                     </cit> i.e. <cit type="translation" xml:lang="la">
+                        <quote>separare</quote>
+                     </cit>. Vicinum est <foreign xml:lang="gez">ለፈየ፡</foreign> q.v.]</sense>
+                  <sense n="1">
+                     <cit type="translation" xml:lang="la">
+                        <quote>a se invicem separare</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>dividere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>disjungere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>dissociare</quote>
+                     </cit>: <foreign xml:lang="gez">ይሌሊ፡ ሥርወ፡ እመሌሊት፡</foreign>
+                     <ref cRef="Hebr." loc="4,12">Hebr. 4,12</ref>; <foreign xml:lang="gez">ዘሌሌከ፡</foreign>
+                     <foreign xml:lang="grc">τὰ διχοτομήματα </foreign>
+                     <ref cRef="Ex." loc="29,17">Ex. 29,17</ref>; <ref cRef="Hen." loc="82,11">Hen.
+                        82,11</ref>; <foreign xml:lang="gez">ከመ፡ እፍልጥ፡ ወእሌሊ፡ </foreign>
+                     <ref cRef="Luc." loc="12,51">Luc. 12,51</ref>
+                     <lbl expand="romanae editionis">rom.</lbl>; <foreign xml:lang="gez">ሌለዮሙ፡
+                        ለሠራዊት፡</foreign> (<foreign xml:lang="grc">διεχώρισεν</foreign>) <ref cRef="2 Par." loc="25,10">2 Par. 25,10</ref>; <foreign xml:lang="gez">ይሌሊ፡
+                        አዕርክተ፡</foreign>
+                     <foreign xml:lang="grc">διαχωρίζει φίλους</foreign>
+                     <ref cRef="Prov. " loc="16,28">Prov. 16,28</ref>; <ref cRef="Prov." loc="17,9">Prov. 17,9</ref>.</sense>
+                  <sense n="2">
+                     <cit type="translation" xml:lang="la">
+                        <quote>distinguere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>secernere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>discrimen facere</quote>
+                     </cit> (inter plures): <foreign xml:lang="gez">ኢፈለጠ፡ ወኢሌለየ፡</foreign> (<foreign xml:lang="grc">οὐ γάρ ἐστι διαστολή</foreign>) <ref cRef="Rom." loc="3,23">Rom. 3,23</ref>; <foreign xml:lang="gez">ወሌለዮ፡ እግዚአብሔር፡ </foreign>
+                        (<foreign xml:lang="gez">ለእጓለ፡ እመሕያው፡</foreign>) <cit type="translation" xml:lang="la">
+                        <quote>discriminia inter eos fecit</quote>
+                     </cit>
+                     <ref cRef="Sir." loc="36,11">Sir. 36,11</ref>; (<cit type="translation" xml:lang="la">
+                        <quote>eleemosynas largiamur</quote>
+                     </cit>) <foreign xml:lang="gez">እንዘ፡ ኢንሌሊ፡ ጽኑሳነ፡</foreign> (non distinguentes
+                     inter egenum et alios) <ref cRef="Chrys. Ta. " loc="10">Chrys. Ta. 10</ref>;
+                        <foreign xml:lang="gez">ይሌሊ፡ ማእከሎሙ፡</foreign>
+                     <ref cRef="Chrys. Ta." loc="17">Chrys. Ta. 17</ref>;
+                        <note>{DiL.1426-1427</note>
+                     <foreign xml:lang="gez">ወሌለየ፡ ማእከለ፡ ቃላቲሁ፡ ለእግዚእነ፡ ወማእከለ፡ ቃላቲሆሙ፡ ለዮናናዊያን፡ ወረከበ፡
+                        ማእከሌሆሙ፡ ርሕቅና፡ ዐቢየ፡</foreign>
+                     <ref cRef="Sx. Pag." loc="2">Sx. Pag. 2</ref>}. <cit type="translation" xml:lang="la">
+                        <quote>Voc. Ae.</quote>
+                     </cit>: <foreign xml:lang="gez">ፈለጠ፡ ፈለየ፡ ሌለየ፡ ዘ፡ ለየ፡</foreign>; <cit type="translation" xml:lang="la">
+                        <quote>aliud</quote>
+                     </cit>: <foreign xml:lang="gez">ፈለጠ፡ ሌለየ፡ ገለየ፡ ፈለየ፡ አሰሰለ፡ አዕለወ፡ በዐደ፡ ሰዘየ፡ ለዘየ፡
+                        ነከረ፡ ብ፡ ለየ።</foreign>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

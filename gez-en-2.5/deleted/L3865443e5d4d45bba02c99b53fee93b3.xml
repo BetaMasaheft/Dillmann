@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title xml:lang="gez">test validation 10</title>
+                <author>Alessandro Bausi</author>
+                <author>Andreas Ellwardt</author>
+            </titleStmt>
+            <publicationStmt>
+                <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+                <publisher>TraCES project.
+                                    https://www.traces.uni-hamburg.de/</publisher>
+                <pubPlace>Hamburg</pubPlace>
+                <availability>
+                    <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/">
+                                        This file is licensed under the Creative Commons
+                                        Attribution-ShareAlike Non Commercial 4.0. </licence>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+                </p>
+                <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <p>A digital edition of the Lexicon in TEI.</p>
+        </encodingDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="en">English</language>
+                <language ident="la">latin</language>
+                <language ident="it">Italian</language>
+                <language ident="gez">Gǝʿǝz</language>
+                <language ident="grc">Ancient Greek</language>
+                <language ident="syr">Syriac</language>
+                <language ident="ar">Arabic</language>
+                <language ident="sa">Sanskrit</language>
+                <language ident="geo">Georgian</language>
+                <language ident="cop">Coptic</language>
+                <language ident="osa">Old South Arabian</language>
+            </langUsage>
+        </profileDesc>
+        <revisionDesc>
+            <change who="PL" when="2017-05-04">test validation</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div>
+                <entry xml:id="L3865443e5d4d45bba02c99b53fee93b3" n="12203">
+                    <form>
+                        <foreign xml:lang="gez">test validation 10</foreign>
+                    </form>
+                    <sense xml:lang="la"/>
+                    <sense xml:lang="en" source="#dillmann"> test validation </sense>
+                </entry>
+            </div>
+        </body>
+    </text>
+</TEI>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ነጋሢ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      <change who="VP" when="2017-05-26">addition from Marrassini</change>
+        <change who="VP" when="2017-07-26">fixed nesting and removed nd</change>
+        </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L3e10ed7431fd49089984bb8566030b61" n="5191">
+               <form>
+                  <foreign xml:lang="gez">ነጋሢ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> <gramGrp> <pos expand="not found">n. ag.</pos> </gramGrp>, (<gramGrp> <gen value="femininus">fem.</gen> </gramGrp> <foreign xml:lang="gez">ነጋሢት፡</foreign>), <lbl expand="pluralis">Pl.</lbl> <lbl expand="cum">c.</lbl> <foreign xml:lang="gez">ነገሥት፡</foreign> (<lbl expand="videas">vid. sub</lbl> <foreign xml:lang="gez">ንጉሥ፡</foreign>), <gramGrp> <gen value="femininus">fem.</gen> </gramGrp> <foreign xml:lang="gez">ነጋሥያት፡</foreign> <sense n="1"> <cit type="translation" xml:lang="la">
+                                <quote> rex </quote>
+                            </cit> (<gramGrp> <gen value="femininus">fem.</gen> </gramGrp> <cit type="translation" xml:lang="la">
+                                <quote> regina </quote>
+                            </cit>), i.q. <foreign xml:lang="gez">ንጉሥ፡</foreign>, sed rarius usitatum et sublimiori potius graviorive orationi reservatum: <foreign xml:lang="gez">ሕየው፡</foreign> (v. <foreign xml:lang="gez">ሕያው፡</foreign>) <foreign xml:lang="gez">አበ፡ ነጋሢ፡</foreign> <cit type="translation" xml:lang="la">
+                                <quote> vivas </quote>
+                            </cit> (<cit type="translation" xml:lang="la">
+                                <quote> vivat </quote>
+                            </cit>) <cit type="translation" xml:lang="la">
+                                <quote> rex </quote>
+                            </cit> <ref cRef="1 Reg." loc="10,24">1 Reg. 10,24</ref>; <ref cRef="2 Reg." loc="16,16">2 Reg. 16,16</ref>; <ref cRef="3 Reg." loc="1,25">3 Reg. 1,25</ref>; <ref cRef="3 Reg." loc="1,34">3 Reg. 1,34</ref>; <ref cRef="3 Reg." loc="1,39">3 Reg. 1,39</ref>; 4 <ref cRef="Reg." loc="11,12">Reg. 11,12</ref>; <ref cRef="2 Par." loc="23,11">2 Par. 23,11</ref>; <foreign xml:lang="gez">ወልደ፡ ነጋሢ፡</foreign> <ref cRef="2 Reg." loc="13,4">2 Reg. 13,4</ref>; <foreign xml:lang="gez">ቤተ፡ ነጋሢ፡</foreign> <ref cRef="Hos." loc="5,1">Hos. 5,1</ref>; <foreign xml:lang="gez">እግዚአብሔር፡ ነጋሢ፡</foreign> <ref cRef="Sx. Teq." loc="23 ">Sx. Teq. 23 </ref>Enc.; <foreign xml:lang="gez">ነጋሥያት፡</foreign> (v. <foreign xml:lang="gez">ነገሥት፡</foreign>) <foreign xml:lang="gez">ሐፃንያቲኪ፡</foreign> <ref cRef="Jes." loc="49,23">Jes. 49,23</ref>; <foreign xml:lang="gez">ነጋሢያት፡</foreign> <ref cRef="Jer. " loc="36,2">Jer.  36,2</ref>. <sense n="a"> Regem Aethiopiae olim <foreign xml:lang="gez">ነጋሢ፡</foreign> compellatum esse, ex illa formula <foreign xml:lang="gez">ሕየው፡ አበ፡ ነጋሢ፡</foreign> elucet, quae non potest non ex Abyssinorum usu loquendi in Bibliorum versionem esse translata, <lbl expand="conferas">cfr.</lbl> nomen <foreign xml:lang="ar">أَلنَّجَاشِي</foreign>, quo Arabes regem Aethiopum appellare solent.</sense> <sense n="b"> <cit type="translation" xml:lang="la">
+                                    <quote> Imperator </quote>
+                                </cit>, <cit type="translation" xml:lang="la">
+                                    <quote> Caesar </quote>
+                                </cit>, <cit type="translation" xml:lang="la">
+                                    <quote> Augustus </quote>
+                                </cit> Romanorum: <ref cRef="Matth." loc="22,21">Matth. 22,21</ref>; <ref cRef="Marc. " loc="12,14">Marc.  12,14</ref>; <ref cRef="Luc." loc="20,24">Luc. 20,24</ref>; <ref cRef="Joh." loc="19,12">Joh. 19,12</ref> <lbl expand="romanae editionis">rom.</lbl>; <ref cRef="Act." loc="25,8">Act. 25,8</ref>; <ref cRef="Act." loc="25,21">Act. 25,21</ref>.</sense>
+                        </sense> <sense n="2"> <cit type="translation" xml:lang="la">
+                                <quote> rector </quote>
+                            </cit>, <cit type="translation" xml:lang="la">
+                                <quote> dominator </quote>
+                            </cit>, <cit type="translation" xml:lang="la">
+                                <quote> dynasta </quote>
+                            </cit>: <foreign xml:lang="gez">ነጋሢ፡ አኃዚ፡</foreign> <foreign xml:lang="grc">ὁ κρατῶν</foreign> <ref cRef="Sap." loc="14,19">Sap. 14,19</ref>; <foreign xml:lang="gez">ኢይትዐበይ፡ ረድእ፡ ላዕለ፡ መምህሩ፡ ወኢወዓሊ፡ ላዕለ፡ ነጋሢ፡</foreign> <ref cRef="Did." loc="5">Did. 5</ref>; <lbl expand="conferas">cfr.</lbl> amh. <foreign xml:lang="gez">ነጋሽ፡</foreign>, Lud. Hist. <ref cRef="Ae. II." loc="17,3">Ae. II. 17,3</ref>.</sense> </sense>
+               <sense xml:lang="en" source="#traces"> <foreign xml:lang="gez">ነጋሢ፡</foreign> <cit type="transcription" xml:lang="gez">
+                            <quote> nagāśi </quote>
+                        </cit>; office name; in <bibl>
+                            <ptr target="bm:Marrassini1993AmdaSeyon"/>
+                            <citedRange unit="page">58:19</citedRange>
+                        </bibl> <ref cRef="Chron. Am." loc="58.19">Chron. Am. 58.19</ref> </sense>
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

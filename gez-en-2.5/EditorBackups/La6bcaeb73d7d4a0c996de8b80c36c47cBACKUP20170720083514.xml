@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ሀውለየ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="La6bcaeb73d7d4a0c996de8b80c36c47c" n="61">
+               <form>
+                  <foreign xml:lang="gez">ሀውለየ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> et <foreign xml:lang="gez">ሀብለየ፡</foreign>
+                  quadril. I, transit.: <cit type="translation" xml:lang="la">
+                     <quote>ludibrio habere</quote>
+                  </cit>, <cit type="translation" xml:lang="la">
+                     <quote>irridere</quote>
+                  </cit>, <cit type="translation" xml:lang="la">
+                     <quote>cavillari </quote>
+                  </cit>(in spec. <cit type="translation" xml:lang="la">
+                     <quote>in comoedia </quote>
+                  </cit>vel <cit type="translation" xml:lang="la">
+                     <quote>spectaculo</quote>
+                  </cit>): <foreign xml:lang="gez">እለ፡ ከመዝ፡ የሀወልይዎ፡ ለእግዚአብሔር፡ ወእለ፡ ጸጋ፡ ትስብእቱ፡ ይመይጡ፡
+                     ውስተ፡ ሀውልዮ፡</foreign>
+                  <foreign xml:lang="grc">τῶν ὀνειδίζόντων θεῷ τὰ ἀνθρώπινα καὶ τὴν χάριν ἐν μέρει
+                     ὀνείδους ποιουμένων</foreign> ho. Theodoti Ancyr. in <ref cRef="Cyr." loc="102">Cyr. f. 102</ref>; <foreign xml:lang="gez">ተሀወልዮ፡ ለእግዚአብሔር፡ ቃል፡ ዘሐመ፡</foreign>
+                  <foreign xml:lang="grc">ὀνειδίζεις Θεῷ παθόντι</foreign>, Theodoti Ancyr. in <ref cRef="Cyr." loc="102">Cyr. f. 102</ref>; <foreign xml:lang="gez">ኢየሀወልይዎኑ፡
+                     ለክርስቶስ፡ ኃጥኣን፡</foreign> ho. Juvenalis Hieros. (in <ref cRef="Cyr." loc="107">Cyr. f. 107</ref>); <foreign xml:lang="gez">እመ፡ አረሚ፡ ሀውለይዎ፡ ለምስጢር፡</foreign>
+                  <foreign xml:lang="grc">ἐὰν Ἕλληνες κωμῳδῶσι τὸ θαῦμα</foreign> hom. Procli in
+                     <ref cRef="Cyr." loc="120 ">Cyr. f. 120 </ref> (cfr. Mansi IV.580). De vera
+                  verbi notione haesitantes <cit type="translation" xml:lang="la">
+                     <quote>Vocabulariorum </quote>
+                  </cit>auctores e conjectura interpretantur modo <foreign xml:lang="gez">ደመረ፡</foreign>, modo <foreign xml:lang="gez">አቀላቀለ፡</foreign> [Mihi hoc
+                  verbum, a <foreign xml:lang="gez">ሀብል፡ </foreign> et <foreign xml:lang="gez">ሀውል፡</foreign> denominatum, ad radicem <foreign xml:lang="he">הָבַל</foreign>
+                  referendum esse, et proprie <cit type="translation" xml:lang="la">
+                     <quote>inania loqui</quote>
+                  </cit>, <cit type="translation" xml:lang="la">
+                     <quote>nugari</quote>
+                  </cit>, <cit type="translation" xml:lang="la">
+                     <quote>grave quid vel res serias ad nugas et inanes loquelas revocare </quote>
+                  </cit>significare videtur]. </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

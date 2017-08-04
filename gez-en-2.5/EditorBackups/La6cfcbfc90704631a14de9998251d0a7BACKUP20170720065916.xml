@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> አኅለፈ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="La6cfcbfc90704631a14de9998251d0a7" n="4433">
+               <form>
+                  <foreign xml:lang="gez">አኅለፈ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> II,1 <sense n="1"> transire facere i.e. <cit type="translation" xml:lang="la">
+                        <quote>trajicere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>traducere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>transmittere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>transitum dare</quote>
+                     </cit> alicui, <cit type="translation" xml:lang="la">
+                        <quote>portare per</quote>
+                     </cit> locum: <foreign xml:lang="gez">አኅለፈቶሙ፡ እንተ፡ ማእከለ፡ ማይ፡</foreign>
+                     <ref cRef="Sap. " loc="10,18">Sap. 10,18</ref>; <ref cRef="Jes." loc="63,12">Jes. 63,12</ref>; <cit type="translation" xml:lang="la">
+                        <quote>Moses</quote>
+                     </cit>
+                     <foreign xml:lang="gez">አኅለፎሙ፡</foreign> (<foreign xml:lang="gez">ለእስራኤል፡</foreign>) <foreign xml:lang="gez">እንተ፡ ማእከለ፡ ባሕር፡</foreign>
+                     <ref cRef="Did." loc="33">Did. 33</ref>; <foreign xml:lang="gez">አኅለፍኮሙ፡
+                        ባሕር፡</foreign>
+                     <ref cRef="Did." loc="38">Did. 38</ref>; <ref cRef="Hez." loc="27,26">Hez.
+                        27,26</ref>; <foreign xml:lang="gez">አኅለፈ፡ ደቂቆ፡ እንተ፡ ማእከለ፡ እሳት፡</foreign>
+                     <ref cRef="2 Par." loc="28,3">2 Par. 28,3</ref>; <foreign xml:lang="gez">አኅልፈነ፡
+                        እንተ፡ ምድርከ፡</foreign>
+                     <ref cRef="Num." loc="20,17">Num. 20,17</ref>; <ref cRef="Deut." loc="2,30">Deut. 2,30</ref>; <foreign xml:lang="gez">ከልአ፡ አልቦ፡ ዘያኅልፍ፡ ንዋየ፡ እንተ፡
+                        ምኵራብ፡</foreign>
+                     <ref cRef="Marc." loc="11,16">Marc. 11,16</ref>.</sense>
+                  <sense n="2">
+                     <cit type="translation" xml:lang="la">
+                        <quote>praeterire facere</quote>
+                     </cit>: <foreign xml:lang="gez">ኣኀልፈከ፡ ታሕተ፡ በትርየ፡</foreign>
+                     <ref cRef="Hez. " loc="20,37">Hez. 20,37</ref>; <foreign xml:lang="gez">ኀጣእኩ፡
+                        እንተ፡ ኀበ፡ ኣኀልፍ፡ እንስሳየ፡</foreign>
+                     <ref cRef="2 Esr." loc="12,14">2 Esr. 12,14</ref>; (Christus precatur:)
+                        <foreign xml:lang="gez">አኅልፋ፡ እምኔየ፡ ለዛቲ፡ ሰዓት፡</foreign> M.M. f. 100. <sense n="a">
+                        <cit type="translation" xml:lang="la">
+                           <quote>praeterire sinere</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>praetermittere</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>locum dare</quote>
+                        </cit>: <foreign xml:lang="gez">እለ፡ አኅለፉ፡ እምጊዜ፡ ተቃርቦተ፡ ብእሲት፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>qui praetermiserunt horam cohabitandi cum uxore</quote>
+                        </cit>, <ref cRef="Const. Ap." loc="13">Const. Ap. 13</ref>; <foreign xml:lang="gez">አኅለፉ፡ አዝማነ፡ ዕልወታት፡</foreign>
+                        <ref cRef="Sx. Nah." loc="20 ">Sx. Nah. 20 </ref>Enc.; <foreign xml:lang="gez">አኅልፋ፡ ለመዐት፡</foreign>
+                        <ref cRef="Sir." loc="19,17">Sir. 19,17</ref>; <ref cRef="Rom." loc="12,19">Rom. 12,19</ref>.</sense>
+                     <sense n="b">
+                        <cit type="translation" xml:lang="la">
+                           <quote>transmittere</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>transigere tempus</quote>
+                        </cit>, <foreign xml:lang="gez">አኅለፈ፡ ኵሎ፡ መዋዕሊሁ፡በሥርዐተ፡ ምሥያጥ፡</foreign>
+                        <foreign xml:lang="grc">ὁ ἐπ᾽ ἀγορᾶς τὸν ἄπαντα βίον διαγαγών</foreign>
+                        <ref cRef="Chrys. Ta." loc="16">Chrys. Ta. 16</ref>; <foreign xml:lang="gez">አኅለፉ፡ ዘንተ፡ መዋዕለ፡ በሐዘን፡</foreign>
+                        <ref cRef="Chrys. Ta." loc="29.">Chrys. Ta. 29.</ref>
+                     </sense>
+                     <sense n="c">
+                        <cit type="translation" xml:lang="la">
+                           <quote>negligere</quote>
+                        </cit>: <foreign xml:lang="gez">አኅለፉ፡ ነገሮ፡ ለእግዚአብሔር፡</foreign>
+                        <ref cRef="Hen. " loc="106,13">Hen. 106,13</ref>.</sense>
+                     <sense n="3">
+                        <cit type="translation" xml:lang="la">
+                           <quote>discedere facere</quote>
+                        </cit>
+                     </sense>
+                     <sense n="a">
+                        <cit type="translation" xml:lang="la">
+                           <quote>abstrahere</quote>
+                        </cit>: <foreign xml:lang="gez">ለአኅልፎ፡ መንፈሱ፡</foreign>
+                        <ref cRef="Kuf." loc="26.">Kuf. 26.</ref> (Vers. lat. p. 31 habet: <cit type="translation" xml:lang="la">
+                           <quote>transferre spiritum ejus</quote>
+                        </cit>).</sense>
+                     <sense n="b">
+                        <cit type="translation" xml:lang="la">
+                           <quote>distinguere</quote>
+                        </cit> (<foreign xml:lang="grc">διορίζειν</foreign>) vel superare facere,
+                           <cit type="translation" xml:lang="la">
+                           <quote>superiorem reddere</quote>
+                        </cit>: <foreign xml:lang="gez">ዘያኀልፈኒ፡ እምእንስሳ፡ ምድር፡ </foreign>
+                        <ref cRef="Job" loc="35,11">Job 35,11</ref>.</sense>
+                     <sense n="4"> rem alicui <cit type="translation" xml:lang="la">
+                           <quote>exhibendam tardare</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>protrahere</quote>
+                        </cit>
+                        <lbl expand="cum">c.</lbl>
+                        <lbl expand="duplex">dupl.</lbl>
+                        <gramGrp>
+                           <case value="accusativus">Acc.</case>
+                        </gramGrp>: <foreign xml:lang="gez">ምጽዋተ፡ ኢታኅልፎ፡</foreign>
+                        <foreign xml:lang="grc">ἐπ᾽ ἐλεημοσύνην μὴ παρελκύσῃς αὐτόν</foreign>
+                        <ref cRef="Sir." loc="29,8">Sir. 29,8</ref> (<lbl expand="videas">vid.</lbl>
+                        III,1 et IV,1).</sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

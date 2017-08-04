@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+   <div class="col-md-12">
+     <form action="" class="form form-inline"> 
+        <div class="form-group">
+                <small class="form-text text-muted">Switch to see only new entries, not in Dillmann Lexicon</small> <label class="switch">
+         <input type="checkbox" name="new"/>
+         <div class="slider round" data-toggle="tooltip" title="only new entries"/>
+      </label>
+            </div>
+        <div class="form-group">
+           <small class="form-text text-muted">Switch to see only entries which contain data from the TraCES project</small> <label class="switch">
+         <input type="checkbox" name="traces"/>
+         <div class="slider round" data-toggle="tooltip" title="only entries with TraCES data"/>
+      </label>
+        </div>
+        <div class="form-group">
+           <small class="form-text text-muted">Select language of translations to display</small> 
+           <select name="lang" class="form-control">
+              <option value="la" selected="selected">Latin (default)</option>
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+              <option value="it">Italian</option>
+              </select>
+        </div>
+        <div class="btn-group">
+           <button class="btn btn-primary" type="submit">Filter</button>
+           <a role="button" class="btn btn-success" href="/Dillmann/list">return to full list</a>
+        </div>
+     </form>
+      
+   </div> 
+   <div class="col-md-12">
+      
+       <div data-template="app:list"/>
+    </div>
+</div>

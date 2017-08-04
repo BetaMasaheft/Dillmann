@@ -1,9 +1,0 @@
-<collection xmlns="http://exist.sourceforge.net/NS/exist" name="/db/apps/dict/resources/font-awesome-4.7.0/css" version="1" owner="Pietro" group="dba" mode="775" created="2017-06-01T10:16:10+02:00">
-    <acl entries="0" version="1"/>
-    <resource type="BinaryResource" name="font-awesome.css" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="font-awesome.css" mimetype="text/css">
-        <acl entries="0" version="1"/>
-    </resource>
-    <resource type="BinaryResource" name="font-awesome.min.css" skip="no" owner="Pietro" group="lexicon" mode="775" created="2017-06-01T10:16:10+02:00" modified="2017-06-01T10:16:10+02:00" filename="font-awesome.min.css" mimetype="text/css">
-        <acl entries="0" version="1"/>
-    </resource>
-</collection>

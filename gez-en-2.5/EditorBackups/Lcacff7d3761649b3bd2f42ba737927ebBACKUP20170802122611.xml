@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ሐፃኒ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      <change who="VP" when="2017-05-18">addition of reference from Marrassini</change>
+            <change who="VP" when="2017-05-18">small addition</change>
+            <change who="VP" when="2017-05-18">correction</change>
+        <change who="VP" when="2017-07-26">removed ND</change>
+        </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="Lcacff7d3761649b3bd2f42ba737927eb" n="1012">
+               <form>
+                  <foreign xml:lang="gez">ሐፃኒ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> <gramGrp> <pos expand="not found">n. ag.</pos> </gramGrp>, <gramGrp> <gen value="femininus">fem.</gen> </gramGrp> <foreign xml:lang="gez">ሐፃኒት፡</foreign>, <lbl expand="pluralis">Pl.</lbl> <lbl expand="cum">c.</lbl> <foreign xml:lang="gez">ሐፃንያት፡</foreign> (<bibl>
+                            <ptr target="bm:Dillmann1857Gramm"/>gramm.</bibl> § 133,a) et <foreign xml:lang="gez">ሐፀንት፡</foreign> <sense n="a"> <gramGrp> <gen value="not found">m.</gen> </gramGrp> <cit type="translation" xml:lang="la">
+                                <quote> nutritor </quote>
+                            </cit>, <cit type="translation" xml:lang="la">
+                                <quote> altor </quote>
+                            </cit>, <cit type="translation" xml:lang="la">
+                                <quote> tutor </quote>
+                            </cit>: <foreign xml:lang="gez">መምህር፡ ወሐፃኒ፡</foreign> <foreign xml:lang="grc">διδάσκαλος καὶ τροφεύς</foreign> <ref cRef="Chrys. ho." loc="34">Chrys. ho. 34</ref>; <foreign xml:lang="gez">ሐፀንተ፡ ደቂቁ፡</foreign> <foreign xml:lang="grc">τιθηνοί</foreign> <ref cRef="4 Reg." loc="10,1">4 Reg. 10,1</ref>; <ref cRef="4 Reg." loc="10,5">4 Reg. 10,5</ref>; crebrius in F.N. 24; F.N. 32; <foreign xml:lang="gez">እስመ፡ እሙንቱ፡ ኮንዎ፡ ሐፃንያተ፡</foreign> (<foreign xml:lang="grc">σύμβουλοι</foreign>) <ref cRef="2 Par." loc="22,4">2 Par. 22,4</ref>.</sense> <sense n="b"> <gramGrp> <gen value="femininus">fem.</gen> </gramGrp> <cit type="translation" xml:lang="la">
+                                <quote> nutrix </quote>
+                            </cit>, <cit type="translation" xml:lang="la">
+                                <quote> nutricula </quote>
+                            </cit> <foreign xml:lang="grc">ἅβρα</foreign> <ref cRef="Gen." loc="24,61">Gen. 24,61</ref>; <ref cRef="Judith" loc="8,10">Judith 8,10</ref>; <foreign xml:lang="grc">τροφός</foreign> <ref cRef="Gen." loc="35,8">Gen. 35,8</ref>; <ref cRef="2 Par." loc="22,11">2 Par. 22,11</ref>; <ref cRef="1 Thess." loc="2,7">1 Thess. 2,7</ref>; <ref cRef="Bar." loc="4,8">Bar. 4,8</ref>; <ref cRef="Ex." loc="2,7">Ex. 2,7</ref>; <foreign xml:lang="gez">ሐፃንያቲኪ፡</foreign> <ref cRef="Jes." loc="49,23">Jes. 49,23</ref>; <ref cRef="Kuf." loc="32">Kuf. 32</ref>; <foreign xml:lang="grc">τιτθίς</foreign> <ref cRef="Chrys. Ta." loc="11">Chrys. Ta. 11</ref>; <foreign xml:lang="grc">τιθηνός</foreign> <ref cRef="2 Reg." loc="4,4">2 Reg. 4,4</ref>; <ref cRef="Ruth" loc="4,16">Ruth 4,16</ref>; <foreign xml:lang="gez">ወልደ፡ ሐፃኒቱ፡</foreign> <foreign xml:lang="grc">σύντροφος</foreign> <ref cRef="Act." loc="13,1">Act. 13,1</ref>.</sense> </sense>
+               <sense xml:lang="en" source="#traces"> <foreign xml:lang="gez">ሐፃኒ፡</foreign> <cit type="transcription" xml:lang="gez">
+                            <quote> ḥaḍāni </quote>
+                        </cit>; office name (<foreign xml:lang="gez">ሐፃኔ፡ ሰገራት፡</foreign>); in <bibl>
+                            <ptr target="bm:Marrassini1993AmdaSeyon"/>
+                            <citedRange unit="page">52:16-17</citedRange>
+                        </bibl> <ref cRef="Chron. Am." loc="52.16-17">Chron. Am. 52.16-17</ref> </sense>
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

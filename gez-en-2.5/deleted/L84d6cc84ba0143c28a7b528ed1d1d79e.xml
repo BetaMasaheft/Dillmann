@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title xml:lang="gez">TEST 3</title>
+                <author>Alessandro Bausi</author>
+                <author>Andreas Ellwardt</author>
+            </titleStmt>
+            <publicationStmt>
+                <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+                <publisher>TraCES project.
+                                    https://www.traces.uni-hamburg.de/</publisher>
+                <pubPlace>Hamburg</pubPlace>
+                <availability>
+                    <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/">
+                                        This file is licensed under the Creative Commons
+                                        Attribution-ShareAlike Non Commercial 4.0. </licence>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+                </p>
+                <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <p>A digital edition of the Lexicon in TEI.</p>
+        </encodingDesc>
+        <profileDesc>
+            <langUsage>
+                <language ident="en">English</language>
+                <language ident="la">latin</language>
+                <language ident="it">Italian</language>
+                <language ident="gez">Gǝʿǝz</language>
+                <language ident="grc">Ancient Greek</language>
+                <language ident="syr">Syriac</language>
+                <language ident="ar">Arabic</language>
+                <language ident="sa">Sanskrit</language>
+                <language ident="geo">Georgian</language>
+                <language ident="cop">Coptic</language>
+                <language ident="osa">Old South Arabian</language>
+            </langUsage>
+        </profileDesc>
+        <revisionDesc>
+            <change who="PL" when="2017-05-17">test url length</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div>
+                <entry xml:id="L84d6cc84ba0143c28a7b528ed1d1d79e" n="12224">
+                    <form>
+                        <foreign xml:lang="gez">TEST 3</foreign>
+                    </form>
+                    <sense source="#dillmann" xml:lang="en"> <gramGrp> <pos expand="not found">pron.</pos> <pos expand="relativum">rel.</pos> </gramGrp> et <gramGrp> <pos expand="conjunctio">conj.</pos> <pos expand="relativum">rel.</pos> </gramGrp> (<bibl>
+                            <ptr target="bm:Dillmann1857Gramm"/>
+                        </bibl> § 147; <bibl>
+                            <ptr target="bm:Dillmann1857Gramm"/>
+                        </bibl> § 169,5). &lt;A&lt; <gramGrp> <pos expand="not found">Pron.</pos> <pos expand="relativum">rel.</pos> </gramGrp>: <lbl expand="Singularis">Sing.</lbl> <gramGrp> <gen value="not found">m.</gen> </gramGrp> <foreign xml:lang="gez">ዘ፡</foreign>, <gramGrp> <gen value="femininus">fem.</gen> </gramGrp> <foreign xml:lang="gez">እንተ፡</foreign>, <lbl expand="pluralis">Pl.</lbl> <lbl expand="cum">c.</lbl> <foreign xml:lang="gez">እለ፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> qui </quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                            <quote> quae </quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                            <quote> quod </quote>
+                        </cit>. &lt;1&lt; De constructione hujus pronominis <lbl expand="not found">(vid.</lbl> <bibl>
+                            <ptr target="bm:Dillmann1857Gramm"/>
+                        </bibl> § 201; § 202). &lt;a&lt; Formae pronominis secundum numeros et genera variantur, ut: <foreign xml:lang="gez">ኢየሱስ፡ ዘተብህለ፡ ክርስቶስ፡</foreign> <ref cRef="Matth." loc="1,16">Matth. 1,16</ref>; <foreign xml:lang="gez">ምድር፡ እንተ፡ ኢኮነት፡ እንቲአከ፡</foreign> <ref cRef="Kuf." loc="10">Kuf. 10</ref>; <ref cRef="Gen." loc="12,1">Gen. 12,1</ref>; <ref cRef="1 Joh." loc="1,5">1 Joh. 1,5</ref>; <foreign xml:lang="gez">አጥባት፡ እለ፡ ኢሐፀና፡</foreign> <ref cRef="Luc." loc="23,29">Luc. 23,29</ref>; <foreign xml:lang="gez">ቢጾሙ፡ እለ፡ ውስተ፡ ካልእ፡ ሐመር፡</foreign> <ref cRef="Luc." loc="5,7">Luc. 5,7</ref>; sed ubicumque nomen, ad quod <gramGrp> <pos expand="not found">pron.</pos> <pos expand="relativum">rel.</pos> </gramGrp> referatur, praemissum est, <foreign xml:lang="gez">ዘ፡</foreign> simplex (tamquam nota relationis generalis) sufficere potest, ut: <foreign xml:lang="gez">አንስትያ፡ ዘኀረዩ፡</foreign> (quas) <ref cRef="Gen." loc="6,2">Gen. 6,2</ref>; <foreign xml:lang="gez">አባግዕ፡ ዘአልቦ፡ ኖላዌ፡</foreign> <ref cRef="Num." loc="27,17">Num. 27,17</ref>; <ref cRef="Hen. " loc="18,6">Hen.  18,6</ref>. (De <foreign xml:lang="gez">እንተ፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> qui </quote>
+                        </cit> pro <foreign xml:lang="gez">ዘ፡</foreign> vid. infra sub B,2).&gt;a&gt; &lt;b&lt; Pronomen relativum in Accusativo positum esse, aut e contextu subintelligitur, ut: <foreign xml:lang="gez">ቃል፡ ዘይቤሎሙ፡</foreign> <ref cRef="Joh." loc="2,22">Joh. 2,22</ref>; <foreign xml:lang="gez">ዐጸደ፡ ወይን፡ ዘወሀቦ፡ ለዮሴፍ፡</foreign> <ref cRef="Joh." loc="4,5">Joh. 4,5</ref>; <ref cRef="Act. " loc="2,22">Act.  2,22</ref>; aut pronomine sive verbo sive notae Accusativi suffixo notatur: <foreign xml:lang="gez">እብን፡ እንተ፡ መነንዋ፡</foreign> <ref cRef="Matth." loc="21,42">Matth. 21,42</ref>; <foreign xml:lang="gez">አሕዛብ፡ እለ፡ አውፅኦሙ፡</foreign> <ref cRef="Act." loc="7,45">Act. 7,45</ref>; <foreign xml:lang="gez">አምላክነ፡ ዘኪያሁ፡ ተወከልነ፡</foreign> <ref cRef="Jes." loc="25,9">Jes. 25,9</ref>. Genitivus pronomine ei nomini, a quo Genitivus pendet, suffixo notatur, ut: <foreign xml:lang="gez">አመት፡ እንተ፡ ስማ፡ አጋር፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> ancilla </quote>
+                        </cit> (quae nomen ejus i.e.) <cit type="translation" xml:lang="la">
+                            <quote> cujus nomen Agar </quote>
+                        </cit> <ref cRef="Gen." loc="16,2">Gen. 16,2</ref>; <foreign xml:lang="gez">ሕዝብ፡ እለ፡ ኢትሰምዕ፡ ነገሮሙ፡</foreign> <ref cRef="Deut." loc="28,49">Deut. 28,49</ref>. Praepositiones pronomini relativo &lt;α&lt; vel (sicut in aliis linguis Semiticis) postponuntur eaeque pronomine suffixo (ad idem nomen ad quod <gramGrp> <pos expand="not found">pron.</pos> <pos expand="relativum">rel.</pos> </gramGrp> refertur relato) munitae: <foreign xml:lang="gez">ምድር፡ እንተ፡ ውስቴታ፡ ነበረ፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> terra </quote>
+                        </cit> (quae in ea i.e.) in <cit type="translation" xml:lang="la">
+                            <quote> qua habitaverat </quote>
+                        </cit> <ref cRef="Gen." loc="37,1">Gen. 37,1</ref>; <ref cRef="Gen." loc="30,26">Gen. 30,26</ref>; <ref cRef="Ex." loc="4,17">Ex. 4,17</ref>; <foreign xml:lang="gez">ዘመጻእኪ፡ ኀቤሁ፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> ad quem venisti </quote>
+                        </cit> <ref cRef="Ruth" loc="2,12">Ruth 2,12</ref>.&gt;α&gt; &lt;β&lt; vel (quamquam rarius) praemittuntur: <foreign xml:lang="gez">ወኵሉ፡ ውስተ፡ ዘወድቀ፡ በድኖሙ፡</foreign> <foreign xml:lang="grc">καὶ πᾶν ἐφ᾽ ὃ ἂν ἐπιπέσῃ</foreign> <ref cRef="Lev." loc="11,32">Lev. 11,32</ref>; <foreign xml:lang="gez">በኵሉ፡ በዘአመከሮ፡</foreign> <ref cRef="Kuf." loc="67">Kuf. 67</ref>; <foreign xml:lang="gez">ሰይፍ፡ በዘይቀትለነ፡</foreign> <ref cRef="Ex." loc="5,21">Ex. 5,21</ref>; <ref cRef="Ex." loc="23,27">Ex. 23,27</ref>; <ref cRef="Ex." loc="28,4">Ex. 28,4</ref>; <ref cRef="Ex." loc="34,33">Ex. 34,33</ref>; <ref cRef="Ex." loc="34,35">Ex. 34,35</ref>; <ref cRef="Gen. " loc="31,32">Gen.  31,32</ref>; <ref cRef="Gen." loc="43,22">Gen. 43,22</ref>; <foreign xml:lang="gez">ጽንዕ፡ በዘ፡ ይትዌከሉ፡ ረሲዓን፡</foreign> <ref cRef="Prov." loc="21,22">Prov. 21,22</ref>; <ref cRef="Jes." loc="50,5">Jes. 50,5</ref>; <ref cRef="Jer." loc="51,14">Jer. 51,14</ref>; <ref cRef="Hez." loc="12,2">Hez. 12,2</ref>; <ref cRef="Matth." loc="2,7">Matth. 2,7</ref>; <ref cRef="Joh." loc="1,33">Joh. 1,33</ref>.&gt;β&gt; &lt;γ&lt; denique et praemittuntur et <gramGrp> <pos expand="not found">pron.</pos> </gramGrp> suffixo munitae postponuntur: <foreign xml:lang="gez">በዘቦቱ፡</foreign> <ref cRef="Num." loc="4,26">Num. 4,26</ref>; <ref cRef="Ex. " loc="30,36">Ex.  30,36</ref>; <ref cRef="Ex." loc="17,5">Ex. 17,5</ref>; <ref cRef="Ps." loc="31,1">Ps. 31,1</ref>; <ref cRef="Apoc." loc="15,1">Apoc. 15,1</ref>; <ref cRef="2 Petr." loc="1,4">2 Petr. 1,4</ref>. – Pronomini relativo, ubi ratione modo dicta complementum pronominis suffixi adjectum est, passim <foreign xml:lang="gez">ለ፡</foreign> praefigitur, quo illud pronomen suff. ad <gramGrp> <pos expand="not found">pron.</pos> <pos expand="relativum">rel.</pos> </gramGrp> referendum esse significetur: <foreign xml:lang="gez">ለእለ፡ ውስቴቶሙ፡ ሀሎከ፡</foreign> <foreign xml:lang="grc">ἐν οἷς σὺ εἶ</foreign> <ref cRef="Ex." loc="34,10">Ex. 34,10</ref>; <foreign xml:lang="gez">ወቦ፡ ለዘወሀቦ፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> et erat cui dedit </quote>
+                        </cit> <ref cRef="Matth. " loc="25,15">Matth.  25,15</ref>; <foreign xml:lang="gez">አልቦ፡ ለዘየኀፍሮ፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> nemo est quem vereatur </quote>
+                        </cit>(ne interpreteris: <cit type="translation" xml:lang="la">
+                            <quote> nemo est qui eum vereatur </quote>
+                        </cit>) <ref cRef="Clem." loc="204">Clem. 204</ref> &gt;γ&gt; </sense>
+                </entry>
+            </div>
+        </body>
+    </text>
+</TEI>

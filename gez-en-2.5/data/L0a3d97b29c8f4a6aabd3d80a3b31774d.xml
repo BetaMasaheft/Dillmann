@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ጐጕአ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L0a3d97b29c8f4a6aabd3d80a3b31774d" n="8711">
+               <form>
+                  <foreign xml:lang="gez">ጐጕአ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> I,2 (<foreign xml:lang="gez">ይጐጕኡ፡</foreign>
+                  <ref cRef="Imperf." loc="2 ">Imperf. 2 </ref>
+                  <ref cRef="Petr." loc="3,12">Petr. 3,12</ref> Platt; <ref cRef="Herm." loc="101 ">Herm. p. 101 </ref>lectio prava est) [v. <foreign xml:lang="ar">أَجَّ وَجَّ
+                     نَجَّ نَجَا</foreign>, quibus <cit type="translation" xml:lang="la">
+                     <quote>properandi</quote>
+                  </cit> potestas inest] <foreign xml:lang="grc">σπεύδειν</foreign>, <foreign xml:lang="grc">σπουδάζειν</foreign>
+                  <sense n="1">
+                     <cit type="translation" xml:lang="la">
+                        <quote>festinare</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>properare</quote>
+                     </cit>, <lbl expand="sequens">seq.</lbl>
+                     <foreign xml:lang="gez">ከመ፡</foreign>
+                     <lbl expand="cum">c.</lbl>
+                     <gramGrp>
+                        <pos expand="Subjunctivus">Subj.</pos>
+                     </gramGrp>: <foreign xml:lang="gez">ጐጕአ፡ ከመ፡ ይፃእ፡ እምህየ፡</foreign>
+                     <ref cRef="2 Par." loc="26,20">2 Par. 26,20</ref>; <foreign xml:lang="gez">ጐጕአ፡
+                        ከመ፡ ይዕርግ፡</foreign>
+                     <ref cRef="2 Par." loc="10,18">2 Par. 10,18</ref>; <lbl expand="sequens">seq.</lbl>
+                     <gramGrp>
+                        <pos expand="Subjunctivus">Subj.</pos>
+                     </gramGrp> verbi: <ref cRef="Act. " loc="20,16">Act. 20,16</ref>; <foreign xml:lang="gez">ይጔጕእ፡ ዘተነድፈ፡ ይምላኅ፡ ሐጸ፡</foreign>
+                     <ref cRef="Sir." loc="19,12">Sir. 19,12</ref>; <ref cRef="4 Esr. " loc="2,35">4
+                        Esr. 2,35</ref>; <ref cRef="4 Esr." loc="6,72">4 Esr. 6,72</ref>; <ref cRef="4 Esr." loc="14,18">4 Esr. 14,18</ref>; <foreign xml:lang="gez">ጐጕእ፡
+                        ጸሎተከ፡ ትግበር፡ </foreign>
+                     <ref cRef="Kuf." loc="31">Kuf. 31</ref>; <lbl expand="sequens">seq.</lbl> verbo
+                     fin. c. <foreign xml:lang="gez">ወ፡</foreign>, ut: <foreign xml:lang="gez">ጐጕአ፡
+                        ወሖረ፡ እማእከለ፡ ፁግ፡</foreign>
+                     <ref cRef="Sap." loc="4,14">Sap. 4,14</ref>; <lbl expand="sequens">seq.</lbl>
+                     <foreign xml:lang="gez">ለ፡</foreign>
+                     <lbl expand="cum">c.</lbl> Infin.: <ref cRef="4 Esr." loc="2,51">4 Esr.
+                        2,51</ref>; <ref cRef="Koh." loc="7,9">Koh. 7,9</ref>; item: <foreign xml:lang="gez">ኢትጐጕእ፡ ለቃለ፡ መሐላ፡</foreign>
+                     <ref cRef="Koh." loc="8,2">Koh. 8,2</ref>; <lbl expand="cum">c.</lbl>
+                     <gramGrp>
+                        <case value="accusativus">Acc.</case>
+                     </gramGrp> Infin.: <foreign xml:lang="gez">ጐጕአ፡ ጸውዖቶሙ፡</foreign>
+                     <ref cRef="Ex." loc="10,16">Ex. 10,16</ref>; <gramGrp>
+                        <pos expand="absolute">abs.</pos>
+                     </gramGrp>; <foreign xml:lang="gez">እንዘ፡ ይጔጕኡ፡</foreign>
+                     <ref cRef="Esth." loc="8,14">Esth. 8,14</ref>; <ref cRef="Ex." loc="12,11">Ex.
+                        12,11</ref>; <ref cRef="Marc." loc="6,25">Marc. 6,25</ref>; <foreign xml:lang="gez">ኢትጐጕእ፡ በአፉከ፡</foreign>
+                     <ref cRef="Koh." loc="5,1">Koh. 5,1</ref>; <ref cRef="1 Reg." loc="21,8">1 Reg.
+                        21,8</ref>; Asc. Jes. <lbl expand="edidit">ed.</lbl>
+                     <ref cRef="Laur." loc="80.">Laur. p. 80.</ref>
+                     <sense n="a">
+                        <cit type="translation" xml:lang="la">
+                           <quote>approperare</quote>
+                        </cit> ad aliquid vel in aliquid: <foreign xml:lang="gez">ዘይጔጕእ፡
+                           ለጋእዝ፡</foreign>
+                        <ref cRef="Sir." loc="28,11">Sir. 28,11</ref>; <foreign xml:lang="gez">ይጔጕእ፡
+                           ከመ፡ ዖፍ፡ ለመሥገርት፡ </foreign>
+                        <ref cRef="Prov." loc="7,23">Prov. 7,23</ref>; <ref cRef="2 Petr." loc="3,12">2 Petr. 3,12</ref>.</sense>
+                     <sense n="b">
+                        <cit type="translation" xml:lang="la">
+                           <quote>trepidare</quote>
+                        </cit>: <ref cRef="Job" loc="23,14">Job 23,14</ref>; <ref cRef="Hen." loc="102,2">Hen. 102,2</ref>; <foreign xml:lang="gez">ኢትጐጕእ፡ ሶበ፡ ትጼሊ፡ </foreign>
+                        <foreign xml:lang="grc">μὴ ὀλιγοψυχήσῃς</foreign>
+                        <ref cRef="Sir. " loc="7,10">Sir. 7,10</ref>.</sense>
+                     <sense n="2">
+                        <cit type="translation" xml:lang="la">
+                           <quote>summo studio agere</quote>
+                        </cit> vel <cit type="translation" xml:lang="la">
+                           <quote>sequi</quote>
+                        </cit> aliquid, <cit type="translation" xml:lang="la">
+                           <quote>vires intendere</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>intentius studere</quote>
+                        </cit> rei: <foreign xml:lang="gez">እስመ፡ ቦ፡ ዘይጔጕእ፡ ወይሰርሕ፡ ወይጻሙ፡</foreign>
+                        <ref cRef="Sir." loc="11,11">Sir. 11,11</ref>; <ref cRef="Herm." loc="100">Herm. p. 100</ref>; <lbl expand="sequens">seq.</lbl>
+                        <gramGrp>
+                           <pos expand="Subjunctivus">Subj.</pos>
+                        </gramGrp> verbi: <foreign xml:lang="gez">ይጔጕእ፡ ይብዐል፡</foreign>
+                        <ref cRef="Prov." loc="28,22">Prov. 28,22</ref>; <ref cRef="2 Petr." loc="3,14">2 Petr. 3,14</ref>; <lbl expand="sequens">seq.</lbl>
+                        <foreign xml:lang="gez">ከመ፡</foreign>
+                        <lbl expand="cum">c.</lbl>
+                        <gramGrp>
+                           <pos expand="Subjunctivus">Subj.</pos>
+                        </gramGrp>: <ref cRef="2 Petr." loc="1,10">2 Petr. 1,10</ref>; <ref cRef="2 Petr. " loc="1,15">2 Petr. 1,15</ref>.</sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ሚመ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L0a3c06a356074536a619736f91ff3ce3" n="1173">
+               <form>
+                  <foreign xml:lang="gez">ሚመ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann">
+                  <gramGrp>
+                     <pos expand="adverbium, adverbialiter">adv.</pos>
+                  </gramGrp> pronom. interrogativum, compositum e <foreign xml:lang="gez">ሚ፡
+                  </foreign> et <foreign xml:lang="gez">መ፡</foreign> (<bibl>
+                     <ptr target="bm:Dillmann1857Gramm"/>gramm.</bibl> § 63 et § 161,a et § 198,c).
+                  Est nota interrogationis et significat <sense n="1">
+                     <cit type="translation" xml:lang="la">
+                        <quote>num? utrum?</quote>
+                     </cit>
+                     <foreign xml:lang="gez">ምንት፡ እምኀየሶሙ፡ ለእለ፡ ተፈጥሩ፤ ሚመ፡ ተፈጥሮ፡ ወሚመ፡ ኢተፈጥሮ፡ </foreign>
+                     <cit type="translation" xml:lang="la">
+                        <quote>quid melius esset creatis: utrum creatos an non creatos esse?</quote>
+                     </cit> Cyr. ad <ref cRef="Theod." loc="12">Theod. f. 12</ref>; <foreign xml:lang="gez">አይኬ፡ ዘወለደት፡ ድንግል፤ ሚመ፡ ትስብእተ፡ ወሚመ፡ መለኮተ፡</foreign> Cyr. ad
+                        <ref cRef="Theod." loc="15.">Theod. f. 15.</ref>
+                  </sense>
+                  <sense n="2"> Cum <foreign xml:lang="gez">ወ</foreign> compositum (<foreign xml:lang="gez">ወሚመ፡</foreign>) in interrogationibus disjunctivis alteram
+                     disjunctionis partem infert: <cit type="translation" xml:lang="la">
+                        <quote>an?</quote>
+                     </cit>
+                     <ref cRef="Matth." loc="17,25">Matth. 17,25</ref>; <ref cRef="Job" loc="6,12">Job 6,12</ref>; <ref cRef="Jes." loc="40,19">Jes. 40,19</ref>; <ref cRef="Jer. " loc="12,9">Jer. 12,9</ref>; <ref cRef="Jer." loc="51,28">Jer.
+                        51,28</ref>; <ref cRef="1 Cor." loc="4,21">1 Cor. 4,21</ref>; saepissime
+                     adjecto: <foreign xml:lang="gez">ኑ፡ </foreign> (<foreign xml:lang="gez">ወሚመ፡</foreign> –<foreign xml:lang="gez">ኑ፡</foreign>): <foreign xml:lang="gez">እምሰማይኑ፡ ወሚመ፡ እምሰብእኑ፡</foreign>
+                     <ref cRef="Matth. " loc="21,25">Matth. 21,25</ref>; <ref cRef="Gen." loc="31,28">Gen. 31,28</ref>; <cb n="0161" xml:id="c0161"/>
+                     <ref cRef="Gen." loc="37,8">Gen. 37,8</ref>; <ref cRef="Joh." loc="9,2">Joh.
+                        9,2</ref>; <ref cRef="Act." loc="8,34">Act. 8,34</ref>; <ref cRef="Rom." loc="4,10">Rom. 4,10</ref>; <ref cRef="4 Esr. " loc="6,49">4 Esr.
+                     6,49</ref>; <ref cRef="4 Esr." loc="12,50">4 Esr. 12,50</ref>. – Etiam ubi
+                     enuntiatio interrogativa proxime non antecedit, <foreign xml:lang="gez">ወሚመ፡</foreign> disjunctivum <cit type="translation" xml:lang="la">
+                        <quote>an?</quote>
+                     </cit> usurpari potest, ut <ref cRef="Jac." loc="4,5">Jac. 4,5</ref>. – <lbl expand="videas">Vid.</lbl>
+                     <foreign xml:lang="gez">እመ፡</foreign> – <cit type="translation" xml:lang="la">
+                        <quote>Voc. Ae.</quote>
+                     </cit>: <foreign xml:lang="gez">አው፡ ወሚመ፡ ብ፡ ወይ፡</foreign>; <cit type="translation" xml:lang="la">
+                        <quote>aliud</quote>
+                     </cit>: <foreign xml:lang="gez">ወሚመ፡ ዘ፡ ወይም።</foreign>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

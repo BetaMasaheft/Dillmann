@@ -1,0 +1,1668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+    <head> </head>
+    <body>
+        <table><!--
+         <tr>
+            <td> unsere Normalisierung </td>
+            <td> tatsächlich verwendet </td>
+            <td> Dillmann Abk.</td>
+            <td> Dillmann Ref.</td>
+         </tr>-->
+            <tr>
+                <td>   </td>
+                <td> nie verwendet </td>
+                <td> a A. </td>
+                <td> ab Abbadie acceptum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> d'Abb Cat.: 11 d'Abbadie Cat.: 68 </td>
+                <td> d’Abb. Cat. </td>
+                <td> d’Abbadie Catalogue de Manuscrits Ethiopiens. Paris 1859. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> abs. 109 absol. 85 absolute: 23 </td>
+                <td> abs. </td>
+                <td> absolute. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> abstr. </td>
+                <td> abstractum, -e. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Abt.: 14 Abtel.: 33 </td>
+                <td> Abt. </td>
+                <td> Abtelisat. } pars Synodi. Numerus significat canones. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> II Abt. </td>
+                <td> Abtelisat II ae recensionis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Abush. Locos quosdam libri Abushakeriani </td>
+                <td> Abush. </td>
+                <td> Abushakeri opus chronographicum; numerus significat capita. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Acc. </td>
+                <td> Accusativus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Act. Apost.: 3 </td>
+                <td> Act. </td>
+                <td> Actus apostolorum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> adj. </td>
+                <td> adjectivum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> adj. rel. </td>
+                <td> adjectivum relativum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> adv. </td>
+                <td> adverbium, adverbialiter. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Am. </td>
+                <td> Amosi prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> amh. </td>
+                <td> amharicus </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> ann. </td>
+                <td> annotatio. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> ap., apcr. </td>
+                <td> apocryphus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Apoc. </td>
+                <td> Apocalypsis Joannis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> 8 </td>
+                <td> Apoc. Mar. Joh. </td>
+                <td> Apocalypsis Mariae a Joanne conscripta. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> ar., arab. </td>
+                <td> arabicus, -e. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> aram. </td>
+                <td> aramaicus, -e. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> 542 </td>
+                <td> Asc. Jes. </td>
+                <td> Ascensio Isaiae ed. Laurence 1819. 8°. </td>
+            </tr>
+            <tr>
+                <td> Athan. </td>
+                <td>   </td>
+                <td> Ath. de Trin. </td>
+                <td> Athanasius de Trinitate, pars libri Haimânôta-Abau. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> auct. </td>
+                <td> auctore, auctoritate. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Baam.: 0 Vit. S. Baam.: 1 Vit. Baam.: 5 </td>
+                <td> Baam., Vit. S. Baam. </td>
+                <td> Vita Sancti Baamini (in Cod. Berolinensi, a Ludolfo lecta). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Bar. </td>
+                <td> Baruchi liber apocryphus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Vit. Barb. </td>
+                <td> Barb., Vit. S. Barb. </td>
+                <td> Vita S. Barbarae (in Cod. Berolinensi, a Ludolfo lecta). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Cod. Bruc.: 2 </td>
+                <td> Bruc., Cod. Bruc. </td>
+                <td> Cod. Brucianus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Bruce V Bruce Bd. V Bruce Reise V </td>
+                <td> Bruce </td>
+                <td> Bruce, Reisen zur Entdeckung der Quellen des Nils, deutsch von Volkmann. Bd. 1–5.
+               1790–1791. 8°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Buxt.: 3 Buxtorf: 4 </td>
+                <td> Buxt. </td>
+                <td> J. Buxtorf lexicon talmudicum et rabbinicum, Basil. 1639. fol. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> C. </td>
+                <td> Caput. </td>
+            </tr>
+            <tr>
+                <td> col. </td>
+                <td>   </td>
+                <td> c. </td>
+                <td> columna. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Can. Anc.: 2 Can. Ancyr.: 7 </td>
+                <td> Can. Anc. </td>
+                <td> Canones Ancyrani. } partes Synodi. Numerus significat canones. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Ant . </td>
+                <td> — Antiocheni. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Can. Ap. I Can. Ap. </td>
+                <td> — Ap. </td>
+                <td> — Apostolorum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> II Can. Ap. </td>
+                <td>   </td>
+                <td>   </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Gangr. </td>
+                <td> — Gangrenses. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Laod. </td>
+                <td> — Laodiceni. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Neoc.: 0 Neocaes.: 5 </td>
+                <td> — Neoc. </td>
+                <td> — Neocaesarienses. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> Can. Nic. I Can Nic.: 1 </td>
+                <td> — Nic. </td>
+                <td> — Niceni. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> II Can. Nic. </td>
+                <td> — II Nic. </td>
+                <td> — — II ae recensionis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Sard. </td>
+                <td> — Sardicenses. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Cant. </td>
+                <td> Canticum Canticorum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Cant. Sam. </td>
+                <td> Canticum in Samuelis laudem compositum (a Ludolfo lectum). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Cat. Bibl. Bodl. </td>
+                <td> Catalogus Codicum Mss. Bibliothecae Bodleianae Oxoniensis P. VII, Codices
+               Aethiopici, ed. A. Dillmann Ox. 1848. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Cat. Mus. Brit. </td>
+                <td> Catalogus Codicum Mss. Orientalium qui in Museo Britannico asservantur; P. III,
+               Codices Aethiopici ed. A. Dillmann. 1847. fol. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> c.c. </td>
+                <td> construitur cum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> cfr. </td>
+                <td> conferas. </td>
+            </tr>
+            <tr>
+                <td> Chrys. ho. </td>
+                <td>   </td>
+                <td> Chr. ho. </td>
+                <td> Chrysostomi homiliae } in epistolam ad Hebraeos; citatur secundum numeros
+               homiliarum vel Tagsâ ʃs orum. </td>
+            </tr>
+            <tr>
+                <td> Chrys. Ta. </td>
+                <td>   </td>
+                <td> Chr. Ta. </td>
+                <td> Chrysostomi Tagsâ ʃs . </td>
+            </tr>
+            <tr>
+                <td> Chron. L. Atq. </td>
+                <td>   </td>
+                <td> Chr. L. Atq. </td>
+                <td> Chronicon Liq. Atqu. </td>
+            </tr>
+            <tr>
+                <td> Chron. Ax. </td>
+                <td>   </td>
+                <td> Chron. Ax. </td>
+                <td> Chronicon Axumiticum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Clem. </td>
+                <td> Libri Clementis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> cod. </td>
+                <td> codex. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> col. </td>
+                <td> columna. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Col. </td>
+                <td> ad Colossenses epistola Pauli. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> coll. </td>
+                <td> collato, -is. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> coll. </td>
+                <td> collectivum, -e. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Comp. Eccl. </td>
+                <td> Computus ecclesiasticus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> co ncr. </td>
+                <td> concretus, -e (opp. abstracto). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> conj. </td>
+                <td> conjunctio. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Const. Ap. </td>
+                <td> Constitutiones Apostolorum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> II — — </td>
+                <td> — — IIae recensionis } pars Synodi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> III — — </td>
+                <td> — — III ae — </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> copt. </td>
+                <td> copticus, -e. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Cor. </td>
+                <td> ad Corinthios epistola Pauli I et II. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Curz. </td>
+                <td> Sir Robert Curzon, Britannus, codicum Aeth. possessor. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Cyr. </td>
+                <td> Cyrilli Alexandrini scripta (de recta fide; ad Reginas; ad Theodosium; colloquium
+               cum Palladio; Homiliae; Epistolae). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Dan. </td>
+                <td> Danielis prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Deg. </td>
+                <td> Deguâ, thesaurus hymnorum ecclesiasticorum, Mss. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> denom. </td>
+                <td> denominates. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Deut. </td>
+                <td> Deuteronomium. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Did. </td>
+                <td> Didascalia Apostolorum; numerus significat capita. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Did. Ed. Platt. </td>
+                <td> The Ethiopic Didascalia ed. Platt. Lond. 1834. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> dupl. </td>
+                <td> duplex. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> ead. q. </td>
+                <td> eadem quae. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> ed. </td>
+                <td> edidit. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Enc. </td>
+                <td> Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et
+               dies, vid. Sx. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ep. Jer. </td>
+                <td> Epistola Jeremiae, apocrypha. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Eph. </td>
+                <td> ad Ephesios epistola Pauli. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Epil. </td>
+                <td> Epilogus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Epist. Zar’a Jac. </td>
+                <td> Epistola Zar’a Jacobi regis, in Ludolfi Comm. Hist. p. 301 seq. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> 1 Esr. </td>
+                <td> Ezrae liber apocryphus (Graecus) </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> 2 Esr. </td>
+                <td> Ezrae et Nehemiae libri canonici. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> 4 Esr. </td>
+                <td> Ezrae Apocalypsis; citatur secundum capita et commata editionis Laurentianae. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Esth. </td>
+                <td> Esther, liber biblicus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ex. </td>
+                <td> Exodus, liber Pentateuchi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> ex. gr. </td>
+                <td> exempli gratia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Exp. Dec. </td>
+                <td> Expositio Decalogi, pars Synodi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Exp. Fid. Nic. </td>
+                <td> Expositio Fidei Nicena, pars Synodi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Fal. </td>
+                <td> Maʃshafa Falasfa. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Fid. Jac. Bard. </td>
+                <td> Fides Jacobi Baradaei (pars libri Haimânôta-Abau). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> F.M. </td>
+                <td> Faus Manfasâwi; numerus significat sectiones et capita. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> F.N. </td>
+                <td> Fetḥa Nagast; numeri significant capita capitarumque partes. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Form. Conf. </td>
+                <td> Formula Confessionis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Francf. </td>
+                <td> Francofurtensis (codex) </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Freytag </td>
+                <td> Freytag, lexicon Arabico-Latinum. Vol. I–IV. 1830–37. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. Ad. </td>
+                <td> Gadela Adam. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. Joh. </td>
+                <td> Gadela Abba Johanni. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. G. M. Q. </td>
+                <td> Gadela Gabra Manfas Qedûs. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. Kar. </td>
+                <td> Gadela Karazûn. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. Lal. </td>
+                <td> Gadela Lalibela. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. T. H. </td>
+                <td> Gadela Tacla Haimânôt. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. T. Zion. </td>
+                <td> Gadela Tacla-Zion. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gad. Za Mich. </td>
+                <td> Gadela Za-Michael </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gal. </td>
+                <td> ad Galatas epistola Pauli. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Gen. </td>
+                <td> Genesis liber Pentateuchi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Genz. </td>
+                <td> Maʃshafa Genzat. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ges. thes. </td>
+                <td> Gesenii thesaurus linguae Hebraeae et Chaldaeae Vol. I–III. 1835–53. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> gl. </td>
+                <td> glossa. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> gramm. </td>
+                <td> Grammatik der äthiopischen Sprache von A. Dillmann Leipz. 1857. 8°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> H. A. </td>
+                <td> Haimânôta-Abau; numerus significat sectiones. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hab. </td>
+                <td> Habacuci prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hagg. </td>
+                <td> Haggaei prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Harris </td>
+                <td> Harris, Gesandtschaftsreise nach Schoa. Deutsch von K. v. K. 1845–46. 8°. Bd. 1 u.
+               2. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hebr. </td>
+                <td> ad Hebraeos epistola. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> hebr. </td>
+                <td> hebraice, vel secundum textum Hebraicum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hen. </td>
+                <td> Henochi liber, Aethiopice, ed. Dillmann 1851. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Herm. </td>
+                <td> Hermae pastor, Aethiopice, ed. d’Abbadie 1860. 8°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hez. </td>
+                <td> Hezekielis prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hist. VII puer. </td>
+                <td> Historia VII puerorum, a Ludolfo lecta (in Cod. Berolinensi). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hom. </td>
+                <td> Homiliae et Vitae Sanctorum, a Ludolfo lectae (in Cod. Berolinensi). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Hym. Mus. Brit. LIV,7 </td>
+                <td> Hymni in Codice Musei Britannici LIV Nr. 7. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Jac. </td>
+                <td> Jacobi epistola. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> ib. </td>
+                <td> ibidem. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> id. </td>
+                <td> idem. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> id. q. </td>
+                <td> idem quod. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Jer. </td>
+                <td> Jeremiae prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Jes. </td>
+                <td> Jesaiae prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Impf. </td>
+                <td> Imperfectum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Impt. </td>
+                <td> Imperativus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Inf. </td>
+                <td> Infinitivus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Inf. nom. </td>
+                <td> Infinitivus nominalis, nominascens. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Inf. verb. </td>
+                <td> Infinitivus verbalis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> inus. </td>
+                <td> inusitatus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Job </td>
+                <td> liber Jobi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Joel </td>
+                <td> Joelis prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Joh. </td>
+                <td> Evangelium Joannis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> 1, 2, 3, Joh. </td>
+                <td> Epistolae Joannis I, II, III. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Jon. </td>
+                <td> Jonae prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Jos. </td>
+                <td> Josuae liber. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Jud. </td>
+                <td> Judicum liber. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Judae </td>
+                <td> Judae epistola. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Judith </td>
+                <td> Judith liber apocryphus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Jsp. </td>
+                <td> Josippon vel Pseudojosephus, Josephi Ben Gorion Historia Judaeorum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Kebr. Nag. </td>
+                <td> Kebra Nagast; numerus significat sectiones. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Kedr </td>
+                <td> Maʃshafa Kedr. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Kid. </td>
+                <td> Maʃshafa Kidân Za-egziena Ijasus </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Koh. </td>
+                <td> Koheleth (Ecclesiastes), liber biblicus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Kuf. </td>
+                <td> Kufâle sive Liber Jubilaeorum Aethiopice, ed. A. Dillmann 1859. 4°; citantur capita
+               libri; nonnumquam, praemisso p., paginae. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> l. </td>
+                <td> linea. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Laud. Mar. </td>
+                <td> Laudes Mariae. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Laur. </td>
+                <td> Laurence, Henochi, IV Ezrae, Asc. Jesaiae librorum editor. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Lev. </td>
+                <td> Leviticus, liber Pentateuchi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> lex. </td>
+                <td> lexicon. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Lib. Myst. </td>
+                <td> Liber Mysteriorum coeli et terrae, Aeth., Parisensis, a Ludolfo lectus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Lit. </td>
+                <td> Liturgiae in N. T. romano impressae; numeri significant folia et columnas. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Lit. Diosc. </td>
+                <td> Liturgia Dioscuri. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Epiph. </td>
+                <td> — Epiphanii. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Greg. </td>
+                <td> — Gregorii. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Joh. </td>
+                <td> — Joannis Evangelistae. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Jo. Chrys. </td>
+                <td> — Joannis Chrysostomi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Jac. Sar. </td>
+                <td> — Jacobi Sarugensis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> — Orthod. </td>
+                <td> — 318 Orthodoxorum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Luc. </td>
+                <td> Lucae evangelium </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Lud. </td>
+                <td> J. Ludolfus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Lud. Hist. </td>
+                <td> Ludolfi historia Aethiopica. 1681. fol. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Lud. Comm. Hist. </td>
+                <td> — Commentarius ad suam Historiam 1691. fol. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> m. </td>
+                <td> masculinum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Macc. </td>
+                <td> Liber Maccabaeorum ficticius. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Machb. Meem. </td>
+                <td> Machbara Me’manân. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Mal. </td>
+                <td> Malachiae prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Marc. </td>
+                <td> Marci Evangelium. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> masc. </td>
+                <td> masculinum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Matth. </td>
+                <td> Matthaei Evangelium. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Mavâs. </td>
+                <td> Mavâs’et; numerus significat sectiones. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Mich. </td>
+                <td> Michaei prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> M. F. </td>
+                <td> Maʃshafa Faus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> M. M. </td>
+                <td> Maʃshafa Mistîr. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ms. </td>
+                <td> Manuscriptum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Mss. Colb. </td>
+                <td> Manuscriptum Colbertinum, Parisiense, a Ludolfo lectum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> n. </td>
+                <td> nomen. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> n. act. </td>
+                <td> nomen actionis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> n. ag. </td>
+                <td> nomen agentis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> nom. </td>
+                <td> nomen. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> nomt. </td>
+                <td> nominativus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> n. pr. </td>
+                <td> nomen proprium. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> n. prgr. </td>
+                <td> nomen peregrinum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Num. </td>
+                <td> Numeri, liber Pentateuchi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> num. </td>
+                <td> numerale. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> N. T. </td>
+                <td> Novum Testamentum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ob. </td>
+                <td> Obadiae prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td> 1 </td>
+                <td> obsc. </td>
+                <td> obscoene. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Oct. </td>
+                <td> Octateuchus Aethiopicus, ed. A. Dillmann. 1853. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> opp. </td>
+                <td> oppositum, -o, -nitur. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Org. </td>
+                <td> Organon Mariae, numerus significat lectionem. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Org. Edz. </td>
+                <td> Organon Mariae, quod Ezra Edzardi Hamburgi possidebat, a Ludolfo lectum </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> p. vel pag. </td>
+                <td> pagina. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Par. </td>
+                <td> Paralipomenon libri I et II. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> part. </td>
+                <td> participium. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> pass. </td>
+                <td> passivum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> pers. </td>
+                <td> persona. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> prgr. </td>
+                <td> peregrinum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Phil. </td>
+                <td> ad Philippenses epistola Pauli. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Philem. </td>
+                <td> ad Philemonem epistola Pauli. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Phlx. </td>
+                <td> Philexius; numerus significat quaestiones. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Pl. </td>
+                <td> Pluralis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> praep. </td>
+                <td> praepositio. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Prec. mat. </td>
+                <td> Preces matutinae. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Prol. </td>
+                <td> Prolegomena. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> pron. </td>
+                <td> pronomen. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> prop. </td>
+                <td> proprium, -e. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Prov. </td>
+                <td> Proverbiorum liber biblicus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ps. </td>
+                <td> Psalmi, ex editione Ludolfi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> quadrl. </td>
+                <td> quadriliterum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> q. v. </td>
+                <td> quod videas. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> rad. </td>
+                <td> radix. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> radd. </td>
+                <td> radices. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Rad. Abb. </td>
+                <td> Radices Abbadianae (collectio radicum Geez linguae Mss.). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Refl. </td>
+                <td> Reflexivum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Reg. </td>
+                <td> Regum libri biblici I, II, III, IV. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Reg. Pach. </td>
+                <td> Regula Pachomii. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> rel. </td>
+                <td> relativum </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Rel. Bar. </td>
+                <td> Reliquiae Baruch </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Rom. </td>
+                <td> ad Romanos epistola Pauli. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> rom. </td>
+                <td> romanae editionis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Rüppell </td>
+                <td> Ed. Rüppell Reise in Abyssinien. Frkf. 1838–40. Bd. 1. 2. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ruth </td>
+                <td> Ruth liber biblicus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sal. Mar. </td>
+                <td> Salâm ad Mariam I, II, III; numerus significat strophas </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sal. Nic. </td>
+                <td> Salâm ad 318 Nicenos; numerus significat strophas </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sap. </td>
+                <td> Sapientia Salomonis, apocr. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> sc. </td>
+                <td> scilicet. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Scaliger </td>
+                <td> Scaliger, opus de emendatione temporum, Genevae 1629. fol. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> sec. </td>
+                <td> secundum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> seq. </td>
+                <td> sequens. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> s. fin. </td>
+                <td> sub finem. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sib. </td>
+                <td> Sapientia Sibyllae ficticia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sing. </td>
+                <td> Singularis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sir. </td>
+                <td> Liber Siracidae (Ecclesiasticus). </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Ssal. Req. </td>
+                <td> Ssalôta Reqêt, libellus Aeth., a Ludolfo lectus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> st. c. </td>
+                <td> status constructus </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Stat. Ap. </td>
+                <td> Statuta Apostolorum, pars Synodi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> str. </td>
+                <td> stropha. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Subj. </td>
+                <td> Subjunctivus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Subst. </td>
+                <td> Substantivum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> suff. </td>
+                <td> suffixum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sx. </td>
+                <td> Synaxaria; sequuntur nomina mensium Máscaram, Teqémt, Hedâr, Tachsâs, Ter, Jacâtit,
+               Magâbit, Mijâzja, Genbôt, Senê, Hamlê, Nahassê, Paguemên </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Sx. Enc. </td>
+                <td> vid. Enc. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Syn. </td>
+                <td> Synodos. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> syr. </td>
+                <td> syriace. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Tab. Tab. </td>
+                <td> Tabîba Tabîbân, carmen Aeth. 102 stropharum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> term. </td>
+                <td> terminatio. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Th. P. </td>
+                <td> Theodorus Petraeus, qui Jonam Aethiopice et Latine edidit Lugd. Bat. 1660 et
+               Proverbia Aethiopica addidit. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Thess. </td>
+                <td> ad Thessalonicenses epistolae Pauli I, II. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Thren. </td>
+                <td> Threni, liber biblicus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Tim. </td>
+                <td> ad Timotheum epistolae I, II. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Tit. </td>
+                <td> ad Titum epistola. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Tob. </td>
+                <td> Tobit, liber apocryphus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> trsl. </td>
+                <td> translate. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> v. </td>
+                <td> varia lectio. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> var. </td>
+                <td> varia lectio. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> vers. alt. </td>
+                <td> versio altera. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> vers. ant. </td>
+                <td> versio antiqua. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> vers. nov. </td>
+                <td> versio nova. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Vers. Lat. </td>
+                <td> Versio Latina Jubilaeorum libri, exstat in libro: Monumenta sacra et profana e
+               codicibus Bibl. Ambrosianae tom. I, fasc. I. ed Ceriani, Mediol. 1861. 4°. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> vic. </td>
+                <td> vicinus. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> vid. </td>
+                <td> videas. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Vis. Bar. </td>
+                <td> Visio Baruchi ficticia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Vit. Dan. </td>
+                <td> Vita Danielis S., a Ludolfo lecta in Mss. Berolinensi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Vit. Sanct. </td>
+                <td> Vitae Sanctorum a Ludolfo lectae in Mss. Berolinensi. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Voc. Ae. </td>
+                <td> Vocabularium Aethiopicum, -a -a. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Voc. ad Cyr. </td>
+                <td> Vocabularium ad Cyrilli opera, Mss. Cyrilli annexum. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Zach. </td>
+                <td> Zachariae prophetia. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Zeph. </td>
+                <td> Zephania prophetia. </td>
+            </tr>
+        </table>   </body>
+</html>

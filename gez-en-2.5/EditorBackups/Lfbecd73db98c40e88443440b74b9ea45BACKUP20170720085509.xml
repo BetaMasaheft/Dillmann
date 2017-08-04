@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ሀየል </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="Lfbecd73db98c40e88443440b74b9ea45" n="76">
+               <form>
+                  <foreign xml:lang="gez">ሀየል</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann">
+                  <gramGrp>
+                     <pos expand="Substantivum">subst.</pos>
+                  </gramGrp>, <gramGrp>
+                     <gen value="masculinum">m.</gen>
+                  </gramGrp> et <gramGrp>
+                     <gen value="femininus">fem.</gen>
+                  </gramGrp>, <lbl expand="pluralis">Pl.</lbl>
+                  <foreign xml:lang="gez">ሀየላት፡ </foreign>
+                  <cit type="translation" xml:lang="la">
+                     <quote>cervus</quote>
+                  </cit> (i.q. <foreign xml:lang="he">אַיָּל</foreign>, <foreign xml:lang="syr">ܐܰܝܠܳܐ</foreign>, <foreign xml:lang="ar">أُيَّلٌ إِيَّلٌ</foreign>) <foreign xml:lang="grc">ἔλαφος</foreign>
+                  <ref cRef="Deut." loc="12,15">Deut. 12,15</ref>; <ref cRef="Deut." loc="14,5">Deut. 14,5</ref>; <ref cRef="3 Reg." loc="3">3 Reg. 3</ref>a,16; <ref cRef="Ps. " loc="17,36">Ps. 17,36</ref>; <ref cRef="Ps." loc="28,8">Ps.
+                     28,8</ref>; <ref cRef="Ps." loc="41,1">Ps. 41,1</ref>; <ref cRef="Ps." loc="103,19">Ps. 103,19</ref>; <ref cRef="Job" loc="39,1">Job 39,1</ref>; <ref cRef="Prov." loc="5,19">Prov. 5,19</ref>; <ref cRef="Prov." loc="7,23">Prov.
+                     7,23</ref>; <ref cRef="Jes." loc="34,15">Jes. 34,15</ref>; <ref cRef="Jes." loc="35,6">Jes. 35,6</ref>; <ref cRef="Kuf." loc="37">Kuf. 37</ref>; <foreign xml:lang="gez">ወሬዛ፡ ኀየል፡</foreign>
+                  <foreign xml:lang="grc">νεβρὸς ἐλάφων</foreign>
+                  <ref cRef="Cant." loc="2,9">Cant. 2,9</ref>; <foreign xml:lang="gez">ሀየላት፡ ወለዳ፡
+                     በውስተ፡ ገዳም፡ </foreign>
+                  <ref cRef="Jer." loc="14,5">Jer. 14,5</ref>. (Hanc vocem rectius litera <foreign xml:lang="gez">ሀ</foreign> quam litera <foreign xml:lang="gez">ኀ</foreign>
+                  scribendam esse, cum ex etymo, de quo <lbl expand="videas">vid.</lbl> Ges. thes.
+                  p. 45, tum ex ipsa librorum mss., ut qui saepius <foreign xml:lang="gez">ሀ
+                  </foreign> quam <foreign xml:lang="gez">ኀ</foreign> exhibeant, scriptura elucet).
+                  – <cit type="translation" xml:lang="la">
+                     <quote>Voc. Ae.</quote>
+                  </cit>: <foreign xml:lang="gez">ሀየል፡ ዘ፡ ዋላ፡</foreign>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

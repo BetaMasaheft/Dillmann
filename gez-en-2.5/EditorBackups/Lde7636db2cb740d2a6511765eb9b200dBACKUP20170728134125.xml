@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ርእየት </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="Lde7636db2cb740d2a6511765eb9b200d" n="2245">
+               <form>
+                  <foreign xml:lang="gez">ርእየት</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann">
+                  <gramGrp>
+                     <pos expand="nomen actionis">n. act.</pos>
+                  </gramGrp> et <gramGrp>
+                     <pos expand="Substantivum">subst.</pos>
+                  </gramGrp>
+                  <sense n="1">
+                     <cit type="translation" xml:lang="la">
+                        <quote>visus</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>intuitus</quote>
+                     </cit>: <foreign xml:lang="gez">እፎ፡ እክል፡ ርእየተ፡ እኪቶሙ፡ </foreign> (<foreign xml:lang="grc">ἰδεῖν</foreign>) <ref cRef="Esth." loc="8,6">Esth. 8,6</ref>;
+                        {<ref target="#c1429"/>
+                     <cit type="translation" xml:lang="la">
+                        <quote>visus</quote>
+                     </cit> i.e. <cit type="translation" xml:lang="la">
+                        <quote>acies oculorum</quote>
+                     </cit>
+                     <ref cRef="Chrys. Ta." loc="14 ">Chrys. Ta. 14 </ref>(<lbl expand="videas">vid.
+                        sub</lbl>
+                     <foreign xml:lang="gez">ከፍአ፡</foreign>}.</sense>
+                  <sense n="2">
+                     <cit type="translation" xml:lang="la">
+                        <quote>adspectus</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>facies</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>species</quote>
+                     </cit>
+                     <ref cRef="Ex." loc="24,10">Ex. 24,10</ref>; <ref cRef="Ex." loc="34,30">Ex.
+                        34,30</ref>; <ref cRef="Lev." loc="13,3">Lev. 13,3</ref>; <ref cRef="Lev." loc="13,4">Lev. 13,4</ref>; <ref cRef="Lev." loc="13,30">Lev. 13,30</ref>;
+                        <foreign xml:lang="gez">ተወለጠ፡ ርእየተ፡ ገጹ፡</foreign>
+                     <ref cRef="Dan." loc="3,19">Dan. 3,19</ref>; <foreign xml:lang="gez">ከመ፡ ርእየተ፡
+                        እለ፡ ቄጥሩ፡</foreign>
+                     <ref cRef="Hez." loc="1,4">Hez. 1,4</ref>; <ref cRef="Hez." loc="1,26">Hez.
+                        1,26</ref>; <foreign xml:lang="gez">ይገብሮ፡ ከመ፡ ርእየተ፡ እጓለ፡ እመሕያው፡</foreign>
+                     <ref cRef="Jes." loc="44,13">Jes. 44,13</ref>; <foreign xml:lang="gez">ከመ፡
+                        ርእየተ፡ ድብ፡</foreign>
+                     <ref cRef="Sir." loc="25,17">Sir. 25,17</ref>; <ref cRef="4 Esr." loc="10,38">4
+                        Esr. 10,38</ref>; Asc. <ref cRef="Jes." loc="10,22">Jes. 10,22</ref>
+                     <lbl expand="sequens">seq.</lbl>; <ref cRef="Hen." loc="32,5">Hen. 32,5</ref>;
+                        <ref cRef="Hen." loc="46,1">Hen. 46,1</ref>; <ref cRef="Luc." loc="3,22">Luc. 3,22</ref>; <ref cRef="Rom." loc="1,23">Rom. 1,23</ref>.</sense>
+                  <sense n="3">
+                     <cit type="translation" xml:lang="la">
+                        <quote>visio</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>adparitio</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>revelatio</quote>
+                     </cit>: <foreign xml:lang="gez">ሕዝቅኤል፡ ዘርእየ፡ ርእየተ፡ ስብሐቲሁ፡</foreign>
+                     <ref cRef="Sir." loc="49,8">Sir. 49,8</ref>; <foreign xml:lang="gez">ርእየተ፡
+                        መላእክት፡ </foreign>
+                     <ref cRef="Luc." loc="24,23">Luc. 24,23</ref>; <foreign xml:lang="gez">እሳተ፡
+                        ርእየቱ፡</foreign>
+                     <ref cRef="Mal." loc="3,2">Mal. 3,2</ref>; 2 <ref cRef="Thess." loc="2,8">Thess. 2,8</ref> Polygl.</sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> አኅበረ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="L00159183eab64716affc352abafa987f" n="4543">
+               <form>
+                  <foreign xml:lang="gez">አኅበረ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> II,1 <sense n="1">
+                     <cit type="translation" xml:lang="la">
+                        <quote>conjungere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>connectere</quote>
+                     </cit>: <foreign xml:lang="gez">ታኀብር፡ ሠቃተ፡ </foreign>
+                     <ref cRef="Ex." loc="26,11">Ex. 26,11</ref>; et in C <ref cRef="Ex." loc="36,16">Ex. 36,16</ref> hebr.; <ref cRef="Ex." loc="36,17">Ex.
+                        36,17</ref> hebr.; <ref cRef="Ex." loc="36,18">Ex. 36,18</ref> hebr.;
+                        <foreign xml:lang="gez">ከመ፡ ያኅብር፡ መሬተ፡ በመሬት፡</foreign>
+                     <ref cRef="Hez." loc="21,22">Hez. 21,22</ref> (<foreign xml:lang="grc">βαλεῖν
+                        χῶμα</foreign>); <ref cRef="Org." loc="5">Org. 5</ref>; <ref cRef="M.M." loc="f. 312">M.M. f. 312</ref>; <cit type="translation" xml:lang="la">
+                        <quote>in unum colligere</quote>
+                     </cit>
+                     <lbl expand="exempli gratia">ex. gr.</lbl> canones, Syn. Proleg.</sense>
+                  <sense n="2">
+                     <cit type="translation" xml:lang="la">
+                        <quote>consociare</quote>
+                     </cit>: <foreign xml:lang="gez">መኑ፡ ዘያኀብሮ፡</foreign> (sic emendaverim pro
+                        <foreign xml:lang="gez">ዘየኀብሮ፡</foreign>) <foreign xml:lang="gez">ለክርስቶስ፡
+                        ምስለ፡ ቤልሖር፡</foreign>
+                     <ref cRef="2 Cor." loc="6,15">2 Cor. 6,15</ref>; <foreign xml:lang="gez">ኵሎ፡
+                        አኀዊሆሙ፡ አኅበሩ፡ ምስሌሆሙ፡ </foreign>
+                     <ref cRef="1 Esr." loc="5,3">1 Esr. 5,3</ref>.</sense>
+                  <sense n="3">
+                     <cit type="translation" xml:lang="la">
+                        <quote>conspirationem facere</quote>
+                     </cit>
+                     <ref cRef="3 Reg." loc="14,24">3 Reg. 14,24</ref>; <ref cRef="3 Reg." loc="15,13">3 Reg. 15,13</ref>.</sense>
+                  <sense n="4">
+                     <cit type="translation" xml:lang="la">
+                        <quote>concentum facere</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>concinere</quote>
+                     </cit>: <foreign xml:lang="gez">አኅብር፡ በቃሎሙ፡ </foreign>
+                     <ref cRef="3 Reg." loc="22,13">3 Reg. 22,13</ref>; <foreign xml:lang="gez">እለ፡
+                        ይጠፍሑ፡ ወያኀብሩ፡</foreign> (v. <foreign xml:lang="gez">የኀብሩ፡</foreign>) <foreign xml:lang="gez">ምስለ፡ ቃለ፡ ዕንዚራ፡ </foreign>
+                     <ref cRef="Am." loc="6,5">Am. 6,5</ref>; vel <cit type="translation" xml:lang="la">
+                        <quote>consentire facere</quote>
+                     </cit>: <foreign xml:lang="gez">በኵሉ፡ ያኀብሩ፡ ግዕዘ፡</foreign>
+                     <ref cRef="Herm." loc="11 ">Herm. p. 11 </ref>(<lbl expand="videas">vid.</lbl>
+                        I,<ref cRef="1 Nr." loc="3">1 Nr. 3</ref>).</sense>
+                  <sense n="5">
+                     <cit type="translation" xml:lang="la">
+                        <quote>societatem</quote>
+                     </cit> vel <cit type="translation" xml:lang="la">
+                        <quote>communionem inire</quote>
+                     </cit> cum aliquo, <cit type="translation" xml:lang="la">
+                        <quote>conjunctim</quote>
+                     </cit> vel <cit type="translation" xml:lang="la">
+                        <quote>un</quote>
+                     </cit>
+                     <cit type="translation" xml:lang="la">
+                        <quote>â</quote>
+                     </cit> cum aliquo <cit type="translation" xml:lang="la">
+                        <quote>agere</quote>
+                     </cit> aliquid: <foreign xml:lang="gez">ብዙኃን፡ እለ፡ አኅበሩ፡ ምስሌሆሙ፡</foreign>
+                     <foreign xml:lang="grc">πολὺς ὁ ἐπίμικτος </foreign>
+                     <ref cRef="Judith" loc="2,20">Judith 2,20</ref>; <lbl expand="construitur cum">c.c.</lbl> Acc rei, quam conjunctim agunt: <foreign xml:lang="gez">ዘአኅበረ፡
+                        ምስሌሆሙ፡ ሐዊረ፡</foreign>
+                     <ref cRef="Num." loc="1,51">Num. 1,51</ref>; <foreign xml:lang="gez">በአኅብሮ፡ </foreign>
+                     <cit type="translation" xml:lang="la">
+                        <quote>conjunctim</quote>
+                     </cit>, Enc. Patr.</sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ዐምድ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      <change who="VP" when="2017-07-26">addition of Sence#Traces</change>
+            <change who="VP" when="2017-07-26">correction in Sense#traces: addition of gez in (in \*gez*ዓምደ፡ ጽዮን፡\*)</change>
+        <change who="VP" when="2017-08-01">in Sence#Traces: number of pages and lines added </change>
+        </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="La5968bbad7f14adfbe51ff7c10acbaff" n="6950">
+               <form>
+                  <foreign xml:lang="gez">ዐምድ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> <gramGrp> <pos expand="not found">subst.</pos> </gramGrp>, <gramGrp> <gen value="not found">m.</gen> </gramGrp> et <gramGrp> <gen value="femininus">fem.</gen> </gramGrp>, <lbl expand="pluralis">Pl.</lbl> <foreign xml:lang="gez">አዕማድ፡</foreign>, <lbl expand="pluralis">Pl.</lbl> <lbl expand="pluralis">Pl.</lbl> <foreign xml:lang="gez">አዕማዳት፡</foreign> (<ref cRef="2 Reg." loc="8,8">2 Reg. 8,8</ref> <lbl expand="varia lectio">var.</lbl>) [<foreign xml:lang="he">עַמּוּד</foreign> <foreign xml:lang="syr">ܥܰܡܽܘܕܳܐ</foreign> <foreign xml:lang="ar">عَمُودٌ عِمَادٌ</foreign> al.] <cit type="translation" xml:lang="la">
+                            <quote> columna </quote>
+                        </cit>, domus, templi: <foreign xml:lang="gez">አቀመት፡ ፯ አዕማደ፡</foreign> <ref cRef="Prov." loc="9,1">Prov. 9,1</ref>; <ref cRef="Hez." loc="42,6">Hez. 42,6</ref>; <ref cRef="Jud." loc="16,26">Jud. 16,26</ref>; <ref cRef="3 Reg." loc="7,3">3 Reg. 7,3</ref>; <ref cRef="3 Reg." loc="7,4">3 Reg. 7,4</ref>; <ref cRef="3 Reg." loc="7,5">3 Reg. 7,5</ref>; <ref cRef="3 Reg." loc="7,6">3 Reg. 7,6</ref>; <ref cRef="3 Reg." loc="7,7">3 Reg. 7,7</ref>; <ref cRef="3 Reg." loc="7,39">3 Reg. 7,39</ref>; <ref cRef="3 Reg." loc="7,40">3 Reg. 7,40</ref>; <ref cRef="Jer." loc="52,17">Jer. 52,17</ref>; <ref cRef="Apoc." loc="3,12">Apoc. 3,12</ref>; tabernaculi <ref cRef="Ex." loc="26,15">Ex. 26,15</ref> <lbl expand="sequens">seq.</lbl>; <ref cRef="Ex." loc="26,32">Ex. 26,32</ref>; <ref cRef="Ex." loc="27,10">Ex. 27,10</ref> <lbl expand="sequens">seq.</lbl>; <ref cRef="Ex." loc="35,10">Ex. 35,10</ref>; <foreign xml:lang="gez">ዐምደ፡ ኀጺን፡</foreign> <ref cRef="Jer." loc="1,18">Jer. 1,18</ref>; <foreign xml:lang="gez">ከመ፡ አዕማደ፡ ወርቅ፡ እለ፡ ይቀውሙ፡</foreign> (<foreign xml:lang="gez">ይቀውማ፡</foreign>) … <ref cRef="Sir." loc="26,18">Sir. 26,18</ref>; <foreign xml:lang="gez">ዐምደ፡ ምስማኩ፡ ይእቲ፡</foreign> <ref cRef="Sir." loc="36,29">Sir. 36,29</ref>; <foreign xml:lang="gez">አዕማደ፡ መጾር፡</foreign> <ref cRef="Cant." loc="3,10">Cant. 3,10</ref>; <foreign xml:lang="grc">κίονες</foreign> <ref cRef="3 Reg." loc="15,15">3 Reg. 15,15</ref>; <foreign xml:lang="gez">ገዚፍ፡ ዐምድ፡</foreign> <ref cRef="Sx. Pag." loc="1 ">Sx. Pag. 1 </ref>Enc.; <foreign xml:lang="gez">አቀምዎሙ፡ በዐምደ፡ ሰኖባር፡ ገዚፍ፡</foreign> <ref cRef="Sx. Haml." loc="5">Sx. Haml. 5</ref>; <foreign xml:lang="gez">አዕማድ፡ ዘንድቅ፡ ወአዕማድ፡ ዘእብን፡</foreign> <ref cRef="Chron. Ax." loc="89">Chron. Ax. f. 89</ref>; <foreign xml:lang="gez">ዐምደ፡ ደመና፡</foreign> et <foreign xml:lang="gez">ዐምደ፡ እሳት፡</foreign> <ref cRef="Ex." loc="13,20">Ex. 13,20</ref>; <ref cRef="Ex." loc="13,21">Ex. 13,21</ref>; <ref cRef="Ex." loc="33,9">Ex. 33,9</ref>; <ref cRef="Ex." loc="33,10">Ex. 33,10</ref>; <ref cRef="Sir." loc="24,4">Sir. 24,4</ref>; <ref cRef="2 Esr." loc="19,12">2 Esr. 19,12</ref>; <ref cRef="Apoc." loc="10,1">Apoc. 10,1</ref>; <ref cRef="Hen." loc="18,11">Hen. 18,11</ref>; columnae coeli et terrae <ref cRef="Job " loc="9,6">Job  9,6</ref>; <ref cRef="Job" loc="26,11">Job 26,11</ref>; <ref cRef="Ps." loc="74,3">Ps. 74,3</ref>; <ref cRef="Hen." loc="18,3">Hen. 18,3</ref>. <sense n="a"> <lbl expand="translate">transl.</lbl>: <ref cRef="Gal." loc="2,9">Gal. 2,9</ref>; <ref cRef="1 Tim." loc="3,15">1 Tim. 3,15</ref>; <foreign xml:lang="gez">ጳጳሳት፡ ኄራን፡ ዘይብልዎሙ፡ አዕማድ፡</foreign> <ref cRef="Sx. Ter" loc="6 ">Sx. Ter 6 </ref>Enc.; <foreign xml:lang="gez">ዐምደ፡ ሃይማኖት፡</foreign> Lud. ex <ref cRef="Sx. Pag." loc="1 ">Sx. Pag. 1 </ref>Enc.; detrahas epactem ab <foreign xml:lang="gez">ዐምደ፡ ጾም፡ ዘውእቱ፡ ፵ ዕለት፡</foreign> <ref cRef="Abush. " loc="27">Abush.  27</ref>;</sense> <sense n="b"> <foreign xml:lang="gez">ዘዐምድ፡</foreign> <cit type="translation" xml:lang="la">
+                                <quote> stylites </quote>
+                            </cit>, ut: <foreign xml:lang="gez">አጋቶን፡ ዘዐምድ፡</foreign> <ref cRef="Sx. Masc." loc="14.">Sx. Masc. 14.</ref> </sense> <sense n="c"> <cit type="translation" xml:lang="la">
+                                <quote> obeliscus </quote>
+                            </cit>: <foreign xml:lang="gez">ዐምደ፡ ሀገረ፡ ፀሓይ፡</foreign> <ref cRef="Jer. " loc="50,13">Jer.  50,13</ref>.</sense> <sense n="d"> <cit type="translation" xml:lang="la">
+                                <quote> statua </quote>
+                            </cit>,<cit type="translation" xml:lang="la">
+                                <quote> stele </quote>
+                            </cit>, <ref cRef="Ex." loc="23,24">Ex. 23,24</ref>.</sense> <sense n="e"> <cit type="translation" xml:lang="la">
+                                <quote> malus </quote>
+                            </cit> navis: <foreign xml:lang="gez">ዐምድኪ፡</foreign> <foreign xml:lang="grc">ὁ ἱστός σου</foreign> <ref cRef="Jes." loc="33,23">Jes. 33,23</ref>; <foreign xml:lang="gez">ሰቀልዎ፡ ዲበ፡ ዐምደ፡ ሐመር፡</foreign> <ref cRef="Sx. Sen." loc="19">Sx. Sen. 19</ref>; <ref cRef="Sx. Haml." loc="24">Sx. Haml. 24</ref>;</sense> <sense n="f"> <cit type="translation" xml:lang="la">
+                                <quote> scapus </quote>
+                            </cit> candelabri, <ref cRef="Ex." loc="25,31">Ex. 25,31</ref>.</sense> <sense n="g"> <cit type="translation" xml:lang="la">
+                                <quote> crus </quote>
+                            </cit>pedis: <foreign xml:lang="gez">አዕማደ፡ እገር፡</foreign> <foreign xml:lang="grc">σκέλη</foreign> <ref cRef="1 Reg." loc="17,6">1 Reg. 17,6</ref>; <ref cRef="Deut." loc="28,35">Deut. 28,35</ref>. {<ref target="#c1433"/> </sense> <sense n="h"> columna paginae, ut: <foreign xml:lang="gez">ኅልፍ፡ አሐደ፡ ብራና፡ ወእምዝ፡ ኀሊፈከ፡ ፰ አዕማደ፡ ወ፲ወ፫ መሥመራተ፡ ትረክብ፡ መትልወ፡ ዝንቱ፡ ቃል፡</foreign> , annotatio librarii Codicis <ref cRef="Abb. XXXV ad" loc="2 ">Abb. XXXV ad 2 </ref> <ref cRef="Esr." loc="15">Esr. 15</ref>}</sense> </sense>
+               
+            <sense xml:lang="en" source="#traces"> <foreign xml:lang="gez">ዓምድ፡</foreign> (in <foreign xml:lang="gez">ዓምደ፡ ጽዮን፡</foreign>); personal name (king of Ethiopia, r. 1314-44); in <bibl>
+                            <ptr target="bm:Marrassini1993AmdaSeyon"/>
+                            <citedRange unit="page">50:3,12 - 52:1 - 60:6 - 70:13 </citedRange>
+                        </bibl> <ref cRef="Chron. Am." loc="50.3,12 - 52.1 - 60.6 - 70.13">Chron. Am. 50.3,12 - 52.1 - 60.6 - 70.13</ref> </sense>
+                </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

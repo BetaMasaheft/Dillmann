@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ተተክለ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="Le8285641e788408d98a46da2e3b591bd" n="4330">
+               <form>
+                  <foreign xml:lang="gez">ተተክለ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> III,1 <sense n="l">
+                     <cit type="translation" xml:lang="la">
+                        <quote>figi</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>infigi</quote>
+                     </cit>: <foreign xml:lang="gez">ይእቲ፡ መላፄ፡ ተተክለት፡ ዲበ፡ ክሣዱ፡ ከመ፡ ሐጽ፡
+                        ወሞተ፡</foreign> Gad. Kar. (coll. <ref cRef="Lit." loc="172,1">Lit.
+                        172,1</ref>). <sense n="2"> in specie</sense>
+                     <sense n="a">
+                        <cit type="translation" xml:lang="la">
+                           <quote>figi</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>statui</quote>
+                        </cit>, de tentorio: <foreign xml:lang="gez">ተተክለ፡ ደብተራሁ፡ </foreign>
+                        <ref cRef="Kuf." loc="13">Kuf. 13</ref>; <ref cRef="Lit." loc="173,3">Lit.
+                           173,3</ref>; <ref cRef="Lit." loc="172,1">Lit. 172,1</ref>; <foreign xml:lang="gez">ቤተ፡ ጸሎት፡ እንተ፡ ተተክለት፡ ለምስጋድ፡</foreign> Deg.; columna:
+                           <foreign xml:lang="gez">ተተክለ፡ ብርሃን፡ በአምሳለ፡ ዐምድ፡</foreign>
+                        <ref cRef="Sx. Jac." loc="4 ">Sx. Jac. 4 </ref>Enc.</sense>
+                     <sense n="b">
+                        <lbl expand="translate">transl.</lbl>: <cit type="translation" xml:lang="la">
+                           <quote>statui</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>constitui</quote>
+                        </cit>, ut <foreign xml:lang="gez">በዘተተክለ፡ ዕድሜ፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>tempore constituto</quote>
+                        </cit>, Ep. Syn. ad Joann. Ant. in <ref cRef="Cyr." loc="113.">Cyr. f.
+                           113.</ref>
+                     </sense>
+                     <sense n="3">
+                        <cit type="translation" xml:lang="la">
+                           <quote>plantari</quote>
+                        </cit>
+                        <ref cRef="4 Esr." loc="8,62">4 Esr. 8,62</ref> (ubi legas <foreign xml:lang="gez">ወተተክለ፡</foreign>); <ref cRef="Hen." loc="25,7">Hen.
+                           25,7</ref>; <foreign xml:lang="gez">ተተከሊ፡ ውስተ፡ ባሕር፡ </foreign>
+                        <foreign xml:lang="grc">φυτεύθητι</foreign>
+                        <ref cRef="Luc." loc="17,6">Luc. 17,6</ref>; <lbl expand="translate">transl.</lbl> de populis: <ref cRef="Jer." loc="18,9">Jer. 18,9</ref>;
+                           <ref cRef="Kuf." loc="7.">Kuf. 7.</ref>
+                     </sense>
+                     <sense n="a">
+                        <cit type="translation" xml:lang="la">
+                           <quote>conseri plantis</quote>
+                        </cit>, <lbl expand="construitur cum">c.c.</lbl>
+                        <gramGrp>
+                           <case value="accusativus">Acc.</case>
+                        </gramGrp>, <ref cRef="Hen." loc="10,18">Hen. 10,18</ref>.</sense>
+                     <sense n="b">
+                        <cit type="translation" xml:lang="la">
+                           <quote>insitum</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>ingenitum esse</quote>
+                        </cit>: <foreign xml:lang="gez">ተተክለት፡ ፍትወት፡ በጠባይዕ፡ እንስሳዊት፡</foreign> F.N.
+                        24,1.</sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

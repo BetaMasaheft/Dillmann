@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ብሉይ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="La853d341ed814898bc035984337ec283" n="3806">
+               <form>
+                  <foreign xml:lang="gez">ብሉይ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann">
+                  <gramGrp>
+                     <pos expand="participium">part.</pos>
+                     <gen value="femininus">fem.</gen>
+                  </gramGrp>
+                  <foreign xml:lang="gez">ብሊት፡</foreign>, <sense n="l">
+                     <cit type="translation" xml:lang="la">
+                        <quote>vetus</quote>
+                     </cit>, <cit type="translation" xml:lang="la">
+                        <quote>vetustus</quote>
+                     </cit>, ut vestis <ref cRef="Matth." loc="9,16">Matth. 9,16</ref>; <ref cRef="Hen." loc="62,16">Hen. 62,16</ref>; calcei <ref cRef="Jos." loc="9,3">Jos. 9,3</ref>; uter, commeatus <ref cRef="Jos." loc="9,2">Jos. 9,2</ref>;
+                     lignum (<lbl expand="oppositum, -o, -nitur">opp.</lbl>
+                     <foreign xml:lang="gez">ሐዲስ፡</foreign>) <ref cRef="Kuf. " loc="21">Kuf.
+                        21</ref>; folia arborum <ref cRef="Hen." loc="3">Hen. 3</ref>; panni et
+                     funiculi <ref cRef="Jer." loc="45,11">Jer. 45,11</ref>; frumentum <ref cRef="Kuf." loc="44">Kuf. 44</ref>; <ref cRef="Lev. " loc="25,22">Lev.
+                        25,22</ref>; fructus <ref cRef="Cant." loc="7,14">Cant. 7,14</ref>; <foreign xml:lang="gez">ብሉይ፡ መጽሐፍ፡</foreign>
+                     <foreign xml:lang="grc">παλαιότης γράμματος</foreign>
+                     <ref cRef="Rom." loc="7,6">Rom. 7,6</ref>; <foreign xml:lang="gez">ብሉይ፡
+                        ብእሲነ፡</foreign>
+                     <ref cRef="Rom." loc="6,6">Rom. 6,6</ref>; <ref cRef="Eph." loc="4,22">Eph.
+                        4,22</ref>; de ecclesia: <foreign xml:lang="gez">እንዘ፡ ብሊት፡ ይእቲ፡ በንዝኀተ፡ ደሙ፡
+                        ሐደሳ፡</foreign> Mavâs. 70. In specie: <cit type="translation" xml:lang="la">
+                        <quote>vetus testamentum</quote>
+                     </cit>: <foreign xml:lang="gez">ብሉይ፡ ሕግ፡</foreign>
+                     <ref cRef="2 Cor." loc="3,14">2 Cor. 3,14</ref>; <foreign xml:lang="gez">ሕግ፡
+                        ብሊት፡</foreign> F.M. 4,1; <foreign xml:lang="gez">በሉይ፡ ወሐዲስ፡ ቀኖና፡</foreign>
+                     <ref cRef="Clem." loc="86,">Clem. f. 86,</ref> et (omisso <foreign xml:lang="gez">ሕግ፡ </foreign> vel <foreign xml:lang="gez">ሥርዐት፡</foreign>)
+                        <foreign xml:lang="gez">ብሉይ፡ </foreign> vel <foreign xml:lang="gez">ብሊት፡</foreign>
+                     <gramGrp>
+                        <pos expand="absolute">absol.</pos>
+                     </gramGrp>, ut: <foreign xml:lang="gez">መጻሕፍተ፡ እግዚአብሔር፡ ዘብሉይ፡ ወዘሐዲስ፡</foreign>
+                     <ref cRef="Clem." loc="86">Clem. f. 86</ref>; <foreign xml:lang="gez">መጻሕፍተ፡
+                        ብሊት፡ ወሐዲስ፡</foreign>
+                     <ref cRef="Sx. Ter" loc="17">Sx. Ter 17</ref>; <ref cRef="Sx. Haml." loc="11">Sx. Haml. 11</ref>; <foreign xml:lang="gez">ሰብአ፡ ብሊት፡</foreign>
+                     <cit type="translation" xml:lang="la">
+                        <quote>homines Veteris</quote>
+                     </cit> (testamenti) Chrys. <ref cRef="Ta." loc="19">Ta. 19</ref>; <foreign xml:lang="gez">ጻድቃነ፡ ብሊት፡</foreign>
+                     <ref cRef="Sx. Nah." loc="8.">Sx. Nah. 8.</ref>
+                     <sense n="2">
+                        <cit type="translation" xml:lang="la">
+                           <quote>inveteratus</quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                           <quote>antiquus</quote>
+                        </cit>: <foreign xml:lang="gez">ብሉያተ፡ ረሰይኮን፡ ለመዋዕልየ፡</foreign>
+                        <ref cRef="Ps." loc="38,7">Ps. 38,7</ref>; <foreign xml:lang="gez">ብሉይ፡
+                           መዋዕሊከ፡ እኩያት፡ </foreign>
+                        <ref cRef="Dan. apocr." loc="1,52">Dan. apocr. 1,52</ref>; <foreign xml:lang="gez">ብሉየ፡ መዋዕል፡</foreign> (de Deo) <ref cRef="Dan." loc="7,9">Dan. 7,9</ref>; <ref cRef="Clem." loc="2">Clem. f. 2</ref>; et <gramGrp>
+                           <pos expand="abstractum, -e">abstr.</pos>
+                        </gramGrp> inde formatum: <foreign xml:lang="gez">ብሉየ፡ መዋዕልና፡</foreign>
+                        <cit type="translation" xml:lang="la">
+                           <quote>dierum-antiquitas</quote>
+                        </cit>: <foreign xml:lang="gez">ዕሩያን፡ በመለኮት፡ ወበህላዌ፡ ወበብሉየ፡ መዋዕልና፡</foreign>
+                        <ref cRef="Haim. Ab. Nr." loc="24.">Haim. Ab. Nr. 24.</ref> – <cit type="translation" xml:lang="la">
+                           <quote>Voc. Ae.</quote>
+                        </cit>: <foreign xml:lang="gez">ብሉይ፡ ዘ፡ የአረጅ።</foreign>
+                     </sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

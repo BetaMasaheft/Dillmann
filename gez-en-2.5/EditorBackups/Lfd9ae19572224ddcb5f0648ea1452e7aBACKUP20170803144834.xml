@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ቀሠመ </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="Lfd9ae19572224ddcb5f0648ea1452e7a" n="3267">
+               <form>
+                  <foreign xml:lang="gez">ቀሠመ</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> I,1 etiam per <foreign xml:lang="gez">ሰ፡</foreign>, [prima vis radicis fuisse videtur in <cit type="translation" xml:lang="la">
+                     <quote>secando</quote>
+                  </cit> (<foreign xml:lang="ar">خَذَمَ خَضَمَ</foreign> et aliae radices a <foreign xml:lang="he">גז</foreign>, <foreign xml:lang="he">כס</foreign>, <foreign xml:lang="he">קץ</foreign>, <foreign xml:lang="he">קט</foreign>, <foreign xml:lang="he">חץ</foreign> incipientes), deinde in <cit type="translation" xml:lang="la">
+                     <quote>demetendo</quote>
+                  </cit> et <cit type="translation" xml:lang="la">
+                     <quote>decerpendo</quote>
+                  </cit>, <lbl expand="collatio, -is vel collectivum, -e">coll.</lbl>
+                  <foreign xml:lang="he">בָּצַר</foreign>
+                  <foreign xml:lang="syr">ܩܛܰܦ</foreign>
+                  <foreign xml:lang="ar">قَطَفَ</foreign>] <gramGrp>
+                     <pos expand="Subjunctivus">Subj.</pos>
+                  </gramGrp>
+                  <foreign xml:lang="gez">ይቅሥም፡</foreign>
+                  <sense n="l">
+                     <cit type="translation" xml:lang="la">
+                        <quote>colligere</quote>
+                     </cit> fructus, <cit type="translation" xml:lang="la">
+                        <quote>decerpere</quote>
+                     </cit>, in specie: <cit type="translation" xml:lang="la">
+                        <quote>vindemiare</quote>
+                     </cit>, <foreign xml:lang="gez">ዘይቀሥም፡</foreign>
+                     <foreign xml:lang="grc">τρυγητής</foreign>
+                     <ref cRef="Sir. " loc="30,25">Sir. 30,25</ref>; <ref cRef="Jer." loc="6,9">Jer.
+                        6,9</ref>; <ref cRef="Jer." loc="29,10">Jer. 29,10</ref>; <lbl expand="cum">c.</lbl>
+                     <gramGrp>
+                        <case value="accusativus">Acc.</case>
+                     </gramGrp> fructus <ref cRef="Kuf." loc="7">Kuf. 7</ref>; <ref cRef="Deut." loc="24,21">Deut. 24,21</ref>; <ref cRef="Lev." loc="25,5">Lev. 25,5</ref>;
+                        <ref cRef="Jes. " loc="37,30">Jes. 37,30</ref>
+                     <lbl expand="varia lectio">var.</lbl>; <ref cRef="Matth." loc="7,16">Matth.
+                        7,16</ref>; <ref cRef="Luc." loc="6,44">Luc. 6,44</ref>; <ref cRef="Apoc." loc="14,18">Apoc. 14,18</ref>; <lbl expand="cum">c.</lbl>
+                     <gramGrp>
+                        <case value="accusativus">Acc.</case>
+                     </gramGrp> vineae: <ref cRef="Lev." loc="19,10">Lev. 19,10</ref>; <ref cRef="Deut. " loc="24,20">Deut. 24,20</ref>; <ref cRef="Jud." loc="9,27">Jud. 9,27</ref>; <ref cRef="Apoc." loc="14,19">Apoc. 14,19</ref>; <foreign xml:lang="gez">ቀሢም፡ </foreign>
+                     <cit type="translation" xml:lang="la">
+                        <quote>vindemia</quote>
+                     </cit>
+                     <ref cRef="Lev." loc="26,5">Lev. 26,5</ref>. Transl. <foreign xml:lang="gez">ትቅሥሙ፡ ኀጢአተ፡ </foreign>
+                     <ref cRef="Hos." loc="10,13">Hos. 10,13</ref>. <sense n="2">
+                        <cit type="translation" xml:lang="la">
+                           <quote>racemari</quote>
+                        </cit>: <foreign xml:lang="gez">በከመ፡ ይቀሥምዎ፡ ለዘይት፡ ከማሁ፡ ይቀሥምዎሙ፡ </foreign>
+                           (<foreign xml:lang="grc">καλαμήσονται</foreign>) <ref cRef="Jes." loc="24,13">Jes. 24,13</ref>; <foreign xml:lang="gez">ቅሥሞሙ፡ ከመ፡
+                           ቀሠሙኒ፡</foreign> (<foreign xml:lang="grc">ἐπιφύλλισον</foreign>) <ref cRef="Thren." loc="1,22">Thren. 1,22</ref>; <ref cRef="Thren." loc="2,20">Thren. 2,20</ref> (var. <foreign xml:lang="gez">ቀረመ፡</foreign>).</sense>
+                     <sense n="3">
+                        <cit type="translation" xml:lang="la">
+                           <quote>colligere</quote>
+                        </cit> vel <cit type="translation" xml:lang="la">
+                           <quote>excerpere</quote>
+                        </cit> sententias: <foreign xml:lang="gez">ቀሠምነ፡ ለከ፡ ስምዐ፡</foreign>
+                        (testimonia) <foreign xml:lang="gez">እመጻሕፍት፡ </foreign> M.M. f. 129. – <cit type="translation" xml:lang="la">
+                           <quote>Voc. Ae.</quote>
+                        </cit>: <foreign xml:lang="gez">ቀሠመ፡ ብ፡ ለቀመ።</foreign>
+                     </sense>
+                  </sense>
+               </sense>
+               
+            </entry>
+         </div>
+      </body>
+   </text>
+</TEI>

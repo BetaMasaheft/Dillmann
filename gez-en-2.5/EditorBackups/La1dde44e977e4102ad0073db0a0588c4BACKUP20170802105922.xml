@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title> ገብር </title>
+            <author>Alessandro Bausi</author>
+            <author>Andreas Ellwardt</author>
+         </titleStmt>
+         <publicationStmt>
+            <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+            <publisher>TraCES project. https://www.traces.uni-hamburg.de/</publisher>
+            <pubPlace>Hamburg</pubPlace>
+            <availability>
+               <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/"> This file is
+                  licensed under the Creative Commons Attribution-ShareAlike Non Commercial 4.0.
+               </licence>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <p>A thoroughly elaborated txt version of <ref xml:id="dillmann" target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
+                  Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
+                     Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
+                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+            </p>
+            <p>
+                    <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
+                  TraCES (Grant Agreement 338756)</ref>
+                </p>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>A digital edition of the Lexicon in TEI.</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="en">English</language>
+            <language ident="la">latin</language>
+            <language ident="it">Italian</language>
+            <language ident="gez">Gǝʿǝz</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="syr">Syriac</language>
+            <language ident="ar">Arabic</language>
+            <language ident="sa">Sanskrit</language>
+            <language ident="geo">Georgian</language>
+            <language ident="cop">Coptic</language>
+            <language ident="osa">Old South Arabian</language>
+         </langUsage>
+      </profileDesc>
+      <revisionDesc>
+         <change who="AE" when="2016-11-22">updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">exported from lexicon to XML</change>
+         <change who="AE" when="2017-04-19">last updated txt file and doc file of Lexicon</change>
+         <change who="PL" when="2017-01-16">updated lexicon XML file adding nested senses</change>
+      <change who="VP" when="2017-08-02">Sense Traces added</change>
+        </revisionDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div>
+            <entry xml:id="La1dde44e977e4102ad0073db0a0588c4" n="8427">
+               <form>
+                  <foreign xml:lang="gez">ገብር</foreign>
+               </form>
+               <sense xml:lang="la" source="#dillmann"> <gramGrp> <pos expand="not found">subst.</pos> </gramGrp>; <gramGrp> <gen value="not found">m.</gen> </gramGrp>, <lbl expand="pluralis">Pl.</lbl> <foreign xml:lang="gez">አግብርት፡</foreign> <cit type="translation" xml:lang="la">
+                            <quote> servus </quote>
+                        </cit> (<cit type="translation" xml:lang="la">
+                            <quote> mancipium </quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                            <quote> minister </quote>
+                        </cit>, <cit type="translation" xml:lang="la">
+                            <quote> famulus </quote>
+                        </cit>), <foreign xml:lang="grc">παῖς</foreign> <ref cRef="Gen." loc="39,17">Gen. 39,17</ref>; <ref cRef="Gen." loc="44,10">Gen. 44,10</ref>; <ref cRef="Ex." loc="21">Ex. 21</ref>; <foreign xml:lang="gez">ገብር፡ ከመ፡ እግዚኡ፡</foreign> <ref cRef="Jes." loc="24,2">Jes. 24,2</ref>; <ref cRef="Sir." loc="30,33">Sir. 30,33</ref> <lbl expand="sequens">seq.</lbl>; <ref cRef="Matth." loc="14,2">Matth. 14,2</ref>; <foreign xml:lang="grc">δοῦλος</foreign> <ref cRef="Lev." loc="25,44">Lev. 25,44</ref>; <ref cRef="1 Reg." loc="27,12">1 Reg. 27,12</ref>; <ref cRef="1 Reg." loc="30,13">1 Reg. 30,13</ref>; <foreign xml:lang="gez">ገብር፡ ይፈርህ፡ እግዚኦ፡</foreign> <ref cRef="Mal." loc="1,6">Mal. 1,6</ref>; <foreign xml:lang="gez">ቦኑ፡ ውእቱ፡ ገብር፡ ያዕቆብ፡ አው፡ ልደ፡ ቤት፡ ውእቱ፡</foreign> <ref cRef="Jer." loc="2,14">Jer. 2,14</ref>; <ref cRef="Koh." loc="5,11">Koh. 5,11</ref>; <ref cRef="Matth." loc="8,9">Matth. 8,9</ref>; <ref cRef="1 Cor." loc="7,21">1 Cor. 7,21</ref>; <ref cRef="1 Cor." loc="7,22">1 Cor. 7,22</ref>; <ref cRef="Gal." loc="4,7">Gal. 4,7</ref>; <ref cRef="Phil." loc="2,7">Phil. 2,7</ref>; <ref cRef="Apoc." loc="19,18">Apoc. 19,18</ref>; <foreign xml:lang="grc">οἰκέτης</foreign> <ref cRef="Gen." loc="9,25">Gen. 9,25</ref>; <ref cRef="Gen." loc="9,26">Gen. 9,26</ref>; <ref cRef="Ex." loc="12,44">Ex. 12,44</ref>; <ref cRef="Lev." loc="25,39">Lev. 25,39</ref>; <ref cRef="Prov." loc="24,33">Prov. 24,33</ref>; <ref cRef="Sir." loc="23,10">Sir. 23,10</ref>; <ref cRef="Luc." loc="16,13">Luc. 16,13</ref>; <foreign xml:lang="grc">θεράπων</foreign> <ref cRef="Job" loc="31,13">Job 31,13</ref>; <ref cRef="Gen." loc="24,44">Gen. 24,44</ref>; <ref cRef="Gen." loc="50,17">Gen. 50,17</ref>; al. creberrime; <foreign xml:lang="gez">ገብረ፡ አጋእዝቲከ፡</foreign> <foreign xml:lang="grc">ὁ σύνδουλός σου</foreign> <cit type="translation" xml:lang="la">
+                            <quote> conservus </quote>
+                        </cit> <ref cRef="Apoc." loc="22,9">Apoc. 22,9</ref>; <ref cRef="2 Esr." loc="4,7">2 Esr. 4,7</ref>; <ref cRef="2 Esr." loc="5,3">2 Esr. 5,3</ref>; <lbl expand="pluralis">Pl.</lbl> <foreign xml:lang="gez">አግብርት፡</foreign> <lbl expand="exempli gratia">ex. gr.</lbl> <ref cRef="Gen." loc="12,16">Gen. 12,16</ref>; <ref cRef="Lev." loc="26,13">Lev. 26,13</ref>; <ref cRef="2 Reg." loc="9,12">2 Reg. 9,12</ref>; <foreign xml:lang="gez">አግብርት፡ ብዙኅ፡</foreign> <ref cRef="Job" loc="1,3">Job 1,3</ref>; <ref cRef="Job" loc="29,5">Job 29,5</ref>; <ref cRef="Jes." loc="14,2">Jes. 14,2</ref>; <ref cRef="Jes. " loc="56,6">Jes.  56,6</ref> al.; <ref cRef="Did." loc="23">Did. 23</ref>; F.N. 42,12. Sicut Hebraeorum <foreign xml:lang="he">עֶבֶד</foreign> dicitur de cultoribus vel ministris Dei, <ref cRef="Deut." loc="32,36">Deut. 32,36</ref>; <ref cRef="Jud." loc="2,8">Jud. 2,8</ref>; <ref cRef="Ps." loc="33,23">Ps. 33,23</ref>; <ref cRef="Ps. " loc="68,42">Ps.  68,42</ref>; <ref cRef="Ps." loc="133,1">Ps. 133,1</ref>; <ref cRef="Ps." loc="134,1">Ps. 134,1</ref>; <ref cRef="Jes." loc="41,8">Jes. 41,8</ref>; <ref cRef="Jes." loc="41,9">Jes. 41,9</ref>; <ref cRef="Jes." loc="48,20">Jes. 48,20</ref>; <ref cRef="Jer." loc="26,27">Jer. 26,27</ref>; <ref cRef="Jer." loc="26,28">Jer. 26,28</ref>; <ref cRef="Jer." loc="3,22">Jer. 3,22</ref>; <foreign xml:lang="gez">ኵሉ፡ አግብርትየ፡ ነቢያት፡</foreign> <ref cRef="Jer." loc="51,4">Jer. 51,4</ref>; <ref cRef="Luc." loc="2,29">Luc. 2,29</ref>; <ref cRef="Apoc." loc="10,7">Apoc. 10,7</ref>; de ministris regum <ref cRef="Gen." loc="41,10">Gen. 41,10</ref>; <ref cRef="1 Reg." loc="29,3">1 Reg. 29,3</ref>; de populis subjectis et stipendiariis <ref cRef="2 Reg." loc="8,2">2 Reg. 8,2</ref>; <ref cRef="2 Reg." loc="8,6">2 Reg. 8,6</ref>; <ref cRef="4 Reg." loc="17,3">4 Reg. 17,3</ref>; <ref cRef="Deut." loc="5,15">Deut. 5,15</ref>; <ref cRef="Deut." loc="15,15">Deut. 15,15</ref>; de quovis qui alicujus potestati subjectus est, ut <foreign xml:lang="gez">አግብርተ፡ ኀጢአት፡</foreign> <ref cRef="Rom." loc="6,17">Rom. 6,17</ref>; <ref cRef="Joh." loc="8,34">Joh. 8,34</ref>; in colloquio cum nobilioribus: <ref cRef="Gen." loc="18,5">Gen. 18,5</ref>; <ref cRef="Gen." loc="33,5">Gen. 33,5</ref>; 1 <ref cRef="Reg." loc="3,9">Reg. 3,9</ref>; <ref cRef="1 Reg." loc="17,32">1 Reg. 17,32</ref>; <ref cRef="1 Reg." loc="17,34">1 Reg. 17,34</ref>; <ref cRef="1 Reg." loc="20,8">1 Reg. 20,8</ref>; <ref cRef="2 Reg." loc="7,20">2 Reg. 7,20</ref>; <ref cRef="2 Reg." loc="7,21">2 Reg. 7,21</ref>; <ref cRef="Luc." loc="2,29">Luc. 2,29</ref> al. – <cit type="translation" xml:lang="la">
+                            <quote> Voc. Ae. </quote>
+                        </cit>: <foreign xml:lang="gez">ገብር፡ ዘ፡ ወንድ፡ ባርያ።</foreign> </sense>
+               
+            <sense xml:lang="en" source="#traces"> <foreign xml:lang="gez">ገብር፡</foreign> <cit type="transcription" xml:lang="gez">
+                            <quote>gäbr</quote>
+                        </cit> (in <foreign xml:lang="gez">ገብረ፡ መስቀል፡</foreign>); personal name (regnal name of <foreign xml:lang="gez">ዓምደ፡ ጽዮን፡</foreign>, r. 1314-44); in <bibl>
+                            <ptr target="bm:Marrassini1993AmdaSeyon"/>
+                            <citedRange unit="page">50:4</citedRange>
+                        </bibl> <ref cRef="Chron. Am." loc="50.4">Chron. Am. 50.4</ref>
+                    </sense>
+                </entry>
+         </div>
+      </body>
+   </text>
+</TEI>
