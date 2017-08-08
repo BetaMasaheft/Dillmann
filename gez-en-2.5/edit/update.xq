@@ -14,7 +14,6 @@ declare variable $id := request:get-parameter('id', ());
 let $app-collection := '/db/apps/gez-en'
 let $data-collection := '/db/apps/gez-en/data'
 
-let $login := xmldb:login($data-collection, 'Pietro', 'Hdt7.10') 
 let $title := 'Update Confirmation'
 let $data-collection := '/db/apps/gez-en/data'
  let $targetfileuri := base-uri(collection($data-collection)//id($id))

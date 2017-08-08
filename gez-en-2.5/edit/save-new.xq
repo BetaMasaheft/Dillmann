@@ -13,8 +13,6 @@ let $next-id-file-path := concat($app-collection,'/edit/next-id.xml')
 let $id := doc($next-id-file-path)/data/next-id/text() 
 let $file := concat($id, '.xml')
 
-(\: logs into the collection :\)
-let $login := xmldb:login($app-collection, 'Pietro', 'Hdt7.10')
 
 (\: create the new file with a still-empty id element :\)
 let $store := xmldb:store($data-collection, $file, $item)

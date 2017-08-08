@@ -11,7 +11,6 @@ let $backup-collection := '/db/apps/gez-en/deleted/'
 let $data-collection := '/db/apps/gez-en/data'
 
 (: log into the collection :)
-let $login := xmldb:login($data-collection, 'Pietro', 'Hdt7.10')
  
 (: get the id parameter from the URL :)
 
@@ -54,9 +53,9 @@ if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
   console:log('Sent Message to editor OK')
 else
   console:log('message not sent to editor')
-  
+
   ,
-  
+
   let $EditorialBoardMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
     <to>susanne.hummel@uni-hamburg.de</to>
@@ -95,7 +94,7 @@ return
 <html>
     <head>
         <title>Delete Confirmation</title>
-          
+
                 <link
                     rel="shortcut icon"
                     href="resources/images/favicon.ico"/>
@@ -131,11 +130,11 @@ return
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
-                    
-                
+
+
     </head>
     <body>
-     <div class="col-md-4 col-md-offset-4"  style="text-align: center; ">   
+     <div class="col-md-4 col-md-offset-4"  style="text-align: center; ">
     <h1> Farewell !</h1>
        <p class="lead">A backup copy has been made, you and the editors have been emailed.</p>
        <a role="button" href="/Dillmann/" class="btn btn-info">Home</a>
