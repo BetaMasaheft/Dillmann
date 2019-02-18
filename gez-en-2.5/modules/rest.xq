@@ -1,9 +1,10 @@
 xquery version "3.1"  encoding "UTF-8";
 
+
 module namespace api="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/api";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 
-import module namespace console="http://exist-db.org/xquery/console";
+
 
 (: For interacting with the TEI document :)
 
@@ -23,7 +24,7 @@ declare
 %output:method("json")
 function api:rootmembers($id as xs:string){
    
-let $col := collection($config:data-root)
+let $col :=  $config:collection-root
 let $term := $col//id($id)
 let $lem := let $terms := $term//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
 let $n := xs:integer($term/@n)
@@ -58,9 +59,13 @@ let $prevs :=
     return
          map {'id': $id, 'n': $entriesN, 'role' : $pr, 'lem' : $lem}
 return 
-    map {'here': map {'id': $id, 'n': xs:integer($n), 'role' : $cr, 'lem' : $lem} , 'prev' : $prevs, 'next' : $nexts}
+    ($config:response200Json,
+    map {'here': map {'id': $id, 'n': xs:integer($n), 'role' : $cr, 'lem' : $lem} , 'prev' : $prevs, 'next' : $nexts})
     
 };
+
+
+
 
 (:                   searches Dillmann lexicon:)
 declare
@@ -70,13 +75,16 @@ declare
 %output:method("json")
 function api:searchDillmann($element as xs:string?,
 $q as xs:string*) {
+    if($q ='') then () else
+    let $login := xmldb:login('/db/apps/BetMas/data', 'Pietro', 'Hdt7.10')
+    let $data-collection := '/db/apps/gez-en/data'
     
-    
-    let $eval-string := concat("collection('", $data-collection, "')//tei:"
-    , $element, "[ft:query(.,'", $q, "')]")
+    let $eval-string := concat("$config:collection-root//tei:"
+    , $element, "[ft:query(*,'", $q, "')]")
     let $hits := for $hit in util:eval($eval-string) order by ft:score($hit) descending return $hit
     return
         if (count($hits) gt 0) then
+            ($config:response200Json,
             <json:value>
                 {
                     for $hit in $hits
@@ -90,8 +98,9 @@ $q as xs:string*) {
                         
                         </json:value>
                 }
-            </json:value>
+            </json:value>)
         else
+            ($config:response200Json,
             <json:value>
                 <json:value
                     json:array="true">
@@ -100,7 +109,7 @@ $q as xs:string*) {
                     <info>No results, sorry</info>
                     <start>1</start>
                 </json:value>
-            </json:value>
+            </json:value>)
 };
 
 
@@ -110,14 +119,8 @@ declare
     %rest:query-param("start", "{$start}", 1)
     %output:method("xml")
 function api:getListofLemmas($lemma as xs:string?, $start as xs:integer*){
-(
-<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="application/xml; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
-   let $data-collection := '/db/apps/gez-en/data/'
-    let $hits := for $hit in collection($data-collection)//tei:entry 
+($config:response200Json,
+    let $hits := for $hit in  $config:collection-root//tei:entry 
      order by xs:integer($hit/@n)
      return $hit
      let $total := count($hits)
@@ -153,14 +156,9 @@ declare
     %rest:query-param("start", "{$start}", 1)
     %output:method("json")
 function api:getListofLemmasJ($lemma as xs:string?, $start as xs:integer*){
-(
-<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="application/json; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
-   let $data-collection := '/db/apps/gez-en/data/'
-    let $hits := for $hit in collection($data-collection)//tei:entry 
+($config:response200Json,
+  
+    let $hits := for $hit in  $config:collection-root//tei:entry 
      order by xs:integer($hit/@n)
      return $hit
      let $total := count($hits)
@@ -194,24 +192,15 @@ declare
     %rest:path("/BetMas/api/Dillmann/{$lemma}/teientry")
     %output:method("xml")
 function api:getLemma($lemma as xs:string?){
-    let $data-collection := '/db/apps/gez-en/data/'
-let $item := root(collection($data-collection)//id($lemma))
+    
+let $item := root( $config:collection-root//id($lemma))
 return
 if(exists($item)) then
-(<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="application/xml; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
+($config:response200XML,
     let $data-collection := '/db/apps/gez-en/data/'
    return
-   collection($data-collection)//id($lemma)
-  ) else (
-  <rest:response> 
-      <http:response status="400"> 
-        <http:header name="Content-Type" value="application/xml; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>, <info>{$lemma || 'is not a lemma unique id of any entry.'}</info>
+    $config:collection-root//id($lemma)
+  ) else ($config:response400, <info>{$lemma || 'is not a lemma unique id of any entry.'}</info>
   
   )
                    };
@@ -222,24 +211,15 @@ declare
     %output:method("json")
 function api:getLemmaJson($lemma as xs:string?){
 
-    let $data-collection := '/db/apps/gez-en/data/'
-let $item := collection($data-collection)//id($lemma)
+  
+let $item :=  $config:collection-root//id($lemma)
 return
 if(exists($item)) then
-(<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="application/json; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
+($config:response200Json,
    $item
   )
   else
-  (
-  <rest:response> 
-      <http:response status="400"> 
-        <http:header name="Content-Type" value="application/json; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>, map{'info' := ($lemma || 'is not a lemma unique id of any entry.')}
+  ($config:response400, map{'info' := ($lemma || 'is not a lemma unique id of any entry.')}
   )
                    };
                      
@@ -249,21 +229,13 @@ declare
     %output:method("text")
 function api:getLemmaTXT($lemma as xs:string?){
 
-    let $data-collection := '/db/apps/gez-en/data/'
-let $item := root(collection($data-collection)//id($lemma))//tei:TEI
+
+let $item := root( $config:collection-root//id($lemma))//tei:TEI
 return
 if(exists($item)) then
-(<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="text; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
+($config:response200,
    transform:transform($item, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())
-  ) else (<rest:response> 
-      <http:response status="400"> 
-        <http:header name="Content-Type" value="text; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>, $lemma || 'is not a lemma unique id of any entry.')
+  ) else ($config:response400, $lemma || 'is not a lemma unique id of any entry.')
                    };
 
 
@@ -272,17 +244,16 @@ declare
     %rest:GET
     %rest:path("/BetMas/api/Dillmann/all/txt")
     %rest:query-param("start", "{$start}", 1)
+    %rest:query-param("total", "{$total}", 1000)
     %output:method("text")
-function api:getHugeTXT($start as xs:integer*){
-<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="text; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
-    let $data-collection := '/db/apps/gez-en/data/'
-for $d in subsequence(collection($data-collection), 1,1000)
-return
-   transform:transform($d, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ()) || ' &#13;'
+function api:getHugeTXT($start as xs:integer*,$total as xs:integer*){
+($config:response200,
+
+let $filecontent := for $d in subsequence( $config:collection-root//tei:entry[starts-with(@xml:id, 'L')], $start, $total)
+               order by $d/@n
+                return
+                  transform:transform($d, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())
+ return string-join($filecontent, ' &#13;'))
 };
 
 
@@ -291,13 +262,9 @@ return
     %rest:path("/BetMas/api/Dillmann/number/{$n}")
     %output:method("json")
 function api:getLemmaNumber($n as xs:string?){
-(<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="application/json; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
-   let $data-collection := '/db/apps/gez-en/data/'
-let $match := collection($data-collection)//tei:entry[@n = $n]
+($config:response200Json,
+ 
+let $match :=  $config:collection-root//tei:entry[@n = $n]
 let $entry := string($match/@xml:id) 
 return 
 map {
@@ -313,18 +280,45 @@ map {
     %rest:path("/BetMas/api/Dillmann/column/{$n}")
     %output:method("json")
 function api:getLemmaColumn($n as xs:string?){
-(<rest:response> 
-      <http:response status="200"> 
-        <http:header name="Content-Type" value="application/json; charset=utf-8"/> 
-      </http:response> 
-    </rest:response>,
-   let $data-collection := '/db/apps/gez-en/data/'
-let $match := collection($data-collection)//id($n)
+($config:response200Json,
+
+let $match :=  $config:collection-root//id($n)
 let $entry := string(root($match)//tei:entry/@xml:id) 
 return 
 map {
   'column' : $n,
   'lemma' : $entry
+  })
+                   };
+                   
+                   
+ declare
+    %rest:GET
+    %rest:path("/BetMas/api/Dillmann/otherlemmas")
+    
+%rest:query-param("lemma", "{$lemma}", "")
+    %output:method("json")
+function api:getsamelemma($lemma as xs:string*){
+($config:response200Json,
+ let $eval-string := 
+      concat(" $config:collection-root//tei:form/tei:foreign[ft:query(.,'", $lemma, "')]")
+ let $hits := 
+           for $hit in util:eval($eval-string) 
+           order by ft:score($hit) descending 
+           return $hit
+ let $response := 
+          if(count($hits) ge 1) then  for $hit in $hits 
+          let $hitID := string(root($hit)//tei:entry/@xml:id) 
+          return map {
+  'id' : $hitID,
+  'hit' : $hit/text()
+  } 
+          else 'this is all new!'
+             
+return 
+map {
+  'response' : $response,
+  'total' : count($hits)
   })
                    };
                   

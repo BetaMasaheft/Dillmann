@@ -14,6 +14,65 @@ declare namespace repo="http://exist-db.org/xquery/repo";
 declare namespace expath="http://expath.org/ns/pkg";
 declare namespace jmx="http://exist-db.org/jmx";
 
+
+declare variable $config:ADMIN := environment-variable('ExistAdmin');
+declare variable $config:ppw := environment-variable('ExistAdminPw');
+declare variable $config:appUrl := 'http://betamasaheft.eu';
+
+declare variable $config:response200 := <rest:response>
+        <http:response
+            status="200">
+                
+            <http:header
+                    name="Access-Control-Allow-Origin"
+                    value="*"
+                    />
+        </http:response>
+    </rest:response>;
+
+declare variable $config:response200Json := <rest:response>
+            <http:response
+                status="200">
+                <http:header
+                    name="Content-Type"
+                    value="application/json; charset=utf-8"/>
+                <http:header
+                    name="Access-Control-Allow-Origin"
+                    value="*"
+                    />
+            </http:response>
+        </rest:response>;
+        
+declare variable $config:response200XML := <rest:response>
+            <http:response
+                status="200">
+                <http:header
+                    name="Content-Type"
+                    value="application/xml; charset=utf-8"/>
+                <http:header
+                    name="Access-Control-Allow-Origin"
+                    value="*"
+                    />
+            </http:response>
+        </rest:response>;
+
+declare variable $config:response400 := <rest:response>
+            <http:response
+                status="400">
+                <http:header
+                    name="Content-Type"
+                    value="application/json; charset=utf-8"/>
+            </http:response>
+        </rest:response>;
+        
+declare variable $config:response400XML := <rest:response>
+            <http:response
+                status="400">
+                <http:header
+                    name="Content-Type"
+                    value="application/xml; charset=utf-8"/>
+            </http:response>
+        </rest:response>;
 (: 
     Determine the application root collection from the current module load path.
 :)
@@ -33,6 +92,8 @@ declare variable $config:app-root :=
 ;
 
 declare variable $config:data-root := $config:app-root || "/data";
+
+declare variable $config:collection-root := collection($config:data-root);
 
 declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
@@ -109,7 +170,7 @@ declare function config:app-info($node as node(), $model as map(*)) {
 
 declare function config:get-data-dir() as xs:string? {
     try {
-        let $request := <http:request method="GET" href="http://betamasaheft.aai.uni-hamburg.de:8080/{request:get-context-path()}/status?c=disk"/>
+        let $request := <http:request http-version="1.1" method="GET" href="http://betamasaheft.aai.uni-hamburg.de:8080/{request:get-context-path()}/status?c=disk"/>
         let $response := http:send-request($request)
         return
             if ($response[1]/@status = "200") then
@@ -132,7 +193,7 @@ declare function config:get-repo-dir() {
     let $pkgRoot := $config:expath-descriptor/@abbrev || "-" || $config:expath-descriptor/@version
     return
         if ($dataDir) then
-            $dataDir || "/expathrepo/" || $pkgRoot
+            $dataDir || "/expathrepo/fonts-0.1"
         else
             ()
 };
@@ -142,9 +203,8 @@ declare function config:get-fonts-dir() as xs:string? {
     let $repoDir := config:get-repo-dir()
     return
         if ($repoDir) then
-            $repoDir || "/resources/fonts"
+            $repoDir || "/fonts"
         else
             ()
 };
-
 

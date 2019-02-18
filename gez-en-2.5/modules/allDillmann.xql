@@ -1,7 +1,7 @@
 xquery version "3.1";
 
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
-(:import module namespace xqjson = "http://xqilla.sourceforge.net/lib/xqjson";:)
+import module namespace xqjson = "http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace http = "http://expath.org/ns/http-client";
 
 declare namespace fo="http://www.w3.org/1999/XSL/Format";
@@ -11,7 +11,6 @@ declare namespace file = "http://exist-db.org/xquery/file";
 
 declare variable $local:fop-config := 
     let $fontsDir := config:get-fonts-dir()
-    
     return
         <fop version="1.0">
             <strict-configuration>true</strict-configuration>
@@ -263,7 +262,6 @@ switch ($key)
                         case "JB" return 'Jeremy Brown'
                         case "JF" return 'Joshua Falconer'
                         case "RL" return 'Ralph Lee'
-                        case "LB" return 'Leonard Bahr'
                         default return 'Alessandro Bausi'};
 
 declare function fo:lang($lang as xs:string) {
@@ -322,36 +320,27 @@ declare function fo:tei2fo($nodes as node()*) {
                     {fo:tei2fo($node/node())}
                     </fo:block>
             case element(tei:form) return 
-            <fo:block font-family="Ludolfus" font-weight="bold" font-size="12pt">
+            <fo:inline font-family="Ludolfus" font-weight="bold" font-size="12pt">
             {$node//text()}
-            </fo:block>
+            </fo:inline>
             case element(tei:foreign) return 
             <fo:inline > 
             {fo:lang($node/@xml:lang) }
             {$node//text()}
             </fo:inline>  
             case element(tei:cb) return
-            <fo:inline >{'{DiL.'|| string($node/@n)||'}'} </fo:inline>
+            <fo:inline id="{string($node/@xml:id)}">{'{DiL.'|| string($node/@n)||'}'} </fo:inline>
             case element(tei:cit) return
             <fo:inline font-style="italic" >{fo:tei2fo($node/node())} </fo:inline>
             case element(tei:ref) return
-            if($node/@target) then (<fo:inline >{'{DiL'|| replace($node/@target, '#c', '.') || '}'} </fo:inline>)
+            if($node/@target) then (<fo:inline >{'{DiL'|| replace($node/@target, '#c', '.') || '}'} [↗<fo:page-number-citation
+                                            ref-id="{replace($node/@target, '#', '')}"/>]</fo:inline>)
             else fo:tei2fo($node/node())
             case element(tei:bibl) return
-            <fo:inline >{fo:zoteroCit($node/tei:ptr/@target)}{if($node/tei:citedRange) then ', ' || $node/tei:citedRange/text() else ()}</fo:inline>
+            <fo:inline >{fo:zoteroCit($node/tei:ptr/@target)}{' ' || $node/tei:citedRange/@unit || ' ' || $node/tei:citedRange/text()}</fo:inline>
              case element(tei:sense) return 
-             if($node/@source or $node/@n='L') then
-             <fo:block-container margin-top="3mm"> 
-             {
- if($node/@source  = '#traces') 
- then (
- <fo:block font-weight="bold" >{(' TraCES ' || string($node/@xml:lang) || ' ')}</fo:block>
- ) 
- else if ($node/@n='L') then <fo:block font-weight="bold">Leslau</fo:block>
- else (), <fo:block>{fo:tei2fo($node/node())}</fo:block>}
- </fo:block-container>
- else
-( if($node/@n) then (<fo:inline font-weight="bold">{string($node/@n) || ')'} </fo:inline>) else (),
+ (if($node/@source  = '#traces') then (<fo:inline  font-weight="bold"> {(' TraCES ' || string($node/@xml:lang) || ' ')} </fo:inline>) else (),
+ if($node/@n) then (<fo:inline font-weight="bold">{string($node/@n) || ')'} </fo:inline>) else (),
                         fo:tei2fo($node/node()))
                   
             case element() return
@@ -380,11 +369,10 @@ let $req :=
         
 let $zoteroApiResponse := http:send-request($req)[2]
 let $decodedzoteroApiResponse := util:base64-decode($zoteroApiResponse)
-let $parseedZoteroApiResponse := parse-json($decodedzoteroApiResponse)
+let $parseedZoteroApiResponse := xqjson:parse-json($decodedzoteroApiResponse)
 
 return 
-replace($parseedZoteroApiResponse?1?citation, '&lt;span&gt;', '') => replace('&lt;/span&gt;', '') 
-
+replace($parseedZoteroApiResponse//*:pair[@name='citation']/text(), '&lt;span&gt;', '') => replace('&lt;/span&gt;', '') 
 };
 
 declare function fo:footer($form as element(tei:form)){
@@ -393,12 +381,25 @@ declare function fo:footer($form as element(tei:form)){
 
 
 
-declare function fo:main($id as xs:string) {
-    let $entry := root( $config:collection-root//id($id))//tei:TEI
-    return
+declare function fo:main() {
         <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" >
             <fo:layout-master-set>
-            
+             <fo:simple-page-master
+                    master-name="BM"
+                    margin-top="20mm"
+                    margin-bottom="20mm"
+                    margin-left="20mm"
+                    margin-right="20mm">
+                    <fo:region-body
+                        margin-top="20mm"
+                        margin-left="0mm"
+                        margin-right="0mm"
+                        margin-bottom="20mm"/>
+                    <fo:region-before
+                        extent="20mm"/>
+                    <fo:region-after
+                        extent="20mm"/>
+                </fo:simple-page-master>
                 <fo:simple-page-master master-name="Dillmann" margin-top="10mm"
                         margin-bottom="10mm" margin-left="12mm"
                         margin-right="12mm">
@@ -407,8 +408,10 @@ declare function fo:main($id as xs:string) {
 		<fo:region-after extent="20mm"/>
 			
                 </fo:simple-page-master>
+                
             </fo:layout-master-set>
-            
+             {fo:titlepage()}
+           
             <fo:page-sequence master-reference="Dillmann">
                 <fo:static-content flow-name="xsl-region-before">
 			<fo:block-container height="100%" display-align="center">
@@ -419,56 +422,77 @@ declare function fo:main($id as xs:string) {
 		<fo:static-content flow-name="xsl-region-after">
 			<fo:block-container>
 				<fo:block font-size="0.8em" text-align="right" >
-					<fo:basic-link external-destination="{$config:appUrl}/Dillmann/lemma/{$id}">Lexicon Linguae Aethiopicae {fo:footer($entry//tei:form)} | PDF generated from the app on {current-dateTime()} </fo:basic-link>
+					<fo:basic-link external-destination="{$config:appUrl}/Dillmann/">Lexicon Linguae Aethiopicae </fo:basic-link>
 				</fo:block>
 			</fo:block-container>
 		</fo:static-content>
                 <fo:flow flow-name="xsl-region-body" font-family="Ludolfus" text-align="justify">
-                    { fo:tei2fo($entry//tei:text/tei:body/tei:div) }
+                   {
+   for $entry in subsequence( $config:collection-root//tei:entry,1,500)
+   let $changes := root($entry)//tei:change
+   order by $entry/@n
+   
+    return 
+    <fo:block margin-top="5mm">
+    {if($entry//tei:rs[@type="root"]) then (
+<fo:leader leader-pattern="rule" leader-length="80%" rule-style="solid" rule-thickness="2pt"/>) else ()}
+    <fo:block>{fo:tei2fo($entry/node())}</fo:block> 
+    </fo:block>}
                     <fo:block margin-top="3mm">
                     <fo:block font-weight="bold">Bibliography</fo:block>
-                    {for $ptr in distinct-values($entry//tei:bibl/tei:ptr/@target)
+                    {for $ptr in distinct-values( $config:collection-root//tei:bibl/tei:ptr/@target)
                     return
                     <fo:block><fo:inline
                 start-indent="5mm" 
                 text-indent="-5mm">{fo:Zotero($ptr)}</fo:inline></fo:block>}
                     </fo:block>
-                     <fo:block font-size="0.6em" margin-top="3mm">
-                     <fo:block font-weight="bold">Revisions</fo:block>
-                     <fo:list-block
-        provisional-label-separation="1em"
-        provisional-distance-between-starts="1em">
-{for $change in $entry//tei:change 
-let $time := $change/@when
-            let $author := fo:editorKey(string($change/@who))
-            order by $time descending
-            return
-                <fo:list-item>
-                    <fo:list-item-label
-                        end-indent="label-end()"><fo:block>-</fo:block></fo:list-item-label>
-                    <fo:list-item-body
-                        start-indent="body-start()">
-                        <fo:block>
-                            {$author || ' '}
-                            <fo:inline
-                                font-style="italic">
-                                {$change/text()}
-                            </fo:inline>
-                            {' on ' || format-date($time, '[D].[M].[Y]')}
-                        </fo:block>
-                    </fo:list-item-body>
-                </fo:list-item>}
-                </fo:list-block></fo:block>
                 </fo:flow>                         
             </fo:page-sequence>
             
         </fo:root>
 };
 
+declare function fo:titlepage() {
+    <fo:page-sequence
+        master-reference="BM">
+       
+        <fo:flow
+            flow-name="xsl-region-body"
+            font-family="Ludolfus">
+            <fo:block
+                font-size="44pt"
+                text-align="center">
+                Lexicon Linguae Aethiopicae</fo:block>
+            <fo:block
+                text-align="center"
+                font-size="20pt"
+                font-style="italic"
+                space-before="2em"
+                space-after="2em">
+                edited by
+            </fo:block>
+            <fo:block
+                text-align="center"
+                font-size="20pt"
+                font-style="italic"
+                space-before="2em"
+                space-after="2em">
+                Augustus Dillmann, Alessandro Bausi, Andreas Ellwardt, Wolfgang Dickhut, Susanne Hummel and Vitagrazia Pisani 
+            </fo:block>
+            <fo:block
+                text-align="center"
+                font-size="20pt"
+                font-style="italic"
+                space-before="2em"
+                space-after="2em">
+               TraCES project
+            </fo:block>
+        
+        </fo:flow>
+    </fo:page-sequence>
+};
 
 
-(:fo:main():)
-let $id := request:get-parameter("id", ())
-let $pdf := xslfo:render(fo:main($id), "application/pdf", (), $local:fop-config)
+let $pdf := xslfo:render(fo:main(), "application/pdf", (), $local:fop-config)
 return
-    response:stream-binary($pdf, "media-type=application/pdf", $id || ".pdf")
+    response:stream-binary($pdf, "media-type=application/pdf", "DillmannAll.pdf")

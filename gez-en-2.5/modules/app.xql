@@ -5,12 +5,13 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mail="http://exist-db.org/xquery/mail";
 declare namespace functx = "http://www.functx.com";
 declare namespace expath="http://expath.org/ns/pkg";
+declare namespace l = "http://log.log";
 
 import module namespace kwic = "http://exist-db.org/xquery/kwic"    at "resource:org/exist/xquery/lib/kwic.xql";
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
-import module namespace console="http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
+import module namespace log="http://www.betamasaheft.eu/log" at "log.xqm";
  
 declare variable $app:SESSION := "gez-en:all";
 declare variable $app:searchphrase as xs:string := request:get-parameter('q',());
@@ -33,11 +34,260 @@ declare function functx:escape-for-regex( $arg as xs:string? )  as xs:string {
  } ;
  
  
+  declare function app:personslist($node as element(), $model as map(*)){
+  
+if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+ let $BMpersons := collection('/db/apps/BetMas/data/persons/')//tei:person[tei:persName[@xml:lang='gez'][not(@type='normalized')]]
+ let $hits := for $BMperson in subsequence($BMpersons,1,50) return $BMperson
+ return 
+ map {'hits' := $hits}
+ )
+ else ('sorry, this page is only for editors')
+ };
+ 
+ 
+declare    
+%templates:wrap
+    %templates:default('start', 1)
+    %templates:default("per-page", 50) 
+    function app:persRes (
+    $node as node(), 
+    $model as map(*), $start as xs:integer, $per-page as xs:integer) {
+        
+    for $pers at $p in subsequence($model("hits"), $start, $per-page)
+        let $id := root($pers)/tei:TEI/@xml:id
+            let $names := for $name in $pers/tei:persName[@xml:lang='gez'][not(@type='normalized')] return $name
+            let $mainName := normalize-space(string-join($names[@xml:id='n1']/text(), ' '))
+            let $eval-string := concat("$config:collection-root//tei:form/tei:foreign[ft:query(.,'", $mainName, "')]")
+                 let $hits := for $hit in util:eval($eval-string) order by ft:score($hit) descending return $hit
+          return
+            <div class="row reference ">
+               <div class="col-md-3"><div class="col-md-6"><a target="_blank" href="/{data($id)}">{string($id)}</a></div>
+<div class="col-md-6">{string-join($names, ', ')}</div></div>
+               <div class="col-md-9">
+               {
+               if(count($hits) gt 1) then 
+               ( 
+               <div class="col-md-12">
+               <div class="col-md-3">We have found this entry in Dillmann: { for $hit in $hits let $hitID := string(root($hit)//tei:entry/@xml:id) return (<a target="_blank" href="/Dillmann/lemma/{$hitID}">{$hit}</a>, ', ')}</div>
+               <div class="col-md-9 alert alert-danger">If you do not think any of the hits matches this entry you can create a new personal name entry.
+               <form class="form-inline" id="createnew" action="/Dillmann/edit/save-new-entity.xql" method="post">
+               <div class="form-group"><input class="form-control" id="form" name="form" value="{$mainName}" hidden="hidden"></input>
+               </div>
+               <div class="form-group"><input class="form-control" id="sourceen" name="sourceen" value="traces" hidden="hidden"></input>
+               </div>
+               <div class="form-group"><textarea class="form-control" id="senseen" name="senseen">{'<Sen< \*gez*'||$mainName||'\* [[ +n.pr.+ ]] {ND} >S>'}</textarea>
+              </div>
+              <div class="form-group"><textarea class="form-control" id="msg" name="msg" required="required">{'added persName from list of persons with a normalized Gǝʿǝz name in Beta Maṣāḥǝft'}</textarea>
+               </div><button type="submit" class="btn btn-primary">create new entry</button>
+               </form>
+               </div>
+               </div>) else
+               <div class="col-md-12">
+               <div class="col-md-3">We have not found this entry in Dillmann.</div>
+               <div class="col-md-9 alert alert-warning">You can create here a new personal name entry for this. Check, edit and submit. 
+               <form class="form-inline" id="createnew" action="/Dillmann/edit/save-new-entity.xql" method="post">
+               <div class="form-group"><input class="form-control" id="form" name="form" value="{$mainName}" hidden="hidden"></input>
+               </div>
+               <div class="form-group"><input class="form-control" id="sourceen" name="sourceen" value="traces" hidden="hidden"></input>
+               </div>
+               <div class="form-group"><textarea class="form-control" id="senseen" name="senseen">{'<Sen< \*gez*'||$mainName||'\* [[ +n.pr.+ ]] {ND} >S>'}</textarea>
+              </div>
+              <div class="form-group"><textarea class="form-control" id="msg" name="msg" required="required">{'added persName from list of persons with a normalized Gǝʿǝz name in Beta Maṣāḥǝft'}</textarea>
+               </div><button type="submit" class="btn btn-primary">create new entry</button>
+               </form>
+               </div>
+               </div>
+               }
+               </div>
+               
+            </div>
+       
+       
+                
+        
+
+    };
+ 
+ declare function app:userPage($node as element(), $model as map(*)){
+ 
+let $username := request:get-parameter("username", "")
+return
+if ($username = 'guest') then (
+<div
+                id="content"
+                class="container-fluid col-md-12">
+                <p>Did you just arrive here by mistake or do you want to know what people look at on ths webiste? You can ask Pietro, he will provide you the data from google analytics, which is much nicer.</p>
+                </div>
+)
+else if(($username = xmldb:get-current-user())or xmldb:is-admin-user(xmldb:get-current-user())) then
+ 
+<div
+                id="content"
+                class="container-fluid col-md-12">
+                <h2>{if($username != xmldb:get-current-user()) then 'Dear ' || xmldb:get-current-user() || ' you see this because you are admin. --->' else ()}
+                Dear {$username}, thank you very much for all your nice work for the project!</h2>
+                <div
+                    class="col-md-12">
+                    <div class="col-md-12 alert alert-success">
+                    <h2>All about you... </h2>
+                    <p><b>User name: </b> {$username}</p>
+                    <p><b>Member of: </b>{let $groups := for $g in sm:get-user-groups($username) return $g return string-join($groups, ', ')}</p>
+                    {for $x in sm:get-account-metadata-keys($username) return <p><b>{switch($x) case 'http://exist-db.org/security/description' return 'Role: ' case 'http://axschema.org/namePerson' return 'Full name: ' case 'http://axschema.org/contact/email' return 'E-mail: ' default return ()}</b>  {sm:get-account-metadata($username,$x)}</p>}
+                    </div>
+                    <div class="col-md-12 alert alert-warning">
+                    <a href="/Dillmann/latestchanges.html">See a list of all latest changes</a>
+                    </div>
+                    <div
+                        class="col-md-6 alert alert-info">
+                        {let $userinitials := app:editorNames($username)
+                                    let $changes := $config:collection-root//tei:change[@who = $userinitials][@when gt '2017-04-19']
+                                     let $changed := for $c in $changes
+                                                                order by $c/@when descending
+                                                                 return $c
+                                    return
+                                        (
+                                        <h3>Your made {count($changes)} changes in these files after the last conversion of the data from the original txt (19.4.2017).</h3>,
+                        <div  class=" col-md-12 userpanel"><table
+                                class="table table-responsive"><thead><tr><th>item</th><th>date and time</th><th>change</th></tr></thead><tbody>{
+                                    
+                                    for $itemchanged in $changes
+                                     let $root := root($itemchanged)
+                                    let $id := $root//tei:entry/@xml:id
+                                    group by $ID := $id
+                                    let $form := root($ID)//tei:entry/tei:form/tei:foreign/text()
+                                    let $maxchange := max(root($ID)//tei:change[@who = $userinitials]/xs:date(@when))
+                                    let $maxdate := xs:date($maxchange)
+                                     order by $maxchange descending
+                                    return
+                                        (<tr style="font-weight:bold;  border-top: 4px solid #5bc0de">
+                                        <td><a
+                                                href="/Dillmann/lemma/{string($ID)}">{$form}</a>{if(root($ID)//tei:nd) then (' ', <label class="label label-success">NEW</label>) else ()}</td><td></td><td></td></tr>,
+                                                for $changeToItem in $itemchanged 
+                                                order by $changeToItem/@when descending
+                                                return <tr><td></td>
+                                        <td>{format-date($changeToItem/@when, "[D01].[M01].[Y1]")}</td>
+                                                <td>{$changeToItem/text()}</td>
+                                                </tr>)
+                                }</tbody></table></div>
+                                )
+                                }
+                    </div>
+                    <div
+                        class="col-md-6"><h3>The last 50 pages you visited</h3>
+                        <div  class=" col-md-12 userpanel"><table
+                                class="table table-responsive"><thead><tr><th>type</th><th>date and time</th><th>info</th></tr></thead><tbody>{
+                                       let $selection :=  for $c in collection('/db/apps/gez-en/log/')//l:logentry[l:user[. = $username]][not(l:type[.='query'])][not(contains(l:type, 'XPath'))]
+                                                                  order by $c/@timestamp descending
+                                                                  return $c
+                                       for $loggedentity in subsequence($selection, 1, 50)
+                                        return
+                                            <tr><td>{$loggedentity/l:type/text()}</td><td>{
+                                            format-dateTime($loggedentity/@timestamp,
+                 "[D01].[M01].[Y1] [H01]:[m01]:[s01]")
+                                            }</td><td><a 
+                                            href="{$loggedentity/l:url/text()}">{$loggedentity/l:url/text()}</a></td></tr>
+                                    }</tbody></table>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    else (
+                    <div
+                id="content"
+                class="container-fluid col-md-12">
+                <p>Thank you very much for you interest in user data! You are either not logged in or you are trying to look somebody else data. 
+                If the first case is true, then please log in. If the second is true, I am quite sure you know how to call them or where they sit, so go and have a chat directly with them. If neither of this is true, then something is wrong, please open an issue.</p>
+                </div>
+                    )
+ };
+ 
+ declare function app:latestchanges($node as node(), $model as map(*)){
+ let $selection :=  for $c in collection('/db/apps/gez-en/log/')//l:logentry[l:type[.='updated'] or l:type[.='backup'] or l:type[. = 'created'] or l:type[contains(., 'delete')]][not(l:user = 'Pietro')]
+                                                                  order by $c/@timestamp descending
+                                                                  return $c
+  return
+  (
+  <input class="form-control"  type="text" id="searchStringType" onkeyup="searchInTable()" placeholder="Search in the type"/>,
+<table class="table table-responsive" id="latestchangestable">
+<thead>
+<tr>
+<th>type of event</th>
+<th>date</th>
+<th>user</th>
+<th>lemma</th>
+<th>description of change</th>
+</tr>
+</thead>
+<tbody>
+                                     {
+                                     for $loggedentity in subsequence($selection, 1, 200)
+                                     let $type := $loggedentity/l:type/text()
+                                     let $user := $loggedentity/l:user/text()
+                                     let $logurl := $loggedentity/l:url
+                                     let $urlid := 
+                                           if(matches($logurl, 'L[\w\d]{32}')) 
+                                           then (
+                                                    switch($type)
+                                                    case 'delete confirmation requested' return substring-after($logurl, '/Dillmann/lemma/')
+                                                    case 'updated' return '/Dillmann/lemma/' ||$logurl/text()
+                                                    default return $logurl/text()
+                                                    )
+                                           else $logurl/text()
+                                           
+                                     let $what := switch($type) 
+                                    case 'deleted' return $logurl/text()
+                                    case 'backup' return $logurl/text()
+                                    case 'delete confirmation requested' return substring-after($logurl, '/Dillmann/lemma/')
+                                    default return 
+                                             <a target="_blank" href="{$urlid}">{if(contains($urlid, 'lemma')) 
+                                                                then (
+                                                                 let $id := substring-after($urlid, 'lemma/')
+                                                                 let $doc := $config:collection-root//id($id)
+                                                                 let $name := $doc//tei:form/tei:foreign[1]/text()
+                                                                   return $name
+                                                                 ) 
+                                                                 else $urlid}</a>
+                                    
+                                     let $description := if($type='updated' or $type='created') then (
+                                     <ul>{
+                                        let $id := $loggedentity/l:url/text()
+                                        let $doc := root( $config:collection-root//id($id))
+                                         let $t := format-dateTime($loggedentity/@timestamp, '[Y0001]-[M01]-[D01]')
+                                        for $change in $doc//tei:change[@when = $t]
+                                            return <li>{$change/text()}</li>
+                                     }</ul>
+                                     ) else ()
+                                           
+                                        return
+                                        <tr>
+                                        <td>{$type}</td>
+                                        <td>{format-dateTime($loggedentity/@timestamp, '[D01].[M01].[Y0001] at [H01]:[m01]:[s01]')}</td>
+                                        <td>{$user}</td>
+                                        <td>{$what}</td>
+                                        <td>{$description}</td>
+                                        </tr>}</tbody>
+</table>
+ )};
+ 
+ (:~ logging function to be called from templating pages:)
+declare function app:logging ($node as node(), $model as map(*)){
+
+let $url :=  replace(request:get-uri(), '/exist/apps/gez-en', '/Dillmann')
+ let $parameterslist := request:get-parameter-names()
+   let $paramstobelogged := for $p in $parameterslist for $value in request:get-parameter($p, ()) return ($p || '=' || $value)
+   let $logparams := if(count($paramstobelogged) >= 1) then '?' || string-join($paramstobelogged, '&amp;') else ()
+   let $logurl := $url || $logparams
+   return 
+   log:add-log-message($logurl, xmldb:get-current-user(), 'page')
+  
+};
+ 
 (:the forms in the advanced search. this are called by a ajax call requesting as.html as a part of the html output. 
 Jquery cares also about the loading it once only and then simply hiding or showing it. :)
  declare function app:forms($node as element(), $model as map(*)){
  let $data-collection := '/db/apps/gez-en/data'
-    let $collection := collection($data-collection)
+    let $collection :=  $config:collection-root
    
 return (
 <div class="col-md-12">
@@ -120,7 +370,7 @@ return (
 The letters are available as buttons on the side bar and when clicked will reload the page with that parameter. :)
     let $starts-with := if($letter) then ('[starts-with(.,"' || $letter || '")]') else ()
     let $data-collection := '/db/apps/gez-en/data'
-    let $collection := collection($data-collection)
+    let $collection :=  $config:collection-root
 (:    selects the cit elements, which contain translations and output distinct values of the language for the side menu:)
     let $langs := if($mode='foreign') then (distinct-values($collection//tei:foreign/@xml:lang)) else distinct-values($collection//tei:cit/@xml:lang)
 (:    selects among cit elements with the selected language, by default latin as it is majoritary:)
@@ -162,7 +412,7 @@ The letters are available as buttons on the side bar and when clicked will reloa
      <div class="col-md-12">
      <div class="col-md-2">
      <ul class="nav nav-pills nav-stacked">
-     <li><a role="button" class="btn btn-info" href="?start=1&amp;mode=cit">list translations (defualt)</a></li>
+     <li><a role="button" class="btn btn-info" href="?start=1&amp;mode=cit">list translations (default)</a></li>
      <li><a role="button" class="btn btn-info" href="?start=1&amp;mode=foreign">non latin terms</a></li>
      </ul>
      <ul class="nav nav-pills nav-stacked">
@@ -188,8 +438,8 @@ The letters are available as buttons on the side bar and when clicked will reloa
      <div  class="col-md-8">
      <ul class="nodot">
      {for $r in $hit('roots')
-     let $collection := collection($config:data-root)
-     let $entry := $collection//id($r)
+     
+     let $entry :=  $config:collection-root//id($r)
      let $term-name := let $terms := $entry//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
               
          return
@@ -209,7 +459,7 @@ The letters are available as buttons on the side bar and when clicked will reloa
    let $txtarchive := '/db/apps/gez-en/txt/'
    (: store the filename :)
    let $filename := concat('Dillmann_Lexicon_', format-dateTime(current-dateTime(), "[Y,4][M,2][D,2][H01][m01][s01]"), '.txt')
-   let $filecontent := for $d in collection($data-collection) 
+   let $filecontent := for $d in  $config:collection-root
                order by $d//tei:entry/@n
                 return
                                       transform:transform($d, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())
@@ -219,7 +469,7 @@ The letters are available as buttons on the side bar and when clicked will reloa
 return
  <a
     id="downloaded"
-    href="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/txt/{$filename}"
+    href="{$config:appUrl}:8080/exist/apps/gez-en/txt/{$filename}"
     download="{$filename}"
     class="btn btn-primary"><i
         class="fa fa-download"
@@ -307,8 +557,8 @@ return
 }; 
 
 (:on login, print the name of the logged user:)
-declare function app:greetings($node as element(), $model as map(*)) as xs:string{
-<a href="">Hi {xmldb:get-current-user()}!</a>
+declare function app:greetings($node as element(), $model as map(*)){
+<a target="_blank" href="/Dillmann/user/{xmldb:get-current-user()}">Hi {xmldb:get-current-user()}!</a>
     };
     
 (:the button to the pdf of a file. the request ending with .pdf triggers in the controller a xslt transformation    :)
@@ -320,7 +570,7 @@ declare function app:greetings($node as element(), $model as map(*)) as xs:strin
 (:the button which allows to download the source xml file:)
  declare function app:getXML($id){
  <a
-    href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/lemma/{$id}.xml"
+    href="http://betamasaheft.eu/Dillmann/lemma/{$id}.xml"
     download="{$id}.xml"
     class="btn btn-primary"><i
         class="fa fa-download"
@@ -343,6 +593,25 @@ if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
 <a href="/Dillmann/downloads.html">Downloads</a>
 )
 else ()
+};  
+
+(:the link to Beta Masaheft, only available for logged users:)
+   declare function app:bmbutton($node as element(), $model as map(*)) {
+if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+<a href="http://betamasaheft.eu/" target="_blank">Beta maṣāḥǝft</a>
+
+)
+else ()
+};  
+
+(:the link to Beta Masaheft, only available for logged users:)
+   declare function app:tutorial($node as element(), $model as map(*)) {
+if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+<a href="http://betamasaheft.eu/Dillmann/tutorialextended.html" target="_blank">Tutorial</a>
+
+)
+else (
+<a href="http://betamasaheft.eu/Dillmann/tutorial.html" target="_blank">Tutorial</a>)
 };  
 
 (:form to navigate Dillmann using the column numbers :)
@@ -422,7 +691,7 @@ declare
     function app:list($node as node(), $model as map(*), $new, $traces, $lang){
 
 <div id="accordion" class="panel-group" role="tablist" aria-multiselectable="true">
-{ let $c := collection('/db/apps/gez-en/data')
+{ let $c :=  $config:collection-root
 let $n := if(request:get-parameter('new', ())) then ('[descendant::tei:nd]') else ()
 let $t := if(request:get-parameter('traces', ())) then ('[descendant::tei:sense[@source = "#traces"]]') else ()
 let $query := '$c//tei:entry'||$n ||$t
@@ -501,7 +770,7 @@ declare function app:abbreviations($node as node(), $model as map(*)){
 </tr>
 </thead>
 <tbody>
-{let $refs := for $r2 in collection('/db/apps/gez-en/data')//tei:ref[@cRef]
+{let $refs := for $r2 in  $config:collection-root//tei:ref[@cRef]
 return normalize-space(string($r2/@cRef))
          for $ref in distinct-values($refs)
          let $r := normalize-space($ref)
@@ -526,7 +795,7 @@ return normalize-space(string($r2/@cRef))
 };
 
 declare function app:citations($node as node(), $model as map(*)){
-let $c := collection('/db/apps/gez-en/data')
+let $c :=  $config:collection-root
 let $abbreviaturen := doc('../abbreviaturen.xml')
 return
 <div id="citationsList" class="col-md-12">
@@ -555,6 +824,22 @@ return
       
 };
 
+declare function app:editorNames($key as xs:string){
+switch ($key)
+                        case "Pietro" return 'PL'
+                        case "Vitagrazia" return 'VP'
+                        case "Susanne" return 'SH'
+                        case "Magda" return 'MK'
+                        case "Andreas" return 'AE'
+                        case "Maria" return 'MB'
+                        case "Wolfgang" return 'WD'
+                        case "Jeremy" return 'JB'
+                        case "Joshua" return 'JF'
+                        case "Ralph" return 'RL'
+                        case "LeonardBahr" return 'LB'
+                        default return 'AB'};
+
+
 (:used by revisions to print the correct name of the editor referenced in @who inside change :)
 declare function app:editorKey($key as xs:string){
 switch ($key)
@@ -570,9 +855,10 @@ switch ($key)
                         case "SD" return 'Sophia Dege'
                         case "VP" return 'Vitagrazia Pisani'
                         case "IF" return 'Iosif Fridman'
-                        case "SH" return 'Sususanne Hummel'
+                        case "SH" return 'Susanne Hummel'
                         case "FP" return 'Francesca Panini'
                         case "DE" return 'Daria Elagina'
+                        case "MB" return 'Maria Bulakh'
                         case "MK" return 'Magdalena Krzyżanowska'
                         case "VR" return 'Veronika Roth'
                         case "AA" return 'Abreham Adugna'
@@ -580,6 +866,11 @@ switch ($key)
                         case "IR" return 'Irene Roticiani'
                         case "MB" return 'Maria Bulakh'
                         case "WD" return 'Wolfgang Dickhut'
+                        case "JB" return 'Jeremy Brown'
+                        case "JF" return 'Joshua Falconer'
+                        case "RL" return 'Ralph Lee'
+                        case "LB" return 'Leonard Bahr'
+                        case "CH" return 'Carsten Hoffmann'
                         default return 'Alessandro Bausi'};
 
 (:prints the information in revisionDesc:)
@@ -601,9 +892,12 @@ declare function app:revisions($term){
 
 (:print the entry, transforming with xsl the contents and preparing the html for further dispaly rework done in videas.js :)
 declare function app:item($node as node(), $model as map(*)){
-let $col := collection('/db/apps/gez-en/data')
+let $col :=  $config:collection-root
 let $id := request:get-parameter("id", "")
 let $term := $col//id($id)
+return
+if(count($term) eq 0) then (<div class="col-md-12">There is no item with id {$id}. It might have been deleted, or more likely it was never there.</div>)
+else
 let $n := data($term/@n)
 let $column := if($term//tei:cb) then string(($term//tei:cb/@n)[1]) else string(max($col//tei:cb[xs:integer(ancestor::tei:entry/@n) <= xs:integer($n)][@xml:id]/@n))
 let $hom := if($term//tei:form/tei:seg[@type='hom']) then concat($term//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
@@ -618,22 +912,32 @@ let $prev := string($col//tei:entry[@n = $PR]/@xml:id)
 
 return
 <div class="col-md-12">
-        <h1>{$hom}<span id="lemma">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</span><div class=" btn-group downloadlinks">{app:pdf-link($id)}{app:getXML($id)}</div>{app:deleteEntry($id)}
-         {$rootline}
-         {if($term//tei:nd) then (<a href="#" class="btn btn-success">New</a>) else(<span class="badge columns"><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}"><i class="fa fa-columns" aria-hidden="true"/> {' ' || format-number($column, '#')}</a></span>)}</h1>
-        <a  class="smallArrow" href="/Dillmann/lemma/{$prev}">
+        <h1>{$hom}
+       <span id="lemma">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</span>
+       {if($term//tei:form/tei:foreign[@xml:lang !='gez']) 
+        then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
+       <div class=" btn-group downloadlinks">{app:pdf-link($id)}{app:getXML($id)}</div>{app:deleteEntry($id)}
+         {if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then ($rootline) else ()}
+         {if($term//tei:nd) then (<span class="badge badge-success">New</span>) else(<span class="badge columns"><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}"><i class="fa fa-columns" aria-hidden="true"/> {' ' || format-number($column, '#')}</a></span>)}
+         </h1>
+        <a  class="smallArrow prev" href="/Dillmann/lemma/{$prev}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
         
-{$col//id($prev)//tei:form/tei:foreign/text()}</a> {' | '} <a  class="smallArrow next" data-value="{$next}" href="/Dillmann/lemma/{$next}">{$col//id($next)//tei:form/tei:foreign/text()} 
+<span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a> {' | '} <a  class="smallArrow next" data-value="{$next}" href="/Dillmann/lemma/{$next}"><span class="navlemma">{$col//id($next)//tei:form/tei:foreign/text()}</span>
  
  <i class="fa fa-chevron-right" aria-hidden="true"></i>
  </a>
  <div id="showroot"/>
  {for $sense in $term//tei:sense[not(@rend)][not(@n)]
-return  <div class="card-block"> <h3>{
+ order by $sense/@source
+return  <div class="card-block"> 
+
+
+<h3>
+{if($sense/@source = '#traces') then 'TraCES' else 'Dillmann'}
+{if($sense/@source) then (let $s := substring-after($sense/@source, '#') return <a href="#" data-toggle="tooltip" title="{root($term)//tei:sourceDesc//tei:ref[@xml:id=$s]//text()}, {
 switch($sense/@xml:lang) case 'la' return 'Latin' case 'ru' return 'Russian' case 'en' return 'English' case 'de' return 'Deutsch' 
-case 'it' return 'Italian' default return $sense/@xml:id} 
-{if($sense/@source) then (let $s := substring-after($sense/@source, '#') return <a href="#" data-toggle="tooltip" title="{root($term)//tei:sourceDesc//tei:ref[@xml:id=$s]//text()}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>) else ()}
+case 'it' return 'Italian' default return string($sense/@xml:id)}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>) else ()}
 
 </h3>
 {transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/text.xsl',())}</div>}
@@ -666,7 +970,7 @@ declare function app:showitem($node as node()*, $model as map(*), $id as xs:stri
                         $param || "=" || $value,
                     "&amp;"
                 )
-let $col := collection('/db/apps/gez-en/data')
+let $col :=  $config:collection-root
 let $id := request:get-parameter('id', ())
 let $term := $col//id($id)
 let $hom := if($term//tei:form/tei:seg[@type='hom']) then concat($term//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
@@ -682,12 +986,16 @@ let $prev := string($col//tei:entry[@n = $PR]/@xml:id)
 (:        <button class="highlights btn btn-sm btn-info">Highlight/Hide strings matching the words in your search</button>:)
 return
 if ($id) then (
-<div class="well container-fluid">
+<div class="well col-md-12">
 
 
-        <h1>{$hom}<span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span>
-        {$rootline}
-        {if($term//tei:nd) then (<a href="#" class="btn btn-success">New</a>) else(<span class="badge columns"><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}">
+        <h1>{$hom}
+        <span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span>
+        {if($term//tei:form/tei:foreign[@xml:lang !='gez']) 
+        then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
+        {if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then ($rootline) else ()}
+        {if($term//tei:nd) then (<span class="badge badge-success">New</span>) else(<span class="badge columns"><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}">
+        
         <i class="fa fa-columns" aria-hidden="true"/> {if($term//tei:cb) then (string(number(format-number($column, '#')) - 1) || '/' || format-number($column, '#')) else (' ' || format-number($column, '#'))}</a></span>)}
         <label class="switch highlights">
   <input type="checkbox"/>
@@ -697,24 +1005,24 @@ if ($id) then (
 <div class=" btn-group downloadlinks">{app:pdf-link($id)}{app:getXML($id)}</div>{app:deleteEntry($id)}
         
 </h1>
-        <a class="smallArrow" href="?{$params}&amp;id={$prev}">
+        <a class="smallArrow prev" href="?{$params}&amp;id={$prev}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
         
-{$col//id($prev)//tei:form/tei:foreign/text()}</a>{ ' | '}  
-<a  class="smallArrow next" data-value="{$next}" href="?{$params}&amp;id={$next}">{$col//id($next)//tei:form/tei:foreign/text()} 
+<span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a>{ ' | '}  
+<a  class="smallArrow next" data-value="{$next}" href="?{$params}&amp;id={$next}">
+<span class="navlemma">{$col//id($next)//tei:form/tei:foreign/text()} </span>
  
  <i class="fa fa-chevron-right" aria-hidden="true"></i>
  </a>
  <div id="showroot"/>
  {for $sense in $term//tei:sense[not(@n)]
+ order by $sense/@source
 return  <div class="card-block entry"> 
-<h3>{switch($sense/@xml:lang) 
-case 'la' return 'Latin' 
-case 'en' return 'English' 
-case 'de' return 'Deutsch' 
-case 'it' return 'Italian' 
-default return $sense/@xml:id}
-{if($sense/@source) then (let $s := substring-after($sense/@source, '#') return <a href="#" data-toggle="tooltip" title="{root($term)//tei:sourceDesc//tei:ref[@target=$s]//text()}"><i class="fa fa-info-circle" aria-hidden="true"></i>
+<h3>
+{if($sense/@source = '#traces') then 'TraCES' else 'Dillmann'}
+{if($sense/@source) then (let $s := substring-after($sense/@source, '#') return <a href="#" data-toggle="tooltip" title="{root($term)//tei:sourceDesc//tei:ref[@target=$s]//text()}, {
+switch($sense/@xml:lang) case 'la' return 'Latin' case 'ru' return 'Russian' case 'en' return 'English' case 'de' return 'Deutsch' 
+case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa fa-info-circle" aria-hidden="true"></i>
 </a>) else ()}
 </h3>
 
@@ -753,9 +1061,40 @@ let $data-collection := '/db/apps/gez-en/data/'
 let $file := if ($new='true') then 
         'new-instance.xml'
     else 
-        collection($data-collection)//id($id)
+         $config:collection-root//id($id)
 return map {'file' := $file,
 'id' := $id}
+};
+
+
+declare function app:tempNew($node as node()*, $model as map(*)){
+<div class="col-md-12">
+    <h3>Templates</h3>
+    <div class="col-md-6">
+    <p>You are creating a new entry. Please, make sure it has at least these elements:
+                </p>
+                <ul>
+                <li>Graphic Variants if any;</li>
+                <li>Transliteration;</li>
+                <li>Translation; </li>
+                <li>Reference to the source of the translation if available;</li>
+                <li>Part of speech (if different from those already in Dillmann).</li>
+                </ul>
+                </div>
+                <div class="col-md-6">
+                <p>Here is a template for a new english entry with an english translation, which you can copy and paste in the editor.</p>
+                <p><pre>
+                &lt;Sen&lt; 
+                or \*gez*  \* 
+                &gt;gez!  &gt;
+                &gt;en&gt;   &gt; 
+                [  ,  ]bm:  
+                {{ND}}
+                &gt;S&gt;
+                </pre></p>
+                
+                </div>
+    </div>
 };
 
 declare function app:newForm ($node as node()*, $model as map(*)){
@@ -763,8 +1102,11 @@ declare function app:newForm ($node as node()*, $model as map(*)){
              <div class="form-group">
             <label for="form" class="col-md-2 col-form-label">Lemma</label>
             <div class="col-md-10">
+            <div >
                 <input class="form-control" id="form" name="form" required="required" value="{if(request:get-parameter('form',())) then request:get-parameter('form',()) else ()}"/>
                 <small class="form-text text-muted">type here the new Gǝʿǝz form to be added</small>
+            </div>
+            <div  id="checkifitalreadyexists"><div class="alert alert-info">Please paste or write something above and I will tell you if it is already in.</div></div>
             </div>
         </div>
         <div class="form-group">
@@ -798,6 +1140,11 @@ declare function app:newForm ($node as node()*, $model as map(*)){
                 <small class="form-text text-muted">shortly describe why you created this entry</small>
             </div>
         </div>
+        
+        <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="notifyEditors" name="notifyEditors" value="yes"/>
+    <label class="form-check-label" for="notifyEditors">Send an email to the editors about this change</label>
+  </div>
         <button id="confirmcreatenew" type="submit" class="btn btn-primary" disabled="disabled">create new entry</button>
     </form>
 };
@@ -831,7 +1178,6 @@ return
             <div class="col-md-10">
             {app:buttons($lang)}
             <div id="wrap">
-			
                 <textarea class="form-control" id="sense{$lang}" name="sense{$lang}" style="height:250px;">{if(request:get-parameter($paramname,())) then request:get-parameter($paramname,()) else transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/xml2editor.xsl', ())}</textarea>
              </div>
              <small class="form-text text-muted">type here your latin definition</small>
@@ -852,7 +1198,7 @@ return
                ( <h2>Edit Entry</h2>,
            <p class="lead">Hi {xmldb:get-current-user()}! You are updating {$file//tei:form/tei:foreign/text()}, that's great!</p>,
            <p class="lead"> Please follow the guidelines below for editing the entries.</p>,
-           <p> Remember, you are here editing the dictionaries as sources of information, not annotating texts. The structure given to the entries is usefull for many purposes.</p>,
+           <p> Remember, you are here editing the dictionaries as sources of information, not annotating texts. The structure given to the entries is useful for many purposes.</p>,
                 <form id="updateEntry" action="/Dillmann/edit/edit.xq" class="input_fields_wrap" method="post">
                 <input hidden="hidden" value="{$id}" name="id"/>
                    <div class="form-group">
@@ -889,12 +1235,17 @@ return
                 <small class="form-text text-muted">shortly describe the changes you have made</small>
             </div>
         </div>
-        <button id="confirmcreatenew" type="submit" class="btn btn-primary">Confirm (or loose all your changes)</button>
+        <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="notifyEditors" name="notifyEditors" value="yes"/>
+    <label class="form-check-label" for="notifyEditors">Send an email to the editors about this change</label>
+  </div>
+        <button id="confirmcreatenew" type="submit" class="btn btn-primary">Confirm (or lose all your changes)</button>
                 </form>
                 
                 )
       
 };
+
 
 declare function app:buttons($name){
 <div class="btn-group"><a id="{$name}NestSense" class="btn btn-primary btn-sm">Meaning</a>
@@ -921,7 +1272,7 @@ let $newsense := transform:transform(<node>{$newText}</node>, 'xmldb:exist:///db
     <param name="source" value="{$newTextsource}"/>
 </parameters>)
 return 
-($newsense, console:log($newsense))
+$newsense
 };
 
 declare function app:DoUpdate($node as node()*, $model as map(*)){
@@ -932,7 +1283,7 @@ let $id := $model('id')
 let $msg := request:get-parameter('msg', ())
 let $title := 'Update Confirmation'
 let $data-collection := '/db/apps/gez-en/data'
-let $record := collection($data-collection)//id($id)
+let $record :=  $config:collection-root//id($id)
 let $rootitem := root($record)//tei:TEI
 let $backup-collection := '/db/apps/gez-en/EditorBackups/'
 let $targetfileuri := base-uri($record)
@@ -968,7 +1319,7 @@ return
                 <author>Andreas Ellwardt</author>
                 </titleStmt>
                 <publicationStmt>
-                       <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+                       <authority>Hiob-Ludolf-Zentrum für Äthiopistik</authority>
                 <publisher>TraCES project.
                                     https://www.traces.uni-hamburg.de/</publisher>
                 <pubPlace>Hamburg</pubPlace>
@@ -1073,7 +1424,7 @@ let $contributorMessage := <mail>
                   <h1>Thanks for your changes to {$filename}!</h1>
                   <p>This is how the txt version looks like now:</p>
                   <p>{transform:transform($rootitem, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())}</p>
-                  <p><a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/lemma/{$id}" 
+                  <p><a href="{$config:appUrl}/Dillmann/lemma/{$id}" 
                   target="_blank">See {$filename} online!</a> There you can also update the file again.</p>
                </body>
            </html>
@@ -1081,17 +1432,14 @@ let $contributorMessage := <mail>
     </message>
   </mail>
 return
-if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
-else
-  console:log('message not sent to editor')
+mail:send-email($contributorMessage, 'public.uni-hamburg.de', ())  
   
   ,
   
   let $EditorialBoardMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
     <to>susanne.hummel@uni-hamburg.de</to>
-    <to>fonv216@uni-hamburg.de</to><to>vitagrazia.pisani@gmail.com</to><to>wolfgang.dickhut@gmail.com</to>
+    <to>vitagrazia.pisani@gmail.com</to><to>wolfgang.dickhut@gmail.com</to>
     <cc></cc>
     <bcc>pietro.liuzzo@gmail.com</bcc>
     <subject>Lexicon Linguae Aethiopicae says: {$filename} has been updated!</subject>
@@ -1106,7 +1454,7 @@ else
                   <p>{$cU} said he: {$msg} in this file</p>
                   <p>This is how it looks like in txt now:</p>
                   <p>{transform:transform($rootitem, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())}</p>
-                  <p><a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/lemma/{$id}" 
+                  <p><a href="{$config:appUrl}/Dillmann/lemma/{$id}" 
                   target="_blank">See {$filename} online!</a> There you can also update the file again.</p>
                </body>
            </html>
@@ -1114,10 +1462,7 @@ else
     </message>
   </mail>
 return
-if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
-else
-  console:log('message not sent to editor')
+mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) 
 )
 return
 <div class="alert alert-success">
@@ -1153,7 +1498,38 @@ case 'it' return 'Italian'
 default return $nodewithlang/@xml:id};
 
 
-
+declare function app:repl($query, $match, $sub)
+{
+(: take the string and make into a sequence eg. abcabc   :)
+    let $seq :=
+        for $ch in string-to-codepoints($query)
+        return codepoints-to-string($ch)
+(:        loop the sequence (a,b,c,a,b,c):)
+    for $x in $seq
+(:    get the position of the character in the sequence, a = (0, 3):)
+    return
+        if ($x = $match) then
+         let $index := index-of($seq, $x)
+         return
+(:    loop each occurrence of that character to do the substitutions one by one in case it matches, 0 and 3 for the example:)
+    for $i in $index
+    
+    return
+(:        substitute only that occurence by removing it and adding the substitute in its place, so in the first loop, remove a and then add d before position 0:)
+            let $rem := remove($seq, $i)
+            let $add := insert-before($rem, $i, $sub)
+            let $newstring := string-join($add, '')
+(:          returns the string dbcabc and sends the same over again to this template.  :)
+            return
+           ($newstring,
+           app:repl($newstring, $match, $sub))
+            
+        else
+(:          there character does not match and the string is returned  :)
+            string-join($seq, '')
+            
+(:            this generates an exponential number of options which are the same, but can then be filtered with distinct-values() :)
+};
 
 declare function app:subs($query, $homophones, $mode) {
     let $all :=
@@ -1163,7 +1539,7 @@ declare function app:subs($query, $homophones, $mode) {
         if (contains($q, $b)) then
             let $options := for $s in $homophones[. != $b]
             return
-                (replace($q, $b, $s),
+                (distinct-values(app:repl($q, $b, $s)),
                 if ($mode = 'ws') then
                     (replace($q, $b, ''))
                 else
@@ -1204,6 +1580,8 @@ declare function app:substitutionsInQuery($query as xs:string*) {
     let $query-string := app:subs($query-string, $laringals2, 'normal')
     let $laringals3 := ('ሂ', 'ሒ', 'ኂ')
     let $query-string := app:subs($query-string, $laringals3, 'normal')
+    let $laringals4 := ('ሁ', 'ሑ', 'ኁ')
+    let $query-string := app:subs($query-string, $laringals4, 'normal')
     let $laringals5 := ('ሄ', 'ሔ', 'ኄ')
     let $query-string := app:subs($query-string, $laringals5, 'normal')
     let $laringals6 := ('ህ', 'ሕ', 'ኅ')
@@ -1287,7 +1665,7 @@ let $parameterslist := request:get-parameter-names()
 return
 if(empty($parameterslist)) then () else
 let $data-collection := '/db/apps/gez-en/data'
-let $coll := collection($data-collection)
+let $coll :=  $config:collection-root
 let $l := app:buildqueryparts('languages', "xml:lang", 'notlang', 'foreign')
 
 let $c := app:buildqueryparts('case', "value", 'notcase', 'case') 
@@ -1310,7 +1688,7 @@ let $options :=
 
 
 let $query := if(empty($q) or $q = '') then ('$coll//tei:entry' || $c ||$l ||$p) else ('$coll//tei:entry[ft:query(*, $qtext, $options)]' ||$c || $l ||$p)
-let $test := console:log($query)
+
 let $hits := for $hit in util:eval($query) return $hit
 return
  map {"hits" := $hits}
@@ -1335,16 +1713,15 @@ let $g := app:buildqueryparts('gender', "value", 'notgender', 'gen')
 let $erw := $l || $c || $p || $lbl || $g 
 
 let $data-collection := '/db/apps/gez-en/data'
-let $coll := collection($data-collection)
+let $coll := $config:collection-root
 return
 
 if(empty($q)) then (
 if($cun) then (
 let $formatCun := format-number($cun, '0000')
-let $test1 := console:log($formatCun)
+
 let $hits := for $hit in $coll//tei:entry//tei:cb[@n=$formatCun] return $hit
 
- let $test2 :=console:log($hits)
 return
   map {"hits" := $hits}
 )
@@ -1370,7 +1747,7 @@ return
 )
 else(
 let $qtext := if(empty($q)) then () else app:substitutionsInQuery($q)
-let $test := console:log($qtext)
+
 let $options :=
     <options>
         <default-operator>or</default-operator>
@@ -1414,10 +1791,6 @@ declare
     
 };
 
-(:~
- : FROM SHAKESPEAR
-    Create a span with the number of items in the current search result.
-:)
 declare 
     %templates:wrap function app:hit-count($node as node()*, $model as map(*)) {
     let $q := request:get-parameter('q',())
@@ -1427,32 +1800,42 @@ declare
     
 };
 
+declare 
+    %templates:wrap function app:biblio-count($node as node()*, $model as map(*)) {
+    <h3>There are <span xmlns="http://www.w3.org/1999/xhtml" id="hit-count">{ $model("total") }</span> distinc bibliographical sources.</h3>
+    
+};
+
+
+(:~
+ : FROM SHAKESPEAR
+    Create a span with the number of items in the current search result.
+:)
 
 declare %private function app:create-query($query-string as xs:string?, $mode as xs:string) {
-    let $test := console:log($query-string)
+
     let $query-string := 
         if ($query-string) 
         then app:sanitize-lucene-query($query-string) 
         else ''
-        let $test2 := console:log($query-string)
+
     let $query-string := normalize-space($query-string)
     let $query:=
         (:If the query contains any operator used in sandard lucene searches or regex searches, pass it on to the query parser;:) 
         if (functx:contains-any-of($query-string, ('AND', 'OR', 'NOT', '+', '-', '!', '~', '^', '.', '?', '*', '|', '{','[', '(', '<', '@', '#', '&amp;')) and $mode eq 'any')
         then 
             let $luceneParse := app:parse-lucene($query-string)
-            let $test3 := console:log($query-string)
-             let $test4 := console:log($luceneParse)
+        
             let $luceneXML := util:parse($luceneParse)
             let $lucene2xml := app:lucene2xml($luceneXML/node(), $mode)
             return $lucene2xml
         (:otherwise the query is performed by selecting one of the special options (any, all, phrase, near, fuzzy, wildcard or regex):)
         else
             let $query-string := tokenize($query-string, '\s')
-             let $test5 := console:log($query-string)
+         
             let $last-item := $query-string[last()]
             let $query-string :=  string-join($query-string, ' ')
-           let $test6 := console:log($query-string)
+         
            let $query :=
                 <query>
                     {
@@ -1470,7 +1853,7 @@ declare %private function app:create-query($query-string as xs:string?, $mode as
                             </bool>
                         else 
                             if ($mode eq 'phrase') 
-                            then (<phrase>{$query-string}</phrase>, console:log(<phrase>{$query-string}</phrase>))
+                            then <phrase>{$query-string}</phrase>
                             else
                                 if ($mode eq 'near-unordered')
                                 then <near slop="{if ($last-item castable as xs:integer) then $last-item else 5}" ordered="no">{$query-string}</near>
@@ -1488,8 +1871,8 @@ declare %private function app:create-query($query-string as xs:string?, $mode as
                                                 then <regex>{$query-string}</regex>
                                                 else ()
                     }</query>
-            return ($query, console:log($query))
-    return ($query, console:log($query))
+            return $query
+    return $query
     
 };
 (:~
@@ -1630,7 +2013,7 @@ declare
             <div class="col-md-4"><span class="badge"> {count($expanded//exist:match)}</span></div>
             </div>
              <div class="col-md-9">
-             <div class="col-md-9">{kwic:summarize($term,<config width="40"/>)}</div>
+             <div class="col-md-9">{for $match in subsequence($expanded//exist:match, 1, 3) return  kwic:get-summary($expanded, $match,<config width="40"/>)}</div>
              <div class="col-md-3">{app:editineXide($id, <sources>{for $s in root($term)//tei:sense return <source lang="{$s/@xml:lang}" value="{$s/@source}"></source>}</sources>)}</div>
              </div>
                
@@ -1644,7 +2027,6 @@ declare
     
     
 (: copy all parameters, needed for search :)
-
 declare function app:copy-params($node as node(), $model as map(*)) {
     element { node-name($node) } {
         $node/@* except $node/@href,
@@ -1861,351 +2243,87 @@ declare %private function app:lucene2xml($node as item(), $mode as xs:string) {
 };
 
 
-declare function app:guidelines($node as node()*, $model as map(*)){
-<div class="col-md-12">
-    <h3>Guidelines</h3>
-    <div class="container-fluid">
-            <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Hit the button to get the symbols...</th>
-                <th>... or type all this...</th>
-                <th>...and it will be displayed as...</th>
-                <th>...because it is transformed into...</th>
-                <th>...which is...</th>
-                <th>...and by the way...</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Meaning</a></td>
-                <td>&lt;A&lt; The first meaning &gt;A&gt;</td>
-                <td>
-                            <b>A)</b> The first meaning</td>
-                <td>
-                            <pre>&lt;sense n="A"&gt;The first meaning&lt;/sense&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-sense.html">TEI element sense</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>You can nest as many of this as you want. e.g. &lt;A&lt; this has two submeanings &lt;a&lt; meaning 1 &gt;1&gt; and &lt;2&lt; meaning 2 &gt;2&gt;  &gt;A&gt; </li>
-                                <li>The order of the section uses at the first level Upper Case letters, at the second level numbers, at the third level lower case letters and at the third level greek letters.</li>
-                                
-                                <li>
-                    To specify the language of use &lt;Ade&lt; .... &gt;A&gt; for example, where <b>de</b> is 
-                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
-                    code for that language.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Label</a></td>
-            
-                <td>((vid.))</td>
-                <td>
-                            <a data-toggle="tooltip" data-title="videas">vid.</a>
-                        </td>
-                <td>
-                            <pre>&lt;lbl expand="videas"&gt;vid.&lt;/lbl&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-lbl.html">TEI element lbl</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>Use one of Dillmann's abbreviation and you will get the tooltip explaining it.</li>
-                                <li>Try also <pre>((vid.)) \*gez*ሐሊባ፡\*</pre> to get a direct link to the form you enter, like <a data-toggle="tooltip" data-title="videas">vid.</a>
-                                    <a href="L28a2fa17dfc84e0ca31f4e6b7ef90d96">ሐሊባ፡ </a>
-                                </li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Grammar Group</a></td>
-            
-                <td>[[anything you put here]]</td>
-                <td>anything you put here, transformed as described here.</td>
-                <td>
-                            <pre>&lt;gramGrp&gt;anything you put here&lt;/gramGrp&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gramGrp.html">TEI element gramGrp</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>There is no need to nest these. Use it just to group information.</li>
-                                <li>See below case, gender and PoS.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Translation</a></td>
-            
-                <td>&gt;la&gt;mater&gt;</td>
-                <td>
-                            <i>
-                                <a target="_blank" href="http://www.perseus.tufts.edu/hopper/morph?l=mater&amp;la=la">translation</a>
-                            </i>
-                        </td>
-                <td>
-                            <pre>&lt;cit type="translation" xml:lang="en"&gt;&lt;quote&gt;mater&lt;/quote&gt;&lt;/cit&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>Remember to specify the language according to  
-                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
-                    code for languages.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Transcription</a></td>
-            
-                <td>&gt;gez!ʾangotay&gt;</td>
-                <td>
-                          <b> transcription</b>
-                        </td>
-                <td>
-                            <pre>&lt;cit type="transcription" xml:lang="gez"&gt;&lt;quote&gt;ʾangotay&lt;/quote&gt;&lt;/cit&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>Remember to specify the language according to  
-                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
-                    code for languages.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Language</a></td>
-            
-                <td>\*syr*ܐܰܘܓܺܝ\*</td>
-                <td>ܐܰܘܓܺܝ</td>
-                <td>
-                            <pre>&lt;foreign xml:lang="syr"&gt;ܐܰܘܓܺܝ&lt;/foreign&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-foreign.html">TEI element foreign</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>Notice, the app will know that this is in Syriac.</li>
-                                <li>Remember to specify the language according to  
-                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
-                    code for languages.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Reference</a></td>
-            
-                <td>*Matth.|1.1*</td>
-                <td>
-                            <a ref="Matth.1,1" data-toggle="tooltip" title="" data-original-title="Matthaei Evangelium.">Matth. 1,1</a>
-                    <a class="reference" data-ref="Matth.1,1" data-bmid="LIT1558Matthew" data-value="LIT1558Matthew/1/1">
-                    <i class="fa fa-file-text-o" aria-hidden="true"/>
-                            </a>
-                    </td>
-                <td>
-                            <pre>&lt;ref cRef="Matth." loc="1.1"&gt;Matth. 1.1&lt;/ref&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>Eventually, if there is a text, you will see in the popup the line(s) you are quoting.</li>
-                                <li>you might find also this notation *Kuf. |35*p.|, this is for where a unit is specified by Dillmann.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>no button here</td>
-                <td>{'|{Dil.1234}|'}</td>
-                <td>
-                            <i class="fa fa-columns" aria-hidden="true"/>n. 1327 </td>
-                <td>
-                            <pre>&lt;cb n="1327"/&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cb.html">TEI element cb</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>Unless there is something to fix, it is very unlikely that you are going to use this</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>no button here</td>
-                <td>{'{Dil.1234}'}</td>
-                <td>
-                            <a href="#" class="internalLink" data-value="c1327">1327 </a></td>
-                <td>
-                            <pre>&lt;ref target="#1327"/&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>You can use this to make a simple column reference into a link to that column, which is useful if the entry starts several columns before.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Bibliography</a></td>
-            
-                <td>[§,73]bm:Dillmann1857Gramm</td>
-                <td>
-                            <a class="Zotero Zotero-citation" data-value="bm:Dillmann1857Gramm" href="https://www.zotero.org/groups/ethiostudies/items/tag/bm:Dillmann1857Gramm">Dillmann 1857</a>
-                        </td>
-                <td>
-                            <pre>&lt;bibl&gt;&lt;ptr target="bm:Dillmann1857Gramm"/&gt;&lt;citedRange unit="paragraph"&gt;73&lt;/citedRange&gt;&lt;/bibl&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-bibl.html">TEI element bibl</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>The bm: part must be a <a href="https://zotero.org/groups/358366/">unique tag in the Ethio Studies Group Zotero</a> Library! </li>
-                                <li>If you only want to give a reference to a work omit the [] part, simply add bm:Dillmann1857Gramm</li>
-                                <li>p., s., n. $ before comma will be normalized to the allowed values of citedRange page, item and paragraph respectively.</li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">PoS</a></td>
-            
-                <td>+refl.+</td>
-                <td>
-                            <a data-toggle="tooltip" data-title="reflexivum" data-original-title="" title="">refl.</a>
-                        </td>
-                <td>
-                            <pre>&lt;pos expand="reflexivum"&gt;refl.&lt;/pos&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pos.html">TEI element pos</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Case</a></td>
-            
-                <td>@acc.@</td>
-                <td>
-                            <a data-toggle="tooltip" data-title="accusativus">Acc.</a>
-                        </td>
-                <td>
-                            <pre>&lt;case value="accusativus"&gt;acc.&lt;/case&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-case.html">TEI element case</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
-                            </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">Gender</a></td>
-            
-                <td>ˆfem.ˆ</td>
-                <td>
-                            <a data-toggle="tooltip" data-title="femininus">fem.</a>
-                        </td>
-                <td>
-                            <pre>&lt;gen value="femininus"&gt;fem.&lt;/gen&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gen.html">TEI element gen</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
-                            </ul>
-                        </td>
-            </tr>
-            
-            <tr>
-            <td><a href="#" class="btn btn-primary btn-sm">ND</a></td>
-            
-                <td>{'{ND}'}</td>
-                <td><a href="#" class="btn btn-success">New</a></td>
-                <td>
-                            <pre>&lt;nd/&gt;</pre>
-                        </td>
-                <td>
-                            This is an elment not defined by TEI, but added to the schem from TraCES
-                        </td>
-                <td>
-                            <ul>
-                                <li>This should be in any entry which is not in Dillmann. You can click the button to add it.</li>
-                            </ul>
-                        </td>
-            </tr>
-            
-            <tr>
-            <td>no button</td>
-            
-                <td>!!I am a generic note!!</td>
-                <td>I am a generic note</td>
-                <td>
-                            <pre>&lt;note&gt;I am a generic note&lt;/note&gt;</pre>
-                        </td>
-                <td>
-                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-note.html">TEI element note</a>
-                        </td>
-                <td>
-                            <ul>
-                                <li>Do you really need this? I doubt, but there are things there which are not better specified. Perhaps specify them in one of the above or suggest something new!</li>
-                            </ul>
-                        </td>
-            </tr>
-        </tbody>
-    </table>
-        </div>
-</div>
+   declare function app:biblform($node as node(), $model as map(*)){
+   <form xmlns="http://www.w3.org/1999/xhtml"  action="" class="form form-horizontal">
+   
+      <div  class="form-group">
+                               <small class="form-text text-muted">enter a Zotero bm:id</small>
+                                <input class="form-control" name="pointer" placeholder="bm:"></input>
+                                </div>
+                                <div class="btn-group">
+                                 <button type="submit" class="btn btn-primary">
+                                 <i class="fa fa-filter" aria-hidden="true"></i></button>
+                                 <a href="/Dillmann/bibl.html" role="button" class="btn btn-info"><i class="fa fa-th-list" aria-hidden="true"></i></a></div>
+   </form>
+   };
+
+(:~prints a responsive table with the first 100 ptr targets fount in 
+ : all the bibliography entries in the  entities in the app taken once, requesting the data from Zotero:)
+declare
+
+    %templates:default("collection", "")
+    %templates:default("pointer", "")
+function app:bibl ($node as node(), $model as map(*),
+     $collection as xs:string, $pointer as xs:string*) {
+   let $coll := ' $config:collection-root'
+   let $Pointer := if($pointer = '') then () else "[.='"||$pointer||"']"
+   let $path := $coll||'//tei:ptr/@target'||$Pointer
+   let $query := util:eval($path)
+let $bms := 
+for $bibl in distinct-values($query)
+return
+$bibl
+    return
+   map {
+                    "hits" := $bms,
+                    "total" := count($bms),
+                    "type" := 'bibliography'
+                    
+                }
+
+     };
+     
+     declare
+%templates:wrap
+    %templates:default('start', 1)
+    %templates:default("per-page", 10)      
+    function app:biblRes($node as node(), $model as map(*), $start as xs:integer, $per-page as xs:integer){
+
+for $target at $p in subsequence($model("hits"), $start, $per-page)
+let $ptrs :=  $config:collection-root//tei:ptr[@target = $target]
+let $count := count($ptrs)
+order by $count descending
+return
+<div class="col-md-12 biblio">
+    <div id="{$target}" class="biblioentry col-md-6"/>
+<div class="col-md-6">
+<div class="col-md-9 biblioRes">
+<ul>
+    {    
+   for $citingentity in $ptrs/@target
+   group by $root :=    $citingentity/ancestor::tei:entry
+   let $lem := root($root)//tei:entry/tei:form/tei:foreign[1]/text()
+   order by $lem
+    return
+    <li><a href="/Dillmann/lemma/{string($root/@xml:id)}">{$lem}</a></li>
+    }
+    </ul>
+    </div>
+    <div class="col-md-3">{$count}</div>
+    </div>
+    </div>
 };
 
-declare function app:footer($node as element(), $model as map(*)){
- <footer>
-            <div class="row-fluid">
-                <div class="col-md-8">
-                    <p>
-                    This search uses the exist-db Shakespeare demo app lucene functions slightly modified. You can enter a string and select a mode or use standard Lucene special characters as in the info box.
-                </p>
-                <p>This project was started and carried on by Alessandro Bausi, Andreas Ellwardt and many others. </p>
-                </div>
-                <div class="col-md-4">
-                    <a class="poweredby" href="http://exist-db.org">
-                    <img src="$shared/resources/images/powered-by.svg" alt="Powered by eXist-db"/>
-                </a>
-                    <a class="poweredby" href="http://www.tei-c.org/">
-                        <img src="http://www.tei-c.org/About/Badges/We-use-TEI.png" alt="We use TEI"/>
-                    </a>
-                    <a class="poweredby" href="https://www.traces.uni-hamburg.de/en.html">
-                        <img src="/Dillmann/resources/images/traces.png" alt="Powered by eXist-db"/>
-                    </a>
-                </div>
-            </div>
-         
-            
-        </footer>
+
+declare function app:guidelines($node as node()*, $model as map(*)){
+doc('/db/apps/gez-en/guidelines.xml')
         };
+        
+        
+declare function app:footer($node as element(), $model as map(*)){
+ doc('/db/apps/gez-en/footer.xml')
+        };
+     
   declare function app:NavB($node as element(), $model as map(*)){
  <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
@@ -2215,7 +2333,7 @@ declare function app:footer($node as element(), $model as map(*)){
                     <span class="icon-bar"/>
                     <span class="icon-bar"/>
                 </button>
-                <a class="navbar-brand" href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/">{$config:expath-descriptor/expath:title/text()}</a>
+                <a class="navbar-brand" href="/Dillmann/">{$config:expath-descriptor/expath:title/text()}</a>
             </div>
             <div class="navbar-collapse collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -2270,7 +2388,7 @@ declare function app:footer($node as element(), $model as map(*)){
               </li>
                      }
                      <li id="greetings">
-                        <a href="#">
+                        <a target="_blank" href="/Dillmann/user/{xmldb:get-current-user()}">
                             Hi {xmldb:get-current-user()}!
                         </a>
                     </li>
@@ -2278,28 +2396,30 @@ declare function app:footer($node as element(), $model as map(*)){
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">About</a>
                         <ul class="dropdown-menu">
                             <li class="list-group-item">
-                                <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/about.html">About this app</a>
+                                <a href="/Dillmann/about.html">About this app</a>
                             </li>
                             <li  class="list-group-item">
-                                <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
+                                <a href="/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
                             </li>
                         </ul>
                     </li>
                     <li id="list">
-                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/list">Browse</a>
+                        <a href="/Dillmann/list">Browse</a>
                     </li>
-                    
+                    <li id="biblio">
+                        <a href="/Dillmann/bibl.html">Bibliography</a>
+                    </li>
                     <li id="reverse">
-                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/reverse">Reverse Index</a>
+                        <a href="/Dillmann/reverse">Reverse Index</a>
                     </li>
                     <li id="abbreviations">
-                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/abbreviations">Abbreviations</a>
+                        <a href="/Dillmann/abbreviations">Abbreviations</a>
                     </li>
                     <li id="quotes">
-                        <a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/citations">Citations</a>
+                        <a href="/Dillmann/citations">Citations</a>
                     </li>
-                    <li id="BM">
-                        <a href="http://betamasaheft.aai.uni-hamburg.de/" target="_blank">Beta maṣāḥǝft</a>
+                    <li id="getInvolved">
+                        <a href="/Dillmann/getinvolved.html">Get involved</a>
                     </li>
                 </ul>
                 
@@ -2313,13 +2433,10 @@ declare function app:footer($node as element(), $model as map(*)){
                                <button id="f-btn-search" type="submit" class="btn btn-primary">
                                 <i class="fa fa-search" aria-hidden="true"/>
                             </button>
-                            <a href="/Dillmann/advanced-search.html" title="advanced search" class="btn btn-default">
-                                <i class="fa fa-cog" aria-hidden="true"/>
-                            </a>
                             <a href="#" class="btn btn-default" data-toggle="modal" data-target="#searchHelp">
                                 <i class="fa fa-info-circle" aria-hidden="true"/>
                             </a>
-                            <a class="btn btn-warning" href="https://github.com/SChAth/dillmann/issues/new?title=something%20is%20very%20wrong&amp;assignee=PietroLiuzzo">
+                            <a class="btn btn-warning" target="_blank" href="https://github.com/BetaMasaheft/Dillmann/issues/new?title=something%20is%20very%20wrong&amp;assignee=PietroLiuzzo">
                                 <i class="fa fa-exclamation-circle" aria-hidden="true"/>
                             </a>
                         </span>
@@ -2338,7 +2455,7 @@ declare function app:footer($node as element(), $model as map(*)){
                         <h4 class="modal-title">This is a testing and dev website!</h4>
                     </div>
                     <div class="modal-body">
-                        <p>        You are looking at a pre-alpha version of this website. If you are not an editor you should not even be seeing it at all. For questions <a href="mailto:pietro.liuzzo@uni-hamburg.de?Subject=Issue%20Report%20BetaMasaheft">contact the dev team</a>.</p>
+                        <p>        You are looking at a pre-alpha version of this website. If you are not an editor you should not even be seeing it at all. For questions <a  target="_blank" href="mailto:pietro.liuzzo@uni-hamburg.de?Subject=Issue%20Report%20BetaMasaheft">contact the dev team</a>.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -2349,89 +2466,6 @@ declare function app:footer($node as element(), $model as map(*)){
         };
         
          declare function app:searchhelp($node as element(), $model as map(*)){
-        <div class="modal fade" id="searchHelp" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Search and Input Help</h5>
-                    </div>
-                    <div class="modal-body">
-                    <div>
-                    <h3>Search</h3>
-                        <p>This app is built with exist-db, and uses Lucene as the standard search engine. This comes with several options available. A full list is <a href="https://lucene.apache.org/core/2_9_4/queryparsersyntax.html#Fuzzy Searches" target="_blank">here</a>
-                        </p>
-                        <p>Below very few examples.</p>
-                        <table class="table table-hover table-responsive">
-                            <thead>
-                                <tr>
-                                    <th/>
-                                    <th>sample</th>
-                                    <th>result</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>*</td>
-                                    <td>*custodir*</td>
-                                    <td>add wildcards to unlimit your string search</td>
-                                </tr>
-                                <tr>
-                                    <td>?</td>
-                                    <td>custodir?</td>
-                                    <td>Will find any match for the position with the question mark.</td>
-                                </tr>
-                                <tr>
-                                    <td>~</td>
-                                    <td>ܐܰܘܓܺܝ~</td>
-                                    <td>Will make a fuzzy search.</td>
-                                </tr>
-                                <tr>
-                                    <td>""</td>
-                                    <td>"ምሕረትከ፡ ይትኖለወኒ፡"</td>
-                                    <td>Will find the exact string contained between quotes.</td>
-                                </tr>
-                                <tr>
-                                    <td>()</td>
-                                    <td>(verbo OR notionem) AND ܐܰܘܓܺܝ</td>
-                                    <td>Will find one of the two between brackets and the other string.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                        <div>
-                        <h3>Go To Column</h3>
-                        <p>Use this to select the number of the column in the dillmann lexicon you wish to navigate to. It does not make a lot of sense to use this if you are searching a string.</p>
-                        </div>
-                        
-                        <div>
-                        <h3>Search only in citations</h3>
-                        <p>Ticking this option will search only into <pre>ref</pre> elements, i.e. you are searching for citations of lets say Exodus. You tick this and search "Ex." and you will get all places where this citation has been correctly marked. There might be more!</p>
-                        </div>
-                        <div>
-                        <h3>Advanced options</h3>
-                        <p>Click on the plus button to get more filters. You can check which one you want ONLY . You can also switch the not slider to select the ones you want to exclude instead of those you want to have. If you want all the terms which do not contain text in greek swich not and tick greek. If you want all the entries wich contain text in syriac or in coptic tick syriac and coptic, which does not mean you will not get entries which have the other valuess as well as the ones you picked.</p>
-                        </div>
-                        <div>
-                        <h3>Input</h3>
-                        <p>If you want to transcribe some fidal into latin or update your transcription, you can <a target="_blank" href="/transcription.html">have a go with our transcription tools</a>.</p>
-                        <p>If you are using the keyboard provided, please note that there are four layers, the normal one and those activated by Shift, Alt, Alt+Shift.</p>
-                        <p>Normal and Shift contain mainly Fidal. Alt and Alt-Shift diacritics.</p>
-                        <p>To enter letters in Fidal and the diacrics with this keyboard, which is independent of your local input selection, you can use two methods.</p>
-                        <h4>Keys Combinations</h4>
-                        <p>With this method you use keys combinations to trigger specific characters. 
-                        <a target="_blank" href="/combos.html">Click here for a list of the available combos.</a> 
-                        This can be expanded<a target="_blank" href="https://github.com/SChAth/ScAthiop/issues/new?labels=keyboard&amp;assignee=PietroLiuzzo&amp;body=Please%20add%20a%20combo%20in%20the%20input%20keyboard">, do not hesitate to ask (click here to post a new issue).</a>
-                        </p>
-                         <h4>Hold and choose</h4>
-                         <p>If you hold a key optional values will appear in a list. You can click on the desiderd value or use arrows and enter to select it. The options are the same as those activated by combinations.</p>
-                         <p>With this method you do not have to remember or lookup combos, but it does take many more clicks...</p>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+          doc('../searchhelp.xml')
         };
 
