@@ -17,7 +17,7 @@ declare namespace jmx="http://exist-db.org/jmx";
 
 declare variable $config:ADMIN := environment-variable('ExistAdmin');
 declare variable $config:ppw := environment-variable('ExistAdminPw');
-declare variable $config:appUrl := 'http://betamasaheft.eu';
+declare variable $config:appUrl := 'https://betamasaheft.eu';
 
 declare variable $config:response200 := <rest:response>
         <http:response
@@ -170,7 +170,7 @@ declare function config:app-info($node as node(), $model as map(*)) {
 
 declare function config:get-data-dir() as xs:string? {
     try {
-        let $request := <http:request http-version="1.1" method="GET" href="http://betamasaheft.aai.uni-hamburg.de:8080/{request:get-context-path()}/status?c=disk"/>
+        let $request := <http:request http-version="1.1" method="GET" href="https://betamasaheft.aai.uni-hamburg.de:8080/{request:get-context-path()}/status?c=disk"/>
         let $response := http:send-request($request)
         return
             if ($response[1]/@status = "200") then

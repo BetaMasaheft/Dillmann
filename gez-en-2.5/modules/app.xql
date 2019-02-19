@@ -570,7 +570,7 @@ declare function app:greetings($node as element(), $model as map(*)){
 (:the button which allows to download the source xml file:)
  declare function app:getXML($id){
  <a
-    href="http://betamasaheft.eu/Dillmann/lemma/{$id}.xml"
+    href="https://betamasaheft.eu/Dillmann/lemma/{$id}.xml"
     download="{$id}.xml"
     class="btn btn-primary"><i
         class="fa fa-download"
@@ -598,7 +598,7 @@ else ()
 (:the link to Beta Masaheft, only available for logged users:)
    declare function app:bmbutton($node as element(), $model as map(*)) {
 if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
-<a href="http://betamasaheft.eu/" target="_blank">Beta maṣāḥǝft</a>
+<a href="https://betamasaheft.eu/" target="_blank">Beta maṣāḥǝft</a>
 
 )
 else ()
@@ -607,11 +607,11 @@ else ()
 (:the link to Beta Masaheft, only available for logged users:)
    declare function app:tutorial($node as element(), $model as map(*)) {
 if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
-<a href="http://betamasaheft.eu/Dillmann/tutorialextended.html" target="_blank">Tutorial</a>
+<a href="https://betamasaheft.eu/Dillmann/tutorialextended.html" target="_blank">Tutorial</a>
 
 )
 else (
-<a href="http://betamasaheft.eu/Dillmann/tutorial.html" target="_blank">Tutorial</a>)
+<a href="https://betamasaheft.eu/Dillmann/tutorial.html" target="_blank">Tutorial</a>)
 };  
 
 (:form to navigate Dillmann using the column numbers :)
