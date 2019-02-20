@@ -3,13 +3,17 @@ import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/a
 import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 
+import module namespace log="http://www.betamasaheft.eu/log" at "../modules/log.xqm";
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 declare namespace s = "http://www.w3.org/2005/xpath-functions";
+
+declare namespace l = "http://log.log";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
 declare variable $form := request:get-parameter('form', ());
 declare variable $msg := request:get-parameter('msg', ());
+declare variable $editorsnotification := request:get-parameter('notifyEditors', ());
 let $parametersName := request:get-parameter-names()
 let $copyparmeters := for $p in $parametersName
 let $pv := request:get-parameter($p, ())
@@ -37,6 +41,7 @@ let $next-id-file-path := concat($app-collection,'/edit/next-id.xml')
 let $nexN := max(collection($data-collection)//t:entry/@n) + 1
 let $Newid := doc($next-id-file-path)/data/id[1]/text()
 let $newid := $Newid
+let $test := console:log($newid)
 let $file := concat($newid, '.xml')   
 
 return
@@ -67,13 +72,13 @@ return
                     href="resources/css/style.css"/>
                 <script
                     type="text/javascript"
-                    src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+                    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+                    src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+                    src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/loadsource.js"></script>
@@ -102,10 +107,22 @@ return
            case 'Andreas'
                 return
                     'AE'
+             case 'Maria'
+                return
+                    'MB'
            case 'Pietro'
                 return
                     'PL'
-            case 'Sususanne'
+           case 'Magda'
+                return
+                    'MK'
+           case 'Jeremy'
+                return
+                    'JB'
+           case 'Joshua'
+                return
+                    'JF'
+            case 'Susanne'
                 return
                     'SH'
             case 'Wolfgang'
@@ -133,12 +150,12 @@ return
                 <author>Andreas Ellwardt</author>
                 </titleStmt>
                 <publicationStmt>
-                       <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+                       <authority>Hiob-Ludolf-Zentrum für Äthiopistik</authority>
                 <publisher>TraCES project.
                                     https://www.traces.uni-hamburg.de/</publisher>
                 <pubPlace>Hamburg</pubPlace>
                 <availability>
-                    <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/">
+                    <licence target="https://creativecommons.org/licenses/by-sa-nc/4.0/">
                                         This file is licensed under the Creative Commons
                                         Attribution-ShareAlike Non Commercial 4.0. </licence>
                 </availability>
@@ -226,7 +243,7 @@ let $store := xmldb:store($newdata-collection, $file, $item)
                   <p>{$form} has been assigned the unique id {$newid}</p>
                   <p>This is how the txt version looks like now:</p>
                   <p>{transform:transform($item, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())}</p>
-                  <p><a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/lemma/{$newid}" 
+                  <p><a href="https://betamasaheft.eu/Dillmann/lemma/{$newid}" 
                   target="_blank">See {$form} online!</a> There you can also update the file again.</p>
                </body>
            </html>
@@ -243,10 +260,13 @@ else
   
   let $EditorialBoardMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
-  <to>susanne.hummel@uni-hamburg.de</to>
-    <to>fonv216@uni-hamburg.de</to><to>vitagrazia.pisani@gmail.com</to><to>wolfgang.dickhut@gmail.com</to>
-      <cc></cc>
-    <bcc>pietro.liuzzo@gmail.com</bcc>
+    {if($editorsnotification = 'yes') then 
+    (<to>andreas.ellwardt@uni-hamburg.de</to>,
+    <to>susanne.hummel@uni-hamburg.de</to>,
+    <to>wolfgang.dickhut@uni-hamburg.de</to>,
+    <to>vitagrazia.pisani@gmail.com</to>,
+    <to>magdalena.krzyzanowska-2@uni-hamburg.de</to>) else ()}
+    <to>pietro.liuzzo@gmail.com</to>
     <subject>Lexicon Linguae Aethiopicae says: {$form} has been created!</subject>
     <message>
       <xhtml>
@@ -260,7 +280,7 @@ else
                   <p>{$form} has been assigned the unique id {$newid}</p>
                   <p>This is how the txt version looks like now:</p>
                   <p>{transform:transform($item, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())}</p>
-                  <p><a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/lemma/{$newid}" 
+                  <p><a href="https://betamasaheft.eu/Dillmann/lemma/{$newid}" 
                   target="_blank">See {$form} online!</a> There you can also update the file again.</p>
                </body>
            </html>
@@ -273,9 +293,14 @@ if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
 else
   console:log('message not sent to editor')
 )
+
+let $log := log:add-log-message('/Dillmann/lemma/'||$newid, xmldb:get-current-user(), 'created')
 (: update the next-id.xml file :) 
 let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
     
+(:    permissions:)
+   let $assigntoGroup := sm:chgrp(xs:anyURI($newdata-collection||'/'||$file), 'lexicon')
+   let $setpermissions := sm:chmod(xs:anyURI($newdata-collection||'/'||$file), 'rwxrwxr-x')
     (:confirmation page with instructions for editors:)
     return
         <html>
@@ -326,7 +351,7 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
                     <p> Your entry for 
                         <a href="/Dillmann/lemma/{substring-before($file, '.xml')}" target="_blank"><span
                             class="lead">{$form}</span></a> has been saved!</p>
-                   <p>A notification email has been sent to you for your records and to the editors.</p>
+                   {if($editorsnotification = 'yes') then (<p>A notification email has been sent to you for your records and to the editors.</p>) else <p>You have not notified the editors about this change. If you wish to do so, please tick the corresponding box next time.</p>}
                     <a
                         href="/Dillmann/newentry.html">Create another entry!</a>
                         <a role="button" href="/Dillmann/" class="btn btn-info">Home</a>
@@ -383,7 +408,6 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
             </div>   
-             <div class="col-md-12"><a  role="button" style="margin-botto:4px; word-wrap:break-word; white-space:normal;" class="col-md-6 btn btn-success" href="/Dillmann/newentry.html?form={$form}&amp;{$chainpars}">back to editor</a></div>
 <script src="resources/js/ACEsettings.js"/> 
             </body>
         </html>

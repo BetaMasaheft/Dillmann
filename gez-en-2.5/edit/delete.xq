@@ -1,7 +1,7 @@
 xquery version "3.0" encoding "UTF-8";
 
 import module namespace console = "http://exist-db.org/xquery/console";
-
+import module namespace log="http://www.betamasaheft.eu/log" at "../modules/log.xqm";
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
@@ -10,11 +10,11 @@ let $cU := xmldb:get-current-user()
 let $backup-collection := '/db/apps/gez-en/deleted/'
 let $data-collection := '/db/apps/gez-en/data'
 
-(: log into the collection :)
  
 (: get the id parameter from the URL :)
-
+let $editorsnotification := request:get-parameter('notifyEditors', '')
 let $id := request:get-parameter('id', '')
+let $user := request:get-parameter('user', '')
 let $file := concat($id, '.xml')
 
 let $record := collection($data-collection)//id($id)
@@ -22,7 +22,7 @@ let $targetfileuri := base-uri($record)
 let $item := doc($targetfileuri)
 
 let $store := xmldb:store($backup-collection, $file, $item)
-
+let $log := log:add-log-message($id, $user, 'backup')
 let $filename := root($record)//t:form/t:foreign/text()
 
 
@@ -53,15 +53,18 @@ if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
   console:log('Sent Message to editor OK')
 else
   console:log('message not sent to editor')
-
+  
   ,
-
+  
   let $EditorialBoardMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
-    <to>susanne.hummel@uni-hamburg.de</to>
-    <to>fonv216@uni-hamburg.de</to><to>vitagrazia.pisani@gmail.com</to><to>wolfgang.dickhut@gmail.com</to>
-    <cc></cc>
-    <bcc>pietro.liuzzo@gmail.com</bcc>
+    {if($editorsnotification = 'yes') then 
+    (<to>andreas.ellwardt@uni-hamburg.de</to>,
+    <to>susanne.hummel@uni-hamburg.de</to>,
+    <to>wolfgang.dickhut@uni-hamburg.de</to>,
+    <to>vitagrazia.pisani@gmail.com</to>,
+    <to>magdalena.krzyzanowska-2@uni-hamburg.de</to>) else ()}
+    <to>pietro.liuzzo@gmail.com</to>
     <subject>Lexicon Linguae Aethiopicae says: {$filename} has been deleted!</subject>
     <message>
       <xhtml>
@@ -90,11 +93,12 @@ let $filelocation :=  substring-before($targetfileuri, $id)
 (: delete the file :)
 let $delete := xmldb:remove($filelocation, $file)
 
+let $log := log:add-log-message($id, $user, 'deleted')
 return
 <html>
     <head>
         <title>Delete Confirmation</title>
-
+          
                 <link
                     rel="shortcut icon"
                     href="resources/images/favicon.ico"/>
@@ -117,24 +121,24 @@ return
                     href="resources/css/style.css"/>
                 <script
                     type="text/javascript"
-                    src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+                    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+                    src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+                    src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/loadsource.js"></script>
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
-
-
+                    
+                
     </head>
     <body>
-     <div class="col-md-4 col-md-offset-4"  style="text-align: center; ">
+     <div class="col-md-4 col-md-offset-4"  style="text-align: center; ">   
     <h1> Farewell !</h1>
        <p class="lead">A backup copy has been made, you and the editors have been emailed.</p>
        <a role="button" href="/Dillmann/" class="btn btn-info">Home</a>

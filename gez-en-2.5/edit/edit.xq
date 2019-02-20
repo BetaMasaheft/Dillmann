@@ -3,13 +3,17 @@ import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/a
 import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 
+import module namespace log="http://www.betamasaheft.eu/log" at "../modules/log.xqm";
+
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 declare namespace s = "http://www.w3.org/2005/xpath-functions";
+
+declare namespace l = "http://log.log";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
 declare variable $id := request:get-parameter('id', ());
-
+declare variable $notifyEditors := request:get-parameter('notifyEditors', ());
 declare variable $root := request:get-parameter('root', ());
 declare variable $form := request:get-parameter('form', ());
 
@@ -40,20 +44,17 @@ let $title := 'Update Confirmation'
 let $data-collection := '/db/apps/gez-en/data'
 let $record := collection($data-collection)//id($id)
 
-let $test3 := console:log($id)
-let $test2 := console:log($record)
 let $rootitem := root($record)//tei:TEI
-let $backup-collection := '/db/apps/gez-en/EditorBackups/'
+let $backup-collection := xmldb:encode-uri('/db/apps/gez-en/EditorBackups/')
 let $targetfileuri := base-uri($record)
-let $test1 := console:log($targetfileuri)
 let $filename := $record//tei:form/tei:foreign/text()
 
 (:saves a copy of the file before editing in a backup folder in order to be able to mechanically restore in case of editing errors since no actual versioning is in place.:)
 let $backupfilename := ($id||'BACKUP'||format-dateTime(current-dateTime(), "[Y,4][M,2][D,2][H01][m01][s01]")||'.xml')
 let $item := doc($targetfileuri)
-let $test := console:log($item)
 let $store := xmldb:store($backup-collection, $backupfilename, $item)
 
+let $log := log:add-log-message($backupfilename, xmldb:get-current-user(), 'backup')
 return
 if(contains($parametersName, 'sense')) then (
 let $eachsense := <senses>{for $parm in $parametersName
@@ -81,12 +82,12 @@ return:)
                 <author>Andreas Ellwardt</author>
                 </titleStmt>
                 <publicationStmt>
-                       <authority>Hiob Ludolf Zentrum für Äthiopistik</authority>
+                       <authority>Hiob-Ludolf-Zentrum für Äthiopistik</authority>
                 <publisher>TraCES project.
                                     https://www.traces.uni-hamburg.de/</publisher>
                 <pubPlace>Hamburg</pubPlace>
                 <availability>
-                    <licence target="http://creativecommons.org/licenses/by-sa-nc/4.0/">
+                    <licence target="https://creativecommons.org/licenses/by-sa-nc/4.0/">
                                         This file is licensed under the Creative Commons
                                         Attribution-ShareAlike Non Commercial 4.0. </licence>
                 </availability>
@@ -165,17 +166,18 @@ return
     update delete $sensesArray[@xml:lang=$removedLang]
 
 let $segRoot := <rs xmlns="http://www.tei-c.org/ns/1.0" type="root"/>
-let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(xmldb:get-current-user()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' case 'Magda' return 'MK' case 'Daria' return 'DE' case 'Susanne' return 'SH' case 'Wolfgang' return 'WD' case 'Andreas' return 'AE'  default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
+let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(xmldb:get-current-user()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' case 'Magda' return 'MK' case 'Daria' return 'DE' case 'Susanne' return 'SH' case 'Wolfgang' return 'WD' case 'Maria' return 'MB' case 'Andreas' return 'AE' case 'LeonardBahr' return 'LB' case 'Ralph' return 'RL' case 'Jeremy' return 'JB' case 'Joshua' return 'JF'  default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
 let $updateChange := update insert $change into doc($targetfileuri)//tei:revisionDesc
 let $addroot := if($root='root' and $record//tei:form[not(descendant::tei:rs[@type='root'])]) then update insert $segRoot into doc($targetfileuri)//tei:form else ()
 let $updatemainForm := update replace $record//tei:form//tei:foreign//text() with $form
 
+let $log := log:add-log-message($id, xmldb:get-current-user(), 'updated')
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)
-let $backupedfile := doc(concat($backup-collection, $backupfilename))
+let $backupedfile := doc(concat($backup-collection, '/',  $backupfilename))
 let $diff := local:mergeMain($backupedfile//tei:entry/*, $rootitem//tei:entry/*)
 
 (:nofity editor and contributor:)
-let $sendmails :=
+let $sendmails := if($cU = 'Andreas') then () else
 let $contributorMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
     <to>{sm:get-account-metadata($cU, xs:anyURI('http://axschema.org/contact/email'))}</to>
@@ -199,7 +201,7 @@ let $contributorMessage := <mail>
                   <p>{transform:transform($rootitem, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())}</p>
                   <p>These are the areas of difference:</p>
                   <div>{$diff}</div>
-                  <p><a href="http://betamasaheft.aai.uni-hamburg.de/Dillmann/lemma/{$id}" 
+                  <p><a href="https://betamasaheft.eu/Dillmann/lemma/{$id}" 
                   target="_blank">See {$filename} online!</a> There you can also update the file again.</p>
                </body>
            </html>
@@ -208,9 +210,9 @@ let $contributorMessage := <mail>
   </mail>
 return
 if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
+  console:log('Sent Message to contributor OK')
 else
-  console:log('message not sent to editor')
+  console:log('message not sent to contributor')
   
   
   
@@ -240,13 +242,13 @@ return
                     href="resources/css/style.css"/>
                 <script
                     type="text/javascript"
-                    src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+                    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+                    src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+                    src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/loadsource.js"></script>
@@ -264,7 +266,7 @@ return
     <h2>{$title}</h2>
     <p class="lead">Dear <span id="user">{$cU}</span>, Lemma  <a href="/Dillmann/lemma/{$id}" id="filename">{$filename}</a> has been updated successfully!</p>
     <p id="msg">{$cU} left this message after editing: {$msg} </p>
-   <p>A notification email has been sent to the editors.</p>
+   {if($notifyEditors = 'yes') then <p id="notifyEditors">A notification email has been sent to the editors.</p> else <p>You have not notified the editors about this change. If you wish to do so, please tick the corresponding box next time.</p>}
    <p class="lead">Thank you!</p>
    
   </div>
@@ -305,7 +307,7 @@ return
                     href="resources/css/style.css"/>
                 <script
                     type="text/javascript"
-                    src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+                    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/loadsource.js"></script>           

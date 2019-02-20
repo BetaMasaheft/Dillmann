@@ -2,8 +2,11 @@ xquery version "3.1"  encoding "UTF-8";
 
 import module namespace console = "http://exist-db.org/xquery/console";
 
+import module namespace log="http://www.betamasaheft.eu/log" at "../modules/log.xqm";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 declare namespace s = "http://www.w3.org/2005/xpath-functions";
+
+declare namespace l = "http://log.log";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 declare variable $form := request:get-parameter('form', ());
@@ -14,6 +17,7 @@ declare variable $id := request:get-parameter('id', ());
 let $app-collection := '/db/apps/gez-en'
 let $data-collection := '/db/apps/gez-en/data'
 
+let $login := xmldb:login($data-collection, 'Pietro', 'Hdt7.10') 
 let $title := 'Update Confirmation'
 let $data-collection := '/db/apps/gez-en/data'
  let $targetfileuri := base-uri(collection($data-collection)//id($id))
