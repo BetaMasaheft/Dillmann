@@ -76,8 +76,6 @@ declare
 function api:searchDillmann($element as xs:string?,
 $q as xs:string*) {
     if($q ='') then () else
-    let $login := xmldb:login('/db/apps/BetMas/data', 'Pietro', 'Hdt7.10')
-    let $data-collection := '/db/apps/gez-en/data'
     
     let $eval-string := concat("$config:collection-root//tei:"
     , $element, "[ft:query(*,'", $q, "')]")
