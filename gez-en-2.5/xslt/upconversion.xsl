@@ -162,9 +162,6 @@
         </xsl:analyze-string>
     </xsl:template>
 
-
-
-
     <xsl:template name="gramGrp">
         <xsl:param name="all"/>
         <xsl:analyze-string regex="(\[\[)(.*?)(\]\])" select="$all">
@@ -260,6 +257,7 @@
                         <xsl:when test="regex-group(1) = 'cfr.'">conferas</xsl:when>
                         <xsl:when test="regex-group(1) = 'vers. ant.'">versio antiqua</xsl:when>
                         <xsl:when test="regex-group(1) = 'Sing.'">Singularis</xsl:when>
+                        <xsl:when test="regex-group(1) = 'Sg.'">Singularis</xsl:when>
                         <xsl:when test="regex-group(1) = 'Form. Conf.'">Formula
                             Confessionis</xsl:when>
                         <xsl:when test="regex-group(1) = 'vers. alt.'">versio altera</xsl:when>
@@ -296,8 +294,10 @@
                         <xsl:when test="regex-group(1) = 'e.q.'">eadem quae</xsl:when>
                         <xsl:when test="regex-group(1) = 'Epil.'">Epilogus</xsl:when>
                         <xsl:when test="regex-group(1) = 'ex. gr.'">exempli gratia</xsl:when>
-                        <xsl:otherwise>not found</xsl:otherwise>
-                    </xsl:choose>
+                        <xsl:when test="regex-group(1) = 'v.'">vel</xsl:when>
+                        <xsl:when test="regex-group(1) = 'Voc. Ae.'">Vocabularium Aethiopicum, -a -a</xsl:when>
+                        <xsl:when test="regex-group(1) = 'Rad. Abb.'">Radices Abbadianae (collectio radicum Geez linguae Mss.).</xsl:when>
+                        </xsl:choose>
                 </xsl:variable>
                 <lbl>
                     <xsl:attribute name="expand">
@@ -308,16 +308,62 @@
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <xsl:variable name="text3" select="."/>
-                <xsl:call-template name="foreign">
+                <xsl:call-template name="link">
                     <xsl:with-param name="text3" select="$text3"/>
                 </xsl:call-template>
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
 
-    <xsl:template name="foreign">
+    <xsl:template name="link">
         <xsl:param name="text3"/>
-        <xsl:analyze-string regex="(\\\*)(.*?)(\*)(.*?)(\\\*)" select="$text3">
+        <xsl:analyze-string regex="((\()([^\[\]\(\)]+)(\)))((\[)([^\[\[\(\)]+)(\]))" select="$text3">
+            <xsl:matching-substring>
+                <ref>
+                    <xsl:choose>
+                        <xsl:when test="matches(regex-group(3), '^BM$')">
+                            <xsl:attribute name="type">BM</xsl:attribute>
+                            <xsl:attribute name="target">
+                                <xsl:value-of select="regex-group(7)"/>
+                            </xsl:attribute>
+                            <xsl:value-of select="regex-group(7)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="type">external</xsl:attribute>
+                            <xsl:attribute name="target">
+                        <xsl:value-of select="regex-group(7)"/>
+                            </xsl:attribute>
+                 
+                      <xsl:analyze-string regex="(\\\*)(.*?)(\*)(.*?)(\\\*)" select="regex-group(3)">
+                        <xsl:matching-substring>
+                            <foreign>
+                                <xsl:attribute name="xml:lang">
+                                    <xsl:value-of select="regex-group(2)"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="regex-group(4)"/>
+                            </foreign>
+                        </xsl:matching-substring>
+                        <xsl:non-matching-substring>
+                            <xsl:value-of select="."/>
+                        </xsl:non-matching-substring>
+                    </xsl:analyze-string>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </ref>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:variable name="text3b" select="."/>
+                <xsl:call-template name="foreign">
+                    <xsl:with-param name="text3b" select="$text3b"/>
+                </xsl:call-template>
+                
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+
+    <xsl:template name="foreign">
+        <xsl:param name="text3b"/>
+        <xsl:analyze-string regex="(\\\*)(.*?)(\*)(.*?)(\\\*)" select="$text3b">
             <xsl:matching-substring>
                 <foreign>
                     <xsl:attribute name="xml:lang">
@@ -341,14 +387,17 @@
             <xsl:matching-substring>
                 <xsl:variable name="string">
                     <xsl:choose>
+                        <xsl:when test="regex-group(1) = 'v.'">verbum</xsl:when>
                         <xsl:when test="regex-group(1) = 'abstr.'">abstractum, -e</xsl:when>
                         <xsl:when test="regex-group(1) = 'adv.'">adverbium, adverbialiter</xsl:when>
-                        <xsl:when test="regex-group(1) = 'refl. Refl.'">reflexivum</xsl:when>
+                        <xsl:when test="regex-group(1) = 'refl.'">reflexivum</xsl:when>
+                        <xsl:when test="regex-group(1) = 'Refl.'">reflexivum</xsl:when>
                         <xsl:when test="regex-group(1) = 'Infin. nom.'">infinitivus nominalis,
                             nominascens</xsl:when>
                         <xsl:when test="regex-group(1) = 'peregr. n.'">nomen peregrinum</xsl:when>
                         <xsl:when test="regex-group(1) = 'Impf.'">imperfectum</xsl:when>
                         <xsl:when test="regex-group(1) = 'Subst.'">Substantivum</xsl:when>
+                        <xsl:when test="regex-group(1) = 'subst.'">Substantivum</xsl:when>
                         <xsl:when test="regex-group(1) = 'Infin. verb.'">infinitivus
                             verbalis</xsl:when>
                         <xsl:when test="regex-group(1) = 'praep.'">praepositio</xsl:when>
@@ -359,11 +408,14 @@
                         <xsl:when test="regex-group(1) = 'part.'">participium</xsl:when>
                         <xsl:when test="regex-group(1) = 'n. act.'">nomen actionis</xsl:when>
                         <xsl:when test="regex-group(1) = 'n. pr.'">nomen proprium</xsl:when>
-                        <xsl:when test="regex-group(1) = 'n. ag. n.ag.'">nomen agentis</xsl:when>
-                        <xsl:when test="regex-group(1) = 'n. nom.'">nomen</xsl:when>
+                        <xsl:when test="regex-group(1) = 'n. ag.'">nomen agentis</xsl:when>
+                        <xsl:when test="regex-group(1) = 'n.ag.'">nomen agentis</xsl:when>
+                        <xsl:when test="regex-group(1) = 'n.'">nomen</xsl:when>
+                        <xsl:when test="regex-group(1) = 'nom.'">nomen</xsl:when>
                         <xsl:when test="regex-group(1) = 'pass.'">passivum</xsl:when>
                         <xsl:when test="regex-group(1) = 'adj.'">adjectivum</xsl:when>
-                        <xsl:when test="regex-group(1) = 'absol. abs.'">absolute</xsl:when>
+                        <xsl:when test="regex-group(1) = 'absol.'">absolute</xsl:when>
+                        <xsl:when test="regex-group(1) = 'abs.'">absolute</xsl:when>
                         <xsl:when test="regex-group(1) = 'num.'">numerale</xsl:when>
                         <xsl:when test="regex-group(1) = 'denom.'">denominates</xsl:when>
                         <xsl:when test="regex-group(1) = 'conj.'">conjunctio</xsl:when>
@@ -380,13 +432,55 @@
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <xsl:variable name="text5" select="."/>
+                <xsl:call-template name="DilCb">
+                    <xsl:with-param name="text5" select="$text5"/>
+                </xsl:call-template>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+   
+    <xsl:template name="DilCb">
+        <xsl:param name="text5"/>
+        <xsl:analyze-string regex="(\|\{{DiL\.(.*?)\}}\|)" select="$text5">
+            <xsl:matching-substring>
+                <cb>
+                    <xsl:attribute name="n">
+                        <xsl:value-of select="regex-group(2)"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="xml:id">
+                        <xsl:value-of select="concat('c', regex-group(2))"/>
+                    </xsl:attribute>
+                </cb>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:variable name="text8" select="."/>
+                <xsl:call-template name="refInt">
+                    <xsl:with-param name="text8" select="$text8"/>
+                </xsl:call-template>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
+    <xsl:template name="refInt">
+        <xsl:param name="text8"/>
+        <xsl:analyze-string regex="(\{{DiL\.(.*?)\}})" select="$text8">
+            <xsl:matching-substring>
+                <ref>
+                    <xsl:attribute name="target">
+                        <xsl:value-of select="concat('#c', regex-group(2))"/>
+                    </xsl:attribute>
+                </ref>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:variable name="text5" select="."/>
                 <xsl:call-template name="ref">
                     <xsl:with-param name="text5" select="$text5"/>
                 </xsl:call-template>
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
-
+    
+    
     <xsl:template name="ref">
         <xsl:param name="text5"/>
         <xsl:analyze-string regex="(\*(.*?))(\|(.*?)\*)(([a-z\.,\s]+)\|)?" select="$text5">
@@ -455,48 +549,6 @@
                 </bibl>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
-                <xsl:variable name="text7" select="."/>
-                <xsl:call-template name="DilCb">
-                    <xsl:with-param name="text7" select="$text7"/>
-                </xsl:call-template>
-            </xsl:non-matching-substring>
-        </xsl:analyze-string>
-    </xsl:template>
-
-
-    <xsl:template name="DilCb">
-        <xsl:param name="text7"/>
-        <xsl:analyze-string regex="(\|\{{DiL\.(.*?)\}}\|)" select="$text7">
-            <xsl:matching-substring>
-                <cb>
-                    <xsl:attribute name="n">
-                        <xsl:value-of select="regex-group(2)"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="xml:id">
-                        <xsl:value-of select="concat('c', regex-group(2))"/>
-                    </xsl:attribute>
-                </cb>
-            </xsl:matching-substring>
-            <xsl:non-matching-substring>
-                <xsl:variable name="text8" select="."/>
-                <xsl:call-template name="refInt">
-                    <xsl:with-param name="text8" select="$text8"/>
-                </xsl:call-template>
-            </xsl:non-matching-substring>
-        </xsl:analyze-string>
-    </xsl:template>
-
-    <xsl:template name="refInt">
-        <xsl:param name="text8"/>
-        <xsl:analyze-string regex="(\{{DiL\.(.*?)\}})" select="$text8">
-            <xsl:matching-substring>
-                <ref>
-                    <xsl:attribute name="target">
-                        <xsl:value-of select="concat('#c', regex-group(2))"/>
-                    </xsl:attribute>
-                </ref>
-            </xsl:matching-substring>
-            <xsl:non-matching-substring>
                 <xsl:variable name="text9" select="."/>
                 <xsl:call-template name="case">
                     <xsl:with-param name="text9" select="$text9"/>
@@ -504,6 +556,7 @@
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
+
 
     <xsl:template name="case">
         <xsl:param name="text9"/>
@@ -571,11 +624,11 @@
 
     <xsl:template name="sup">
         <xsl:param name="text11"/>
-        <xsl:analyze-string regex="(ˆ!(.*?))" select="$text11">
+        <xsl:analyze-string regex="(ˆ!([\w\d]+))" select="$text11">
             <xsl:matching-substring>
-                <sup>
+                <hi rend="sup">
                     <xsl:value-of select="regex-group(2)"/>
-                </sup>
+                </hi>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <xsl:variable name="text12" select="."/>
@@ -600,11 +653,13 @@
                 <xsl:call-template name="nd">
                     <xsl:with-param name="text13" select="$text13"/>
                 </xsl:call-template>
-
+                
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
-
+    
+    
+    
     <xsl:template name="nd">
         <xsl:param name="text13"/>
         <xsl:analyze-string regex="\{{ND\}}" select="$text13">

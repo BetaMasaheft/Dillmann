@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <abbreviaturen>
+    
+    <abbreviatur>
+        <reference>RIÉ 187</reference>
+        <dillmanExplanation>Recueil des Inscriptions de l’Éthiopie des périodes pré-axoumite et axoumite, n. 187</dillmanExplanation>
+        <bmID>LIT5439rie</bmID>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>RIÉ 188</reference>
+        <dillmanExplanation>Recueil des Inscriptions de l’Éthiopie des périodes pré-axoumite et axoumite, n. 188</dillmanExplanation>
+        <bmID>RIE188</bmID>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>RIÉ 189</reference>
+        <dillmanExplanation>Recueil des Inscriptions de l’Éthiopie des périodes pré-axoumite et axoumite, n. 189</dillmanExplanation>
+        <bmID>RIE189</bmID>
+    </abbreviatur>
+    
+    <abbreviatur>
+        <reference>RIÉ 193</reference>
+        <dillmanExplanation>Recueil des Inscriptions de l’Éthiopie des périodes pré-axoumite et axoumite, n. 193</dillmanExplanation>
+        <bmID>RIE193</bmID>
+    </abbreviatur>
+    
+    <abbreviatur>
+        <reference>RIÉ 195</reference>
+        <dillmanExplanation>Recueil des Inscriptions de l’Éthiopie des périodes pré-axoumite et axoumite, n. 195</dillmanExplanation>
+        <bmID>RIE195</bmID>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>RIÉ 232</reference>
+        <dillmanExplanation>Recueil des Inscriptions de l’Éthiopie des périodes pré-axoumite et axoumite, n. 232</dillmanExplanation>
+        <bmID>RIE232</bmID>
+    </abbreviatur>
+    
     <abbreviatur>
         <reference>Chron. Am.</reference>
         <dillmanProposedAbk/>
@@ -248,9 +282,17 @@
         <reference>Abt.</reference>
         <dillmanProposedAbk>Abt.</dillmanProposedAbk>
         <dillmanAttestedAbk>Abt.: 14 Abtel.: 33</dillmanAttestedAbk>
-        <dillmanExplanation>Abtelisat.} pars Synodi. Numerus significat canones.</dillmanExplanation>
+        <dillmanExplanation>Abtelisat. pars Synodi. Numerus significat canones.</dillmanExplanation>
         <normalization/>
         <bmID>LIT2677ACABt1</bmID>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>II Abt.</reference>
+        <dillmanProposedAbk>II Abt.</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Abtelisat.  IIae recensionis. pars Synodi. Numerus significat canones.</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2678ACABt2</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Abtel.</reference>
@@ -478,29 +520,38 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Anc</reference>
+        <dillmanProposedAbk>Can. Anc.</dillmanProposedAbk>
+        <dillmanAttestedAbk>Can. Anc.: 2 Can. Ancyr.: 7</dillmanAttestedAbk>
+        <dillmanExplanation>Canones Ancyrani. Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2662Ancyra</bmID>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Anc.</reference>
         <dillmanProposedAbk>Can. Anc.</dillmanProposedAbk>
         <dillmanAttestedAbk>Can. Anc.: 2 Can. Ancyr.: 7</dillmanAttestedAbk>
-        <dillmanExplanation>Canones Ancyrani.} partes Synodi. Numerus significat canones.</dillmanExplanation>
+        <dillmanExplanation>Canones Ancyrani. Pars Synodi. Numerus significat canones.</dillmanExplanation>
         <normalization/>
         <bmID>LIT2662Ancyra</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Ancyr.</reference>
+        <dillmanExplanation>Canones Ancyrani. Pars Synodi. Numerus significat canones.</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Ant.</reference>
+        <dillmanExplanation>Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        
         <bmID>LIT2653CanonsCouncils</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Ap.</reference>
         <dillmanProposedAbk>Can. Ap.</dillmanProposedAbk>
         <dillmanAttestedAbk>Can. Ap. I Can. Ap.</dillmanAttestedAbk>
-        <dillmanExplanation>Can. Apostolorum.</dillmanExplanation>
+        <dillmanExplanation>Can. Apostolorum. Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        
         <normalization/>
         <bmID>LIT1141Aposto</bmID>
     </abbreviatur>
@@ -520,7 +571,8 @@
         <reference>Can. Gangr.</reference>
         <dillmanProposedAbk>Can. Gangr.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Can. Gangrenses.</dillmanExplanation>
+        <dillmanExplanation>Can. Gangrenses.  Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        
         <normalization/>
         <bmID>LIT2651CanonsCouncils</bmID>
     </abbreviatur>
@@ -528,27 +580,40 @@
         <reference>Can. Laod.</reference>
         <dillmanProposedAbk>Can. Laod.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Can. Laodiceni.</dillmanExplanation>
+        <dillmanExplanation>Can. Laodiceni. Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        
         <normalization/>
         <bmID>LIT2686CanonsLao</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Neocaes.</reference>
+        <dillmanExplanation>Can. Neocaesarienses. Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        
         <bmID>LIT2661Canons</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Nic.</reference>
         <dillmanProposedAbk>Can. Nic.</dillmanProposedAbk>
         <dillmanAttestedAbk>Can. Nic. I Can Nic.: 1</dillmanAttestedAbk>
-        <dillmanExplanation>Can. Niceni.</dillmanExplanation>
+        <dillmanExplanation>Can. Niceni. Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        
         <normalization/>
         <bmID>LIT2650CanonsNicaea1</bmID> 
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Can. II Nic.</reference>
+        <dillmanProposedAbk>Can. II Nic.</dillmanProposedAbk>
+        <dillmanAttestedAbk>Can. Nic. I Can Nic.: 1</dillmanAttestedAbk>
+        <dillmanExplanation>Can. Niceni IIae recensionis. Pars Synodi. Numerus significat canones.</dillmanExplanation>
+        
+        <normalization/>
+        <bmID>LIT2688CanonsNicaea2</bmID> 
     </abbreviatur>
     <abbreviatur>
         <reference>Can. Sard.</reference>
         <dillmanProposedAbk>Can. Sard.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Can. Sardicenses.</dillmanExplanation>
+        <dillmanExplanation>Can. Sardicenses. Pars Synodi. Numerus significat canones.</dillmanExplanation>
         <normalization/>
         <bmID>LIT2652CanonsCouncils</bmID>
     </abbreviatur>
@@ -582,6 +647,11 @@
         <dillmanAttestedAbk/>
         <dillmanExplanation>Canticum in Samuelis laudem compositum (a Ludolfo lectum).</dillmanExplanation>
         <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Curz.</reference>
+        <dillmanExplanation>Sir Robert Curzon, Britannus, codicum Aeth. possessor.</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
@@ -1058,6 +1128,16 @@
         <bmID/>
     </abbreviatur>
     <abbreviatur>
+        <reference>Exp. Dec.</reference>
+        <dillmanExplanation>Expositio Decalogi, pars Sinodi.</dillmanExplanation>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Exp. Fid. Nic.</reference>
+        <dillmanExplanation>Expositio Fidei Nicenae, pars Sinodi.</dillmanExplanation>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
         <reference>Exerc. Aeth. p.</reference>
         <bmID/>
     </abbreviatur>
@@ -1104,6 +1184,62 @@
         <dillmanExplanation>Gadela Adam.</dillmanExplanation>
         <normalization/>
         <bmID>LIT1415GadlaA</bmID>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Gad. Joh.</reference>
+        <dillmanProposedAbk>Gad. Joh.</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Gadela Abba Johanni.</dillmanExplanation>
+        <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Gad. Gabr. Manf. Q.</reference>
+        <dillmanProposedAbk>Gad. Joh.</dillmanProposedAbk>
+        <dillmanAttestedAbk>Gad. G. M. Q.</dillmanAttestedAbk>
+        <dillmanExplanation>Gadela Gabra Manfas Qedûs.</dillmanExplanation>
+        <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Gad. Kar.</reference>
+        <dillmanProposedAbk>Gad. Kar.</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Gadela Karazûn.</dillmanExplanation>
+        <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Gad. Lal.</reference>
+        <dillmanProposedAbk>Gad. Lal.</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Gadela Lalibela.</dillmanExplanation>
+        <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Gad. T. H.</reference>
+        <dillmanProposedAbk>Gad. T. H.</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Gadela Tacla-Haimânôt.</dillmanExplanation>
+        <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Gad. T. Zion</reference>
+        <dillmanProposedAbk>Gad. T. Zion</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Gadela Tacla-Zion.</dillmanExplanation>
+        <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Gad. Za Mich.</reference>
+        <dillmanProposedAbk>Gad. Za Mich.</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Gadela Za Michael.</dillmanExplanation>
+        <normalization/>
+        <bmID/>
     </abbreviatur>
     <abbreviatur>
         <reference>Gad. Ad. f.</reference>
@@ -1267,6 +1403,22 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Hist. p.</reference>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Hist. VII Puer.</reference>
+        <dillmanExplanation>Historia VII puerorum, a Ludolfo lecta (in Cod. Berolinensi).</dillmanExplanation>
+        <bmID/>
+    </abbreviatur>
+    
+    <abbreviatur>
+        <reference>Hom.</reference>
+        <dillmanExplanation>Homiliae et Vitae Sanctorum, a Ludolfo lectae  (in Cod. Berolinensi).</dillmanExplanation>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
+        <reference>Hym. Mus. Brit. LIV, 7</reference>
+        <dillmanExplanation>Hymni in Codice Musei Britannici LIV Nr. 7</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
@@ -1511,11 +1663,8 @@
         <dillmanAttestedAbk/>
         <dillmanExplanation>Maʃshafa Kidân Za-egziena Ijasus</dillmanExplanation>
         <normalization/>
-        <bmID>LIT2461Testam</bmID>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Kid. f.</reference>
-        <bmID/>
+        <bmID>StuttgartOrientFol49</bmID>
+        <!--        LIT2461Testam-->
     </abbreviatur>
     <abbreviatur>
         <reference>Koh.</reference>
@@ -2302,14 +2451,14 @@
         <reference>Sx. Jac</reference>
         <bmID/>
     </abbreviatur>
-    <abbreviatur>
+    <!--<abbreviatur>
         <reference>Sx. Jac.</reference>
         <dillmanProposedAbk>Jac.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
         <dillmanExplanation>Jacobi epistola.</dillmanExplanation>
         <normalization/>
         <bmID/>
-    </abbreviatur>
+    </abbreviatur>-->
     <abbreviatur>
         <reference>Sx. Mag.</reference>
         <bmID/>

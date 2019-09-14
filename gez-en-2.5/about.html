@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    
+    <div data-template="app:logging"/>
     <div class="container">
+        <p>
+            <a href="/Dillmann/impressum.html">Impressum</a>
+        </p>
         <h2>About this application</h2>
         <p class="lead">The application is one of the outputs of the TraCES project in close
-            partnership with the Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea project</p>
+            partnership with the Beta Maṣāḥǝft: Manuscripts of Ethiopia and Eritrea project</p>
         <div class="outer">
             <div class="standard" id="traces">
                 <h3>&lt;TraCES/&gt; From Translation to Creation: Changes in Ethiopic Style and
@@ -15,13 +20,13 @@
                 </p>
                 <p>An area of ancient written culture from the 1st millennium BCE, the Ethiopian
                     highlands have been home to a complex literary tradition (predominantly in
-                    Ge'ez) that has no parallel in sub-Saharan Africa. Its emergence was determined
-                    by Late Antique culture (Byzantium including Egypt, Palestine, Syria, and the
+                    Gǝʿǝz) that has no parallel in sub-Saharan Africa. Its emergence was determined
+                    by late antique culture (Byzantium including Egypt, Palestine, Syria, and the
                     Red Sea), Mediterranean cultural encounters, and the African background. </p>
                 <p> The earliest known texts were translations from Greek, later works were adopted
                     from Christian Arabic (esp. Copto-Arabic) literary tradition, in addition to a
                     rich local written production. The complexity of literary history is fully
-                    reflected in the changes in grammar, lexicon and stylistic means of the Ge'ez
+                    reflected in the changes in grammar, lexicon and stylistic means of the Gǝʿǝz
                     language.</p>
                 <p>
                     <span>
@@ -32,21 +37,21 @@
         </div>
         <div class="outer">
             <div class="standard" id="bm">
-                <h3>Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea</h3>
+                <h3>Beta Maṣāḥǝft: Manuscripts of Ethiopia and Eritrea</h3>
                 <p>
                     <a href="https://www.betamasaheft.uni-hamburg.de/" target="_blank">
                         <img src="resources/images/logo.png"/>
                     </a>
                 </p>
-                <p>The project Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea (Schriftkultur des
-                    christlichen Äthiopiens: eine multimediale Forschungsumgebung) is a long-term
-                    project funded within the framework of the Academies' Programme (coordinated by
+                <p>The project Beta Maṣāḥǝft: Manuscripts of Ethiopia and Eritrea (Schriftkultur des
+                    christlichen Äthiopiens und Eritreas: eine multimediale Forschungsumgebung) is a long-term
+                    project funded within the framework of the Academies’ Programme (coordinated by
                     the Union of the German Academies of Sciences and Humanities) under survey of
                     the Akademie der Wissenschaften in Hamburg. The funding will be provided for 25
                     years, from 2016–2040. The project is hosted by the Hiob Ludolf Centre for
-                    Ethiopian Studies at the University of Hamburg. It aims at creating a virtual
+                    Ethiopian Studies at the Universität Hamburg. It aims at creating a virtual
                     research environment that shall manage complex data related to predominantly
-                    Christian manuscript tradition of the Ethiopian and Eritrean Highlands.</p>
+                    Christian manuscript tradition of the Ethiopian and Eritrean highlands.</p>
                 <span>
                     <a href="https://www.betamasaheft.uni-hamburg.de/" target="_blank">[ more ]</a>
                 </span>
@@ -56,51 +61,89 @@
     <div class="container">
         <h2>About this application</h2>
         <p>This application, built in eXist-db uses basic tecniques to display data from the
-            digitization process of the Lexicon Linguae Aethiopicae of Augustus Dillmann. It is
+            digitization process of the Lexicon linguae Aethiopicae of August Dillmann. It is
             deployed at the moment only for registered users with the relevant data at the
-            University of Hamburg. </p>
+            Universität Hamburg. </p>
         <h3>Preprocessing</h3> 
-       <p> Heavy preprocessing of data has been carried out with regex in oxygen
-        to encode the text starting from a txt version provided by Andreas Ellwardt. The data is
+       <p> Heavy preprocessing of data has been carried out with regex in Oxygen XML Editor
+           to encode the text starting from a txt version that is the outcome of a work of many years, started by Alessandro Bausi, with the help of Andreas Ellwardt, Irene Roticiani, and others. The txt used as basis for this edition was developed in the TraCES project and enriched with unique ids by Cristina Vertan, and was curated under the main responsibility of Andreas Ellwardt (for more details see Bausi, A. 2016. ‘Introduction. 150 Years After Dillmann’s Lexicon’, in A. Bausi and E. Sokolinski, eds, <i>150 Years after Dillmann’s Lexicon: Perspectives and Challenges of Gǝʿǝz Studies</i>, Supplement to Aethiopica, 5 (Wiesbaden: Harrassowitz Verlag, 2016), 6-7). The data is
         being processed within this application to improve the structure and the reusability of the
-        large amount of information provided by this work. all parts of speech, abbreviations,
+        large amount of information provided by this work. All parts of speech, abbreviations,
         citations, translations, notes, nesting of meaning, column breaks, internal references etc.
-        have been marked up in TEI XML and the app relies on that markup as a structure</p>
+        have been marked up in TEI XML and the app relies on that markup as a structure.</p>
             <h3>Features</h3>
         <h4>Search</h4>
+        <p>
+            This search uses the exist-db Shakespeare demo app lucene functions, slightly modified. You can enter a string and select a mode or use standard Lucene special characters as in the info box.
+        </p>
         <ul>
-            <li>homophones of the ethiopic language are searched as a standard if not otherways
-                specified. </li>
+            <li>Orthographic variants of the Ethiopic language are searched as a standard if not otherways
+                specified. The following are the options considered by the search engine. Although the substitutions for transcription are of little relevance, since there are at the moment very few transcriptions
+            <ul>
+                <li>'s','s', 'ḍ'</li>
+               <li> 'e','ǝ','ə','ē'</li>
+                <li>'w','ʷ'</li>
+                <li>'ʾ', 'ʿ'</li>
+                <li>'`', 'ʾ', 'ʿ' (note that you can use the tick if you are not sure about the two, but none will be inferred for you)</li>
+                <li>'ሀ', 'ሐ', 'ኀ', 'ሃ', 'ሓ', 'ኃ'</li>
+                <li>'ሀ', 'ሐ', 'ኀ'</li>
+                <li>'ሁ', 'ሑ', 'ኁ'</li>
+               <li> 'ሂ', 'ሒ', 'ኂ'</li>
+                <li>'ሄ', 'ሔ', 'ኄ'</li>
+               <li> 'ህ', 'ሕ', 'ኅ'</li>
+               <li> 'ሆ', 'ሖ', 'ኆ'</li>
+               <li> 'ሠ','ሰ'</li>
+               <li> 'ሡ','ሱ'</li>
+                <li>'ሢ','ሲ'</li>
+                <li>'ሣ','ሳ'</li>
+               <li> 'ሥ','ስ'</li>
+                <li>'ሦ','ሶ'</li>
+                <li>'ሤ','ሴ'</li>
+               <li> 'ጸ', 'ፀ'</li>
+                <li>'ጹ', 'ፁ'</li>
+                <li>'ጺ', 'ፂ'</li>
+               <li> 'ጻ', 'ፃ'</li>
+                <li>'ጼ', 'ፄ'</li>
+               <li> 'ጽ', 'ፅ'</li>
+                <li>'ጾ', 'ፆ'</li>
+               <li> 'አ', 'ዐ', 'ኣ', 'ዓ'</li>
+               <li> 'ኡ', 'ዑ'</li>
+               <li> 'ኢ', 'ዒ'</li>
+               <li> 'ኤ', 'ዔ'</li>
+                <li>'እ', 'ዕ'</li>
+               <li> 'ኦ', 'ዖ'</li>
+            </ul>
+            </li>
             <li>modes as per eXist-db sample app are also provided, with code from the demo
-                application of eXist-db only slightly modified. </li>
-            <li>It is possible to navigate by dillmann column</li>
+                application of eXist-db only slightly modified </li>
+            <li>it is possible to navigate by Dillmann columns</li>
             <li>with the plus button further features of the XML are usable to filter search results.</li>
         </ul>
         <h4>Xquery </h4>
         <ul>
             <li>the functions allow a group of editors to edit records with a simplified syntax in
                 simple text, with no editor, with two XSLT transformations. The form contains also
-                the guidelines for the editing of the intermediate text format.</li>
-            <li>before submitting the new file this is validated against the schema. </li>
+                the guidelines for the editing of the intermediate text format</li>
+            <li>before submitting the new file this is validated against the schema </li>
             <li>columns are computed from the data and linked to the pdf version available here
             </li>
-            <li>the reverse index allows to navigate the data starting from translations or words in languages which are not latin</li>
+            <li>the reverse index allows to navigate the data starting from translations or words in languages which are not Latin.</li>
         </ul>
         <h4>Jquery</h4>
         <ul>
             <li>bibliography is pulled from Zotero EthioStudies group library </li>
-            <li>queries to Beta Masaheft for related passages and text citations are also done with
-                jquery. each citation in the format John 1.1 is linked in a popup to the exact
-                passage if this is available in Beta Masaheft, otherwise it is linked to the record
-                of the edition. </li>
-            <li>use the switch to highlight the matching words in the home page view</li>
+            <li>queries to Beta Maṣāḥǝft for related passages and text citations are also done with
+                Jquery. Each citation in the format John 1.1 is linked in a popup to the exact
+                passage if this is available in Beta Maṣāḥǝft, otherwise it is linked to the record
+                of the edition </li>
+            <li>use the switch to highlight the matching words in the home page view.</li>
         </ul>
         <h4> RESTXQ</h4>
         <ul>
             <li>
-                <a href="http://betamasaheft.aai.uni-hamburg.de/apidoc.html#dillmannsearch" target="_blank">API</a> search of text is also set for use</li>
+                <a href="http://betamasaheft.eu/Dillmann/apidoc.html" target="_blank">API</a> search of text is also set for use</li>
             <li>list from api can be obtained</li>
-            <li>records can be called by id</li>
+            <li>records can be called by id.</li>
         </ul>
         <div class="col-md-6">
             <h3>App Info data</h3>
@@ -112,13 +155,28 @@
             <h3>Acknowledgement</h3>
             <p>This Website uses:</p>
             <ul>
-                <li>TEI</li>
-                <li>Zotero</li>
-                <li>Exist-DB</li>
-                <li>Bootstrap and Fontawesome</li>
-                <li>JQuery</li>
-                <li>a lot of very good answers from StackOverflow</li>
+                <li>
+                    <a href="http://www.tei-c.org/index.xml" target="_blank">TEI</a>
+                </li>
+                <li>
+                    <a href="https://www.zotero.org/" target="_blank">Zotero</a>
+                </li>
+                <li>
+                    <a href="http://exist-db.org/exist/apps/homepage/index.html" target="_blank">Exist-DB</a>
+                </li>
+                <li>
+                    <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="http://fontawesome.io/" target="_blank">Fontawesome</a>
+                </li>
+                <li>
+                    <a href="https://jquery.com/" target="_blank">JQuery</a>
+                </li>
+                <li>
+                    <a href="https://github.com/Mottie/Keyboard">Virtual Keyboard using jQuery ~ http://mottie.github.io/Keyboard/</a>
+                </li>
+                <li>a lot of very good answers from <a href="https://stackoverflow.com/" target="_blank">StackOverflow</a>.</li>
+                <li>XSL-FO and Apache FOP for the PDF output.</li>
             </ul>
+            <p>Many thanks to the exist-db community and the TEI community for the invaluable support offered.</p>
         </div>
     </div>
 </div>

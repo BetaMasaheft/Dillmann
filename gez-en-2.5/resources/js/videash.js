@@ -20,8 +20,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
 $('.highlights').change(function () {
     var fullq = getUrlParameter('q');
     //console.log(fullq)
-    if (/[\*\?\~\(]/g.test(fullq)) {
-        var q = fullq.replace(/[\*\?\~\(]/g, '')
+    if (/[\*\?\~\(\"]/g.test(fullq)) {
+        var q = fullq.replace(/[\*\?\~\(\"]/g, '')
     } else {
         var q = fullq
     }
@@ -62,7 +62,7 @@ $(document).ready(function () {
         var url = 'http://www.perseus.tufts.edu/hopper/morph?l='
         var parm = '&la=greek'
         $.each(words, function (i, v) {
-            $(grc).append($("<a target='_blank' href='" + url + v + parm + "'/>").text(v + ' '));
+            $(grc).append($(" <a target='_blank' href='" + url + v + parm + "'/>").text(v + ' '));
         });
     });
     
@@ -76,7 +76,25 @@ $(document).ready(function () {
         var url = 'http://www.perseus.tufts.edu/hopper/morph?l='
         var parm = '&la=la'
         $.each(words, function (i, v) {
-            $(la).append($("<a target='_blank' href='" + url + v + parm + "'/>").text(v + ' '));
+        if (v.endsWith('!')) {
+                console.log('esclamation mark');
+                var vv = v.substr(0, v.indexOf('!'));
+                $(la).append($("<a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '! '));
+            }else if (v.endsWith('?')) {
+                console.log('question mark');
+                var vv = v.substr(0, v.indexOf('?'));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '? '));
+            }
+            else if (v.endsWith(']')) {
+                //console.log('square brace');
+                var vv = v.substr(0, v.indexOf(']'));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '] '));
+            } else if (v.endsWith(',') && /!(I|II|III)/g.test(v)) {
+                //console.log('comma');
+                var vv = v.substr(0, v.indexOf(','));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + ', '));
+            }
+        else{    $(la).append($(" <a target='_blank' href='" + url + v + parm + "'/>").text(v + ' '));}
         });
     });
     
@@ -91,16 +109,39 @@ $(document).ready(function () {
         var parm = '&la=la'
         $.each(words, function (i, v) {
             if (v.endsWith('.') && /!\w\.\w\./g.test(v)) {
-                console.log('fullstop');
+                //console.log('fullstop');
                 var vv = v.substr(0, v.indexOf('.'));
-                $(la).append($("<a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '. '));
-            } else if (v.endsWith(':')) {
-                console.log('column');
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '. '));
+            }
+            
+            else if (v.endsWith(',') && v.startsWith('(')) {$(la).text(v)}
+            else if (v.endsWith(':')) {
+                //console.log('column');
                 var vv = v.substr(0, v.indexOf(':'));
-                $(la).append($("<a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + ': '));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + ': '));
+            } else if (v.endsWith(';')) {
+                //console.log('semi column');
+                var vv = v.substr(0, v.indexOf(';'));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '; '));
+            } else if (v.endsWith(']')) {
+                //console.log('square brace');
+                var vv = v.substr(0, v.indexOf(']'));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '] '));
+            } else if (v.endsWith('!')) {
+                console.log('esclamation mark');
+                var vv = v.substr(0, v.indexOf('!'));
+                $(la).append($("<a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '! '));
+            }else if (v.endsWith('?')) {
+                console.log('question mark');
+                var vv = v.substr(0, v.indexOf('?'));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '? '));
+            }else if (v.endsWith(',') && /!(I|II|III)/g.test(v)) {
+                //console.log('comma');
+                var vv = v.substr(0, v.indexOf(','));
+                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + ', '));
             } else {
-                console.log('nocolumn')
-                $(la).append($("<a target='_blank' href='" + url + v + parm + "'/>").text(' ' + v + ' '));
+                //console.log('nocolumn')
+                $(la).append($(" <a target='_blank' href='" + url + v + parm + "'/>").text(' ' + v + ' '));
             }
         });
     });
@@ -112,22 +153,80 @@ $(document).ready(function () {
         var words = normspace.split(" ");
         
         $(this).empty();
-        var url = '/search.html?query='
+        var url = '/Dillmann/?mode=fuzzy&q='
         $.each(words, function (i, v) {
-            $(gez).append($("<a target='_blank' href='" + url + v + "'/>").text(v + ' '));
+            $(gez).append($(" <a target='_blank' href='" + url + v + "'/>").text(v + ' '));
         });
     });
     
-    $('div.entry [data-title="videas"]').each(function () {
+     function nextvideas(v){
+    var v2 = v.next("span")
+          var vid2 = v2.text()
+        var trimvid2 = vid2.replace('፡', '')
+        var apiurl = '/api/Dillmann/search/form?q='
+        $.getJSON(apiurl + trimvid2, function (data) {
+            var newurl2 = data[ "0"].id
+            var newa2 = ' <a target="_blank" href="/Dillmann/lemma/' + newurl2 + '">' + vid2 + '</a>'
+            $(v2).replaceWith(newa2)
+        });
+        
+        }
+    
+    $('div.entry [title="videas"]').each(function () {
         var v = $(this).next("span")
         var vid = v.text()
         var trimvid = vid.replace('፡', '')
         var apiurl = '/api/Dillmann/search/form?q='
         $.getJSON(apiurl + trimvid, function (data) {
             var newurl = data[ "0"].id
-            var newa = '<a target="_blank" href="/Dillmann/lemma/' + newurl + '">' + vid + '</a>'
+            var newa = ' <a target="_blank" href="/Dillmann/lemma/' + newurl + '">' + vid + '</a>'
             $(v).replaceWith(newa)
         });
+         if(v.next("span")){
+            nextvideas(v);
+          var v2 = v.next("span")
+           if(v2.next("span")){
+            nextvideas(v2);
+        }
+        }
+    });
+    
+    
+     $('[title="idem quod"]').each(function () {
+        var v = $(this).next("span")
+        var vid = v.text()
+        var trimvid = vid.replace('፡', '')
+        var apiurl = '/api/Dillmann/search/form?q='
+        $.getJSON(apiurl + trimvid, function (data) {
+            var newurl = data[ "0"].id
+            var newa = ' <a target="_blank" href="' + newurl + '">' + vid + '</a>'
+            $(v).replaceWith(newa)
+        });
+    });
+    
+    $('[title="quod videas"]').each(function () {
+       
+        if($(this).prev().is("span")){
+       // console.log($(this))
+             var v = $(this).prev("span")
+            var vid = v.text()
+        var trimvid = vid.replace('፡', '')
+        var apiurl = '/api/Dillmann/search/form?q='
+        $.getJSON(apiurl + trimvid, function (data) {
+            var newurl = data[ "0"].id
+            var newa = ' <a target="_blank" href="' + newurl + '">' + vid + '</a>'
+            $(v).replaceWith(newa)
+        });
+        } else {
+        //  console.log($(this))
+        var v = $(this)
+        var next = $('.smallArrow.next')
+        //console.log(next)
+        var n = next.data('value')
+        var newa = ' <a target="_blank" href="/Dillmann/lemma/' + n + '">' + $(v).text() + ' ' + $(next).text() + '  <i class="fa fa-external-link-square" aria-hidden="true"/></a>'
+        $(v).replaceWith(newa) 
+        }
+        
     });
     
     $('div.entry .internalLink').each(function () {
@@ -136,16 +235,16 @@ $(document).ready(function () {
         var apiurl = '/api/Dillmann/column/'
         $.getJSON(apiurl + vid, function (data) {
             var newurl = data.lemma
-            var newa = '<a target="_blank" href="/Dillmann/lemma/' + newurl + '">' + $(v).text() + '  <i class="fa fa-external-link-square" aria-hidden="true"/></a>'
+            var newa = ' <a target="_blank" href="/Dillmann/lemma/' + newurl + '">' + $(v).text() + '  <i class="fa fa-external-link-square" aria-hidden="true"/></a>'
             $(v).replaceWith(newa)
         });
     });
     
     $('div.entry .HINC').each(function () {
-        console.log($(this))
+        //console.log($(this))
         var v = $(this)
         var next = $('.smallArrow.next')
-        console.log(next)
+        //console.log(next)
         var n = next.data('value')
         var newa = ' <a target="_blank" href="/Dillmann/lemma/' + n + '">' + $(v).text() + ' ' + $(next).text() + '  <i class="fa fa-external-link-square" aria-hidden="true"/></a>'
         $(v).replaceWith(newa)

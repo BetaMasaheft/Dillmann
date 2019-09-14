@@ -32,8 +32,22 @@
     <xsl:template match="t:sense[@n]">
         <div class="col-md-12 sense">
             <b>
-                <xsl:value-of select="@n"/>
+                <xsl:choose>
+                    
+                    <xsl:when test="@n = 'L'">
+                        Leslau <br/>
+                    </xsl:when>
+                    <xsl:when test="@n = 'E'">
+                        Etymology<br/>
+                    </xsl:when>
+                    <xsl:when test="@n = 'C'">
+                        Cross-references <br/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                    <xsl:value-of select="@n"/>
                 <xsl:text>)</xsl:text>
+                </xsl:otherwise>
+                </xsl:choose>
             </b>
             <xsl:apply-templates/>
         </div>
@@ -69,6 +83,11 @@
             </xsl:if>
             <xsl:value-of select="."/>
         </i>
+        <sup>
+            <a target="_blank" href="/Dillmann/reverse?start=1&amp;lang={@xml:lang}">
+                <xsl:value-of select="@xml:lang"/>
+            </a>
+        </sup>
     </xsl:template>
     
     <xsl:template match="t:cit[@type='transcription']">
@@ -98,17 +117,23 @@
                     <xsl:attribute name="dir">ltr</xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:text> </xsl:text>
             <xsl:value-of select="."/>
-            <xsl:text> </xsl:text>
+            
         </span>
+        <xsl:choose>
+                <xsl:when test="@xml:lang = 'ar' or @xml:lang = 'syr' or @xml:lang = 'he'">
+                    <span dir="ltr"/>
+                </xsl:when>
+                
+            </xsl:choose>
+        <xsl:text> </xsl:text>
     </xsl:template>
     
     
     <xsl:template match="t:lbl | t:pos | t:case">
         <a>
             <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
-            <xsl:attribute name="data-title">
+            <xsl:attribute name="title">
                 <xsl:value-of select="@expand"/>
             </xsl:attribute>
             <xsl:value-of select="."/>
@@ -137,15 +162,23 @@
         <xsl:text> </xsl:text>
     </xsl:template>
     
-    <xsl:template match="t:ref">
+    <xsl:template match="t:ref[not(@type)]">
         <xsl:choose>
             <xsl:when test="@target">
                 <xsl:variable name="id" select="substring-after(@target, '#')"/>
                 <xsl:variable name="t" select="substring-after(@target, '#c')"/>
-                <a href="#" class="internalLink" data-value="{$id}">
-                    <xsl:if test="number($t) &gt;= 1425">A&amp;E: </xsl:if>
-                    <xsl:value-of select="$t"/>
+               <xsl:choose>
+                    <xsl:when test="number($t) ge 1425">
+                   <a target="_blank" href="http://www.tau.ac.il/~hacohen/Lexicon/pp{format-number(if(xs:integer($t) mod 2 = 1) then xs:integer($t) else (xs:integer($t)  -1), '#')}.html">
+                       <i class="fa fa-cogs" aria-hidden="true"/>
+                   </a>
+                   </xsl:when>
+                  <xsl:otherwise>
+                        <a target="_blank" href="#" class="internalLink" data-value="{$id}">
+                     <xsl:value-of select="$t"/>
                 </a>
+                    </xsl:otherwise>
+               </xsl:choose>
             </xsl:when>
             <xsl:when test="@cRef">
                 <xsl:variable name="cRefs">
@@ -162,13 +195,25 @@
                         <xsl:value-of select="                                 if (doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation) then                                     doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation/text()                                 else                                     'not able to find explanation in abbreviation list'"/>
                     </xsl:attribute>
                     <xsl:value-of select="@cRef"/>
+                   
                     <xsl:choose>
-                        <xsl:when test="                             @cRef = 'Kuf.' or                             @cRef = 'Jsp.' or                             @cRef = 'Laur.' or                             @cRef = 'Syn.' or                             @cRef = 'Isenb.'                             ">
+                        <xsl:when test="                                      @cRef = 'Jsp.' or                             @cRef = 'Laur.' or                             @cRef = 'Syn.' or                             @cRef = 'Isenb.'                             ">
                             <xsl:text> p. </xsl:text>
                         </xsl:when>
                         <xsl:when test="                             @cRef = 'Clem.' or                             @cRef = 'Theod.' or                             @cRef = 'Pall.' or                             @cRef = 'Fal.' or                             @cRef = 'Macc.'  or                             @cRef = 'Atq.'  or                             @cRef = 'Kid.'     or                             @cRef = 'Cyr.'  or                             @cRef = 'Genz.'  or                             @cRef = 'Ad.'                         ">
                             <xsl:text> f. </xsl:text>
                         </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:variable name="words" select="tokenize(., '\s+')"/>
+                            <xsl:variable name="attributes" select="for $x in @* return if(contains($x, ' ')) then (tokenize($x, ' ')) else ($x)"/>
+                            <xsl:variable name="extras">
+                                <xsl:value-of select="$words[not(.=$attributes)]"/>
+                            </xsl:variable>        
+                            <xsl:if test="$extras != ''">
+                                <xsl:text> </xsl:text>
+                                <xsl:value-of select="$extras"/>
+                            </xsl:if>
+                        </xsl:otherwise>
                     </xsl:choose>
                     <xsl:text> </xsl:text>
                     <xsl:value-of select="@loc"/>
@@ -209,5 +254,22 @@
         <xsl:value-of select="format-number(@n, '#')"/>
         </span>
     </xsl:template>
+    <xsl:template match="t:ref[@target][@type='external']">
+        <a>
+            <xsl:attribute name="href">
+                <xsl:value-of select="@target"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+        </a>
+    </xsl:template>
+    <xsl:template match="t:ref[@target][@type='BM']">
+        <a class="MainTitle" data-value="{@target}">
+            <xsl:attribute name="href">
+                <xsl:value-of select="concat('/',@target)"/>
+            </xsl:attribute>
+            <xsl:value-of select="@target"/>
+        </a>
+    </xsl:template>
+    
 
 </xsl:stylesheet>

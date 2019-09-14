@@ -76,6 +76,7 @@ $(function () {
             at2: 'center bottom',
             collision: 'flipfit flipfit'
         },
+        reposition : true,
         layout: 'custom',
         customLayout: {
             'normal':[
@@ -306,7 +307,7 @@ $(function () {
         popupHidden: 'popup-hidden',
         // optional reposition popup callback function
         popupPosition: function (keyboard, data) {
-            console.log(data);
+            //console.log(data);
             /*
             {
             $kb         : Keyboard element (jQuery object),
@@ -349,9 +350,14 @@ $(function () {
         // change default simulated typing delay
         delay: 250
     });
+    
     $('.kb').click(function () {
+    if (jQuery.ui) {
+ // console.log('ui')
+}
         var kb = $('.diacritics').getkeyboard().reveal();
     });
+    
      $('a[id^="icon"]').click(function () {
      var id = this.id;
     var trimmedID = id.substring((id.indexOf('sense') + 5));

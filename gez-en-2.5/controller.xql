@@ -1,4 +1,4 @@
-xquery version "3.0";
+xquery version "3.1";
 import module namespace config = "http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "modules/config.xqm";
 import module namespace login = "http://exist-db.org/xquery/login" at "resource:org/exist/xquery/modules/persistentlogin/login.xql";
 
@@ -11,51 +11,8 @@ declare variable $exist:prefix external;
 declare variable $exist:root external;
 
 
-declare variable $login :=   local:fallback-login#3;
+declare variable $login :=   login:set-user#3;
 
-
-
-(:~
-    Fallback login function used when the persistent login module is not available.
-    Stores user/password in the HTTP session.
- :)
-declare function local:fallback-login($domain as xs:string, $maxAge as xs:dayTimeDuration?, $asDba as xs:boolean) {
-    let $user := request:get-parameter("user", ())
-    let $password := request:get-parameter("password", ())
-    let $logout := request:get-parameter("logout", ())
-    return
-        if ($logout) then
-            (
-            session:invalidate()
-           )
-        else
-            if ($user) then
-                let $isLoggedIn := xmldb:login("/db", $user, $password, true())
-                return
-                    (
-                    session:set-attribute("dict.user", $user),
-                    session:set-attribute("dict.password", $password),
-                    request:set-attribute($domain || ".user", $user),
-                    request:set-attribute("xquery.user", $user),
-                    request:set-attribute("xquery.password", $password)
-                    )
-            
-            else
-                let $user := session:get-attribute("dict.user")
-                let $password := session:get-attribute("dict.password")
-                return
-                    (
-                    request:set-attribute($domain || ".user", $user),
-                    request:set-attribute("xquery.user", $user),
-                    request:set-attribute("xquery.password", $password))
-};
-
-declare function local:user-allowed() {
-    (
-    request:get-attribute("org.exist.login.user") and
-    request:get-attribute("org.exist.login.user") != "guest"
-    ) or config:get-configuration()/restrictions/@guest = "yes"
-};
 
 if ($exist:path eq '') then
     <dispatch
@@ -76,7 +33,17 @@ else
                     value="max-age=3600, must-revalidate"/>
             </forward>
         </dispatch>
-        
+ 
+  else if (contains($exist:path, "openapi/")) then
+  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    <forward
+      url="/openapi/{ $exist:path => substring-after("/openapi/") => replace("json", "xq") }"
+      method="get">
+      <add-parameter name="target" value="{ substring-after($exist:root, "://") || $exist:controller }"/>
+      <add-parameter name="register" value="false"/>
+    </forward>
+  </dispatch> 
+  
         (: Requests for javascript libraries are resolved to the file system :)
     else
         if (contains($exist:path, "resources/"))
@@ -104,7 +71,7 @@ else
                         <dispatch
                             xmlns="http://exist.sourceforge.net/NS/exist">
                             <redirect
-                                url="/apidoc.html"/>
+                                url="/Dillmann/apidoc.html"/>
                         </dispatch>
                     else
                         <dispatch

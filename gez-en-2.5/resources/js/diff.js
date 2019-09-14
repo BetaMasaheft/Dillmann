@@ -12,10 +12,16 @@ $(document).ready(function () {
     var id = $('#Lid').text()
     var filename = $('#filename').text()
     var msg = $('#msg').text()
+    var nE = ""
+    if ( $('#notifyEditors').length ) {
+ 
+    nE+='yes';
+ 
+} else {nE+='no' }
     $.post("/Dillmann/edit/notification.xql", {
-        diff: D, user: user, id: id, filename: filename, msg: msg
+        diff: D, user: user, id: id, filename: filename, msg: msg, notifyEditors : nE
     }).done(function (data) {
-        console.log(data);
+        //console.log(data);
     });
 });
 /*

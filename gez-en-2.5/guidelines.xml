@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div class="col-md-12">
+    <h3>Data entry support</h3>
+    <div class="container-fluid">
+            <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Hit the button to get the symbols...</th>
+                <th>... or type all this...</th>
+                <th>...and it will be displayed as...</th>
+                <th>...because it is transformed into...</th>
+                <th>...which is...</th>
+                <th>...and by the way...</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Meaning</a>
+                    </td>
+                <td>&lt;A&lt; The first meaning &gt;A&gt;</td>
+                <td>
+                            <b>A)</b> The first meaning</td>
+                <td>
+                            <pre>&lt;sense n="A"&gt;The first meaning&lt;/sense&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-sense.html">TEI element sense</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>You can nest as many of this as you want. e.g. &lt;A&lt; this has two submeanings &lt;a&lt; meaning 1 &gt;1&gt; and &lt;2&lt; meaning 2 &gt;2&gt;  &gt;A&gt; </li>
+                                <li>The order of the section uses at the first level Upper Case letters, at the second level numbers, at the third level lower case letters and at the third level greek letters.</li>
+                                
+                                <li>
+                    To specify the language of use &lt;Ade&lt; .... &gt;A&gt; for example, where <b>de</b> is 
+                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
+                    code for that language.</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+                <td>
+                        <a href="#" class="btn btn-primary btn-sm">Link</a>
+                    </td>
+                <td>(link text)[https://your.full.link]</td>
+                <td>
+                    <a href="https://your.full.link">link text</a>
+                    </td>
+                <td>
+                    <pre>&lt;ref type="external" target="https://your.full.link"&gt;link text&lt;/ref&gt;</pre>
+                </td>
+                <td>
+                    <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
+                </td>
+                <td>
+                    <p>You might use this to enter your own links. For example to link to another lemma, or to link to an entity in BM. You could also use it to link to any other resource on the web. </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                        <a href="#" class="btn btn-primary btn-sm">Link to  Beta maṣāḥǝft</a>
+                    </td>
+                <td>(BM)[BNFet143]</td>
+                <td>
+                    <a href="https://betamasaheft.eu/BNFet143">Paris, Bibliothèque nationale de France, BnF Éthiopien 143</a>
+                    </td>
+                <td>
+                    <pre>&lt;ref type="BM" target="BNFet143"/&gt;</pre>
+                </td>
+                <td>
+                    <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
+                </td>
+                <td>
+                    <p>You might use this to enter quickly links to Beta maṣāḥǝft. Please make sure you stick to BM in upper case as this is what is used. Also make sure that the identifier
+                        which you provide exists and is correct. You do not need to provide the title, it will be printed requesting from Beta maṣāḥǝft the most up to date title available for that resource.</p>
+                </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Label</a>
+                    </td>
+            
+                <td>((vid.))</td>
+                <td>
+                            <a data-toggle="tooltip" data-title="videas">vid.</a>
+                        </td>
+                <td>
+                            <pre>&lt;lbl expand="videas"&gt;vid.&lt;/lbl&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-lbl.html">TEI element lbl</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>Use one of Dillmann's abbreviation and you will get the tooltip explaining it.</li>
+                                <li>Try also <pre>((vid.)) \*gez*ሐሊባ፡\*</pre> to get a direct link to the form you enter, like <a data-toggle="tooltip" data-title="videas">vid.</a>
+                                    <a href="L28a2fa17dfc84e0ca31f4e6b7ef90d96">ሐሊባ፡ </a>. If you use this and wish to enter more terms after vid, please use a comma to separate the words as in <pre>((vid.)) \*gez*ገብር፡\*, \*gez*መስቀል፡\*</pre>
+                                </li>
+                            </ul>
+  <a class="btn btn-primary" data-toggle="collapse" href="#labels" role="button" aria-expanded="false" aria-controls="labels">Open list of existing abbreviations</a>
+                            <div>
+                            <table class="table table-responsive collapse" id="labels">
+    <thead>
+        <tr>
+            <th>value</th>
+            <th>abbreviations which can be entered</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td>sub finem</td>
+    <td>
+        <ul>
+            <li>s. fin.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>inusitatus</td>
+    <td>
+        <ul>
+            <li>inus.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>versio nova</td>
+    <td>
+        <ul>
+            <li>vers. nov.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>conferas</td>
+    <td>
+        <ul>
+            <li>Cfr.</li>
+            <li>cfr.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Versio Latina Jubilaeorum libri, exstat in libro: Monumenta sacra et profana e codicibus Bibl. Ambrosianae tom. I, fasc. I. ed Ceriani, Mediol. 1861. 4°.</td>
+    <td>
+        <ul>
+            <li>Vers. Lat.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>participium</td>
+    <td>
+        <ul>
+            <li>Part.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>idem</td>
+    <td>
+        <ul>
+            <li>id.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>duplex</td>
+    <td>
+        <ul>
+            <li>dupl.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>videas</td>
+    <td>
+        <ul>
+            <li>vid. sub</li>
+            <li>vid.</li>
+            <li>Vid.</li>
+            <li>vid. sub.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>singularis</td>
+    <td>
+        <ul>
+            <li>sing.</li>
+            <li>Sing.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Vocabularium Aethiopicum, -a -a</td>
+    <td>
+        <ul>
+            <li>Voc. Ae.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>collatio, -is vel collectivum, -e</td>
+    <td>
+        <ul>
+            <li>coll.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>concretus, e (opp.  abstracto)</td>
+    <td>
+        <ul>
+            <li>concr.</li>
+        </ul>
+    </td>
+</tr>
+
+<tr>
+    <td>secundum</td>
+    <td>
+        <ul>
+            <li>sec.</li>
+            <li>Sec.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>obscoene</td>
+    <td>
+        <ul>
+            <li>obsc.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Laurence, Henochi, IV Ezrae, Asc. Jesaiae librorum editor.</td>
+    <td>
+        <ul>
+            <li>Cod. Laur.</li>
+            <li>cod. Laur.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>annotatio</td>
+    <td>
+        <ul>
+            <li>ann.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>translate</td>
+    <td>
+        <ul>
+            <li>transl.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>terminatio</td>
+    <td>
+        <ul>
+            <li>term.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>romanae editionis</td>
+    <td>
+        <ul>
+            <li>rom.</li>
+            <li>ed. rom.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>auctore, auctoritate</td>
+    <td>
+        <ul>
+            <li>auct.</li>
+            <li>Auct.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Formula
+                            Confessionis</td>
+    <td>
+        <ul>
+            <li>Form. Conf.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>eadem quae</td>
+    <td>
+        <ul>
+            <li>e.q.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>vel</td>
+    <td>
+        <ul>
+            <li>v.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>exempli gratia</td>
+    <td>
+        <ul>
+            <li>ex. gr.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>idem quod</td>
+    <td>
+        <ul>
+            <li>i.q.</li>
+            <li>id.q.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>radices</td>
+    <td>
+        <ul>
+            <li>radd.</li>
+            <li>Radd.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>vicinus</td>
+    <td>
+        <ul>
+            <li>vic.</li>
+            <li>Vic.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>varia lectio</td>
+    <td>
+        <ul>
+            <li>var.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>persona</td>
+    <td>
+        <ul>
+            <li>pers.</li>
+            <li>Pers.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>collatio, -is vel collectivum, -e</td>
+    <td>
+        <ul>
+            <li>coll.</li>
+            <li>Coll.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Singularis</td>
+    <td>
+        <ul>
+            <li>Sing.</li>
+            <li>Sg.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>versio antiqua</td>
+    <td>
+        <ul>
+            <li>vers. ant.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Formula Confessionis</td>
+    <td>
+        <ul>
+            <li>Form. Conf.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>versio altera</td>
+    <td>
+        <ul>
+            <li>vers. alt.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>construitur cum</td>
+    <td>
+        <ul>
+            <li>c.c.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>edidit</td>
+    <td>
+        <ul>
+            <li>ed.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>status constructus</td>
+    <td>
+        <ul>
+            <li>st. c.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>radix</td>
+    <td>
+        <ul>
+            <li>rad.</li>
+            <li>Rad.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>scilicet</td>
+    <td>
+        <ul>
+            <li>sc.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>cum</td>
+    <td>
+        <ul>
+            <li>c.</li>
+        </ul>
+    </td>
+</tr>
+
+<tr>
+    <td>Vocabularium Aethiopicum, -a -a.</td>
+    <td>
+        <ul>
+            <li>Voc. Ae.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>sequens</td>
+    <td>
+        <ul>
+            <li>seq.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Radices Abbadianae (collectio radicum Geez linguae Mss.).</td>
+    <td>
+        <ul>
+            <li>Rad. Abb.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>lexicon</td>
+    <td>
+        <ul>
+            <li>lex.</li>
+            <li>Lex.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>columna</td>
+    <td>
+        <ul>
+            <li>col.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>oppositum, -o, -nitur</td>
+    <td>
+        <ul>
+            <li>opp.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>pluralis</td>
+    <td>
+        <ul>
+            <li>Pl.</li>
+            <li>pl.</li>
+            <li>Plur.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>quod videas</td>
+    <td>
+        <ul>
+            <li>q.v.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>concretus, e (opp. abstracto)</td>
+    <td>
+        <ul>
+            <li>concr.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>d'Abbadie</td>
+    <td>
+        <ul>
+            <li>Abb.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Novum Testamentum</td>
+    <td>
+        <ul>
+            <li>N.T.</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>Epilogus</td>
+    <td>
+        <ul>
+            <li>Epil.</li>
+        </ul>
+    </td>
+</tr>
+    </tbody>
+</table>
+                            </div>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Grammar Group</a>
+                    </td>
+            
+                <td>[[anything you put here]]</td>
+                <td>anything you put here, transformed as described here.</td>
+                <td>
+                            <pre>&lt;gramGrp&gt;anything you put here&lt;/gramGrp&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gramGrp.html">TEI element gramGrp</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>There is no need to nest these. Use it just to group information.</li>
+                                <li>See below case, gender and PoS.</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Translation</a>
+                    </td>
+            
+                <td>&gt;la&gt;mater&gt;</td>
+                <td>
+                            <i>
+                                <a target="_blank" href="http://www.perseus.tufts.edu/hopper/morph?l=mater&amp;la=la">translation</a>
+                            </i>
+                        </td>
+                <td>
+                            <pre>&lt;cit type="translation" xml:lang="en"&gt;&lt;quote&gt;mater&lt;/quote&gt;&lt;/cit&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>PLEASE DO NOT CONFUSE WITH THE ENCODING OF TEXT WHICH IS SIMPLY IN ANOTHER LANGUAGE IN THE ENTRY, WITH RESPECT TO THE MAIN LANGUAGE OF THE MEANING!!!!</li>
+                                <li>Remember to specify the language according to  
+                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
+                    code for languages.</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Transcription</a>
+                    </td>
+            
+                <td>&gt;gez!ʾangotay&gt;</td>
+                <td>
+                          <b> transcription</b>
+                        </td>
+                <td>
+                            <pre>&lt;cit type="transcription" xml:lang="gez"&gt;&lt;quote&gt;ʾangotay&lt;/quote&gt;&lt;/cit&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>Remember to specify the language according to  
+                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
+                    code for languages.</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Language</a>
+                    </td>
+            
+                <td>\*syr*ܐܰܘܓܺܝ\*</td>
+                <td>ܐܰܘܓܺܝ</td>
+                <td>
+                            <pre>&lt;foreign xml:lang="syr"&gt;ܐܰܘܓܺܝ&lt;/foreign&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-foreign.html">TEI element foreign</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>This is fine for anything which is not a translation. it simply says: here is a piece 
+                                of text in another language.</li>
+                                <li>Notice, the app will know that this is in Syriac.</li>
+                                <li>Remember to specify the language according to  
+                    the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
+                    code for languages.</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Reference</a>
+                    </td>
+            
+                <td>*Matth.|1.1*</td>
+                <td>
+                            <a ref="Matth.1,1" data-toggle="tooltip" title="" data-original-title="Matthaei Evangelium.">Matth. 1,1</a>
+                    <a class="reference" data-ref="Matth.1,1" data-bmid="LIT1558Matthew" data-value="LIT1558Matthew/1/1">
+                    <i class="fa fa-file-text-o" aria-hidden="true"/>
+                            </a>
+                    </td>
+                <td>
+                            <pre>&lt;ref cRef="Matth." loc="1.1"&gt;Matth. 1.1&lt;/ref&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>Eventually, if there is a text, you will see in the popup the line(s) you are quoting.</li>
+                                <li>you might find also this notation *Kuf. |35*p.|, this is for where a unit is specified by Dillmann.</li>
+                                <li>If there is no exact passage, please leave the second part of the notation empy. e.g. *Kuf.|*</li>
+                                <li>A reference SHOULD NOT contain an abbreviation, it is in fact already, and the expanded form should be registered as well in the abbreviations list.</li>
+                                <li>Parts of works for which there is an abbreviation should use that. *Asc. Jes.  ed. Laur.|78*p.| is ok. ((ho.)) Theodoti Ancyr. in *Cyr.|102*f.| because the work cited here  is the one abbreviated by Cyr. which contains the ho. Theodoti Ancyr. which does not have an id and a canonical abbreviation </li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>no button here</td>
+                <td>{'|{Dil.1234}|'}</td>
+                <td>
+                            <i class="fa fa-columns" aria-hidden="true"/>n. 1327 </td>
+                <td>
+                            <pre>&lt;cb n="1327"/&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cb.html">TEI element cb</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>Unless there is something to fix, it is very unlikely that you are going to use this</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>no button here</td>
+                <td>{'{Dil.1234}'}</td>
+                <td>
+                            <a href="#" class="internalLink" data-value="c1327">1327 </a>
+                    </td>
+                <td>
+                            <pre>&lt;ref target="#1327"/&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>You can use this to make a simple column reference into a link to that column, which is useful if the entry starts several columns before.</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Bibliography</a>
+                    </td>
+            
+                <td>[§,73]bm:Dillmann1857Gramm
+                <a class="btn btn-primary" data-toggle="collapse" href="#bibliopointers" role="button" aria-expanded="false" aria-controls="bibliopointers">Open list of tags already used</a>
+  
+                <ul class="collapse" id="bibliopointers">
+    <li>bm:DaBassano1918DictTgr</li>
+    <li>bm:Yohannis1955TigrAmhDict</li>
+    <li>bm:Guidi1901Vocabolario</li>
+    <li>bm:Kane1990DictAmhVol2</li>
+    <li>bm:Lusini1996AbsadiII</li>
+    <li>bm:Ludolf1691Commentarius</li>
+    <li>bm:Dillmann1857Gramm</li>
+    <li>bm:daMag1953</li>
+    <li>bm:Bezold1905KebraN</li>
+    <li>bm:Getatchew2011EstifanosTr</li>
+    <li>bm:Marrassini1993AmdaSeyon</li>
+    <li>bm:Tedros2009TawaldaMadehnVittore</li>
+    <li>bm:Ludolf1691Commentariusp</li>
+    <li>bm:Leslau1987dic</li>
+    <li>bm:leslau1987dic</li>
+    <li>bm:Dillmann1865Lexicon</li>
+    <li>bm:Missal1995</li>
+    <li>bm:Kane1990DictAmhVol1</li>
+    <li>bm:Perruchon1893Zarayaeqob</li>
+    <li>bm:Wendt1963MiladT</li>
+    <li>bm:Getachew1991EpistleOfHumanityV</li>
+    <li>bm:Kane2000DictTgrVol1</li>
+    <li>bm:Getachew2006EstifanosT</li>
+    <li>bm:Getachew2006EstifanosV</li>
+    <li>bm:Getatchew2011EstifanosEd</li>
+    <li>bm:Getachew2005Gwǝnṣ</li>
+    <li>bm:Kur1968SamuelT</li>
+    <li>bm:ContiRossini1910Abakerazun</li>
+    <li>bm:Getachew2006Estifanos</li>
+    <li>bm:Caquot1961EzraGundaGunde</li>
+    <li>bm:Ludolf1691Commentariusad</li>
+    <li>bm:ContiRossini1964BerhanT</li>
+    <li>bm:ContiRossini1965BerhanITrad</li>
+    <li>bm:Ludolf1681Historia</li>
+    <li>bm:MunzingeriVocabTigr</li>
+    <li>bm:Raineri2000Comb</li>
+    <li>bm:Tedros2007Demyanos</li>
+    <li>bm:Ludolf1691Commentariushist</li>
+    <li>bm:Marrassini1983Matyas</li>
+    <li>bm:Perruchon1889Amda</li>
+    <li>bm:Lusini1996Absadi</li>
+    <li>bm:Ludolf1681HistoriaAe</li>
+    <li>bm:Ludolf1681HistoriaAeth</li>
+    <li>bm:Perier1912Canons</li>
+    <li>bm:Dillmann1866Chrestomathia</li>
+    <li>bm:ContiRossini1937YafqerannaEgzi</li>
+    <li>bm:Ricci1954Enbaqom</li>
+    <li>bm:Ricci1955Enbaqom</li>
+    <li>bm:Ludolf1681Historiacomm</li>
+    <li>bm:Ludolf1681HistoriaI</li>
+    <li>bm:Turaev1902Filipos</li>
+    <li>bm:Wendt1963MiladV</li>
+    <li>bm:KidaneWaldGeezGramDict</li>
+    <li>bm:AlaqaTayya1965MSawasew</li>
+    <li>bm:Girmatsion1983DictTgr</li>
+    <li>bm:Marrassini1986IyasusMoa</li>
+    <li>bm:Bassano1922BiluyKidan</li>
+    <li>bm:Colin2002Bsoy</li>
+    <li>bm:Strelcyn1973Medecine</li>
+    <li>bm:Grebaut1952SuppLexicon</li>
+    <li>bm:Cerulli1956KrestosSamraV</li>
+    <li>bm:Cerulli1956KrestosSamraT</li>
+    <li>bm:ContiRossini1938BurukAmlak</li>
+</ul>
+                </td>
+                <td>
+                            <a class="Zotero Zotero-citation" data-value="bm:Dillmann1857Gramm" href="https://www.zotero.org/groups/ethiostudies/items/tag/bm:Dillmann1857Gramm">Dillmann 1857</a>
+                        </td>
+                <td>
+                            <pre>&lt;bibl&gt;&lt;ptr target="bm:Dillmann1857Gramm"/&gt;&lt;citedRange unit="paragraph"&gt;73&lt;/citedRange&gt;&lt;/bibl&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-bibl.html">TEI element bibl</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>The bm: part must be a <a href="https://zotero.org/groups/358366/">unique tag in the Ethio Studies Group Zotero</a> Library! </li>
+                                <li>If you only want to give a reference to a work omit the [] part, simply add bm:Dillmann1857Gramm</li>
+                                <li>p., s., n. $ before comma will be normalized to the allowed values of citedRange page, item and paragraph respectively.</li>
+                                <li>for pages, lines and line ranges use this synthax: [page, 50:3; 51:3-4; 52:6] where a sequence of citation ranges is separated with semicolumn, lines and pages are separated by column and ranges are indicated with hyphen.</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">PoS</a>
+                    </td>
+            
+                <td>+refl.+</td>
+                <td>
+                            <a data-toggle="tooltip" data-title="reflexivum" data-original-title="" title="">refl.</a>
+                        </td>
+                <td>
+                            <pre>&lt;pos expand="reflexivum"&gt;refl.&lt;/pos&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pos.html">TEI element pos</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
+                            </ul>
+                            <a class="btn btn-primary" data-toggle="collapse" href="#posvalues" role="button" aria-expanded="false" aria-controls="posvalues">Open list of available PoS values</a>
+  
+                            <table class="collapse table table-responsive" id="posvalues" style="border: 1px solid black; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="border: 1px solid black;">abbreviation</th>
+                                    <th style="border: 1px solid black;">value in Dillmann</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border: 1px solid black;">v.</td>
+                                    <td style="border: 1px solid black;">verbum</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black;">abstr.</td>
+                                    <td style="border: 1px solid black;">abstractum, -e</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">adv.</td>
+                                    <td style="border: 1px solid black;">adverbium, adverbialiter</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">Refl.</td>
+                                    <td style="border: 1px solid black;">reflexivum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">refl.</td>
+                                    <td style="border: 1px solid black;">reflexivum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">Infin. nom.</td>
+                                    <td style="border: 1px solid black;">infinitivus nominalis,
+                            nominascens</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">peregr. n.</td>
+                                    <td style="border: 1px solid black;">nomen peregrinum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">Impf.</td>
+                                    <td style="border: 1px solid black;">imperfectum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">Subst.</td>
+                                    <td style="border: 1px solid black;">Substantivum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">Infin. verb.</td>
+                                    <td style="border: 1px solid black;">infinitivus
+                            verbalis</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">praep.</td>
+                                    <td style="border: 1px solid black;">praepositio</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">pron. suff.</td>
+                                    <td style="border: 1px solid black;">pronomen suffixum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">pron.</td>
+                                    <td style="border: 1px solid black;">pronomen</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">Pron.</td>
+                                    <td style="border: 1px solid black;">pronomen</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">Subj.</td>
+                                    <td style="border: 1px solid black;">Subjunctivus</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">part.</td>
+                                    <td style="border: 1px solid black;">participium</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">n. act.</td>
+                                    <td style="border: 1px solid black;">nomen actionis</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">n. pr.</td>
+                                    <td style="border: 1px solid black;">nomen proprium</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">n. ag.</td>
+                                    <td style="border: 1px solid black;">nomen agentis</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">n.ag.</td>
+                                    <td style="border: 1px solid black;">nomen agentis</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">n.</td>
+                                    <td style="border: 1px solid black;">nomen</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">nom.</td>
+                                    <td style="border: 1px solid black;">nomen</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">pass.</td>
+                                    <td style="border: 1px solid black;">passivum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">adj.</td>
+                                    <td style="border: 1px solid black;">adjectivum</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">absol.</td>
+                                    <td style="border: 1px solid black;">absolute</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">abs.</td>
+                                    <td style="border: 1px solid black;">absolute</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">num.</td>
+                                    <td style="border: 1px solid black;">numerale</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">denom.</td>
+                                    <td style="border: 1px solid black;">denominates</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">conj.</td>
+                                    <td style="border: 1px solid black;">conjunctio</td>
+                                </tr>
+                        <tr>
+                                    <td style="border: 1px solid black;">rel.</td>
+                                    <td style="border: 1px solid black;">relativum</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Case</a>
+                    </td>
+            
+                <td>@acc.@</td>
+                <td>
+                            <a data-toggle="tooltip" data-title="accusativus">Acc.</a>
+                        </td>
+                <td>
+                            <pre>&lt;case value="accusativus"&gt;acc.&lt;/case&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-case.html">TEI element case</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">Gender</a>
+                    </td>
+            
+                <td>ˆfem.ˆ</td>
+                <td>
+                            <a data-toggle="tooltip" data-title="femininus">fem.</a>
+                        </td>
+                <td>
+                            <pre>&lt;gen value="femininus"&gt;fem.&lt;/gen&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gen.html">TEI element gen</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
+                            </ul>
+                        </td>
+            </tr>
+            
+            <tr>
+            <td>
+                        <a href="#" class="btn btn-primary btn-sm">ND</a>
+                    </td>
+            
+                <td>{'{ND}'}</td>
+                <td>
+                        <a href="#" class="btn btn-success">New</a>
+                    </td>
+                <td>
+                            <pre>&lt;nd/&gt;</pre>
+                        </td>
+                <td>
+                            This is an elment not defined by TEI, but added to the schem from TraCES
+                        </td>
+                <td>
+                            <ul>
+                                <li>This should be in any entry which is not in Dillmann. You can click the button to add it.</li>
+                            </ul>
+                        </td>
+            </tr>
+            
+            <tr>
+            <td>no button</td>
+            
+                <td>!!I am a generic note!!</td>
+                <td>I am a generic note</td>
+                <td>
+                            <pre>&lt;note&gt;I am a generic note&lt;/note&gt;</pre>
+                        </td>
+                <td>
+                            <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-note.html">TEI element note</a>
+                        </td>
+                <td>
+                            <ul>
+                                <li>Do you really need this? I doubt, but there are things there which are not better specified. Perhaps specify them in one of the above or suggest something new!</li>
+                            </ul>
+                        </td>
+            </tr>
+            <tr>
+                    <td>VALUES </td>
+                    <td>Places</td>
+                    <td colspan="4"> <a class="btn btn-primary" data-toggle="collapse" href="#placeTypes" role="button" aria-expanded="false" aria-controls="placeTypes">Open list of place types in BM</a>
+  
+            <ul class="collapse" id="placeTypes">
+                            <li>
+                                <a href="/authority-files/list?keyword=tabiya">ṭābiyā</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=dabr">dabr</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=gadam">gadam</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=gatar">gaṭar</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=warada">waradā</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=settlement">settlement</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=archaeologicalSite">Archaeological Site</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=shrine">shrine</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=town">town</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=region">region</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=monastery">monastery</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=church">Church</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=lake">lake</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=area">area</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=river">river</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=mountain">mountain</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=mosque">mosque</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=district">district</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=valley">valley</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=state">state</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=port">port</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=religiousSite">religious Site</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=zone">zone</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=country">country</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=qushat">qušat</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=pass">pass</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=island">island</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=cataract">cataract</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=kingdom">kingdom</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=spring">spring</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=plateau">plateau</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=forest">forest</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=administrativeUnit">Administrative Unit</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=emirate">emirate</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=plain">plain</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=rockSite">rockSite</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=volcano">volcano</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=city">city</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=falls">falls</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=amba">ʾambā</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=sultanate">sultanate</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=sea">sea</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=cape">cape</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=chapel">chapel</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=zoba">zoba</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=wadi">wādī</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=dam">dam</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=quarter">quarter</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=well">well</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=awragga">ʾawraǧǧā</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=site">site</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=katama">katamā</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=oasis">oasis</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=gorge">gorge</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=strait">strait</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=station">station</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=post">post</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=market">market</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=temple">temple</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=planet">planet</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=fort">fort</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=farm">farm</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=desert">desert</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=cave">cave</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=gulf">gulf</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=qabale">qabale</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=peninsula">peninsula</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=castle">castle</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=bay">bay</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=academicInstitution">Academic Institution</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=library">library</a>
+                            </li>
+                            <li>
+                                <a href="/authority-files/list?keyword=museum">museum</a>
+                            </li>
+                        </ul>
+            </td>
+            <td/>
+            <td/>
+                    <td/>
+                </tr>
+            <tr>
+                    <td>VALUES </td>
+                    <td>Person (occupation)</td>
+                    <td> 
+            <a class="btn btn-primary" data-toggle="collapse" href="#persTypes" role="button" aria-expanded="false" aria-controls="persTypes">Open list of place types in BM</a>
+  
+            <ul class="collapse" id="persTypes">
+            <li>military</li>
+            <li>academic</li>
+            <li>political</li>
+            <li>literary</li>
+            <li>ecclesiastic</li>
+            <li>medical</li>
+            <li>art</li>
+            </ul>
+            </td>
+            <td>Person (role)</td>
+            <td> 
+            <a class="btn btn-primary" data-toggle="collapse" href="#persRoles" role="button" aria-expanded="false" aria-controls="persRoles">Open list of place types in BM</a>
+  
+            <ul class="collapse" id="persRoles">
+            <li>function</li>
+            <li>title</li>
+            <li>office</li>
+            <li>rank</li>
+            </ul>
+            </td>
+            <td/>
+            </tr>
+        </tbody>
+    </table>
+        </div>
+</div>

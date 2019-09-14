@@ -48,6 +48,7 @@ $(document).on('ready', function () {
                         
                         
                         var range = $(el).data('range');
+                        //console.log(range)
                         // the range
                         
                         citationrange = '';
@@ -66,75 +67,30 @@ $(document).on('ready', function () {
                     
                     $(el).attr("href", bareurl);
                     //add the url to the element directly
+                    var ZotCitparam = '&include=citation&style=hiob-ludolf-centre-for-ethiopian-studies'
                     
-                    var names =[];
-                    var editors =[];
-                    var contributors =[];
-                    var citation = "";
-                    // console.log(d["0"].data.creators)
-                    $.each(d["0"].data.creators, function (i, item) {
-                        // for each creator in the Zotero data store the lastName in the variable
-                      // console.log(item.creatorType)
-                        if (item.creatorType = 'author') {
-                            var surname = item.lastName
-                            
-                            names.push(surname)
-                        } else {
-                            if (item.creatorType = 'editor') {
-                                var surname = item.lastName
-                                editors.push(surname)
-                          //      console.log(editors)
-                             //   console.log(editors.length)
-                            } else {
-                                if (item.creatorType = 'contributor') {
-                                var surname = item.lastName
-                                
-                                contributors.push(surname)
-                            } else {
-                                names.push('no Author or Editor')
-                            }
-                            }
-                        }
-                    });
-                    if (names.length < 0) {
-                    // console.log('NO AUTHORS, THERE MUST BE EDITORS!')
-                        // decide on the type and number of editors authors. if there are no authors, then deal with editors.
-                        if (editors.length = 1) {
-                         // console.log('editors equal to 2')
-                            citation += editors.join(' and ') + ' '
-                        }
-                        else if (editors.length = 0) {
-                        // console.log('1 editor')
-                            citation += editors + ' '
-                        }
-                        else {
-                        // console.log('1 editor')
-                            citation += editors.join(', ') + ' '
-                        }
-                    } else if (names.length = 1) {
-                        // otherways there are authors, if they are two join with and if more then ,
-                        citation += names.join(' and ') + ' '
-                    } else {
-                        citation += names.join(', ') + ' '
-                    }
-                    
-                    citation += d[ "0"].data.date // add date
-                    
-                    var unit = $(el).data('unit');
-                        //the unit of the range
+                       
                         
                         
-                        var range = $(el).data('range');
+                    $.getJSON(apiurl + tag + ZotCitparam, function (d) {
+                        //console.log(d["0"].citation)
+                       var range = $(el).data('range');
+                        //console.log(range)
                         // the range
                         
                         citationrange = '';
                         if ( $(el).attr('data-range')) {
-                            citationrange += ', ' + unit + ' ' + range
+                            citationrange += ', ' + range
                         } else {
                         };
-                    
-                    $(el).html(citation + citationrange);
+                    $(el).html(d["0"].citation + citationrange);
                     //console.log(data[ "0"].data);
+                   
+                   });
+                    
+                  
+                    
+                   
                 };
             }
         });

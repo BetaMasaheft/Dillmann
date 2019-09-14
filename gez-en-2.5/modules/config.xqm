@@ -170,7 +170,7 @@ declare function config:app-info($node as node(), $model as map(*)) {
 
 declare function config:get-data-dir() as xs:string? {
     try {
-        let $request := <http:request http-version="1.1" method="GET" href="https://betamasaheft.aai.uni-hamburg.de:8080/{request:get-context-path()}/status?c=disk"/>
+        let $request := <http:request http-version="1.1" method="GET" href="http://localhost:8080/{request:get-context-path()}/status?c=disk"/>
         let $response := http:send-request($request)
         return
             if ($response[1]/@status = "200") then

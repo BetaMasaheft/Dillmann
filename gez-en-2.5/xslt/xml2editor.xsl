@@ -31,6 +31,7 @@
     <xsl:template match="t:quote">
         <xsl:apply-templates/>
     </xsl:template>
+    
     <xsl:template match="t:sense">
         <xsl:variable name="sectionName">
             <xsl:choose>
@@ -62,7 +63,8 @@
         <xsl:text>*</xsl:text>
         <xsl:value-of select="normalize-space(.)"/> <xsl:text>\*</xsl:text>
     </xsl:template>
-    <xsl:template match="t:ref">
+    
+    <xsl:template match="t:ref[not(@type)][not(@target)]">
         <xsl:text>*</xsl:text>
         <xsl:value-of select="@cRef"/>
         <xsl:text>|</xsl:text>
@@ -79,10 +81,10 @@
         </xsl:if>
         
     </xsl:template>
-    <xsl:template match="t:ref[@target]">
+    <xsl:template match="t:ref[@target][not(@type)]">
         <xsl:value-of select="concat('{DiL.', substring-after(@target, '#c'), '}')"/>
     </xsl:template>
-    <!--<xsl:template match="t:ref[@target][preceding-sibling::t:lbl[@expand='columna']]">
+    <!--<xsl:template match="t:ref[@target][not(@type)][preceding-sibling::t:lbl[@expand='columna']]">
         <xsl:value-of select="."/>
     </xsl:template>-->
     <xsl:template match="t:cb">
@@ -133,6 +135,12 @@
         <xsl:value-of select="normalize-space(.)"/>
         <xsl:text>ˆ</xsl:text>
     </xsl:template>
+    
+    <xsl:template match="t:note[t:ref]">
+        <xsl:text>{</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>}</xsl:text>
+    </xsl:template>
     <xsl:template match="t:note">
         <xsl:text>!!</xsl:text>
         <xsl:value-of select="normalize-space(.)"/>
@@ -140,5 +148,17 @@
     </xsl:template>
     <xsl:template match="t:nd">
         <xsl:text>{ND}</xsl:text>
+    </xsl:template>
+    <xsl:template match="t:ref[@type='external'][@target][not(parent::t:bibl)]">
+        <xsl:text>(</xsl:text>
+        <xsl:apply-templates/>
+        <xsl:text>)[</xsl:text>
+        <xsl:value-of select="@target"/>
+        <xsl:text>]</xsl:text>
+    </xsl:template>
+    <xsl:template match="t:ref[@type='BM'][@target][not(parent::t:bibl)]">
+        <xsl:text>(BM)[</xsl:text>
+        <xsl:value-of select="@target"/>
+        <xsl:text>]</xsl:text>
     </xsl:template>
 </xsl:stylesheet>

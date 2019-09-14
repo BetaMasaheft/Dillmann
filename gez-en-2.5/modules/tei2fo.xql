@@ -304,21 +304,21 @@ declare function fo:tei2fo($nodes as node()*) {
             case element(i)
                 return
                     <fo:inline
-                        font-style="italic">{$node/text()}</fo:inline>
-                        case element(span)
+                        font-style="italic">{fo:tei2fo($node/node())}</fo:inline>
+            case element(span)
                 return
-                    <fo:inline>{$node/text()}</fo:inline>
+                    <fo:inline>{if($node/@style[.="font-style:normal;"]) then attribute font-style {'normal'} else ()}{$node/text()}</fo:inline>
             
             case element(tei:TEI) return
                 fo:tei2fo($node/tei:text)
             case element(tei:text) return
                 fo:tei2fo($node//tei:body)
             case element(tei:div) return
-                    <fo:block id="{generate-id($node)}" font-family="Noto">
+                    <fo:block id="{generate-id($node)}" font-family="Ludolfus">
                         {fo:tei2fo($node/node())}
                     </fo:block>
                     case element(tei:entry) return
-                    <fo:block font-family="Noto" font-size="12pt" text-indent="1cm">
+                    <fo:block font-family="Ludolfus" font-size="12pt" text-indent="1cm">
                     {fo:tei2fo($node/node())}
                     </fo:block>
             case element(tei:form) return 
@@ -335,7 +335,8 @@ declare function fo:tei2fo($nodes as node()*) {
             case element(tei:cit) return
             <fo:inline font-style="italic" >{fo:tei2fo($node/node())} </fo:inline>
             case element(tei:ref) return
-            if($node/@target) then (<fo:inline >{'{DiL'|| replace($node/@target, '#c', '.') || '}'} </fo:inline>)
+            if($node/@type = 'external') then (<fo:basic-link external-destination="{$node/@target}">{fo:tei2fo($node/node())} </fo:basic-link>)
+            else if($node/@target) then (<fo:inline >{'{DiL'|| replace($node/@target, '#c', '.') || '}'} </fo:inline>)
             else fo:tei2fo($node/node())
             case element(tei:bibl) return
             <fo:inline >{fo:zoteroCit($node/tei:ptr/@target)}{if($node/tei:citedRange) then ', ' || $node/tei:citedRange/text() else ()}</fo:inline>
@@ -361,7 +362,7 @@ declare function fo:tei2fo($nodes as node()*) {
 };
 
 declare function fo:Zotero($ZoteroUniqueBMtag as xs:string) {
-    let $xml-url := concat('https://api.zotero.org/groups/358366/items?tag=', $ZoteroUniqueBMtag, '&amp;format=bib&amp;style=hiob-ludolf-centre-for-ethiopian-studies&amp;linkwrap=1')
+    let $xml-url := concat('https://api.zotero.org/groups/358366/items?tag=', $ZoteroUniqueBMtag, '&amp;format=bib&amp;locale=en-GB&amp;style=hiob-ludolf-centre-for-ethiopian-studies&amp;linkwrap=1')
     let $data := httpclient:get(xs:anyURI($xml-url), true(), <Headers/>)
     let $datawithlink := fo:tei2fo($data//div[@class = 'csl-entry'])
     return
@@ -369,7 +370,7 @@ declare function fo:Zotero($ZoteroUniqueBMtag as xs:string) {
 };
 
 declare function fo:zoteroCit($ZoteroUniqueBMtag as xs:string){
-let $xml-url := concat('https://api.zotero.org/groups/358366/items?&amp;tag=', $ZoteroUniqueBMtag, '&amp;include=citation&amp;style=hiob-ludolf-centre-for-ethiopian-studies')
+let $xml-url := concat('https://api.zotero.org/groups/358366/items?&amp;tag=', $ZoteroUniqueBMtag, '&amp;include=citation&amp;locale=en-GB&amp;style=hiob-ludolf-centre-for-ethiopian-studies')
 
 let $req :=
         <http:request

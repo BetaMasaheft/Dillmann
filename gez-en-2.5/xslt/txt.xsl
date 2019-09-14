@@ -34,13 +34,13 @@
     <xsl:template match="t:foreign">
         <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
-    <xsl:template match="t:ref">
+    <xsl:template match="t:ref[not(@type)][not(@target)]">
         <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
-    <xsl:template match="t:ref[@target][not(preceding-sibling::t:lbl[@expand='columna'])]">
+    <xsl:template match="t:ref[@target][not(@type)][not(preceding-sibling::t:lbl[@expand='columna'])]">
         <xsl:value-of select="concat('{DiL.', substring-after(@target, '#c'), '}')"/>
     </xsl:template>
-    <xsl:template match="t:ref[@target][preceding-sibling::t:lbl[@expand='columna']]">
+    <xsl:template match="t:ref[@target][not(@type)][preceding-sibling::t:lbl[@expand='columna']]">
         <xsl:value-of select="."/>
     </xsl:template>
     <xsl:template match="t:cb">
@@ -63,5 +63,17 @@
     </xsl:template>
     <xsl:template match="t:case">
         <xsl:value-of select="normalize-space(.)"/>
+    </xsl:template>
+    <xsl:template match="t:ref[@type='external'][@target][not(parent::t:bibl)]">
+        <xsl:text>(</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>)[</xsl:text>
+        <xsl:value-of select="@target"/>
+        <xsl:text>]</xsl:text>
+    </xsl:template>
+    <xsl:template match="t:ref[@type='BM'][@target][not(parent::t:bibl)]">
+        <xsl:text>(BM)[</xsl:text>
+        <xsl:value-of select="@target"/>
+        <xsl:text>]</xsl:text>
     </xsl:template>
 </xsl:stylesheet>

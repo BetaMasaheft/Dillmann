@@ -16,7 +16,7 @@ $(document).ready(function () {
         if (x < max_fields) {
             //max input box allowed
             x++; //text box increment
-            var language = prompt("Please enter the language ISO 639-1 id (e.g. de it es fr...)", "de");
+            var language = prompt("Please enter the language ISO 639-1 id (e.g. de it es fr...)", "en");
             var idlanguage = $('textarea#sense' + language)
             if ($(idlanguage).length == 0) { if (language != null) {
                     var divgroups = "<div> \
@@ -59,7 +59,7 @@ $(document).ready(function () {
                 }
             }
         
-             else {   console.log(idlanguage);
+             else {   //console.log(idlanguage);
                 alert('a sense with this language already exists')
             } 
         }
