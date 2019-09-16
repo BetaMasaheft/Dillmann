@@ -2,7 +2,7 @@ xquery version "1.0";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
-let $data-collection := '/db/apps/gez-en/data/'
+let $data-collection := '/db/apps/DillmannData'
 
 let $start-time := util:system-time()
 let $reindex := xmldb:reindex($data-collection)

@@ -286,7 +286,7 @@ let $url :=  replace(request:get-uri(), '/exist/apps/gez-en', '/Dillmann')
 (:the forms in the advanced search. this are called by a ajax call requesting as.html as a part of the html output. 
 Jquery cares also about the loading it once only and then simply hiding or showing it. :)
  declare function app:forms($node as element(), $model as map(*)){
- let $data-collection := '/db/apps/gez-en/data'
+ let $data-collection := '/db/apps/DillmannData'
     let $collection :=  $config:collection-root
    
 return (
@@ -369,7 +369,7 @@ return (
 (:     if a parameter letter is given, then construct xpath to select only the elements whose content starts with that letter. 
 The letters are available as buttons on the side bar and when clicked will reload the page with that parameter. :)
     let $starts-with := if($letter) then ('[starts-with(.,"' || $letter || '")]') else ()
-    let $data-collection := '/db/apps/gez-en/data'
+    let $data-collection := '/db/apps/DillmannData'
     let $collection :=  $config:collection-root
 (:    selects the cit elements, which contain translations and output distinct values of the language for the side menu:)
     let $langs := if($mode='foreign') then (distinct-values($collection//tei:foreign/@xml:lang)) else distinct-values($collection//tei:cit/@xml:lang)
@@ -455,7 +455,7 @@ The letters are available as buttons on the side bar and when clicked will reloa
  
 (: as per requirement it is possible to transform the entire data in a huge txt file. this is stored in the app and then made available for download. the request takes some time...:)
  declare function app:download($node as element(), $model as map(*)){
-   let $data-collection := '/db/apps/gez-en/data/'
+   let $data-collection := '/db/apps/DillmannData/'
    let $txtarchive := '/db/apps/gez-en/txt/'
    (: store the filename :)
    let $filename := concat('Dillmann_Lexicon_', format-dateTime(current-dateTime(), "[Y,4][M,2][D,2][H01][m01][s01]"), '.txt')
@@ -1056,7 +1056,7 @@ else (<div class="well">Search and click on a search result to see it here. You 
 declare  %templates:wrap function app:editedItem($node as node()*, $model as map(*)){
 let $new := request:get-parameter('new', '')
 let $id := request:get-parameter('id', '')
-let $data-collection := '/db/apps/gez-en/data/'
+let $data-collection := '/db/apps/DillmannData/'
 
 let $file := if ($new='true') then 
         'new-instance.xml'
@@ -1282,7 +1282,7 @@ let $file := $model('file')
 let $id := $model('id')
 let $msg := request:get-parameter('msg', ())
 let $title := 'Update Confirmation'
-let $data-collection := '/db/apps/gez-en/data'
+let $data-collection := '/db/apps/DillmannData'
 let $record :=  $config:collection-root//id($id)
 let $rootitem := root($record)//tei:TEI
 let $backup-collection := '/db/apps/gez-en/EditorBackups/'
@@ -1664,7 +1664,7 @@ $q as xs:string*){
 let $parameterslist := request:get-parameter-names()
 return
 if(empty($parameterslist)) then () else
-let $data-collection := '/db/apps/gez-en/data'
+let $data-collection := '/db/apps/DillmannData'
 let $coll :=  $config:collection-root
 let $l := app:buildqueryparts('languages', "xml:lang", 'notlang', 'foreign')
 
@@ -1712,7 +1712,7 @@ let $g := app:buildqueryparts('gender', "value", 'notgender', 'gen')
 
 let $erw := $l || $c || $p || $lbl || $g 
 
-let $data-collection := '/db/apps/gez-en/data'
+let $data-collection := '/db/apps/DillmannData'
 let $coll := $config:collection-root
 return
 

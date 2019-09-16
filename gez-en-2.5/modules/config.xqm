@@ -91,7 +91,7 @@ declare variable $config:app-root :=
         substring-before($modulePath, "/modules")
 ;
 
-declare variable $config:data-root := $config:app-root || "/data";
+declare variable $config:data-root := "/db/apps/DillmannData";
 
 declare variable $config:collection-root := collection($config:data-root);
 

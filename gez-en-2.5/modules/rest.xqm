@@ -76,7 +76,7 @@ declare
 function api:searchDillmann($element as xs:string?,
 $q as xs:string*) {
     if($q ='') then () else
-    let $data-collection := '/db/apps/gez-en/data'
+    let $data-collection := '/db/apps/DillmannData'
     
     let $eval-string := concat("$config:collection-root//tei:"
     , $element, "[ft:query(*,'", $q, "')]")
@@ -197,7 +197,7 @@ let $item := root( $config:collection-root//id($lemma))
 return
 if(exists($item)) then
 ($config:response200XML,
-    let $data-collection := '/db/apps/gez-en/data/'
+    let $data-collection := '/db/apps/DillmannData/'
    return
     $config:collection-root//id($lemma)
   ) else ($config:response400, <info>{$lemma || 'is not a lemma unique id of any entry.'}</info>
