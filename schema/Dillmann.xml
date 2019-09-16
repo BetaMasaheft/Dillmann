@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Dillmann lexicon schema</title>
+                <author xml:id="PL">Pietro Liuzzo</author>
+            </titleStmt>
+            <publicationStmt>
+                <p>Released under GNU GPL 3.0</p>
+            </publicationStmt>
+            <sourceDesc>
+                <p>created electronically</p>
+            </sourceDesc>
+        </fileDesc>
+        <revisionDesc>
+            <change who="PL" when="2017-05-03">generated first version of the ODD from
+                requirements</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <front>
+            <divGen type="toc"/>
+        </front>
+        <body>
+            <schemaSpec ident="tei-dillmann" docLang="en" prefix="tei_" start="TEI" xml:lang="en" source="tei:3.2.0">
+
+                <!--       MODULES USED BY THE Beta maṣāḥǝft: Manuscripts of Ethiopia and Eritrea SCHEMA  
+                the @source ties our current schema to the version 3.2.0 of TEI
+                -->
+                <moduleRef key="core"/>
+                <moduleRef key="tei"/>
+                <moduleRef key="header"/>
+                <moduleRef key="textstructure"/>
+                <moduleRef key="dictionaries"/>
+                <moduleRef key="linking"/>
+                
+                <elementSpec ident="ref" module="core" mode="change">
+                    <attList>
+                        <attDef ident="loc" mode="add" usage="opt">
+                            <valList type="open"/>
+                        </attDef>
+                    </attList>
+                </elementSpec>
+                
+                <elementSpec ident="sense" module="dictionaries" mode="change">
+                 
+                    <content>
+                        <alternate minOccurs="0" maxOccurs="unbounded">
+                            <textNode/>
+                            <classRef key="model.gLike"/>
+                            <elementRef key="sense"/>
+                            <elementRef key="lbl"/>
+                            <classRef key="model.entryPart.top"/>
+                            <classRef key="model.entryPart"/>
+                            <classRef key="model.biblLike"/>
+                            <classRef key="model.phrase"/>
+                            <classRef key="model.global"/>
+                        </alternate>
+                    </content>
+                    <constraintSpec scheme="isoschematron" ident="sense">
+                        <constraint>
+                            <sch:rule context="tei:sense[parent::tei:entry]">
+                                <sch:report test="not(@xml:lang)">The main meaning must have an attribute @xml:lang.</sch:report>
+                            </sch:rule>
+                        </constraint>
+                    </constraintSpec>
+                </elementSpec>
+                
+                <elementSpec ident="note" module="core" mode="change">
+                    <content>
+                        <alternate minOccurs="0" maxOccurs="unbounded">
+                            <textNode/>
+                            <classRef key="model.gLike"/>
+                            <classRef key="model.phrase"/>
+                            <classRef key="model.inter"/>
+                            <classRef key="model.global"/>
+                            <elementRef key="lbl"/>
+                            <classRef key="model.entryPart"/>
+                            <classRef key="model.lLike"/>
+                        </alternate>
+                    </content>
+                </elementSpec>
+                
+                <elementSpec ident="nd" mode="add">
+                    <gloss>Not in Dillmann</gloss>
+                    <desc>is used to mark an entry which has been added and was not originally in Dillmann.</desc>
+                    <classes>
+                        <memberOf key="model.entryPart"/>
+                    </classes>
+                    <content>
+                        <rng:text/>
+                    </content>
+                </elementSpec>
+                
+                
+               
+                
+            </schemaSpec>
+        </body>
+    </text>
+</TEI>
