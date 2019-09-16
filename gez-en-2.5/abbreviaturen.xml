@@ -440,11 +440,19 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Atk. f.</reference>
-        <bmID/>
+        <dillmanExplanation>Chronica Liq. Atqu</dillmanExplanation>
+        <bmID>LIT4864ChronAtqu</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Atq. f.</reference>
-        <bmID/>
+        <dillmanExplanation>Chronica Liq. Atqu</dillmanExplanation>
+        <bmID>LIT4864ChronAtqu</bmID>
+    </abbreviatur>
+    
+    <abbreviatur>
+        <reference>Chr. L. Atq.</reference>
+        <dillmanExplanation>Chronica Liq. Atqu</dillmanExplanation>
+        <bmID>LIT4864ChronAtqu</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Ausg.</reference>

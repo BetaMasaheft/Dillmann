@@ -14,13 +14,13 @@
     <!--<xsl:text> </xsl:text>-->
     <xsl:for-each select="tokenize(normalize-space(.), ' ')">
         <xsl:choose>
-            <xsl:when test=". = 'Hinc'">
+            <xsl:when test=". = 'Hinc' or . = 'hinc'">
                 <span class="HINC">
                     <xsl:value-of select="."/>
                 </span>
             </xsl:when>
             <xsl:otherwise>
-                    <span class="dilEx">
+                    <span class="dilEx word">
                 <xsl:value-of select="."/>
             </span>
             <xsl:text> </xsl:text>
@@ -79,7 +79,8 @@
         <xsl:text> </xsl:text>
         <i>
             <xsl:if test="@xml:lang = 'la'">
-                <xsl:attribute name="class">translationLa</xsl:attribute>
+                <xsl:attribute name="class">translationLa word</xsl:attribute>
+                <xsl:attribute name="lang">la</xsl:attribute>
             </xsl:if>
             <xsl:value-of select="."/>
         </i>
@@ -101,7 +102,7 @@
     
     <xsl:template match="t:foreign">
         <xsl:text> </xsl:text>
-        <span lang="{@xml:lang}">
+        <span lang="{@xml:lang}" class="word">
             
             <xsl:choose>
                 <xsl:when test="@xml:lang = 'ar'">
@@ -200,7 +201,7 @@
                         <xsl:when test="                                      @cRef = 'Jsp.' or                             @cRef = 'Laur.' or                             @cRef = 'Syn.' or                             @cRef = 'Isenb.'                             ">
                             <xsl:text> p. </xsl:text>
                         </xsl:when>
-                        <xsl:when test="                             @cRef = 'Clem.' or                             @cRef = 'Theod.' or                             @cRef = 'Pall.' or                             @cRef = 'Fal.' or                             @cRef = 'Macc.'  or                             @cRef = 'Atq.'  or                             @cRef = 'Kid.'     or                             @cRef = 'Cyr.'  or                             @cRef = 'Genz.'  or                             @cRef = 'Ad.'                         ">
+                        <xsl:when test="                             @cRef = 'Clem.' or                             @cRef = 'Theod.' or                             @cRef = 'Pall.' or                             @cRef = 'Fal.' or                             @cRef = 'Macc.'  or                             @cRef = 'Atq.'  or             @cRef='Chr. L. Atq.' or                @cRef = 'Kid.'     or                             @cRef = 'Cyr.'  or                             @cRef = 'Genz.'  or                             @cRef = 'Ad.'                         ">
                             <xsl:text> f. </xsl:text>
                         </xsl:when>
                         <xsl:otherwise>
