@@ -25,13 +25,15 @@ $("#erweitertesuche").click(function () {
 
 $(document).ready(function () {
     
+    var base = 'https://betamasaheft.eu/'
     $("a.reference").on("click", function () {
         var el = this;
+        
         var reference = $(this).data('value')
         var splitref = reference.split("/");
         var sourceReference = $(this).data('ref')
         var bmid = $(this).data('bmid')
-        var apiDTS = '/api/dts/text/'
+        var apiDTS = base + '/api/dts/text/'
         var result = ""
         
         $.getJSON(apiDTS + reference, function (data) {
@@ -39,7 +41,8 @@ $(document).ready(function () {
             var cit = data[ "0"].citation
             var title = data[ "0"].title
             var text = data[ "0"].text
-            if (data[ "0"].info) { result += '<p>There is no text yet for this passage in Beta maṣāḥǝft.</p><a target="_blank" href="/works/' + bmid + '">See Work record</a>'
+            if (data[ "0"].info) {
+                result += '<p>There is no text yet for this passage in Beta maṣāḥǝft.</p><a target="_blank" href="/works/' + bmid + '">See Work record</a>'
             } else {
                 result += '<p>Text of ' + cit + ' .</p><p>' + text + '</p><a target="_blank" href="/works/' + bmid + '/text?start=' + splitref[1] + '">See full text</a>'
             }
@@ -62,7 +65,7 @@ $(document).ready(function () {
         lemma = $('#lemma').text()
     }
     //console.log(lemma)
-    var apiurl = '/api/kwicsearch?element=ab&element=title&element=q&element=p&element=l&element=incipit&element=explicit&element=colophon&element=summary&element=persName&element=placeName&q='
+    var apiurl = base + '/api/kwicsearch?element=ab&element=title&element=q&element=p&element=l&element=incipit&element=explicit&element=colophon&element=summary&element=persName&element=placeName&q='
     
     var call = apiurl + lemma
     //console.log(call)
@@ -70,17 +73,23 @@ $(document).ready(function () {
     $('#lemma').append('፡')
     $('.navlemma').append('፡')
     $.getJSON(call, function (data) {
-        //console.log(data)
+        console.log(data)
         
         var items =[];
-        
-        if (data.total > 1) {
+        var listitems = data.items
+            var numberofitems = ''
+            if($.isArray(listitems)){numberofitems += listitems.length} else {numberofitems += 1}
+            console.log(numberofitems)
+            
+        if (numberofitems > 1) {
             
             $('#NumOfAtt').text(data.total + ' records contain ');
-            for (var i = 0; i < data.items.length; i++) {
+            
+            for (var i = 0; i < numberofitems ; i++) {
                 
                 var match = data.items[i];
-                
+          console.log(match)      
+          
                 var view = match.text;
                 
                 var id = match.id;
@@ -109,7 +118,7 @@ $(document).ready(function () {
             }).appendTo("#attestations");
         } else {
             
-            if (data.total == 1) {
+            if (numberofitems == 1) {
                 var match = data.items
                 
                 var id = match.id;
