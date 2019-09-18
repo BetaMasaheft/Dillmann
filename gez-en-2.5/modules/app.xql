@@ -508,6 +508,34 @@ return
  declare function app:login(
  $node as element(), 
  $model as map(*)){  
+ if(sm:id()//sm:username/text() = 'guest') then
+ 
+ <div class="w3-dropdown-hover w3-hide-small" id="logging">
+      <button class="w3-button " title="resources">Login <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+      
+	<form method="post" class="w3-container" role="form" 
+	accept-charset="UTF-8" id="login-nav">
+                    <label for="user">User:</label>
+                            <input type="text" name="user" required="required" class="w3-input"/>
+                        
+                        <label for="password">Password:</label>
+                            <input type="password" name="password" class="w3-input"/>
+                        
+                            <button class="w3-button w3-small w3-red" type="submit">Login</button>
+                          		
+                </form>
+                </div>
+                </div>
+                else
+              <form method="post" action="" class="w3-bar-item w3-hide-smal" style="margin:0;padding:0" role="form" accept-charset="UTF-8" id="logout-nav">
+                
+              <button  class=" w3-button w3-red" type="submit">Logout</button>
+              
+              <input value="true" name="logout"  type="hidden"/>
+                        
+              </form>
+ (:
  if(xmldb:get-current-user() = 'guest') then
  <li class="dropdown">
           <a href="#" 
@@ -543,9 +571,9 @@ return
 				
 			</ul>
         </li>
- (: goes with login button, had to put it here to comment it out...
+ (\: goes with login button, had to put it here to comment it out...
 	<a class="btn btn-primary"  href="/Dillmann/createaccount.html">Create a new account</a>
-		:)
+		:\)
                 else
               <li  class="dropdown"> 
               <form method="post" action="" class="navbar-form" role="form" accept-charset="UTF-8" id="logout-nav">
@@ -553,7 +581,7 @@ return
                         
               <button  class="btn btn-primary btn-xs" type="submit">Logout</button>
               </form>
-              </li>
+              </li>:)
 }; 
 
 (:on login, print the name of the logged user:)

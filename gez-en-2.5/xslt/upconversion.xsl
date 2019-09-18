@@ -175,16 +175,32 @@
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <xsl:variable name="text" select="."/>
-                <xsl:call-template name="cit">
+                <xsl:call-template name="ptr">
                     <xsl:with-param name="text" select="$text"/>
                 </xsl:call-template>
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
 
-    <xsl:template name="cit">
+
+    <xsl:template name="ptr">
         <xsl:param name="text"/>
-        <xsl:analyze-string regex="(&gt;)(\w{{2,3}})(&gt;)((.*?)&gt;)" select="$text">
+        <xsl:analyze-string regex="(#[a-zA-Z0-9αβγδεζηθιλκμνξοπρστ]+)" select="$text">
+            <xsl:matching-substring>
+                <ptr target="{regex-group(1)}"/>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:variable name="text0" select="."/>
+                <xsl:call-template name="cit">
+                    <xsl:with-param name="text0" select="$text0"/>
+                </xsl:call-template>
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
+    <xsl:template name="cit">
+        <xsl:param name="text0"/>
+        <xsl:analyze-string regex="(&gt;)(\w{{2,3}})(&gt;)((.*?)&gt;)" select="$text0">
             <xsl:matching-substring>
                 <cit type="translation" xml:lang="{regex-group(2)}">
                     <quote>

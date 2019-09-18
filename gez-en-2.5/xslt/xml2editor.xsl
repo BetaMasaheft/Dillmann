@@ -161,4 +161,7 @@
         <xsl:value-of select="@target"/>
         <xsl:text>]</xsl:text>
     </xsl:template>
+    <xsl:template match="t:ptr">
+        <xsl:value-of select="@target"/>
+    </xsl:template>
 </xsl:stylesheet>

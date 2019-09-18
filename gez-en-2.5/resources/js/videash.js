@@ -221,7 +221,26 @@ $(document).ready(function () {
     var id = $(this).data('value') 
     console.log(id)
     popup(id)
-})
+});
+
+  function blink(id) {
+  console.log(id)
+  var pointedDiv = document.getElementById(id);
+  if (pointedDiv.className.indexOf("w3-card-4") == -1) {
+  console.log('no w3 class, add it')
+    pointedDiv.className += " w3-card-4";
+  } else { 
+    console.log('remove w3 class')
+    pointedDiv.className = pointedDiv.className.replace(" w3-card-4", "");
+  }
+}
+
+$('.internalRef').on('mouseover mouseout',function () {
+    var id = $(this).data('value') 
+    console.log(id)
+    blink(id)
+});
+
     
      function nextvideas(v){
     var v2 = v.next("span")

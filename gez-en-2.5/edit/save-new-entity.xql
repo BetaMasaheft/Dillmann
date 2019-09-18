@@ -41,7 +41,6 @@ let $next-id-file-path := concat($app-collection,'/edit/next-id.xml')
 let $nexN := max(collection($data-collection)//t:entry/@n) + 1
 let $Newid := doc($next-id-file-path)/data/id[1]/text()
 let $newid := $Newid
-let $test := console:log($newid)
 let $file := concat($newid, '.xml')   
 
 return
@@ -138,6 +137,15 @@ return
                 'unknown'
                 (: get the form data that has been "POSTed" to this XQuery :)
     let $item :=
+    document {
+        processing-instruction xml-model {
+            'href="https://raw.githubusercontent.com/BetaMasaheft/Dillmann/master/schema/Dillmann.rng" 
+schematypens="http://relaxng.org/ns/structure/1.0"'
+        },
+        processing-instruction xml-model {
+            'href="https://raw.githubusercontent.com/BetaMasaheft/Dillmann/master/schema/Dillmann.rng" 
+type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
+        },
         <TEI
             xmlns="http://www.tei-c.org/ns/1.0"
             xml:lang="en">
@@ -212,6 +220,7 @@ return
                </body>
             </text>
         </TEI>
+        }
     
     
 (:validate:)

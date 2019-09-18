@@ -59,6 +59,25 @@
             </tr>
             <tr>
                 <td>
+                    <a href="#" class="btn btn-primary btn-sm">internal reference</a>
+                </td>
+                <td>#D2a</td>
+                <td>
+                    <a href="https://your.full.link">(Dillmann 2 a)</a> on click you will be brought there. on hover the pointed meaning will be highlighted with a shadow. 
+                </td>
+                <td>
+                    <pre>&lt;ptr target="#D2a"/&gt;</pre>
+                </td>
+                <td>
+                    <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ptr.html">TEI element ptr</a>
+                </td>
+                <td>
+                    <p>You might use this to enter refernces to other parts of the main entry. The identifier is build looking at the numbers actually given, so, if a sense has only a b c, then you may refer to #Da, #Db, etc. 
+                    for the main sense, or its entirety, use #Dmain, #Tmain, #Lmain.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
                         <a href="#" class="btn btn-primary btn-sm">Link to  Beta maṣāḥǝft</a>
                     </td>
                 <td>(BM)[BNFet143]</td>

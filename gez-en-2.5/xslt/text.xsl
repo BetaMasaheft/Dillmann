@@ -30,7 +30,7 @@
     </xsl:for-each>
 </xsl:template>
     <xsl:template match="t:sense[@n]">
-        <div class="col-md-12 sense">
+        <div class="w3-container sense" id="{@xml:id}">
             <b>
                 <xsl:choose>
                     
@@ -270,6 +270,19 @@
             </xsl:attribute>
             <xsl:value-of select="@target"/>
         </a>
+    </xsl:template>
+    
+    <xsl:template match="t:ptr">
+        <xsl:text> (</xsl:text>
+        <a href="{@target}" class="internalRef" data-value="{substring-after(@target, '#')}">
+            <xsl:choose>
+                <xsl:when test="starts-with(@target, '#D')">Dillmann</xsl:when>
+                <xsl:when test="starts-with(@target, '#T')">Traces</xsl:when>
+                <xsl:when test="starts-with(@target, '#L')">Leslau</xsl:when>
+            </xsl:choose>
+            <xsl:value-of select="replace(replace(substring-after(@target, '#'), '[DTL]', ''), '(.)', ' $1')"/>
+        </a>
+        <xsl:text>) </xsl:text>
     </xsl:template>
     
 

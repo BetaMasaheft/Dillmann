@@ -110,10 +110,11 @@ $(document).ready(function () {
                 } else {
                     parsedtext += match.results
                 }
-                items.push("<div class='card'><div id='" + id + "' class='card-block'><div class='card-title'><a target='_blank' href='/" + coll + '/' + id + "/" + view + "?hi=" + lemma + '&start=' + match.textpart + "'>" + title + "</a> <span class='badge'>" + match.hitsCount + "</span></div><div class='card-text'><p>" + parsedtext + "</p></div></div></div>");
+     //           console.log(parsedtext)
+                items.push("<div class='w3-panel w3-Pale-Blue w3-card-4 w3-third' id='" + id + "'><h3><a target='_blank' href='/" + coll + '/' + id + "/" + view + "?hi=" + lemma + '&start=' + match.textpart + "'>" + title + "</a> <span class='w3-badge'>" + match.hitsCount + "</span></h3><div lang='gez' class='word'>" + parsedtext + "</div></div>");
             }
             $("<div/>", {
-                addClass: 'card-columns',
+                addClass : 'w3-white alpheios-enabled',
                 html: items.join("")
             }).appendTo("#attestations");
         } else {
@@ -138,8 +139,9 @@ $(document).ready(function () {
                 } else {
                     parsedtext += match.results
                 }
+//                console.log(parsedtext)
                 var url = "/" + coll + '/' + id + "/main?hi=" + encodeURIComponent(lemma)
-                items.push('<div class="row"><div id="' + id + '" class="card"><div class="col-md-3"><div class="col-md-10"><a href="' + url + '">' + title + "</a></div><div class='col-md-2'><span class='badge'>" + match.hitsCount + "</span></div></div><div class='col-md-9'><p>" + parsedtext + "</p></div></div></div>");
+                items.push('<div  class="w3-panel w3-Pale-Blue w3-card-4"><h3><a href="' + url + '">' + title + "</a><span class='w3-badge'>" + match.hitsCount + "</span></h3><div lang='gez' class='word'>" + parsedtext + "</div></div>");
                 
                 
                 $("<div/>", {
@@ -148,9 +150,83 @@ $(document).ready(function () {
             } else {
                 
                 $("<div/>", {
+                addClass : 'w3-card-4 w3-white w3-panel alpheios-enabled',
                     html: 'no attestations of ' + lemma + ' exactly'
                 }).appendTo("#attestations");
             }
         }
     });
 });
+
+$( document ).ajaxComplete(function() {
+ $('div#attestations [lang="gez"] p span').each(function (wn) {
+        
+       console.log(wn)
+    
+    var word = $(this)
+    /*make all spaces a single space*/
+    var normspace = $(word).text().replace(/\s\s+/g, ' ');
+    /*    split the string in words at the white space*/
+    var words = normspace.split(" ");
+    var countwords = words.length;
+    /*    delete all in the element*/
+    $(this).empty();
+    /*    build fuzzy query search string for lexicon*/
+    var url = '/Dillmann/?mode=fuzzy'
+    var parm = '&q='
+    /*    for each item in the split sequence, which shoud be a word add to the emptied element the word with a link*/
+    $.each(words, function (i, v) {
+        /*initialize an empty object which will contain the word and the punctionation, to be able to print back all but use in the query the string without punctuation*/
+        var nostops = {
+        }
+        /*check if there is an end of word punctuation mark*/
+        if (v.endsWith('፡')) {
+            nostops.w = v.substr(0, v.indexOf('፡'));
+            nostops.stop = '፡'
+        } else if (v.endsWith('።')) {
+            nostops.w = v.substr(0, v.indexOf('።'));
+            nostops.stop = '።'
+        } else {
+            nostops.w = v; nostops.stop = ''
+        }
+        /*        if it is the last word in the span, then add it straight, if it is somewhere else in the span sequence, then add back a white space
+         * onmouseover='popup("+'"p'+wn+i+'"'+")' onmouseout='popup("+'"p'+wn+i+'"'+")'
+         * */
+        if (i == countwords - 1) {
+            $(word).append($("<span class='alpheios-word attpopup' data-value='atp" + wn + i + "'>" + nostops.w + nostops.stop + "\
+            <span class='popuptext w3-hide w3-tiny w3-padding' id='atp" + wn + i + "'>\
+            Search " + nostops.w + " :<br/>\
+            <a href='/as.html?query=" + nostops.w + "' target='_blank'>in Beta maṣāḥǝft</a><br/>\
+            <a href='/morpho?query=" + nostops.w + "' target='_blank'>in the Gǝʿǝz Morphological Parser</a><br/>\
+            <a href='/morpho/corpus?query=" + nostops.w + "&type=string' target='_blank'>in the TraCES annotations</a><br/>\
+            <a href='" + url + parm + nostops.w + "' target='_blank'>in the Online Lexicon</a><br/>\
+            Double click on the word to load the results of the morphological parsing with Alpheios.\
+            </span> </span>"));
+        } else {
+            /*onmouseover='popup("+'"p'+wn+i+'"'+")' onmouseout='popup("+'"p'+wn+i+'"'+")'*/
+            $(word).append($("<span class='alpheios-word attpopup' data-value='atp" + wn + i + "'>" + nostops.w + nostops.stop + '&nbsp;' + "\
+            <span class='popuptext w3-hide w3-tiny w3-padding' id='atp" + wn + i + "'>\
+            Search " + nostops.w + " :<br/>\
+            <a href='/as.html?query=" + nostops.w + "' target='_blank'>in Beta maṣāḥǝft</a><br/>\
+            <a href='/morpho?query=" + nostops.w + "' target='_blank'>in the Gǝʿǝz Morphological Parser</a><br/>\
+            <a href='/morpho/corpus?query=" + nostops.w + "&type=string' target='_blank'>in the TraCES annotations</a><br/>\
+            <a href='" + url + parm + nostops.w + "' target='_blank'>in the Online Lexicon</a><br/>\
+            Double click on the word to load the results of the morphological parsing with Alpheios.\
+            </span> </span>"));
+        }
+    });
+    });
+       $('.attpopup').on('mouseover mouseout',function () {
+    var id = $(this).data('value') 
+    console.log(id)
+    popupatt(id)
+});
+ function popupatt(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+    });

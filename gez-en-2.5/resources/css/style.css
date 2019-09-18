@@ -1,7 +1,7 @@
 /* Application styles could go here */
 /* The switch - the box around the slider */
 
-
+.attpopup,
 .popup {
     position: relative;
     display: inline-block;
@@ -10,6 +10,7 @@
 }
 
 /* The actual popup */
+.attpopup .popuptext,
 .popup .popuptext {
     width: 200px;
     background-color: black;

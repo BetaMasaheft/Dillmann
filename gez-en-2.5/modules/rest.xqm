@@ -23,7 +23,7 @@ declare
 %rest:path("/BetMas/api/Dillmann/rootmembers/{$id}")
 %output:method("json")
 function api:rootmembers($id as xs:string){
-   
+
 let $col :=  $config:collection-root
 let $term := $col//id($id)
 let $lem := let $terms := $term//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
@@ -58,10 +58,10 @@ let $prevs :=
     order by $p
     return
          map {'id': $id, 'n': $entriesN, 'role' : $pr, 'lem' : $lem}
-return 
+return
     ($config:response200Json,
     map {'here': map {'id': $id, 'n': xs:integer($n), 'role' : $cr, 'lem' : $lem} , 'prev' : $prevs, 'next' : $nexts})
-    
+
 };
 
 
@@ -76,8 +76,9 @@ declare
 function api:searchDillmann($element as xs:string?,
 $q as xs:string*) {
     if($q ='') then () else
+    let $login := xmldb:login('/db/apps/BetMas/data', 'Pietro', 'Hdt7.10')
     let $data-collection := '/db/apps/DillmannData'
-    
+
     let $eval-string := concat("$config:collection-root//tei:"
     , $element, "[ft:query(*,'", $q, "')]")
     let $hits := for $hit in util:eval($eval-string) order by ft:score($hit) descending return $hit
@@ -88,13 +89,13 @@ $q as xs:string*) {
                 {
                     for $hit in $hits
                     let $id := $hit/ancestor::tei:TEI//tei:entry/@xml:id
-                    
+
                     return
                         <json:value
                             json:array="true">
                             <id>{string($id)}</id>
                             {element {xs:QName($element)} {normalize-space(string-join($hit//text(), ' '))}}
-                        
+
                         </json:value>
                 }
             </json:value>)
@@ -120,14 +121,14 @@ declare
     %output:method("xml")
 function api:getListofLemmas($lemma as xs:string?, $start as xs:integer*){
 ($config:response200Json,
-    let $hits := for $hit in  $config:collection-root//tei:entry 
+    let $hits := for $hit in  $config:collection-root//tei:entry
      order by xs:integer($hit/@n)
      return $hit
      let $total := count($hits)
      return
      <list>
      <lemmas>{
-  
+
    for $lem in subsequence($hits, $start, 20)
    return
 <lemma><id>{string($lem/@xml:id)}</id><n>{string($lem/@n)}</n><form>{string($lem//tei:form)}</form></lemma>
@@ -148,8 +149,8 @@ function api:getListofLemmas($lemma as xs:string?, $start as xs:integer*){
                     ()}
    </list>
   )
-                   };  
-                   
+                   };
+
 declare
     %rest:GET
     %rest:path("/BetMas/api/Dillmann/list/json")
@@ -157,14 +158,14 @@ declare
     %output:method("json")
 function api:getListofLemmasJ($lemma as xs:string?, $start as xs:integer*){
 ($config:response200Json,
-  
-    let $hits := for $hit in  $config:collection-root//tei:entry 
+
+    let $hits := for $hit in  $config:collection-root//tei:entry
      order by xs:integer($hit/@n)
      return $hit
      let $total := count($hits)
      return
      <json:value>{
-  
+
    for $lem in subsequence($hits, $start, 20)
    return
 <lemmas><id>{string($lem/@xml:id)}</id><n>{string($lem/@n)}</n><lemma>{normalize-space(string($lem//tei:form))}</lemma></lemmas>
@@ -185,14 +186,14 @@ function api:getListofLemmasJ($lemma as xs:string?, $start as xs:integer*){
                     ()}
    </json:value>
   )
-                   };  
-                   
+                   };
+
 declare
     %rest:GET
     %rest:path("/BetMas/api/Dillmann/{$lemma}/teientry")
     %output:method("xml")
 function api:getLemma($lemma as xs:string?){
-    
+
 let $item := root( $config:collection-root//id($lemma))
 return
 if(exists($item)) then
@@ -201,17 +202,17 @@ if(exists($item)) then
    return
     $config:collection-root//id($lemma)
   ) else ($config:response400, <info>{$lemma || 'is not a lemma unique id of any entry.'}</info>
-  
+
   )
                    };
-                   
+
 declare
     %rest:GET
     %rest:path("/BetMas/api/Dillmann/{$lemma}/json")
     %output:method("json")
 function api:getLemmaJson($lemma as xs:string?){
 
-  
+
 let $item :=  $config:collection-root//id($lemma)
 return
 if(exists($item)) then
@@ -222,7 +223,7 @@ if(exists($item)) then
   ($config:response400, map{'info' := ($lemma || 'is not a lemma unique id of any entry.')}
   )
                    };
-                     
+
 declare
     %rest:GET
     %rest:path("/BetMas/api/Dillmann/{$lemma}/txt")
@@ -263,10 +264,10 @@ let $filecontent := for $d in subsequence( $config:collection-root//tei:entry[st
     %output:method("json")
 function api:getLemmaNumber($n as xs:string?){
 ($config:response200Json,
- 
+
 let $match :=  $config:collection-root//tei:entry[@n = $n]
-let $entry := string($match/@xml:id) 
-return 
+let $entry := string($match/@xml:id)
+return
 map {
   'number' : $n,
   'lemma' : $entry
@@ -283,42 +284,41 @@ function api:getLemmaColumn($n as xs:string?){
 ($config:response200Json,
 
 let $match :=  $config:collection-root//id($n)
-let $entry := string(root($match)//tei:entry/@xml:id) 
-return 
+let $entry := string(root($match)//tei:entry/@xml:id)
+return
 map {
   'column' : $n,
   'lemma' : $entry
   })
                    };
-                   
-                   
+
+
  declare
     %rest:GET
     %rest:path("/BetMas/api/Dillmann/otherlemmas")
-    
+
 %rest:query-param("lemma", "{$lemma}", "")
     %output:method("json")
 function api:getsamelemma($lemma as xs:string*){
 ($config:response200Json,
- let $eval-string := 
+ let $eval-string :=
       concat(" $config:collection-root//tei:form/tei:foreign[ft:query(.,'", $lemma, "')]")
- let $hits := 
-           for $hit in util:eval($eval-string) 
-           order by ft:score($hit) descending 
+ let $hits :=
+           for $hit in util:eval($eval-string)
+           order by ft:score($hit) descending
            return $hit
- let $response := 
-          if(count($hits) ge 1) then  for $hit in $hits 
-          let $hitID := string(root($hit)//tei:entry/@xml:id) 
+ let $response :=
+          if(count($hits) ge 1) then  for $hit in $hits
+          let $hitID := string(root($hit)//tei:entry/@xml:id)
           return map {
   'id' : $hitID,
   'hit' : $hit/text()
-  } 
+  }
           else 'this is all new!'
-             
-return 
+
+return
 map {
   'response' : $response,
   'total' : count($hits)
   })
                    };
-                  
