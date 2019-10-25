@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<div class="col-md-12">
+<div class="w3-half w3-padding-64" id="dataentrysupport">
     <h3>Data entry support</h3>
-    <div class="container-fluid">
-            <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Hit the button to get the symbols...</th>
-                <th>... or type all this...</th>
-                <th>...and it will be displayed as...</th>
-                <th>...because it is transformed into...</th>
-                <th>...which is...</th>
-                <th>...and by the way...</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Meaning</a>
-                    </td>
-                <td>&lt;A&lt; The first meaning &gt;A&gt;</td>
-                <td>
-                            <b>A)</b> The first meaning</td>
-                <td>
-                            <pre>&lt;sense n="A"&gt;The first meaning&lt;/sense&gt;</pre>
-                        </td>
-                <td>
+    <div class="w3-container w3-margin">
+        
+                <div class="w3-row-padding w3-margin w3-large">
+                    <div class="w3-col s2 m2 l2"><b>Hit the button to get the symbols...</b></div>
+                    <div class="w3-col  s2 m2 l2"><b>... or type all this...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...and it will be displayed as...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...because it is transformed into...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...which is...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...and by the way...</b></div>
+                </div>
+  
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Meaning</a>
+            </div>
+            <div class="w3-col s2 m2 l2">&lt;A&lt; The first meaning &gt;A&gt;</div>
+            <div class="w3-col s2 m2 l2">
+                            <b>A)</b> The first meaning</div>
+            <div class="w3-col s2 m2 l2">
+                            <code>&lt;sense n="A"&gt;The first meaning&lt;/sense&gt;</code>
+            </div>
+            <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-sense.html">TEI element sense</a>
-                        </td>
-                <td>
+            </div>
+            <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>You can nest as many of this as you want. e.g. &lt;A&lt; this has two submeanings &lt;a&lt; meaning 1 &gt;1&gt; and &lt;2&lt; meaning 2 &gt;2&gt;  &gt;A&gt; </li>
                                 <li>The order of the section uses at the first level Upper Case letters, at the second level numbers, at the third level lower case letters and at the third level greek letters.</li>
@@ -37,89 +35,88 @@
                     the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
                     code for that language.</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-                <td>
-                        <a href="#" class="btn btn-primary btn-sm">Link</a>
-                    </td>
-                <td>(link text)[https://your.full.link]</td>
-                <td>
+            </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Link</a>
+            </div>
+            <div class="w3-col s2 m2 l2">(link text)[https://your.full.link]</div>
+            <div class="w3-col s2 m2 l2">
                     <a href="https://your.full.link">link text</a>
-                    </td>
-                <td>
-                    <pre>&lt;ref type="external" target="https://your.full.link"&gt;link text&lt;/ref&gt;</pre>
-                </td>
-                <td>
+            </div>
+            <div class="w3-col s2 m2 l2">
+                    <code>&lt;ref type="external" target="https://your.full.link"&gt;link text&lt;/ref&gt;</code>
+            </div><div class="w3-col s2 m2 l2">
                     <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-                </td>
-                <td>
+            </div><div class="w3-col s2 m2 l2">
                     <p>You might use this to enter your own links. For example to link to another lemma, or to link to an entity in BM. You could also use it to link to any other resource on the web. </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#" class="btn btn-primary btn-sm">internal reference</a>
-                </td>
-                <td>#D2a</td>
-                <td>
+            </div>
+        </div>
+        <div class="w3-row-padding">
+                <div class="w3-col s2 m2 l2">
+                    <a href="#" class="w3-button w3-blue w3-small">internal reference</a>
+                </div>
+                <div class="w3-col s2 m2 l2">#D2a</div>
+                <div class="w3-col s2 m2 l2">
                     <a href="https://your.full.link">(Dillmann 2 a)</a> on click you will be brought there. on hover the pointed meaning will be highlighted with a shadow. 
-                </td>
-                <td>
-                    <pre>&lt;ptr target="#D2a"/&gt;</pre>
-                </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
+                    <code>&lt;ptr target="#D2a"/&gt;</code>
+                </div>
+                <div class="w3-col s2 m2 l2">
                     <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ptr.html">TEI element ptr</a>
-                </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
                     <p>You might use this to enter refernces to other parts of the main entry. The identifier is build looking at the numbers actually given, so, if a sense has only a b c, then you may refer to #Da, #Db, etc. 
                     for the main sense, or its entirety, use #Dmain, #Tmain, #Lmain.</p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                        <a href="#" class="btn btn-primary btn-sm">Link to  Beta maṣāḥǝft</a>
-                    </td>
-                <td>(BM)[BNFet143]</td>
-                <td>
+                </div>
+        </div>
+        <div class="w3-row-padding">
+                <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Link to  Beta maṣāḥǝft</a>
+                </div>
+                <div class="w3-col s2 m2 l2">(BM)[BNFet143]</div>
+                <div class="w3-col s2 m2 l2">
                     <a href="https://betamasaheft.eu/BNFet143">Paris, Bibliothèque nationale de France, BnF Éthiopien 143</a>
-                    </td>
-                <td>
-                    <pre>&lt;ref type="BM" target="BNFet143"/&gt;</pre>
-                </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
+                    <code>&lt;ref type="BM" target="BNFet143"/&gt;</code>
+                </div>
+                <div class="w3-col s2 m2 l2">
                     <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-                </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
                     <p>You might use this to enter quickly links to Beta maṣāḥǝft. Please make sure you stick to BM in upper case as this is what is used. Also make sure that the identifier
                         which you provide exists and is correct. You do not need to provide the title, it will be printed requesting from Beta maṣāḥǝft the most up to date title available for that resource.</p>
-                </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Label</a>
-                    </td>
+                </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Label</a>
+            </div>
             
-                <td>((vid.))</td>
-                <td>
+                <div class="w3-col s2 m2 l2">((vid.))</div>
+                <div class="w3-col s2 m2 l2">
                             <a data-toggle="tooltip" data-title="videas">vid.</a>
-                        </td>
-                <td>
-                            <pre>&lt;lbl expand="videas"&gt;vid.&lt;/lbl&gt;</pre>
-                        </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;lbl expand="videas"&gt;vid.&lt;/lbl&gt;</code>
+                </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-lbl.html">TEI element lbl</a>
-                        </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>Use one of Dillmann's abbreviation and you will get the tooltip explaining it.</li>
-                                <li>Try also <pre>((vid.)) \*gez*ሐሊባ፡\*</pre> to get a direct link to the form you enter, like <a data-toggle="tooltip" data-title="videas">vid.</a>
-                                    <a href="L28a2fa17dfc84e0ca31f4e6b7ef90d96">ሐሊባ፡ </a>. If you use this and wish to enter more terms after vid, please use a comma to separate the words as in <pre>((vid.)) \*gez*ገብር፡\*, \*gez*መስቀል፡\*</pre>
+                                <li>Try also <code>((vid.)) \*gez*ሐሊባ፡\*</code> to get a direct link to the form you enter, like <a data-toggle="tooltip" data-title="videas">vid.</a>
+                                    <a href="L28a2fa17dfc84e0ca31f4e6b7ef90d96">ሐሊባ፡ </a>. If you use this and wish to enter more terms after vid, please use a comma to separate the words as in <code>((vid.)) \*gez*ገብር፡\*, \*gez*መስቀል፡\*</code>
                                 </li>
                             </ul>
-  <a class="btn btn-primary" data-toggle="collapse" href="#labels" role="button" aria-expanded="false" aria-controls="labels">Open list of existing abbreviations</a>
-                            <div>
-                            <table class="table table-responsive collapse" id="labels">
+                    <button class="w3-button w3-pale-blue"  onclick="toggleGuidelinesElements('labels')"  role="button" aria-expanded="false" aria-controls="labels">Open list of existing abbreviations</button>
+                           
+                </div> <div class="w3-container w3-hide"  id="labels">
+                            <table class="w3-table-all">
     <thead>
         <tr>
             <th>value</th>
@@ -576,91 +573,90 @@
     </tbody>
 </table>
                             </div>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Grammar Group</a>
-                    </td>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Grammar Group</a>
+            </div>
             
-                <td>[[anything you put here]]</td>
-                <td>anything you put here, transformed as described here.</td>
-                <td>
-                            <pre>&lt;gramGrp&gt;anything you put here&lt;/gramGrp&gt;</pre>
-                        </td>
-                <td>
+                <div class="w3-col s2 m2 l2">[[anything you put here]]</div>
+                <div class="w3-col s2 m2 l2">anything you put here, transformed as described here.</div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;gramGrp&gt;anything you put here&lt;/gramGrp&gt;</code>
+                </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gramGrp.html">TEI element gramGrp</a>
-                        </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>There is no need to nest these. Use it just to group information.</li>
                                 <li>See below case, gender and PoS.</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Translation</a>
-                    </td>
+                </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Translation</a>
+            </div>
             
-                <td>&gt;la&gt;mater&gt;</td>
-                <td>
+                <div class="w3-col s2 m2 l2">&gt;la&gt;mater&gt;</div>
+                <div class="w3-col s2 m2 l2">
                             <i>
                                 <a target="_blank" href="http://www.perseus.tufts.edu/hopper/morph?l=mater&amp;la=la">translation</a>
                             </i>
-                        </td>
-                <td>
-                            <pre>&lt;cit type="translation" xml:lang="en"&gt;&lt;quote&gt;mater&lt;/quote&gt;&lt;/cit&gt;</pre>
-                        </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;cit type="translation" xml:lang="en"&gt;&lt;quote&gt;mater&lt;/quote&gt;&lt;/cit&gt;</code>
+                </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
-                        </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>PLEASE DO NOT CONFUSE WITH THE ENCODING OF TEXT WHICH IS SIMPLY IN ANOTHER LANGUAGE IN THE ENTRY, WITH RESPECT TO THE MAIN LANGUAGE OF THE MEANING!!!!</li>
                                 <li>Remember to specify the language according to  
                     the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
                     code for languages.</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Transcription</a>
-                    </td>
+                </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Transcription</a>
+            </div>
             
-                <td>&gt;gez!ʾangotay&gt;</td>
-                <td>
+                <div class="w3-col s2 m2 l2">&gt;gez!ʾangotay&gt;</div>
+                <div class="w3-col s2 m2 l2">
                           <b> transcription</b>
-                        </td>
-                <td>
-                            <pre>&lt;cit type="transcription" xml:lang="gez"&gt;&lt;quote&gt;ʾangotay&lt;/quote&gt;&lt;/cit&gt;</pre>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;cit type="transcription" xml:lang="gez"&gt;&lt;quote&gt;ʾangotay&lt;/quote&gt;&lt;/cit&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>Remember to specify the language according to  
                     the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
                     code for languages.</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Language</a>
-                    </td>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Language</a>
+                    </div>
             
-                <td>\*syr*ܐܰܘܓܺܝ\*</td>
-                <td>ܐܰܘܓܺܝ</td>
-                <td>
-                            <pre>&lt;foreign xml:lang="syr"&gt;ܐܰܘܓܺܝ&lt;/foreign&gt;</pre>
-                        </td>
-                <td>
+                <div class="w3-col s2 m2 l2">\*syr*ܐܰܘܓܺܝ\*</div>
+                <div class="w3-col s2 m2 l2">ܐܰܘܓܺܝ</div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;foreign xml:lang="syr"&gt;ܐܰܘܓܺܝ&lt;/foreign&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-foreign.html">TEI element foreign</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>This is fine for anything which is not a translation. it simply says: here is a piece 
                                 of text in another language.</li>
@@ -669,27 +665,27 @@
                     the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
                     code for languages.</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Reference</a>
-                    </td>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Reference</a>
+                    </div>
             
-                <td>*Matth.|1.1*</td>
-                <td>
+                <div class="w3-col s2 m2 l2">*Matth.|1.1*</div>
+                <div class="w3-col s2 m2 l2">
                             <a ref="Matth.1,1" data-toggle="tooltip" title="" data-original-title="Matthaei Evangelium.">Matth. 1,1</a>
                     <a class="reference" data-ref="Matth.1,1" data-bmid="LIT1558Matthew" data-value="LIT1558Matthew/1/1">
                     <i class="fa fa-file-text-o" aria-hidden="true"/>
                             </a>
-                    </td>
-                <td>
-                            <pre>&lt;ref cRef="Matth." loc="1.1"&gt;Matth. 1.1&lt;/ref&gt;</pre>
-                        </td>
-                <td>
+                    </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;ref cRef="Matth." loc="1.1"&gt;Matth. 1.1&lt;/ref&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>Eventually, if there is a text, you will see in the popup the line(s) you are quoting.</li>
                                 <li>you might find also this notation *Kuf. |35*p.|, this is for where a unit is specified by Dillmann.</li>
@@ -697,52 +693,52 @@
                                 <li>A reference SHOULD NOT contain an abbreviation, it is in fact already, and the expanded form should be registered as well in the abbreviations list.</li>
                                 <li>Parts of works for which there is an abbreviation should use that. *Asc. Jes.  ed. Laur.|78*p.| is ok. ((ho.)) Theodoti Ancyr. in *Cyr.|102*f.| because the work cited here  is the one abbreviated by Cyr. which contains the ho. Theodoti Ancyr. which does not have an id and a canonical abbreviation </li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>no button here</td>
-                <td>{'|{Dil.1234}|'}</td>
-                <td>
-                            <i class="fa fa-columns" aria-hidden="true"/>n. 1327 </td>
-                <td>
-                            <pre>&lt;cb n="1327"/&gt;</pre>
-                        </td>
-                <td>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">no button here</div>
+                <div class="w3-col s2 m2 l2">{'|{Dil.1234}|'}</div>
+                <div class="w3-col s2 m2 l2">
+                            <i class="fa fa-columns" aria-hidden="true"/>n. 1327 </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;cb n="1327"/&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cb.html">TEI element cb</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>Unless there is something to fix, it is very unlikely that you are going to use this</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>no button here</td>
-                <td>{'{Dil.1234}'}</td>
-                <td>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">no button here</div>
+                <div class="w3-col s2 m2 l2">{'{Dil.1234}'}</div>
+                <div class="w3-col s2 m2 l2">
                             <a href="#" class="internalLink" data-value="c1327">1327 </a>
-                    </td>
-                <td>
-                            <pre>&lt;ref target="#1327"/&gt;</pre>
-                        </td>
-                <td>
+                    </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;ref target="#1327"/&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>You can use this to make a simple column reference into a link to that column, which is useful if the entry starts several columns before.</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Bibliography</a>
-                    </td>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Bibliography</a>
+                    </div>
             
-                <td>[§,73]bm:Dillmann1857Gramm
-                <a class="btn btn-primary" data-toggle="collapse" href="#bibliopointers" role="button" aria-expanded="false" aria-controls="bibliopointers">Open list of tags already used</a>
+                <div class="w3-col s2 m2 l2">[§,73]bm:Dillmann1857Gramm
+                    <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('bibliopointers')" aria-expanded="false" aria-controls="bibliopointers">Open list of tags already used</button>
   
-                <ul class="collapse" id="bibliopointers">
+                <ul id="bibliopointers" class="w3-hide">
     <li>bm:DaBassano1918DictTgr</li>
     <li>bm:Yohannis1955TigrAmhDict</li>
     <li>bm:Guidi1901Vocabolario</li>
@@ -807,268 +803,270 @@
     <li>bm:Cerulli1956KrestosSamraT</li>
     <li>bm:ContiRossini1938BurukAmlak</li>
 </ul>
-                </td>
-                <td>
+                </div>
+                <div class="w3-col s2 m2 l2">
                             <a class="Zotero Zotero-citation" data-value="bm:Dillmann1857Gramm" href="https://www.zotero.org/groups/ethiostudies/items/tag/bm:Dillmann1857Gramm">Dillmann 1857</a>
-                        </td>
-                <td>
-                            <pre>&lt;bibl&gt;&lt;ptr target="bm:Dillmann1857Gramm"/&gt;&lt;citedRange unit="paragraph"&gt;73&lt;/citedRange&gt;&lt;/bibl&gt;</pre>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;bibl&gt;&lt;ptr target="bm:Dillmann1857Gramm"/&gt;&lt;citedRange unit="paragraph"&gt;73&lt;/citedRange&gt;&lt;/bibl&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-bibl.html">TEI element bibl</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>The bm: part must be a <a href="https://zotero.org/groups/358366/">unique tag in the Ethio Studies Group Zotero</a> Library! </li>
                                 <li>If you only want to give a reference to a work omit the [] part, simply add bm:Dillmann1857Gramm</li>
                                 <li>p., s., n. $ before comma will be normalized to the allowed values of citedRange page, item and paragraph respectively.</li>
                                 <li>for pages, lines and line ranges use this synthax: [page, 50:3; 51:3-4; 52:6] where a sequence of citation ranges is separated with semicolumn, lines and pages are separated by column and ranges are indicated with hyphen.</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">PoS</a>
-                    </td>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">PoS</a>
+                    </div>
             
-                <td>+refl.+</td>
-                <td>
+                <div class="w3-col s2 m2 l2">+refl.+</div>
+                <div class="w3-col s2 m2 l2">
                             <a data-toggle="tooltip" data-title="reflexivum" data-original-title="" title="">refl.</a>
-                        </td>
-                <td>
-                            <pre>&lt;pos expand="reflexivum"&gt;refl.&lt;/pos&gt;</pre>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;pos expand="reflexivum"&gt;refl.&lt;/pos&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pos.html">TEI element pos</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
                             </ul>
-                            <a class="btn btn-primary" data-toggle="collapse" href="#posvalues" role="button" aria-expanded="false" aria-controls="posvalues">Open list of available PoS values</a>
+                    <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('posvalues')" role="button" aria-expanded="false" aria-controls="posvalues">Open list of available PoS values</button>
   
-                            <table class="collapse table table-responsive" id="posvalues" style="border: 1px solid black; border-collapse: collapse;">
-                            <thead>
-                                <tr>
-                                    <th style="border: 1px solid black;">abbreviation</th>
-                                    <th style="border: 1px solid black;">value in Dillmann</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="border: 1px solid black;">v.</td>
-                                    <td style="border: 1px solid black;">verbum</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black;">abstr.</td>
-                                    <td style="border: 1px solid black;">abstractum, -e</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">adv.</td>
-                                    <td style="border: 1px solid black;">adverbium, adverbialiter</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">Refl.</td>
-                                    <td style="border: 1px solid black;">reflexivum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">refl.</td>
-                                    <td style="border: 1px solid black;">reflexivum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">Infin. nom.</td>
-                                    <td style="border: 1px solid black;">infinitivus nominalis,
+                            
+                </div>
+            <div class="w3-hide"  id="posvalues">
+            <table class="=w3-table-all" style="border: 1px solid black; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid black;">abbreviation</th>
+                        <th style="border: 1px solid black;">value in Dillmann</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid black;">v.</td>
+                        <td style="border: 1px solid black;">verbum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">abstr.</td>
+                        <td style="border: 1px solid black;">abstractum, -e</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">adv.</td>
+                        <td style="border: 1px solid black;">adverbium, adverbialiter</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">Refl.</td>
+                        <td style="border: 1px solid black;">reflexivum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">refl.</td>
+                        <td style="border: 1px solid black;">reflexivum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">Infin. nom.</td>
+                        <td style="border: 1px solid black;">infinitivus nominalis,
                             nominascens</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">peregr. n.</td>
-                                    <td style="border: 1px solid black;">nomen peregrinum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">Impf.</td>
-                                    <td style="border: 1px solid black;">imperfectum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">Subst.</td>
-                                    <td style="border: 1px solid black;">Substantivum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">Infin. verb.</td>
-                                    <td style="border: 1px solid black;">infinitivus
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">peregr. n.</td>
+                        <td style="border: 1px solid black;">nomen peregrinum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">Impf.</td>
+                        <td style="border: 1px solid black;">imperfectum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">Subst.</td>
+                        <td style="border: 1px solid black;">Substantivum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">Infin. verb.</td>
+                        <td style="border: 1px solid black;">infinitivus
                             verbalis</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">praep.</td>
-                                    <td style="border: 1px solid black;">praepositio</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">pron. suff.</td>
-                                    <td style="border: 1px solid black;">pronomen suffixum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">pron.</td>
-                                    <td style="border: 1px solid black;">pronomen</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">Pron.</td>
-                                    <td style="border: 1px solid black;">pronomen</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">Subj.</td>
-                                    <td style="border: 1px solid black;">Subjunctivus</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">part.</td>
-                                    <td style="border: 1px solid black;">participium</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">n. act.</td>
-                                    <td style="border: 1px solid black;">nomen actionis</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">n. pr.</td>
-                                    <td style="border: 1px solid black;">nomen proprium</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">n. ag.</td>
-                                    <td style="border: 1px solid black;">nomen agentis</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">n.ag.</td>
-                                    <td style="border: 1px solid black;">nomen agentis</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">n.</td>
-                                    <td style="border: 1px solid black;">nomen</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">nom.</td>
-                                    <td style="border: 1px solid black;">nomen</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">pass.</td>
-                                    <td style="border: 1px solid black;">passivum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">adj.</td>
-                                    <td style="border: 1px solid black;">adjectivum</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">absol.</td>
-                                    <td style="border: 1px solid black;">absolute</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">abs.</td>
-                                    <td style="border: 1px solid black;">absolute</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">num.</td>
-                                    <td style="border: 1px solid black;">numerale</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">denom.</td>
-                                    <td style="border: 1px solid black;">denominates</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">conj.</td>
-                                    <td style="border: 1px solid black;">conjunctio</td>
-                                </tr>
-                        <tr>
-                                    <td style="border: 1px solid black;">rel.</td>
-                                    <td style="border: 1px solid black;">relativum</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Case</a>
-                    </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">praep.</td>
+                        <td style="border: 1px solid black;">praepositio</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">pron. suff.</td>
+                        <td style="border: 1px solid black;">pronomen suffixum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">pron.</td>
+                        <td style="border: 1px solid black;">pronomen</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">Pron.</td>
+                        <td style="border: 1px solid black;">pronomen</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">Subj.</td>
+                        <td style="border: 1px solid black;">Subjunctivus</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">part.</td>
+                        <td style="border: 1px solid black;">participium</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">n. act.</td>
+                        <td style="border: 1px solid black;">nomen actionis</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">n. pr.</td>
+                        <td style="border: 1px solid black;">nomen proprium</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">n. ag.</td>
+                        <td style="border: 1px solid black;">nomen agentis</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">n.ag.</td>
+                        <td style="border: 1px solid black;">nomen agentis</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">n.</td>
+                        <td style="border: 1px solid black;">nomen</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">nom.</td>
+                        <td style="border: 1px solid black;">nomen</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">pass.</td>
+                        <td style="border: 1px solid black;">passivum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">adj.</td>
+                        <td style="border: 1px solid black;">adjectivum</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">absol.</td>
+                        <td style="border: 1px solid black;">absolute</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">abs.</td>
+                        <td style="border: 1px solid black;">absolute</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">num.</td>
+                        <td style="border: 1px solid black;">numerale</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">denom.</td>
+                        <td style="border: 1px solid black;">denominates</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">conj.</td>
+                        <td style="border: 1px solid black;">conjunctio</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">rel.</td>
+                        <td style="border: 1px solid black;">relativum</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Case</a>
+                    </div>
             
-                <td>@acc.@</td>
-                <td>
+                <div class="w3-col s2 m2 l2">@acc.@</div>
+                <div class="w3-col s2 m2 l2">
                             <a data-toggle="tooltip" data-title="accusativus">Acc.</a>
-                        </td>
-                <td>
-                            <pre>&lt;case value="accusativus"&gt;acc.&lt;/case&gt;</pre>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;case value="accusativus"&gt;acc.&lt;/case&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-case.html">TEI element case</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">Gender</a>
-                    </td>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">Gender</a>
+                    </div>
             
-                <td>ˆfem.ˆ</td>
-                <td>
+                <div class="w3-col s2 m2 l2">ˆfem.ˆ</div>
+                <div class="w3-col s2 m2 l2">
                             <a data-toggle="tooltip" data-title="femininus">fem.</a>
-                        </td>
-                <td>
-                            <pre>&lt;gen value="femininus"&gt;fem.&lt;/gen&gt;</pre>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;gen value="femininus"&gt;fem.&lt;/gen&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gen.html">TEI element gen</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
                             </ul>
-                        </td>
-            </tr>
+                        </div>
+        </div>
             
-            <tr>
-            <td>
-                        <a href="#" class="btn btn-primary btn-sm">ND</a>
-                    </td>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-blue w3-small">ND</a>
+                    </div>
             
-                <td>{'{ND}'}</td>
-                <td>
-                        <a href="#" class="btn btn-success">New</a>
-                    </td>
-                <td>
-                            <pre>&lt;nd/&gt;</pre>
-                        </td>
-                <td>
+                <div class="w3-col s2 m2 l2">{'{ND}'}</div>
+                <div class="w3-col s2 m2 l2">
+                        <a href="#" class="w3-button w3-green">New</a>
+                    </div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;nd/&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             This is an elment not defined by TEI, but added to the schem from TraCES
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>This should be in any entry which is not in Dillmann. You can click the button to add it.</li>
                             </ul>
-                        </td>
-            </tr>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">no button</div>
             
-            <tr>
-            <td>no button</td>
-            
-                <td>!!I am a generic note!!</td>
-                <td>I am a generic note</td>
-                <td>
-                            <pre>&lt;note&gt;I am a generic note&lt;/note&gt;</pre>
-                        </td>
-                <td>
+                <div class="w3-col s2 m2 l2">!!I am a generic note!!</div>
+                <div class="w3-col s2 m2 l2">I am a generic note</div>
+                <div class="w3-col s2 m2 l2">
+                            <code>&lt;note&gt;I am a generic note&lt;/note&gt;</code>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-note.html">TEI element note</a>
-                        </td>
-                <td>
+                        </div>
+                <div class="w3-col s2 m2 l2">
                             <ul>
                                 <li>Do you really need this? I doubt, but there are things there which are not better specified. Perhaps specify them in one of the above or suggest something new!</li>
                             </ul>
-                        </td>
-            </tr>
-            <tr>
-                    <td>VALUES </td>
-                    <td>Places</td>
-                    <td colspan="4"> <a class="btn btn-primary" data-toggle="collapse" href="#placeTypes" role="button" aria-expanded="false" aria-controls="placeTypes">Open list of place types in BM</a>
+                        </div>
+        </div>
+        <div class="w3-row-padding">
+                    <div class="w3-col s2 m2 l2">VALUES </div>
+                    <div class="w3-col s2 m2 l2">Places</div>
+            <div class="w3-col s2 m2 l2"> <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('placeTypes')" aria-expanded="false" aria-controls="placeTypes">Open list of place types in BM</button>
   
-            <ul class="collapse" id="placeTypes">
+            <ul class="w3-hide" id="placeTypes">
                             <li>
                                 <a href="/authority-files/list?keyword=tabiya">ṭābiyā</a>
                             </li>
@@ -1286,18 +1284,19 @@
                                 <a href="/authority-files/list?keyword=museum">museum</a>
                             </li>
                         </ul>
-            </td>
-            <td/>
-            <td/>
-                    <td/>
-                </tr>
-            <tr>
-                    <td>VALUES </td>
-                    <td>Person (occupation)</td>
-                    <td> 
-            <a class="btn btn-primary" data-toggle="collapse" href="#persTypes" role="button" aria-expanded="false" aria-controls="persTypes">Open list of place types in BM</a>
+            </div>
+            <div class="w3-col s2 m2 l2">
+            </div>
+            <div class="w3-col s2 m2 l2"></div>
+            <div class="w3-col s2 m2 l2"></div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">VALUES </div>
+                    <div class="w3-col s2 m2 l2">Person (occupation)</div>
+                    <div class="w3-col s2 m2 l2"> 
+                        <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('persTypes')" aria-expanded="false" aria-controls="persTypes">Open list of place types in BM</button>
   
-            <ul class="collapse" id="persTypes">
+            <ul class="w3-hide" id="persTypes">
             <li>military</li>
             <li>academic</li>
             <li>political</li>
@@ -1306,21 +1305,19 @@
             <li>medical</li>
             <li>art</li>
             </ul>
-            </td>
-            <td>Person (role)</td>
-            <td> 
-            <a class="btn btn-primary" data-toggle="collapse" href="#persRoles" role="button" aria-expanded="false" aria-controls="persRoles">Open list of place types in BM</a>
+            </div>
+            <div class="w3-col s2 m2 l2">Person (role)</div>
+            <div class="w3-col s2 m2 l2"> 
+                <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('persRoles')" aria-expanded="false" aria-controls="persRoles">Open list of person roles in BM</button>
   
-            <ul class="collapse" id="persRoles">
+            <ul id="persRoles" class="w3-hide">
             <li>function</li>
             <li>title</li>
             <li>office</li>
             <li>rank</li>
             </ul>
-            </td>
-            <td/>
-            </tr>
-        </tbody>
-    </table>
+            </div>
+            <div />
         </div>
-</div>
+            </div>
+    </div>

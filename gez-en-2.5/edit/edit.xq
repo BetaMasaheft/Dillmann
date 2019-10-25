@@ -16,6 +16,7 @@ declare variable $id := request:get-parameter('id', ());
 declare variable $notifyEditors := request:get-parameter('notifyEditors', ());
 declare variable $root := request:get-parameter('root', ());
 declare variable $form := request:get-parameter('form', ());
+declare variable $formlang := request:get-parameter('formlang', ());
 
 declare function local:mergeMain($a, $b  as item()*  )  as item()* {
     if (empty($a) and empty ($b)) 
@@ -77,7 +78,7 @@ return:)
                 <fileDesc>
                     <titleStmt>
                         <title
-                            xml:lang="gez">{$form}</title>
+                            xml:lang="{$formlang}">{$form}</title>
                        <author>Alessandro Bausi</author>
                 <author>Andreas Ellwardt</author>
                 </titleStmt>
@@ -135,7 +136,7 @@ return:)
                     <div>
                 <entry>
                     <form>{if($root='root') then <rs type="root"/> else ()}
-                        <foreign xml:lang="gez">{$form}</foreign>
+                        <foreign xml:lang="{$formlang}">{$form}</foreign>
                     </form>
                     {for $s in $eachsense//tei:sense[@xml:lang][@source] return $s}
                 </entry>

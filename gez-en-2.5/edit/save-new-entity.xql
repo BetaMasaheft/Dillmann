@@ -12,6 +12,7 @@ declare namespace l = "http://log.log";
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
 declare variable $form := request:get-parameter('form', ());
+declare variable $formlang := request:get-parameter('formlang', ());
 declare variable $msg := request:get-parameter('msg', ());
 declare variable $editorsnotification := request:get-parameter('notifyEditors', ());
 let $parametersName := request:get-parameter-names()
@@ -41,13 +42,13 @@ let $next-id-file-path := concat($app-collection,'/edit/next-id.xml')
 let $nexN := max(collection($data-collection)//t:entry/@n) + 1
 let $Newid := doc($next-id-file-path)/data/id[1]/text()
 let $newid := $Newid
-let $file := concat($newid, '.xml')   
+let $file := concat($newid, '.xml')
 
 return
     if (collection($data-collection)//id($newid)) then
         (
         <html>
-            
+
             <head>
                 <link
                     rel="shortcut icon"
@@ -84,7 +85,7 @@ return
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
-                
+
                 <title>This id already exists!</title>
             </head>
             <body>
@@ -97,7 +98,7 @@ return
                         href="/Dillmann/newentry.html"
                         class="btn btn-success">back to list</a>
                 </div>
-            
+
             </body>
         </html>
         )
@@ -139,11 +140,11 @@ return
     let $item :=
     document {
         processing-instruction xml-model {
-            'href="https://raw.githubusercontent.com/BetaMasaheft/Dillmann/master/schema/Dillmann.rng" 
+            'href="https://raw.githubusercontent.com/BetaMasaheft/Dillmann/master/schema/Dillmann.rng"
 schematypens="http://relaxng.org/ns/structure/1.0"'
         },
         processing-instruction xml-model {
-            'href="https://raw.githubusercontent.com/BetaMasaheft/Dillmann/master/schema/Dillmann.rng" 
+            'href="https://raw.githubusercontent.com/BetaMasaheft/Dillmann/master/schema/Dillmann.rng"
 type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
         },
         <TEI
@@ -153,7 +154,7 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                 <fileDesc>
                     <titleStmt>
                         <title
-                            xml:lang="gez">{$form}</title>
+                            xml:lang="{$formlang}">{$form}</title>
                        <author>Alessandro Bausi</author>
                 <author>Andreas Ellwardt</author>
                 </titleStmt>
@@ -178,11 +179,11 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
             <p><ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
                   TraCES (Grant Agreement 338756)</ref></p>
             </sourceDesc>
-                
+
                 </fileDesc>
-               
-        <encodingDesc>
-            <p>A digital edition of the Lexicon in TEI.</p>
+
+                  <encodingDesc>
+                        <p>A digital edition of the Lexicon in TEI.</p>
                         <listPrefixDef>
                  <prefixDef ident="bm"
                     matchPattern="([a-zA-Z0-9]+)"
@@ -191,7 +192,7 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                 </listPrefixDef>
                     </encodingDesc>
                 <profileDesc>
-                    
+
                     <langUsage>
                          <language ident="en">English</language>
                 <language ident="la">latin</language>
@@ -217,28 +218,28 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                     <div>
                 <entry xml:id="{$newid}" n="{$nexN}">
                     <form>
-                        <foreign xml:lang="gez">{$form}</foreign>
+                        <foreign xml:lang="{$formlang}">{$form}</foreign>
                     </form>
                     {for $s in $eachsense//t:sense return $s}
-                
+
                 </entry>
                 </div>
                </body>
             </text>
         </TEI>
         }
-    
-    
+
+
 (:validate:)
 let $schema := doc('/db/apps/gez-en/schema/Dillmann.rng')
             let $validation := validation:jing($item, $schema)
-            return 
+            return
             if($validation = true()) then (
 (:    create file:)
 
 let $store := xmldb:store($newdata-collection, $file, $item)
 
-    
+
     (:nofity editor and contributor:)
      let $sendmails :=(
      let $contributorMessage := <mail>
@@ -258,7 +259,7 @@ let $store := xmldb:store($newdata-collection, $file, $item)
                   <p>{$form} has been assigned the unique id {$newid}</p>
                   <p>This is how the txt version looks like now:</p>
                   <p>{transform:transform($item, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())}</p>
-                  <p><a href="https://betamasaheft.eu/Dillmann/lemma/{$newid}" 
+                  <p><a href="https://betamasaheft.eu/Dillmann/lemma/{$newid}"
                   target="_blank">See {$form} online!</a> There you can also update the file again.</p>
                </body>
            </html>
@@ -270,12 +271,12 @@ if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
   console:log('Sent Message to editor OK')
 else
   console:log('message not sent to editor')
-  
+
   ,
-  
+
   let $EditorialBoardMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
-    {if($editorsnotification = 'yes') then 
+    {if($editorsnotification = 'yes') then
     (<to>andreas.ellwardt@uni-hamburg.de</to>,
     <to>susanne.hummel@uni-hamburg.de</to>,
     <to>wolfgang.dickhut@uni-hamburg.de</to>,
@@ -295,7 +296,7 @@ else
                   <p>{$form} has been assigned the unique id {$newid}</p>
                   <p>This is how the txt version looks like now:</p>
                   <p>{transform:transform($item, 'xmldb:exist:///db/apps/gez-en/xslt/txt.xsl', ())}</p>
-                  <p><a href="https://betamasaheft.eu/Dillmann/lemma/{$newid}" 
+                  <p><a href="https://betamasaheft.eu/Dillmann/lemma/{$newid}"
                   target="_blank">See {$form} online!</a> There you can also update the file again.</p>
                </body>
            </html>
@@ -310,16 +311,16 @@ else
 )
 
 let $log := log:add-log-message('/Dillmann/lemma/'||$newid, xmldb:get-current-user(), 'created')
-(: update the next-id.xml file :) 
+(: update the next-id.xml file :)
 let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
-    
+
 (:    permissions:)
    let $assigntoGroup := sm:chgrp(xs:anyURI($newdata-collection||'/'||$file), 'lexicon')
    let $setpermissions := sm:chmod(xs:anyURI($newdata-collection||'/'||$file), 'rwxrwxr-x')
     (:confirmation page with instructions for editors:)
     return
         <html>
-            
+
             <head>
                 <link
                     rel="shortcut icon"
@@ -356,14 +357,14 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
-                
+
                 <title>Save Confirmation</title>
             </head>
             <body>
                 <div
                     id="confirmation" class="col-md-4 col-md-offset-4 alert alert-success"><h1
                         class="lead">Thank you very much {xmldb:get-current-user()}!</h1>
-                    <p> Your entry for 
+                    <p> Your entry for
                         <a href="/Dillmann/lemma/{substring-before($file, '.xml')}" target="_blank"><span
                             class="lead">{$form}</span></a> has been saved!</p>
                    {if($editorsnotification = 'yes') then (<p>A notification email has been sent to you for your records and to the editors.</p>) else <p>You have not notified the editors about this change. If you wish to do so, please tick the corresponding box next time.</p>}
@@ -371,15 +372,15 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
                         href="/Dillmann/newentry.html">Create another entry!</a>
                         <a role="button" href="/Dillmann/" class="btn btn-info">Home</a>
                 </div>
-                
+
             </body>
         </html>
-        ) 
-        
+        )
+
         else (
-        
+
         <html>
-            
+
             <head>
                 <link
                     rel="shortcut icon"
@@ -406,15 +407,15 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
                     src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="$shared/resources/scripts/loadsource.js"></script>           
-                    
+                    src="$shared/resources/scripts/loadsource.js"></script>
+
                    <script
                     type="text/javascript"
                     src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
-                 
-                   
+
+
                 <title>Save Confirmation</title>
-                
+
             </head>
             <body>
                 <div class="col-md-12 alert alert-warning"><div class="col-md-6"><p class="lead">Sorry, the document you are trying to save is not valid. There is probably an error in the content somewhere. Below you can see the report from the schema. Beside the XML, check it out or send the link or a screenshoot to somebody for help.</p>
@@ -422,9 +423,9 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
                 <div class="col-md-6"><div id="editorContainer"><div id="ACEeditor">{$item//t:entry}</div></div></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
-            </div>   
-<script src="resources/js/ACEsettings.js"/> 
+            </div>
+<script src="resources/js/ACEsettings.js"/>
             </body>
         </html>
-        
+
         )

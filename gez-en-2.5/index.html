@@ -4,38 +4,36 @@
     <!--<div class="alert alert-warning">Between 26th and 29th March we will update the Beta maṣāḥǝft website with a new look
         and several other changes in the application logic.
         Although this service will not change, please be aware that in those days the application might not work at all.</div>-->
-    <div class="w3-half w3-padding-64">
+    <div class="w3-half">
 
         <div class="w3-container">
-            <form action="" class="form form-horizontal" id="searchForm">
-                <div class="form-group">
-                    <div class="col-md-12">
-                    <span class="input-group">
+            <form action="" class="w3-container" id="searchForm">
+                <div class="w3-row">
+                    
                         <span data-template="app:queryinput"/>
-                        <span class="input-group-btn">
-                            <a class="kb btn btn-success">
+<div class="w3-bar w3-quarter">
+                            <span class="kb w3-bar-item w3-button w3-pale-green">
                                 <i class="fa fa-keyboard-o" aria-hidden="true"/>
-                            </a>
-
-                            <a href="#" class="btn btn-default" data-toggle="modal" data-target="#searchHelp">
+                            </span>
+                            <span class="w3-bar-item w3-button w3-gray" onclick="document.getElementById('searchHelp').style.display='block'">
                                 <i class="fa fa-info-circle" aria-hidden="true"/>
-                            </a>
-                            <span class="btn btn-info" id="erweitertesuche">
+                            </span>
+                        <span class="w3-bar-item w3-button w3-pale-gray" id="erweitertesuche">
                                     <i class="fa fa-plus" aria-hidden="true"/>
-                                </span>
+                         </span>
 
-                            <button id="f-btn-search" type="submit" class="btn btn-primary">
+                        <button id="f-btn-search" type="submit" class="w3-bar-item w3-button w3-green">
                                 <i class="fa fa-search" aria-hidden="true"/>
                             </button>
-                        </span>
-                    </span>
+                        
+                    
                     </div>
                      </div>
-                <div class="form-group ">
-                    <div class="col-md-6">
-                <span class="input-group">
-                    <small class="form-text text-muted">Search mode</small>
-                    <select name="mode" class="form-control" data-template="templates:form-control" id="searchmode">
+                <div class="w3-row">
+                    <div class="w3-half">
+                <span class="w3-container">
+                    <label>Search mode</label>
+                    <select name="mode" class="w3-select w3-border" data-template="templates:form-control" id="searchmode">
                         <option value="none" selected="selected">Normal, with homophones</option>
                         <option value="any">Any of the search terms</option>
                         <option value="all">All Search Terms</option>
@@ -49,9 +47,9 @@
 
                 </span>
                     </div>
-                    <div class="col-md-6">
-                    <span class="input-group">
-                        <small class="form-text text-muted">Search only in citations</small>
+                    <div class="w3-half">
+                    <span class="w3-container">
+                        <label>Search only in citations</label>
                             <br/>
                         <label class="switch">
                             <input type="checkbox" value="ref" name="ref" id="citationsOnly"/>
@@ -64,16 +62,16 @@
 
 
         </div>
-        <div class="col-md-12">
-        <div class="col-md-6">
+        <div class="w3-container">
+        <div class="w3-half">
         <div data-template="app:gotocolumn"/>
         </div>
-        <div class="col-md-6">
+        <div class="w3-half">
 
             <div data-template="app:newentry"/>
         </div>
         </div>
-    <div class="col-md-12">
+    <div class="w3-container">
         <div data-template="app:query">
             <div>
                 <a href="." class="nav-link" data-template="app:copy-params"/>
@@ -83,7 +81,7 @@
                 </div>
 
                 <!-- query results -->
-                <div data-template="app:fullRes" data-template-per-page="20" id="results" class="col-md-12"/>
+                <div data-template="app:fullRes" data-template-per-page="20" id="results" class="w3-container w3-padding"/>
 
                 <!-- bottom pagination for larger device -->
                 <div class="hidden-xs">
@@ -94,7 +92,7 @@
     </div>
 
 </div>
-    <div class="w3-half w3-padding-64">
+    <div class="w3-half">
         <div data-template="app:showitem"/>
     </div>
 </div>

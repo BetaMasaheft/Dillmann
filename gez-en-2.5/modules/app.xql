@@ -592,7 +592,7 @@ declare function app:greetings($node as element(), $model as map(*)){
 (:the button to the pdf of a file. the request ending with .pdf triggers in the controller a xslt transformation    :)
  declare function app:pdf-link($id) {
 
-        <a role="button" class="btn btn-info" xmlns="http://www.w3.org/1999/xhtml" href="{$id}.pdf">{'pdf'}</a>
+        <a class=" w3-bar-item w3-button w3-pale-blue" xmlns="http://www.w3.org/1999/xhtml" href="{$id}.pdf">{'pdf'}</a>
 };
 
 (:the button which allows to download the source xml file:)
@@ -600,7 +600,7 @@ declare function app:greetings($node as element(), $model as map(*)){
  <a
     href="https://betamasaheft.eu/Dillmann/lemma/{$id}.xml"
     download="{$id}.xml"
-    class="btn btn-primary"><i
+    class=" w3-bar-item w3-button w3-blue"><i
         class="fa fa-download"
         aria-hidden="true"></i>TEI/XML</a>
  };
@@ -609,7 +609,7 @@ declare function app:greetings($node as element(), $model as map(*)){
 (:    the button linking the the new entry form, an html page with a form posting data to a xql which will store a file and notify the editors:)
    declare function app:newentry($node as element(), $model as map(*)) {
 if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
-<a role="button" class="btn btn-info" href="/Dillmann/newentry.html">
+<a class="w3-button w3-green" href="/Dillmann/newentry.html">
                    New Entry
                 </a>)
 else ()
@@ -644,16 +644,14 @@ else (
 
 (:form to navigate Dillmann using the column numbers :)
  declare function app:gotocolumn($node as element(), $model as map(*)) {
-  <form action="" class="form form-horizontal" id="GtC">
-  <div class="form-group">
- <div class="input-group">
-
-  <span class="input-group-addon" id="basic-addon3">column number</span>
-  <input type="number" class="form-control" id="columnnumber" aria-describedby="basic-addon3" name="GtC"/>
-  <span class="input-group-btn">
-        <button class="btn btn-secondary" type="submit">Go!</button>
-      </span>
-</div>
+  <form action="" class="w3-container" id="GtC">
+ 
+ <div class="w3-row">
+  <label id="basic-addon3">column number</label>
+  <span class="w3-container">
+  <span class="w3-threequarter"><input type="number" class="w3-input w3-border" id="columnnumber" aria-describedby="basic-addon3" name="GtC"/></span>
+  <span class="w3-quarter"><button class="w3-button w3-gray" type="submit">Go!</button></span>
+  </span>
 </div>
 </form>
 };
@@ -675,7 +673,7 @@ if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
 let $ss := for $source in $sources/source return '&amp;source' || $source/@lang ||'=' ||substring-after($source/@value, '#')
 let $sourcesparam := string-join($ss, '')
 return
-    <a role="button" class="btn btn-primary" href="/Dillmann/update.html?id={$id}&amp;new=false{$sourcesparam}">Update</a>
+    <a class="w3-button w3-pale-blue" href="/Dillmann/update.html?id={$id}&amp;new=false{$sourcesparam}">Update</a>
 )
 else ()
 };
@@ -698,7 +696,7 @@ function app:show-hits($node as node()*, $model as map(*), $start as xs:int) {
 };:)
 
 (:storing separately this input in this function makes sure that when the page is reloaded with the results the value entered remains in the input element:)
-declare function app:queryinput ($node as node(), $model as map(*), $q as xs:string*){<input name="q" type="search" class="form-control diacritics" placeholder="Search string" value="{$q}"/>};
+declare function app:queryinput ($node as node(), $model as map(*), $q as xs:string*){<input name="q" type="search" class="w3-threequarter w3-input w3-border" placeholder="Search string" value="{$q}"/>};
 
 
 (:following function is used to list all entries.
@@ -1002,7 +1000,7 @@ let $col :=  $config:collection-root
 let $id := request:get-parameter('id', ())
 let $term := $col//id($id)
 let $hom := if($term//tei:form/tei:seg[@type='hom']) then concat($term//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
-let $rootline := if($term//tei:form/tei:rs[@type='root']) then (<button class="btn btn-xs btn-info" id="rootmembers" data-value="{$id}"><span class="lead">Root</span></button>) else (<button class="btn btn-xs btn-info" id="rootmembers"  data-value="{$id}">Root</button>)
+let $rootline := if($term//tei:form/tei:rs[@type='root']) then (<button class="btn btn-xs btn-info" id="rootmembers" data-value="{$id}"><span class="w3-large">Root</span></button>) else (<button class="w3-button w3-xxsmall w3-grey" id="rootmembers"  data-value="{$id}">Root</button>)
 let $n := data($term/@n)
 let $ne := xs:integer($n) + 1
 let $pr := xs:integer($n) - 1
@@ -1014,25 +1012,29 @@ let $prev := string($col//tei:entry[@n = $PR]/@xml:id)
 (:        <button class="highlights btn btn-sm btn-info">Highlight/Hide strings matching the words in your search</button>:)
 return
 if ($id) then (
-<div class="well w3-container w3-margin">
+<div class="w3-container">
 
 
-        <h1>{$hom}
-        <span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span>
+      <div class="w3-row">  
+      <h1 >{$hom}
+      <span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span>
         {if($term//tei:form/tei:foreign[@xml:lang !='gez'])
         then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
         {if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then ($rootline) else ()}
-        {if($term//tei:nd) then (<span class="badge badge-success">New</span>) else(<span class="badge columns"><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}">
+        </h1>
+<div class="w3-bar downloadlinks">
+<div class="w3-bar-item">
+{if($term//tei:nd) then (<span class="w3-badge w3-green w3-bar-item">New</span>) else(<span class="w3-badge columns w3-gray "><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}">
 
         <i class="fa fa-columns" aria-hidden="true"/> {if($term//tei:cb) then (string(number(format-number($column, '#')) - 1) || '/' || format-number($column, '#')) else (' ' || format-number($column, '#'))}</a></span>)}
-        <label class="switch highlights">
+        </div>
+<label class="w3-bar-item switch highlights">
   <input type="checkbox"/>
   <div class="slider round" data-toggle="tooltip" title="Show or Hide highlights of each element in the entry (lemma excluded!) containing your query as a string.
   This might be different from the hits on the left, but it should help you to find your match faster."></div>
-</label>
-<div class=" btn-group downloadlinks">{app:pdf-link($id)}{app:getXML($id)}</div>{app:deleteEntry($id)}
+</label>{app:pdf-link($id)}{app:getXML($id)}</div>{app:deleteEntry($id)}
+</div>
 
-</h1>
         <a class="smallArrow prev" href="?{$params}&amp;id={$prev}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
 
@@ -1077,7 +1079,7 @@ case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa
     <div id="attestations" />
     </div>
 )
-else (<div class="well">Search and click on a search result to see it here. You will be able to click on words, browse the previous and next entries, get the result on its own page and see related finds from Beta maṣāḥǝft.</div>)};
+else (<div class="w3-panel w3-card-4 w3-sand w3-margin w3-paddgin-64">Search and click on a search result to see it here. You will be able to click on words, browse the previous and next entries, get the result on its own page and see related finds from Beta maṣāḥǝft.</div>)};
 
 
 
@@ -1131,8 +1133,17 @@ declare function app:newForm ($node as node()*, $model as map(*)){
             <label for="form" class="w3-quarter col-form-label">Lemma</label>
             <div class="w3-threequarter">
             <div >
+                <select class="form-control" id="formlang" name="formlang" required="required">
+                <option value="gez" selected="selected">Gǝʿǝz</option>
+                <option value="amh">Amharic</option>
+                <option value="ti">Tigrinya</option>
+                <option value="so">Somali</option>
+                </select>
+                <small class="form-text text-muted">select the language of the entry</small>
+            </div>
+            <div >
                 <input class="form-control" id="form" name="form" required="required" value="{if(request:get-parameter('form',())) then request:get-parameter('form',()) else ()}"/>
-                <small class="form-text text-muted">type here the new Gǝʿǝz form to be added</small>
+                <small class="form-text text-muted">type here the new form to be added</small>
             </div>
             <div  id="checkifitalreadyexists"><div class="w3-panel w3-lightygreen w3-card-2">Please paste or write something above and I will tell you if it is already in.</div></div>
             </div>
@@ -1224,9 +1235,9 @@ let $file := $model('file')
 return
 
                ( <h2>Edit Entry</h2>,
-           <p class="lead">Hi {xmldb:get-current-user()}! You are updating {$file//tei:form/tei:foreign/text()}, that is great!</p>,
-           <p class="lead"> Please follow the guidelines below for editing the entries.</p>,
-           <p> Remember, you are here editing the dictionaries as sources of information, not annotating texts. The structure given to the entries is useful for many purposes.</p>,
+           <div class="w3-panel w3-card-2"><p>Hi {xmldb:get-current-user()}! You are updating {$file//tei:form/tei:foreign/text()}, that is great!</p>
+           <p> Please follow the data entry support on the side of this form for editing the entries.</p>
+           <p> Remember, you are here editing the dictionaries as sources of information, not annotating texts. The structure given to the entries is useful for many purposes.</p></div>,
                 <form id="updateEntry" action="/Dillmann/edit/edit.xq" class="input_fields_wrap" method="post">
                 <input hidden="hidden" value="{$id}" name="id"/>
                    <div class="form-group">
@@ -1238,6 +1249,15 @@ return
                 {if($file//tei:form/tei:rs[@type]) then attribute checked {'checked'} else ()}
                 </input>
             </span>
+            <div >
+                <select class="form-control" id="formlang" name="formlang" required="required">
+                <option value="gez" selected="selected">Gǝʿǝz</option>
+                <option value="amh">Amharic</option>
+                <option value="ti">Tigrinya</option>
+                <option value="so">Somali</option>
+                </select>
+                <small class="form-text text-muted">select the language of the entry</small>
+            </div>
                 <input class="form-control" id="senselemma" name="form" value="{$file//tei:form/tei:foreign/text()}"/>
               <span class="input-group-btn"> <a class="iconlemma btn btn-success">
                                 <i class="fa fa-keyboard-o" aria-hidden="true"></i>
@@ -1936,20 +1956,14 @@ function app:paginate($node as node(), $model as map(*), $start as xs:int, $per-
                 )
         return (
             if ($start = 1) then (
-                <li class="disabled">
-                    <a><i class="glyphicon glyphicon-fast-backward"/></a>
-                </li>,
-                <li class="disabled">
-                    <a><i class="glyphicon glyphicon-backward"/></a>
-                </li>
+                 <a class="w3-button w3-disabled"><i class="fa fa-fast-backward"></i></a>,
+               
+                    <a class="w3-button w3-disabled"><i class="fa fa-backward"></i></a>
             ) else (
-                <li>
-                    <a href="?{$params}&amp;start=1"><i class="glyphicon glyphicon-fast-backward"/></a>
-                </li>,
-                <li>
-                    <a href="?{$params}&amp;start={max( ($start - $per-page, 1 ) ) }"><i class="glyphicon glyphicon-backward"/></a>
-                </li>
-            ),
+<a href="?{$params}&amp;start=1" class="w3-button "><i class="fa fa-fast-backward"></i></a>
+                ,
+                    <a href="?{$params}&amp;start={max( ($start - $per-page, 1 ) ) }" class="w3-button "><i class="fa fa-backward"></i></a>
+                            ),
             let $startPage := xs:integer(ceiling($start div $per-page))
             let $lowerBound := max(($startPage - ($max-pages idiv 2), 1))
             let $upperBound := min(($lowerBound + $max-pages - 1, $count))
@@ -1957,24 +1971,16 @@ function app:paginate($node as node(), $model as map(*), $start as xs:int, $per-
             for $i in $lowerBound to $upperBound
             return
                 if ($i = ceiling($start div $per-page)) then
-                    <li class="active"><a href="?{$params}&amp;start={max( (($i - 1) * $per-page + 1, 1) )}">{$i}</a></li>
+                   <a class="w3-button" href="?{$params}&amp;start={max( (($i - 1) * $per-page + 1, 1) )}">{$i}</a>
                 else
-                    <li><a href="?{$params}&amp;start={max( (($i - 1) * $per-page + 1, 1)) }">{$i}</a></li>,
-            if ($start + $per-page < count($model("hits"))) then (
-                <li>
-                    <a href="?{$params}&amp;start={$start + $per-page}"><i class="glyphicon glyphicon-forward"/></a>
-                </li>,
-                <li>
-                    <a href="?{$params}&amp;start={max( (($count - 1) * $per-page + 1, 1))}"><i class="glyphicon glyphicon-fast-forward"/></a>
-                </li>
-            ) else (
-                <li class="disabled">
-                    <a><i class="glyphicon glyphicon-forward"/></a>
-                </li>,
-                <li>
-                    <a><i class="glyphicon glyphicon-fast-forward"/></a>
-                </li>
-            )
+                    <a class="w3-button" href="?{$params}&amp;start={max( (($i - 1) * $per-page + 1, 1)) }">{$i}</a>,
+           if ($start + $per-page < count($model("hits"))) then (
+                  <a  class="w3-button" href="?{$params}&amp;start={$start + $per-page}"><i class="fa fa-forward"></i></a>
+                ,
+                    <a  class="w3-button" href="?{$params}&amp;start={max( (($count - 1) * $per-page + 1, 1))}"><i class="fa fa-fast-forward"></i></a>
+                ) else (
+                  <a class="w3-button w3-disabled"><i class="fa fa-forward"></i></a>,
+                <a class="w3-button w3-disabled"><i class="fa fa-fast-forward"></i></a>)
         ) else
             ()
 };
@@ -1995,7 +2001,7 @@ declare
               order by ft:score($term) descending
 
           return
-            <div class="row reference ">
+            <div class="w3-row reference ">
                <div class="w3-third"><a href="lemma/{data($id)}">{$term-name}</a></div>
                <div class="w3-third">{kwic:summarize($term,<config width="40"/>)}</div>
                <div class="w3-quarter"><code>{$term/name()}</code></div>
@@ -2035,10 +2041,10 @@ declare
               let $hom := if(root($term)//tei:form/tei:seg[@type='hom']) then concat(root($term)//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
               order by ft:score($term) descending
           return
-          <div class="row">
+          <div class="w3-row row">
             <div class="w3-quarter">
-            <div class="w3-twothird"><a class="btn btn-primary" role="button" href="?{$params}&amp;id={data($id)}">{$hom || $term-name}</a></div>
-            <div class="w3-third"><span class="badge"> {count($expanded//exist:match)}</span></div>
+            <div class="w3-twothird"><a class="w3-button w3-blue" href="?{$params}&amp;id={data($id)}">{$hom || $term-name}</a></div>
+            <div class="w3-third"><span class="w3-badge"> {count($expanded//exist:match)}</span></div>
             </div>
              <div class="w3-threequarter">
              <div class="w3-threequarter">{for $match in subsequence($expanded//exist:match, 1, 3) return  kwic:get-summary($expanded, $match,<config width="40"/>)}</div>
