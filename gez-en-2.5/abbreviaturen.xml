@@ -292,7 +292,7 @@
         <dillmanAttestedAbk/>
         <dillmanExplanation>Abtelisat.  IIae recensionis. pars Synodi. Numerus significat canones.</dillmanExplanation>
         <normalization/>
-        <bmID>LIT2678ACABt2</bmID>
+        <bmID>LIT2679ACAbt2</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Abtel.</reference>
@@ -317,14 +317,6 @@
         <dillmanExplanation>Actus apostolorum.</dillmanExplanation>
         <normalization/>
         <bmID>LIT1019Actsof</bmID>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Ad. f.</reference>
-        <bmID>LIT1415GadlaA</bmID>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Additam. p.</reference>
-        <bmID/>
     </abbreviatur>
     <abbreviatur>
         <reference>Ae. Bibl. Bodl. p.</reference>
@@ -390,22 +382,7 @@
         <normalization>col.</normalization>
         <bmID/>
     </abbreviatur>
-    <abbreviatur>
-        <reference>Anh. S.</reference>
-        <bmID/>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Anh. p.</reference>
-        <bmID/>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Antw.</reference>
-        <bmID/>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Ap.</reference>
-        <bmID/>
-    </abbreviatur>
+  
     <abbreviatur>
         <reference>Apoc.</reference>
         <dillmanProposedAbk>Apoc.</dillmanProposedAbk>
@@ -415,28 +392,12 @@
         <bmID>LIT3179Revela</bmID>
     </abbreviatur>
     <abbreviatur>
-        <reference>Asc.</reference>
-        <bmID/>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Asc. JEs.</reference>
-        <bmID/>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Asc. Jes</reference>
-        <bmID/>
-    </abbreviatur>
-    <abbreviatur>
         <reference>Asc. Jes.</reference>
         <dillmanProposedAbk>Asc. Jes.</dillmanProposedAbk>
         <dillmanAttestedAbk>542</dillmanAttestedAbk>
         <dillmanExplanation>Ascensio Isaiae ed. Laurence 1819. 8°.</dillmanExplanation>
         <normalization/>
         <bmID>LIT1671Isaiah</bmID>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Asc. Jes. p.</reference>
-        <bmID/>
     </abbreviatur>
     <abbreviatur>
         <reference>Atk. f.</reference>

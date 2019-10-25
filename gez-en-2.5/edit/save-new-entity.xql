@@ -183,7 +183,13 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                
         <encodingDesc>
             <p>A digital edition of the Lexicon in TEI.</p>
-        </encodingDesc>
+                        <listPrefixDef>
+                 <prefixDef ident="bm"
+                    matchPattern="([a-zA-Z0-9]+)"
+                    replacementPattern="https://www.zotero.org/groups/358366/ethiostudies/items/tag/bm:$1">
+                </prefixDef>
+                </listPrefixDef>
+                    </encodingDesc>
                 <profileDesc>
                     
                     <langUsage>
