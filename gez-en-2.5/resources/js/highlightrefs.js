@@ -44,32 +44,6 @@ function toggleGuidelinesElements(id) {
   }
 }
 
-$("#showlabels").click(function () {
-  var x = document.getElementById('labels');
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-  }
-});
-
-$("#showbibliopointers").click(function () {
-    $('[id^="bibliopointers"]').toggle("slow");
-});
-
-$("#showposvalues").click(function () {
-    $('[id^="posvalues"]').toggle("slow");
-});
-$("#showplaceTypes").click(function () {
-    $('[id^="placeTypes"]').toggle("slow");
-});
-$("#showpersTypes").click(function () {
-    $('[id^="persTypes"]').toggle("slow");
-});
-$("#showpersRoles").click(function () {
-    $('[id^="persRoles"]').toggle("slow");
-});
-
 
 
  

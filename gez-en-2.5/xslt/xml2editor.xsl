@@ -125,6 +125,11 @@
         <xsl:value-of select="normalize-space(.)"/>
         <xsl:text>+</xsl:text>
     </xsl:template>
+    <xsl:template match="t:subc">
+        <xsl:text>^</xsl:text>
+        <xsl:value-of select="normalize-space(.)"/>
+        <xsl:text>^</xsl:text>
+    </xsl:template>
     <xsl:template match="t:case">
         <xsl:text>@</xsl:text>
         <xsl:value-of select="normalize-space(.)"/>

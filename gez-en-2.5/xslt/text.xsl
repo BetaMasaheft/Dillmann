@@ -285,5 +285,9 @@
         <xsl:text>) </xsl:text>
     </xsl:template>
     
+    <xsl:template match="t:subc">
+        <b><xsl:value-of select="."/></b>
+    </xsl:template>
+    
 
 </xsl:stylesheet>

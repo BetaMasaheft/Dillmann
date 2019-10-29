@@ -291,22 +291,22 @@ Jquery cares also about the loading it once only and then simply hiding or showi
 
 return (
 <div class="w3-container w3-margin">
-<div class="form-group erweit  w3-third">
+<div class="form-group erweit  w3-quarter">
                         <small class="form-text text-muted">Search for entries which (don't) contain corresponding words in </small>
                         <div  id="languages">
                         <label class="switch">
                             <input type="checkbox" name="notlang"/>
                             <div class="slider round" data-toggle="tooltip" title="not"></div>
                             </label><br/>
-                            <input type="checkbox" name="languages" value="ar"/>Arabic<br/>
-                            <input type="checkbox" name="languages" value="grc"/>Greek<br/>
-                            <input type="checkbox" name="languages" value="cop"/>Coptic<br/>
-                            <input type="checkbox" name="languages" value="la"/>Latin<br/>
-                            <input type="checkbox" name="languages" value="syr"/>Syriac<br/>
-                            <input type="checkbox" name="languages" value="he"/>Hebrew<br/>
+                            <input class="w3-check" type="checkbox" name="languages" value="ar"/>Arabic<br/>
+                            <input class="w3-check" type="checkbox" name="languages" value="grc"/>Greek<br/>
+                            <input class="w3-check" type="checkbox" name="languages" value="cop"/>Coptic<br/>
+                            <input class="w3-check" type="checkbox" name="languages" value="la"/>Latin<br/>
+                            <input class="w3-check" type="checkbox" name="languages" value="syr"/>Syriac<br/>
+                            <input class="w3-check" type="checkbox" name="languages" value="he"/>Hebrew<br/>
                         </div>
                 </div>
-                <div class="form-group erweit  w3-third">
+                <div class="form-group erweit  w3-quarter">
                         <small class="form-text text-muted">Search for entries which (don't) contain this case </small>
                         <div id="case">
                             <label class="switch">
@@ -314,22 +314,43 @@ return (
                             <div class="slider round" data-toggle="tooltip" title="not"></div>
                             </label><br/>
 
-                            <input type="checkbox" name="case" value="accusativus"/>accusativus<br/>
-                            <input type="checkbox" name="case" value="dativus"/>dativus<br/>
+                            <input class="w3-check" type="checkbox" name="case" value="accusativus"/>accusativus<br/>
+                            <input class="w3-check" type="checkbox" name="case" value="dativus"/>dativus<br/>
                         </div>
                 </div>
-                <div class="form-group erweit w3-third">
+                <div class="form-group erweit w3-quarter">
                         <small class="form-text text-muted">Search for entries which (don't) contain this gender </small>
                         <div id="gender">
                             <label class="switch">
                             <input type="checkbox" name="notgen"/>
                             <div class="slider round" data-toggle="tooltip" title="not"></div>
                             </label><br/>
-                            <input type="checkbox" name="case" value="f"/>femininus<br/>
-                            <input type="checkbox" name="case" value="m"/>masculinus<br/>
+                            <input class="w3-check" type="checkbox" name="case" value="f"/>femininus<br/>
+                            <input class="w3-check" type="checkbox" name="case" value="m"/>masculinus<br/>
                         </div>
                 </div>
-                </div>,
+                <div class="form-group erweit w3-quarter">
+                        <small class="form-text text-muted">Search for entries which match this verb subcategory </small>
+                        <div id="gender">
+                            <label class="switch">
+                            <input type="checkbox" name="notsubc"/>
+                            <div class="slider round" data-toggle="tooltip" title="not"></div>
+                            </label><br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="I,1"/>I,1<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="I,2"/>I,2<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="I,3"/>I,3<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="II,1"/>II,1<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="II,2"/>II,2<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="II,3"/>II,3<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="III,1"/>III,1<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="III,2"/>III,2<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="III,3"/>III,3<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="IV,1"/>IV,1<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="IV,2"/>IV,2<br/>
+                            <input class="w3-check" type="checkbox" name="subc" value="IV,3"/>IV,3<br/>
+                        </div>
+                </div>
+</div>,
                 <div class="w3-container w3-margin">
                 <div class="form-group erweit w3-half">
 <small class="form-text text-muted">Search for entries which (don't) contain this PoS </small>
@@ -338,7 +359,7 @@ return (
                             <input type="checkbox" name="notpos"/>
                             <div class="slider round" data-toggle="tooltip" title="not"></div>
                             </label><br/>
-                            {for $x in distinct-values($collection//tei:pos/@expand) return (<input type="checkbox" name="pos" value="{$x}"/>, $x, <br/>)}
+                            {for $x in distinct-values($collection//tei:pos/@expand) return (<input  class="w3-check" type="checkbox" name="pos" value="{$x}"/>, $x, <br/>)}
 
                         </div>
                 </div>
@@ -350,11 +371,11 @@ return (
                             <input type="checkbox" name="notlbl"/>
                             <div class="slider round" data-toggle="tooltip" title="not"></div>
                             </label><br/>
-                           { for $x in distinct-values($collection//tei:lbl/@expand) return (<input type="checkbox" name="lbl" value="{$x}"/>, $x, <br/>)}
+                           { for $x in distinct-values($collection//tei:lbl/@expand) return (<input  class="w3-check" type="checkbox" name="lbl" value="{$x}"/>, $x, <br/>)}
 
                         </div>
                 </div>
-                </div>
+</div>
 
 
                )
@@ -1721,7 +1742,9 @@ let $lbl := app:buildqueryparts('lbl', "expand", 'notlbl', 'lbl')
 
 let $g := app:buildqueryparts('gender', "value", 'notgender', 'gen')
 
-let $erw := $l || $c || $p || $lbl || $g
+let $subc := app:buildqueryparts('subc', "value", 'notsubc', 'subc')
+
+let $erw := $l || $c || $p || $lbl || $g || $subc
 
 let $data-collection := '/db/apps/DillmannData'
 let $coll := $config:collection-root

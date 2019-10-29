@@ -64,6 +64,9 @@
     <xsl:template match="t:case">
         <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
+    <xsl:template match="t:subc">
+        <xsl:value-of select="normalize-space(.)"/>
+    </xsl:template>
     <xsl:template match="t:ref[@type='external'][@target][not(parent::t:bibl)]">
         <xsl:text>(</xsl:text>
         <xsl:value-of select="."/>

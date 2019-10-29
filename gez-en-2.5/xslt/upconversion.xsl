@@ -666,7 +666,7 @@
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <xsl:variable name="text13" select="."/>
-                <xsl:call-template name="nd">
+                <xsl:call-template name="subc">
                     <xsl:with-param name="text13" select="$text13"/>
                 </xsl:call-template>
                 
@@ -675,10 +675,28 @@
     </xsl:template>
     
     
+    <xsl:template name="subc">
+        <xsl:param name="text13"/>
+        <xsl:analyze-string regex="(\^([IV]{{1,3}},\d)\^)" select="$text13">
+            <xsl:matching-substring>
+                <subc>
+                    <xsl:value-of select="regex-group(2)"/>
+                </subc>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
+                <xsl:variable name="text14" select="."/>
+                <xsl:call-template name="nd">
+                    <xsl:with-param name="text14" select="$text14"/>
+                </xsl:call-template>
+                
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
     
     <xsl:template name="nd">
-        <xsl:param name="text13"/>
-        <xsl:analyze-string regex="\{{ND\}}" select="$text13">
+        <xsl:param name="text14"/>
+        <xsl:analyze-string regex="\{{ND\}}" select="$text14">
             <xsl:matching-substring>
                 <nd/>
             </xsl:matching-substring>
