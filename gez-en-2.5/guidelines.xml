@@ -73,6 +73,24 @@
                 </div>
         </div>
         <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">
+                <a href="#" class="w3-button w3-blue w3-small">verb subcategory</a>
+            </div>
+            <div class="w3-col s2 m2 l2">^II,3^</div>
+            <div class="w3-col s2 m2 l2">
+                <b>II,3</b>
+            </div>
+            <div class="w3-col s2 m2 l2">
+                <code>&lt;subc&gt;II,3&lt;/subc&gt;</code>
+            </div>
+            <div class="w3-col s2 m2 l2">
+                <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-subc.html">TEI element subc</a>
+            </div>
+            <div class="w3-col s2 m2 l2">
+                <p>You might use this to mark up instances of reference to a specific subtype of verb.</p>
+            </div>
+        </div>
+        <div class="w3-row-padding">
                 <div class="w3-col s2 m2 l2">
                         <a href="#" class="w3-button w3-blue w3-small">Link to  Beta maṣāḥǝft</a>
                 </div>
