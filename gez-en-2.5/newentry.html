@@ -4,9 +4,14 @@
     <div data-template="app:logging"/>
         <p>Great! So you are creating a new entry! Just to be sure: have you checked is not already there?</p>
         <p>The app will automatically pick a new ID from a list of unique ids.</p>
-        <div data-template="app:newForm"/>
     
     <div data-template="app:tempNew"/>
+    
+    <div class="w3-half w3-padding-64 w3-pale-green" id="editform">
+        <a class="w3-button w3-orange w3-small" id="toggleGuidelines">Hide data entry support</a>
+        <div data-template="app:newForm"/>
+    </div>
+    
     <div data-template="app:guidelines"/>
     <script type="application/javascript" src="resources/js/addMeaning.js"/>
     <script type="application/javascript" src="resources/js/buttons.js"/>

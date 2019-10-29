@@ -3,5 +3,5 @@ import module namespace kwic = "http://exist-db.org/xquery/kwic"    at "resource
 import module namespace config = "http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 
-base-uri($config:collection-root//id('Ldc8c69eda00b4756a7a533d684abcdd3'))
+base-uri($config:collection-root//id('Lef52e4be9d7a4b1087d344152c8d21c6'))
 

@@ -20,41 +20,41 @@ $(document).ready(function () {
             var idlanguage = $('textarea#sense' + language)
             if ($(idlanguage).length == 0) { if (language != null) {
                     var divgroups = "<div> \
-                    <div class='form-group'> \
-                    <label for='source" + language + "' class='col-md-2 col-form-label'>Source of " + language + " meaning</label> \
-                    <div class='col-md-10'> \
-                    <select class='form-control' id='source" + language + "' name='source" + language + "' required='required'> \
+                    <div class='w3-container'> \
+                    <label for='source" + language + "' class='w3-quarter'>Source of " + language + " meaning</label> \
+                    <div class='w3-threequarter w3-bar'> \
+                    <select class='w3-select w3-border w3-bar-item' id='source" + language + "' name='source" + language + "' required='required'> \
                     <option value='dillmann'>Dillmann</option> \
                     <option value='traces'>TraCES</option> \
                     </select> \
-                    <small class='form-text text-muted'>type here the " + language + " Gǝʿǝz form to be added</small> \
+                    <small class='w3-item w3-bar-item'>type here the " + language + " Gǝʿǝz form to be added</small> \
                     </div> \
                     </div> \
-                    <div class='form-group'> \
-                    <label for='sense" + language + "' class='col-md-2 col-form-label'>" + language + " Meaning</label> \
-                    <div class='col-md-10'> \
-                    <div class='btn-group'> \
-                    <a id='" + language + "NestSense' class='btn btn-primary btn-sm'>Meaning</a> \
-                    <a id='" + language + "translation' class='btn btn-primary btn-sm'>Translation</a> \
-                    <a id='" + language + "transcription' class='btn btn-primary btn-sm'>Transcription</a> \
-                    <a id='" + language + "PoS' class='btn btn-primary btn-sm'>PoS</a> \
-                    <a id='" + language + "reference' class='btn btn-primary btn-sm'>Reference</a> \
-                    <a id='" + language + "bibliography' class='btn btn-primary btn-sm'>Bibliography</a> \
-                    <a id='" + language + "otherLanguage' class='btn btn-primary btn-sm'>Language</a>  \
-                    <a id='" + language + "internalReference' class='btn btn-primary btn-sm'>Internal Reference</a> \
-                    <a id='" + language + "gramGroup' class='btn btn-primary btn-sm'>Grammar Group</a> \
-                    <a id='" + language + "label' class='btn btn-primary btn-sm'>Label</a> \
-                    <a id='" + language + "case' class='btn btn-primary btn-sm'>Case</a> \
-                    <a id='" + language + "gen' class='btn btn-primary btn-sm'>Gender</a> \
-                    <a id='" + language + "ND' class='btn btn-primary btn-sm'>ND</a> \
+                    <div class='w3-container'> \
+                    <label for='sense" + language + "' class='w3-quarter'>" + language + " Meaning</label> \
+                    <div class='w3-threequarter'> \
+                    <div class='w3-bar'> \
+                    <a id='" + language + "NestSense' class='w3-button w3-xsmall w3-blue'>Meaning</a> \
+                    <a id='" + language + "translation' class='w3-button w3-xsmall w3-blue'>Translation</a> \
+                    <a id='" + language + "transcription' class='w3-button w3-xsmall w3-blue'>Transcription</a> \
+                    <a id='" + language + "PoS' class='w3-button w3-xsmall w3-blue'>PoS</a> \
+                    <a id='" + language + "reference' class='w3-button w3-xsmall w3-blue'>Reference</a> \
+                    <a id='" + language + "bibliography' class='w3-button w3-xsmall w3-blue'>Bibliography</a> \
+                    <a id='" + language + "otherLanguage' class='w3-button w3-xsmall w3-blue'>Language</a>  \
+                    <a id='" + language + "internalReference' class='w3-button w3-xsmall w3-blue'>Internal Reference</a> \
+                    <a id='" + language + "gramGroup' class='w3-button w3-xsmall w3-blue'>Grammar Group</a> \
+                    <a id='" + language + "label' class='w3-button w3-xsmall w3-blue'>Label</a> \
+                    <a id='" + language + "case' class='w3-button w3-xsmall w3-blue'>Case</a> \
+                    <a id='" + language + "gen' class='w3-button w3-xsmall w3-blue'>Gender</a> \
+                    <a id='" + language + "ND' class='w3-button w3-xsmall w3-blue'>ND</a> \
                     </div> \
-                    <textarea class='form-control' id='sense" + language + "' name='sense" + language + "' style='height:250px;'>&lt;S" + language + "&lt;&gt;S&gt;</textarea> \
-                    <small class='form-text text-muted'>type here your " + language + " definition. Do not remove the language please.</small> \
+                    <textarea class='w3-input w3-border' id='sense" + language + "' name='sense" + language + "' style='height:250px;'>&lt;S" + language + "&lt;&gt;S&gt;</textarea> \
+                    <small class='w3-small'>type here your " + language + " definition. Do not remove the language please.</small> \
                     </div> \
                     </div> \
                     </div>"
                     
-                    $(place).append('<div>' + divgroups + '<a href="#" class="btn btn-danger remove_field btn-xs">Remove ' + language + ' meaning permanently</a></div>');
+                    $(place).append('<div>' + divgroups + '<a href="#" class="w3-button w3-small w3-red">Remove ' + language + ' meaning permanently</a></div>');
                     //add input box
                 }
             }

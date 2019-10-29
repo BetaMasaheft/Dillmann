@@ -73,13 +73,13 @@ $(document).ready(function () {
     $('#lemma').append('፡')
     $('.navlemma').append('፡')
     $.getJSON(call, function (data) {
-        console.log(data)
+        // console.log(data)
         
         var items =[];
         var listitems = data.items
             var numberofitems = ''
             if($.isArray(listitems)){numberofitems += listitems.length} else {numberofitems += 1}
-            console.log(numberofitems)
+           // console.log(numberofitems)
             
         if (numberofitems > 1) {
             
@@ -88,7 +88,7 @@ $(document).ready(function () {
             for (var i = 0; i < numberofitems ; i++) {
                 
                 var match = data.items[i];
-          console.log(match)      
+          //console.log(match)      
           
                 var view = match.text;
                 
@@ -141,7 +141,7 @@ $(document).ready(function () {
                 }
 //                console.log(parsedtext)
                 var url = "/" + coll + '/' + id + "/main?hi=" + encodeURIComponent(lemma)
-                items.push('<div  class="w3-panel w3-Pale-Blue w3-card-4"><h3><a href="' + url + '">' + title + "</a><span class='w3-badge'>" + match.hitsCount + "</span></h3><div lang='gez' class='word'>" + parsedtext + "</div></div>");
+                items.push('<div  class="w3-panel w3-pale-blue w3-card-4 w3-padding-64"><h3><a href="' + url + '">' + title + "</a><span class='w3-badge'>" + match.hitsCount + "</span></h3><div lang='gez' class='word'>" + parsedtext + "</div></div>");
                 
                 
                 $("<div/>", {
@@ -161,7 +161,7 @@ $(document).ready(function () {
 $( document ).ajaxComplete(function() {
  $('div#attestations [lang="gez"] p span').each(function (wn) {
         
-       console.log(wn)
+      // console.log(wn)
     
     var word = $(this)
     /*make all spaces a single space*/
@@ -218,7 +218,7 @@ $( document ).ajaxComplete(function() {
     });
        $('.attpopup').on('mouseover mouseout',function () {
     var id = $(this).data('value') 
-    console.log(id)
+  //  console.log(id)
     popupatt(id)
 });
  function popupatt(id) {

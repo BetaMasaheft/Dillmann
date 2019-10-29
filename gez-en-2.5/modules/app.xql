@@ -646,13 +646,12 @@ else (
  declare function app:gotocolumn($node as element(), $model as map(*)) {
   <form action="" class="w3-container" id="GtC">
  
- <div class="w3-row">
-  <label id="basic-addon3">column number</label>
-  <span class="w3-container">
-  <span class="w3-threequarter"><input type="number" class="w3-input w3-border" id="columnnumber" aria-describedby="basic-addon3" name="GtC"/></span>
-  <span class="w3-quarter"><button class="w3-button w3-gray" type="submit">Go!</button></span>
-  </span>
-</div>
+ <div class="w3-bar">
+  
+  <input type="number" class="w3-input w3-border w3-bar-item" id="columnnumber" aria-describedby="basic-addon3" name="GtC"/>
+ <button class="w3-bar-item w3-button w3-gray" type="submit">Go!</button>
+  
+</div><label id="basic-addon3">column number</label>
 </form>
 };
 
@@ -660,7 +659,7 @@ else (
 
   declare function app:deleteEntry($id) {
 if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
-<a role="button" class="btn btn-danger delete" href="/Dillmann/edit/delete-confirm.xq?id={$id}">
+<a class="w3-button w3-red w3-bar-item delete" href="/Dillmann/edit/delete-confirm.xq?id={$id}">
                    <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>)
 else ()
@@ -901,7 +900,7 @@ switch ($key)
 
 (:prints the information in revisionDesc:)
 declare function app:revisions($term){
-       <div class="collapse card-block" id="revisions">
+       <div class="w3-panel w3-card-2 w3-pale-blue w3-hide" id="revisions">
                 <ul>
                 {for $change in root($term)//tei:revisionDesc/tei:change
                 let $time := $change/@when
@@ -916,74 +915,8 @@ declare function app:revisions($term){
     </ul>
     </div>};
 
-(:print the entry, transforming with xsl the contents and preparing the html for further dispaly rework done in videas.js :)
-declare function app:item($node as node(), $model as map(*)){
-let $col :=  $config:collection-root
-let $id := request:get-parameter("id", "")
-let $term := $col//id($id)
-return
-if(count($term) eq 0) then (<div class="w3-container w3-margin">There is no item with id {$id}. It might have been deleted, or more likely it was never there.</div>)
-else
-let $n := data($term/@n)
-let $column := if($term//tei:cb) then string(($term//tei:cb/@n)[1]) else string(max($col//tei:cb[xs:integer(ancestor::tei:entry/@n) <= xs:integer($n)][@xml:id]/@n))
-let $hom := if($term//tei:form/tei:seg[@type='hom']) then concat($term//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
-let $rootline := if($term//tei:form/tei:rs[@type='root']) then (<button class="btn btn-xs btn-info" id="rootmembers" data-value="{$id}"><span class="lead">Root</span></button>) else (<button class="btn btn-xs btn-info" id="rootmembers"  data-value="{$id}">Root</button>)
-let $ne := xs:integer($n) + 1
-let $pr := xs:integer($n) - 1
-let $NE := string($ne)
-let $PR := string($pr)
-let $next := string($col//tei:entry[@n = $NE]/@xml:id)
-let $prev := string($col//tei:entry[@n = $PR]/@xml:id)
-
-
-return
-<div class="w3-container w3-margin">
-        <h1>{$hom}
-       <span id="lemma">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</span>
-       {if($term//tei:form/tei:foreign[@xml:lang !='gez'])
-        then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
-       <div class=" btn-group downloadlinks">{app:pdf-link($id)}{app:getXML($id)}</div>{app:deleteEntry($id)}
-         {if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then ($rootline) else ()}
-         {if($term//tei:nd) then (<span class="badge badge-success">New</span>) else(<span class="badge columns"><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}"><i class="fa fa-columns" aria-hidden="true"/> {' ' || format-number($column, '#')}</a></span>)}
-         </h1>
-        <a  class="smallArrow prev" href="/Dillmann/lemma/{$prev}">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-
-<span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a> {' | '} <a  class="smallArrow next" data-value="{$next}" href="/Dillmann/lemma/{$next}"><span class="navlemma">{$col//id($next)//tei:form/tei:foreign/text()}</span>
-
- <i class="fa fa-chevron-right" aria-hidden="true"></i>
- </a>
- <div id="showroot"/>
- {for $sense in $term//tei:sense[not(@rend)][not(@n)]
- order by $sense/@source
-return  <div class="card-block">
-
-
-<h3>
-{if($sense/@source = '#traces') then 'TraCES' else 'Dillmann'}
-{if($sense/@source) then (let $s := substring-after($sense/@source, '#') return <a href="#" data-toggle="tooltip" title="{root($term)//tei:sourceDesc//tei:ref[@xml:id=$s]//text()}, {
-switch($sense/@xml:lang) case 'la' return 'Latin' case 'ru' return 'Russian' case 'en' return 'English' case 'de' return 'Deutsch'
-case 'it' return 'Italian' default return string($sense/@xml:id)}"><i class="fa fa-info-circle" aria-hidden="true"></i></a>) else ()}
-
-</h3>
-{transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/text.xsl',())}</div>}
-
-      <div class="btn-group">
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#revisions">Revisions</button>
-      {app:editineXide($id, <sources>{for $s in $term//tei:sense return <source lang="{$s/@xml:lang}" value="{$s/@source}"></source>}</sources>)}
-   <a role="button" class="btn btn-info" target="_blank" href="mailto:pietro.liuzzo@uni-hamburg.de?Subject=[Dillmann]%20{$id}">
-   <i class="fa fa-envelope-o" aria-hidden="true"></i>
-</a></div>
-   {app:revisions($term)}
-    </div>
-};
-
-
-(:print the entry in the main landing page, transforming with xsl the contents and preparing the html for further dispaly rework done in videash.js
-the difference from the previous function is in that here parameters need to be taken into account. It has also a switch, which is not in the main view, which higlights the terms from teh search
-:)
-declare function app:showitem($node as node()*, $model as map(*), $id as xs:string?){
- let $params :=
+declare function app:itemcontent ($id){
+let $params :=
                 string-join(
                     for $param in request:get-parameter-names()
                     for $value in request:get-parameter($param, ())
@@ -997,10 +930,9 @@ declare function app:showitem($node as node()*, $model as map(*), $id as xs:stri
                     "&amp;"
                 )
 let $col :=  $config:collection-root
-let $id := request:get-parameter('id', ())
 let $term := $col//id($id)
 let $hom := if($term//tei:form/tei:seg[@type='hom']) then concat($term//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
-let $rootline := if($term//tei:form/tei:rs[@type='root']) then (<button class="btn btn-xs btn-info" id="rootmembers" data-value="{$id}"><span class="w3-large">Root</span></button>) else (<button class="w3-button w3-xxsmall w3-grey" id="rootmembers"  data-value="{$id}">Root</button>)
+let $rootline := if($term//tei:form/tei:rs[@type='root']) then (<a class="w3-button w3-small w3-bar-item" id="rootmembers" data-value="{$id}"><span class="w3-black">Root</span></a>) else (<a class="w3-button w3-grey  w3-bar-item" id="rootmembers"  data-value="{$id}">Root</a>)
 let $n := data($term/@n)
 let $ne := xs:integer($n) + 1
 let $pr := xs:integer($n) - 1
@@ -1011,31 +943,39 @@ let $next := string($col//tei:entry[@n = $NE]/@xml:id)
 let $prev := string($col//tei:entry[@n = $PR]/@xml:id)
 (:        <button class="highlights btn btn-sm btn-info">Highlight/Hide strings matching the words in your search</button>:)
 return
-if ($id) then (
-<div class="w3-container">
-
-
-      <div class="w3-row">  
-      <h1 >{$hom}
-      <span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span>
+(<div class="w3-container">
+<div class="w3-row">
+      <div class="w3-third w3-bar"><span class="w3-bar-item w3-xlarge">{$hom}
+      <span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span></span>
         {if($term//tei:form/tei:foreign[@xml:lang !='gez'])
         then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
         {if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then ($rootline) else ()}
-        </h1>
-<div class="w3-bar downloadlinks">
-<div class="w3-bar-item">
-{if($term//tei:nd) then (<span class="w3-badge w3-green w3-bar-item">New</span>) else(<span class="w3-badge columns w3-gray "><a target="_blank" href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then  if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}">
-
-        <i class="fa fa-columns" aria-hidden="true"/> {if($term//tei:cb) then (string(number(format-number($column, '#')) - 1) || '/' || format-number($column, '#')) else (' ' || format-number($column, '#'))}</a></span>)}
-        </div>
-<label class="w3-bar-item switch highlights">
+        <div class="w3-bar-item ">
+<label class="switch highlights">
   <input type="checkbox"/>
   <div class="slider round" data-toggle="tooltip" title="Show or Hide highlights of each element in the entry (lemma excluded!) containing your query as a string.
   This might be different from the hits on the left, but it should help you to find your match faster."></div>
-</label>{app:pdf-link($id)}{app:getXML($id)}</div>{app:deleteEntry($id)}
+</label>
 </div>
-
-        <a class="smallArrow prev" href="?{$params}&amp;id={$prev}">
+        </div>
+<div class="w3-bar downloadlinks w3-third">
+<div class="w3-bar-item">
+{if($term//tei:nd) then (<span class="w3-badge w3-green w3-bar-item">New</span>) 
+else(<span class="w3-badge w3-gray "><a target="_blank" 
+href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then 
+if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}">
+<i class="fa fa-columns" aria-hidden="true"/> {if($term//tei:cb) then (string(number(format-number($column, '#')) - 1) || '/' || format-number($column, '#')) 
+else (' ' || format-number($column, '#'))}</a></span>)}
+        </div>
+        {app:pdf-link($id)}
+        {app:getXML($id)}
+        
+</div>
+<div class="w3-third">
+{app:deleteEntry($id)}
+</div>
+</div>
+       <a class="smallArrow prev" href="?{$params}&amp;id={$prev}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
 
 <span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a>{ ' | '}
@@ -1060,10 +1000,10 @@ case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa
 </div>}
 
 
-      <div class="btn-group">
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#revisions">Revisions</button>
+      <div class="w3-bar">
+      <a class="w3-bar-item w3-button w3-pale-green" onclick="togglElements('revisions')">Revisions</a>
       {app:editineXide($id, <sources>{for $s in $term/tei:sense return <source lang="{$s/@xml:lang}" value="{$s/@source}"></source>}</sources>)}
-   <a role="button" class="btn btn-info" target="_blank" href="mailto:pietro.liuzzo@uni-hamburg.de?Subject=[Dillmann]%20{$id}">
+   <a class="w3-bar-item w3-button w3-green" target="_blank" href="mailto:pietro.liuzzo@uni-hamburg.de?Subject=[Dillmann]%20{$id}">
    <i class="fa fa-envelope-o" aria-hidden="true"></i>
 </a></div>
 {app:revisions($term)}
@@ -1074,10 +1014,27 @@ case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa
     </div>
 
     </div>,
-    <div class="w3-panel w3-lightygreen w3-card-2">
+    <div class="w3-panel">
         <h3><span id='NumOfAtt'/>Attestations in the Beta maṣāḥǝft corpus</h3>
     <div id="attestations" />
-    </div>
+    </div>)
+};
+
+
+(:print the entry, transforming with xsl the contents and preparing the html for further dispaly rework done in videas.js :)
+declare function app:item($node as node(), $model as map(*)){
+let $col :=  $config:collection-root
+let $id := request:get-parameter("id", "")
+return app:itemcontent($id)
+};
+
+
+(:print the entry in the main landing page, transforming with xsl the contents and preparing the html for further dispaly rework done in videash.js
+the difference from the previous function is in that here parameters need to be taken into account. It has also a switch, which is not in the main view, which higlights the terms from teh search
+:)
+declare function app:showitem($node as node()*, $model as map(*), $id as xs:string?){
+if ($id) then (
+    app:itemcontent($id)
 )
 else (<div class="w3-panel w3-card-4 w3-sand w3-margin w3-paddgin-64">Search and click on a search result to see it here. You will be able to click on words, browse the previous and next entries, get the result on its own page and see related finds from Beta maṣāḥǝft.</div>)};
 
@@ -1128,63 +1085,64 @@ declare function app:tempNew($node as node()*, $model as map(*)){
 };
 
 declare function app:newForm ($node as node()*, $model as map(*)){
- <form id="createnew" action="/Dillmann/edit/save-new-entity.xql" method="post">
-             <div class="form-group">
-            <label for="form" class="w3-quarter col-form-label">Lemma</label>
-            <div class="w3-threequarter">
-            <div >
-                <select class="form-control" id="formlang" name="formlang" required="required">
+ <form id="createnew" action="/Dillmann/edit/save-new-entity.xql" method="post" class="w3-container w3-padding">
+             <div class="w3-container">
+            <label for="form" class="w3-quarter">Lemma</label>
+            <div class="w3-threequarter w3-bar">
+            <input class="w3-input w3-bar-item w3-border" id="form" name="form" required="required" value="{if(request:get-parameter('form',())) then request:get-parameter('form',()) else ()}"/>
+                <select class="w3-bar-item w3-select w3-border" id="formlang" name="formlang" required="required">
                 <option value="gez" selected="selected">Gǝʿǝz</option>
                 <option value="amh">Amharic</option>
                 <option value="ti">Tigrinya</option>
                 <option value="so">Somali</option>
                 </select>
-                <small class="form-text text-muted">select the language of the entry</small>
+                <small class="w3-small w3-bar-item">select the language of the entry</small>
             </div>
-            <div >
-                <input class="form-control" id="form" name="form" required="required" value="{if(request:get-parameter('form',())) then request:get-parameter('form',()) else ()}"/>
-                <small class="form-text text-muted">type here the new form to be added</small>
             </div>
-            <div  id="checkifitalreadyexists"><div class="w3-panel w3-lightygreen w3-card-2">Please paste or write something above and I will tell you if it is already in.</div></div>
+             <div class="w3-container">
+            <label for="form" class="w3-quarter">Lemma</label>
+            <div class="w3-threequarter"  id="checkifitalreadyexists"><div class="w3-panel w3-lightygreen w3-card-2">Please paste or write something above and I will tell you if it is already in.</div></div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="source" class="w3-quarter col-form-label">Source</label>
-            <div class="w3-threequarter">
-                <select class="form-control" id="sourceen" name="sourceen" required="required">
+     
+        <div class="w3-container">
+            <label for="source" class="w3-quarter">Source</label>
+            <div class="w3-threequarter w3-bar">
+                <select class="w3-select w3-border w3-bar-item" id="sourceen" name="sourceen" required="required">
                 <option value="dillmann">Dillmann</option>
                 <option value="traces">TraCES</option>
                 </select>
-                <small class="form-text text-muted">type here the new Gǝʿǝz form to be added</small>
+                <small class="w3-small w3-bar-item">type here the new Gǝʿǝz form to be added</small>
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="senseen" class="w3-quarter col-form-label">Sense</label>
+        <div class="w3-container">
+            <label for="senseen" class="w3-quarter">Sense</label>
             <div class="w3-threequarter">
             {app:buttons('en')}
-                <textarea class="form-control" id="senseen"
+                <textarea class="w3-input w3-border" id="senseen"
                 name="senseen"  style="height:250px;">{if(request:get-parameter('senseen',())) then request:get-parameter('senseen',()) else ('<Sen<   {ND} >S>')}</textarea>
-                <small class="form-text text-muted">type here your definition, following the guidelines below.</small>
+                <small class="w3-small">type here your definition, following the guidelines below.</small>
             </div>
         </div>
         <div id="addsense"></div>
-        <button class="btn btn-success add_field_button">Add More Meanings</button>
+        <button class="w3-button w3-green add_field_button">Add More Meanings</button>
 
-        <div class="form-group">
+       <div class="w3-container w3-card-2 w3-margin w3-padding-64">
 
-            <label for="msg" class="w3-quarter col-form-label" >What have you done?</label>
+            <label for="msg" class="w3-quarter" >What have you done?</label>
             <div class="w3-threequarter">
-                <textarea class="form-control" id="msg" name="msg" required="required">{if(request:get-parameter('msg',())) then request:get-parameter('msg',()) else ()}</textarea>
-                <small class="form-text text-muted">shortly describe why you created this entry</small>
+                <textarea class="w3-input w3-border" id="msg" name="msg" required="required">{if(request:get-parameter('msg',())) then request:get-parameter('msg',()) else ()}</textarea>
+                <small class="w3-small">shortly describe the changes you have made</small>
             </div>
-        </div>
-
-        <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="notifyEditors" name="notifyEditors" value="yes"/>
-    <label class="form-check-label" for="notifyEditors">Send an email to the editors about this change</label>
+       
+        <div class="w3-container">
+        <div class="w3-quarter"><button id="confirmcreatenew" type="submit" class="w3-button w3-green">Confirm (or lose all)</button></div>
+        <div class="w3-threequarter">
+    <input type="checkbox" class="w3-check" id="notifyEditors" name="notifyEditors" value="yes"/>
+    <label for="notifyEditors">Send an email to the editors about this change</label>
   </div>
-        <button id="confirmcreatenew" type="submit" class="btn btn-primary" disabled="disabled">create new entry</button>
+ </div>
+ </div>
     </form>
 };
 
@@ -1195,10 +1153,11 @@ let $existingsource := 'source' || $lang
 let $parexistingsource := request:get-parameter($existingsource, ())
 let $source := if($sense/@source) then string($sense/@source) else ' (' || app:switchLangName($sense) || ')'
 return
-<div><div class="form-group">
-            <label for="source{$lang}" class="w3-quarter col-form-label">Source of {'Sense' || $source}</label>
-            <div class="w3-threequarter">
-                <select class="form-control" id="source{$lang}" name="source{$lang}" required="required">
+<div>
+<div class="w3-container">
+            <label for="source{$lang}" class="w3-quarter">Source of {'Sense' || $source}</label>
+            <div class="w3-threequarter w3-bar">
+                <select class="w3-select w3-border w3-bar-item" id="source{$lang}" name="source{$lang}" required="required">
                 <option value="dillmann">
                 {if($parexistingsource = 'dillmann') then(attribute selected{'selected'}) else ()}
                 Dillmann
@@ -1208,21 +1167,22 @@ return
                 TraCES
                 </option>
                 </select>
-                <small class="form-text text-muted">type here the new Gǝʿǝz form to be added</small>
+                <small class="w3-small w3-bar-item">type here the new Gǝʿǝz form to be added</small>
             </div>
         </div>
- <div class="form-group">
+ <div class="w3-container">
 
-            <label for="sense{$lang}" class="w3-quarter col-form-label">{'Sense' || $source}</label>
+            <label for="sense{$lang}" class="w3-quarter">{'Sense' || $source}</label>
             <div class="w3-threequarter">
             {app:buttons($lang)}
             <div id="wrap">
-                <textarea class="form-control" id="sense{$lang}" name="sense{$lang}" style="height:250px;">{if(request:get-parameter($paramname,())) then request:get-parameter($paramname,()) else transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/xml2editor.xsl', ())}</textarea>
+                <textarea class="w3-input w3-border" id="sense{$lang}" name="sense{$lang}" style="height:250px;">{if(request:get-parameter($paramname,())) then request:get-parameter($paramname,()) else transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/xml2editor.xsl', ())}</textarea>
              </div>
-             <small class="form-text text-muted">type here your latin definition</small>
+             <small class="w3-small">type here your latin definition</small>
             </div>
         </div>
-        <a href="#" class="btn btn-danger remove_field btn-xs">Remove {$lang} meaning permanently</a></div>
+        <a href="#" class="w3-button w3-small w3-red">Remove {$lang} meaning permanently</a>
+        </div>
 
 };
 
@@ -1238,33 +1198,31 @@ return
            <div class="w3-panel w3-card-2"><p>Hi {xmldb:get-current-user()}! You are updating {$file//tei:form/tei:foreign/text()}, that is great!</p>
            <p> Please follow the data entry support on the side of this form for editing the entries.</p>
            <p> Remember, you are here editing the dictionaries as sources of information, not annotating texts. The structure given to the entries is useful for many purposes.</p></div>,
-                <form id="updateEntry" action="/Dillmann/edit/edit.xq" class="input_fields_wrap" method="post">
+                <form id="updateEntry" action="/Dillmann/edit/edit.xq" class="w3-container w3-padding input_fields_wrap" method="post">
                 <input hidden="hidden" value="{$id}" name="id"/>
-                   <div class="form-group">
+                   <div class="w3-container">
             <label for="form" class="w3-quarter col-form-label">Lemma</label>
-            <div class="w3-threequarter">
-            <div class="input-group">
-            <span class="input-group-addon">
-            <input type="checkbox" id="rootCheck" name="root" value="root">
+            <div class="w3-threequarter w3-bar">
+           
+            <div  class="w3-bar-item w3-bar">
+                <input class="w3-input w3-border w3-bar-item" id="senselemma" name="form" value="{$file//tei:form/tei:foreign/text()}"/>
+              <a class="iconlemma w3-button w3-pale-green w3-bar-item">
+                                <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+                                </a>
+            </div>
+            <small class="w3-small">you can correct here the Gǝʿǝz form. Simply type it.</small>
+           
+             <input class="w3-check w3-bar-item" type="checkbox" id="rootCheck" name="root" value="root">
                 {if($file//tei:form/tei:rs[@type]) then attribute checked {'checked'} else ()}
                 </input>
-            </span>
-            <div >
-                <select class="form-control" id="formlang" name="formlang" required="required">
+            <div class="w3-bar-item" >
+                <select class="w3-select w3-border w3-bar-item" id="formlang" name="formlang" required="required">
                 <option value="gez" selected="selected">Gǝʿǝz</option>
                 <option value="amh">Amharic</option>
                 <option value="ti">Tigrinya</option>
                 <option value="so">Somali</option>
                 </select>
-                <small class="form-text text-muted">select the language of the entry</small>
-            </div>
-                <input class="form-control" id="senselemma" name="form" value="{$file//tei:form/tei:foreign/text()}"/>
-              <span class="input-group-btn"> <a class="iconlemma btn btn-success">
-                                <i class="fa fa-keyboard-o" aria-hidden="true"></i>
-                                </a>
-          </span>
-              <small class="form-text text-muted">you can correct here the Gǝʿǝz form. Simply type it.</small>
-            </div>
+            </div> 
             </div>
         </div>
 
@@ -1273,21 +1231,24 @@ return
         {for $sense in $file//tei:sense[@xml:lang][@n='S' or not(@n)]
         return app:updateFormGroup($sense)}
         <div id="addsense"></div>
-        <button class="btn btn-success add_field_button">Add More Meanings</button>
+        <button class="w3-button w3-green add_field_button">Add More Meanings</button>
 
-        <div class="form-group">
+        <div class="w3-container w3-card-2 w3-margin w3-padding-64">
 
-            <label for="msg" class="w3-quarter col-form-label" >What have you done?</label>
+            <label for="msg" class="w3-quarter" >What have you done?</label>
             <div class="w3-threequarter">
-                <textarea class="form-control" id="msg" name="msg" required="required">{if(request:get-parameter('msg',())) then request:get-parameter('msg',()) else ()}</textarea>
-                <small class="form-text text-muted">shortly describe the changes you have made</small>
+                <textarea class="w3-input w3-border" id="msg" name="msg" required="required">{if(request:get-parameter('msg',())) then request:get-parameter('msg',()) else ()}</textarea>
+                <small class="w3-small">shortly describe the changes you have made</small>
             </div>
-        </div>
-        <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="notifyEditors" name="notifyEditors" value="yes"/>
-    <label class="form-check-label" for="notifyEditors">Send an email to the editors about this change</label>
+       
+        <div class="w3-container">
+        <div class="w3-quarter"><button id="confirmcreatenew" type="submit" class="w3-button w3-green">Confirm (or lose all)</button></div>
+        <div class="w3-threequarter">
+    <input type="checkbox" class="w3-check" id="notifyEditors" name="notifyEditors" value="yes"/>
+    <label for="notifyEditors">Send an email to the editors about this change</label>
   </div>
-        <button id="confirmcreatenew" type="submit" class="btn btn-primary">Confirm (or lose all your changes)</button>
+ </div> 
+ </div>
                 </form>
 
                 )
@@ -1295,21 +1256,23 @@ return
 };
 
 
+
+
 declare function app:buttons($name){
-<div class="btn-group"><a id="{$name}NestSense" class="btn btn-primary btn-sm">Meaning</a>
-            <a id="{$name}translation" class="btn btn-primary btn-sm">Translation</a>
-            <a id="{$name}transcription" class="btn btn-primary btn-sm">Transcription</a>
-            <a id="{$name}PoS" class="btn btn-primary btn-sm">PoS</a>
-            <a id="{$name}reference" class="btn btn-primary btn-sm">Reference</a>
-            <a id="{$name}bibliography" class="btn btn-primary btn-sm">Bibliography</a>
-            <a id="{$name}otherLanguage" class="btn btn-primary btn-sm">Language</a>
-            <a id="{$name}internalReference" class="btn btn-primary btn-sm">Internal Reference</a>
-            <a id="{$name}gramGroup" class="btn btn-primary btn-sm">Grammar Group</a>
-            <a id="{$name}label" class="btn btn-primary btn-sm">Label</a>
-            <a id="{$name}case" class="btn btn-primary btn-sm">Case</a>
-            <a id="{$name}gen" class="btn btn-primary btn-sm">Gender</a>
-            <a id="{$name}ND" class="btn btn-primary btn-sm">ND</a>
-            <a href="#" id="icon{$name}" class="btn btn-primary btn-sm"> <i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
+<div class="w3-bar"><a id="{$name}NestSense" class="w3-button w3-xsmall w3-blue">Meaning</a>
+            <a id="{$name}translation" class="w3-button w3-xsmall w3-blue">Translation</a>
+            <a id="{$name}transcription" class="w3-button w3-xsmall w3-blue">Transcription</a>
+            <a id="{$name}PoS" class="w3-button w3-xsmall w3-blue">PoS</a>
+            <a id="{$name}reference" class="w3-button w3-xsmall w3-blue">Reference</a>
+            <a id="{$name}bibliography" class="w3-button w3-xsmall w3-blue">Bibliography</a>
+            <a id="{$name}otherLanguage" class="w3-button w3-xsmall w3-blue">Language</a>
+            <a id="{$name}internalReference" class="w3-button w3-xsmall w3-blue">Internal Reference</a>
+            <a id="{$name}gramGroup" class="w3-button w3-xsmall w3-blue">Grammar Group</a>
+            <a id="{$name}label" class="w3-button w3-xsmall w3-blue">Label</a>
+            <a id="{$name}case" class="w3-button w3-xsmall w3-blue">Case</a>
+            <a id="{$name}gen" class="w3-button w3-xsmall w3-blue">Gender</a>
+            <a id="{$name}ND" class="w3-button w3-xsmall w3-blue">ND</a>
+            <a href="#" id="icon{$name}" class="w3-button w3-xsmall w3-blue"> <i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
          </div>
 };
 declare function app:upconvertSense($senseAndSource) as node(){
@@ -2364,8 +2327,8 @@ declare function app:footer($node as element(), $model as map(*)){
             <a class="w3-bar-item w3-button  w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
                 onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
 
-            <div class="w3-dropdown-hover w3-hide-small" id="about">
-                    <a class="navbar-brand" href="/Dillmann/">{$config:expath-descriptor/expath:title/text()}</a>
+            <div class="w3-bar-item w3-hide-small" id="brand">
+                    <a href="/Dillmann/">{$config:expath-descriptor/expath:title/text()}</a>
 
         </div>
         {  if(sm:id()//sm:username/text() = 'guest') then
@@ -2397,11 +2360,11 @@ declare function app:footer($node as element(), $model as map(*)){
                        </form>
 }
             <div class="w3-dropdown-hover w3-hide-small" id="about">
-                  <button class=" w3-button" title="about">
-
-                    <a target="_blank" href="/Dillmann/user/{xmldb:get-current-user()}">Hi {xmldb:get-current-user()}!</a>
-
-                  <i class="fa fa-caret-down"></i></button>
+                  <a 
+                  class=" w3-button" title="about" 
+                  href="/Dillmann/user/{xmldb:get-current-user()}"  
+                  target="_blank">
+Hi {xmldb:get-current-user()}!<i class="fa fa-caret-down"></i></a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
               <a class="w3-bar-item w3-button" href="/Dillmann/about.html">About this app</a>
               <a class="w3-bar-item w3-button" href="/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>

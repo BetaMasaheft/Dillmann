@@ -478,8 +478,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-a{color: #033c6d;}
-
 .delete {float: right}
 
 .queryTerm{background: rgb(218, 216, 0);}
