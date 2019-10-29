@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <footer>
-    <div class="row-fluid">
-        <div class="col-md-8">
+    <div class="w3-row w3-margin">
+        <div class="w3-twothird">
             <p>
                 <a href="/Dillmann/impressum.html">Impressum</a>
             </p>
@@ -9,7 +9,7 @@
                  This project was started and carried on by Alessandro Bausi, Andreas Ellwardt and many others. For more details see <a href="https://www.academia.edu/31421987/150_years_after_Dillmann" target="_blank">A. Bausi,  ‘Introduction. 150 Years After Dillmann’s Lexicon’, in A. Bausi and E. Sokolinski, eds, <i>150 Years after Dillmann’s Lexicon: Perspectives and Challenges of Gǝʿǝz Studies</i>, Supplement to Aethiopica, 5 (Wiesbaden: Harrassowitz Verlag, 2016), 3-10.</a>
             </p>
         </div>
-        <div class="col-md-4">
+        <div class="w3-third">
             <a class="poweredby" href="http://exist-db.org">
                 <img src="$shared/resources/images/powered-by.svg" alt="Powered by eXist-db"/>
             </a>

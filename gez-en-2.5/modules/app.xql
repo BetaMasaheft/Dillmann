@@ -431,45 +431,47 @@ The letters are available as buttons on the side bar and when clicked will reloa
  return
 
      <div class="w3-container w3-margin">
-     <div class="w3-quarter">
-     <ul class="nav nav-pills nav-stacked">
-     <li><a role="button" class="btn btn-info" href="?start=1&amp;mode=cit">list translations (default)</a></li>
-     <li><a role="button" class="btn btn-info" href="?start=1&amp;mode=foreign">non latin terms</a></li>
-     </ul>
-     <ul class="nav nav-pills nav-stacked">
+     <div class="w3-quarter w3-animate-left">
+     <div class="w3-bar-block w3-margin">
+     <a class="w3-bar-item w3-button w3-green"   href="?start=1&amp;mode=cit">list translations (default)</a>
+     <a class="w3-bar-item w3-button w3-green"  href="?start=1&amp;mode=foreign">non latin terms</a>
+     </div>
+     <div class="w3-bar-block w3-margin">
      {for $lang in distinct-values($langs)
         return
         if ($lang = 'gez') then () else
-                <li><a role="button" class="btn  btn-primary" href="?start=1&amp;lang={$lang}{$mpar}">{$lang}</a></li>}
-      </ul>
-     <ul class="nav nav-pills nav-stacked">{for $hit in $data
+                <a class="w3-bar-item w3-button w3-pale-green" href="?start=1&amp;lang={$lang}{$mpar}">{$lang}</a>}
+      </div>
+     <div class="w3-bar-block w3-margin">{for $hit in $data
          let $first := substring($hit('hit'), 1, 1)
             group by $f := $first
             return
-                <li><a role="button" class="btn btn-success" href="?start=1&amp;letter={$f}{$mpar}{$lpar}">{$f} <span class="badge">{count($hit)}</span></a></li>}
-                <li><a role="button" class="btn btn-info" href="?start=1{$mpar}{$lpar}">back to full list</a></li>
-      </ul>
+               <a class="w3-bar-item w3-button w3-blue" href="?start=1&amp;letter={$f}{$mpar}{$lpar}">{$f} <span class="w3-badge w3-right w3-margin-right">{count($hit)}</span></a>}
+               <a class="w3-bar-item w3-button w3-green" href="?start=1{$mpar}{$lpar}">back to full list</a>
+      </div>
 
       </div>
-          <div class="w3-threequarter">  { if (count($data) lt 1) then (<p class="lead">Please select a value on the side bar.</p>) else
+          <div class="w3-threequarter">  { if (count($data) lt 1) then (<div class="w3-panel w3-card-2">Please select a value on the side bar.</div>) else
+          <div class="w3-margin w3-container">{
  for $hit in subsequence($data, $start, $per-page)
  return
  <div class="row">
      <div class="w3-third">{$hit('hit')}</div>
      <div  class="w3-twothird">
-     <ul class="nodot">
+     <div class="w3-bar-block">
      {for $r in $hit('roots')
 
      let $entry :=  $config:collection-root//id($r)
      let $term-name := let $terms := $entry//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
 
          return
-             <li class="nodot"><a target="blank" href="/Dillmann/lemma/{$r}">{$term-name}</a></li>
+             <a class="w3-bar-item" target="blank" href="/Dillmann/lemma/{$r}">{$term-name}</a>
      }
-        </ul>
+        </div>
      </div>
  </div>}
  </div>
+ }</div>
  </div>
  };
 
@@ -996,11 +998,11 @@ else (' ' || format-number($column, '#'))}</a></span>)}
 {app:deleteEntry($id)}
 </div>
 </div>
-       <a class="smallArrow prev" href="?{$params}&amp;id={$prev}">
+       <a class="smallArrow prev" href="{if(contains($params, 'id')) then ('?'||$params||'&amp;id='||$prev) else '/Dillmann/lemma/'||$prev}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
 
 <span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a>{ ' | '}
-<a  class="smallArrow next" data-value="{$next}" href="?{$params}&amp;id={$next}">
+<a  class="smallArrow next" data-value="{$next}" href="{if(contains($params, 'id')) then ('?'||$params||'&amp;id='||$next) else '/Dillmann/lemma/'||$next}">
 <span class="navlemma">{$col//id($next)//tei:form/tei:foreign/text()} </span>
 
  <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -2264,16 +2266,16 @@ declare %private function app:lucene2xml($node as item(), $mode as xs:string) {
 
 
    declare function app:biblform($node as node(), $model as map(*)){
-   <form xmlns="http://www.w3.org/1999/xhtml"  action="" class="form form-horizontal">
+   <form xmlns="http://www.w3.org/1999/xhtml"  action="" class="w3-container">
 
-      <div  class="form-group">
+      <div  class="w3-container">
                                <small class="form-text text-muted">enter a Zotero bm:id</small>
-                                <input class="form-control" name="pointer" placeholder="bm:"></input>
+                                <input class="w3-input w3-border" name="pointer" placeholder="bm:"></input>
                                 </div>
-                                <div class="btn-group">
-                                 <button type="submit" class="btn btn-primary">
+                                <div class="w3-container w3-bar">
+                                 <button type="submit" class="w3-button w3-pale-green w3-bar-item">
                                  <i class="fa fa-filter" aria-hidden="true"></i></button>
-                                 <a href="/Dillmann/bibl.html" role="button" class="btn btn-info"><i class="fa fa-th-list" aria-hidden="true"></i></a></div>
+                                 <a href="/Dillmann/bibl.html" role="button" class="w3-button w3-pale-green w3-bar-item"><i class="fa fa-th-list" aria-hidden="true"></i></a></div>
    </form>
    };
 

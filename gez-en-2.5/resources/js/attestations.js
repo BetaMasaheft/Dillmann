@@ -111,7 +111,7 @@ $(document).ready(function () {
                     parsedtext += match.results
                 }
      //           console.log(parsedtext)
-                items.push("<div class='w3-panel w3-Pale-Blue w3-card-4 w3-third' id='" + id + "'><h3><a target='_blank' href='/" + coll + '/' + id + "/" + view + "?hi=" + lemma + '&start=' + match.textpart + "'>" + title + "</a> <span class='w3-badge'>" + match.hitsCount + "</span></h3><div lang='gez' class='word'>" + parsedtext + "</div></div>");
+                items.push("<div class='w3-third' id='" + id + "'><div class='w3-container w3-margin w3-panel w3-card-2 '><div class='w3-bar'><h3 class='w3-bar-item'><a target='_blank' href='/" + coll + '/' + id + "/" + view + "?hi=" + lemma + '&start=' + match.textpart + "'>" + title + "</a></h3> <span class='w3-badge w3-bar-item w3-right'>" + match.hitsCount + "</span></div><div lang='gez' class='word'>" + parsedtext + "</div></div></div>");
             }
             $("<div/>", {
                 addClass : 'w3-white alpheios-enabled',
