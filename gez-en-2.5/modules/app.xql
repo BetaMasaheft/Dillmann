@@ -1010,7 +1010,7 @@ else (' ' || format-number($column, '#'))}</a></span>)}
  <div id="showroot"/>
  {for $sense in $term//tei:sense[not(@n)]
  order by $sense/@source
-return  <div class="card-block entry">
+return  <div class="w3-panel entry">
 <h3>
 {if($sense/@source = '#traces') then 'TraCES' else 'Dillmann'}
 {if($sense/@source) then (let $s := substring-after($sense/@source, '#') return <a href="#" data-toggle="tooltip" title="{root($term)//tei:sourceDesc//tei:ref[@target=$s]//text()}, {
@@ -1018,8 +1018,15 @@ switch($sense/@xml:lang) case 'la' return 'Latin' case 'ru' return 'Russian' cas
 case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa fa-info-circle" aria-hidden="true"></i>
 </a>) else ()}
 </h3>
-
+<div>
+<a class="w3-right w3-button w3-tiny w3-gray" onclick="toggletabletextview({$sense/@source||$sense/@xml:lang})">Table/Text</a>
+<div class="w3-show" id="textView{$sense/@source||$sense/@xml:lang}">
 {transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/text.xsl',())}
+</div>
+<div class="w3-hide" id="tabularView{$sense/@source||$sense/@xml:lang}">
+{transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/table.xsl',())}
+</div>
+</div>
 </div>}
 
 
@@ -1228,8 +1235,8 @@ return
             <div class="w3-threequarter w3-bar">
            
             <div  class="w3-bar-item w3-bar">
-                <input class="w3-input w3-border w3-bar-item" id="senselemma" name="form" value="{$file//tei:form/tei:foreign/text()}"/>
-              <a class="iconlemma w3-button w3-pale-green w3-bar-item">
+                <input class="w3-input w3-border w3-bar-item diacritics" id="senselemma" name="form" value="{$file//tei:form/tei:foreign/text()}"/>
+              <a class="iconlemma kb w3-button w3-pale-green w3-bar-item">
                                 <i class="fa fa-keyboard-o" aria-hidden="true"></i>
                                 </a>
             </div>
@@ -1295,7 +1302,6 @@ declare function app:buttons($name){
             <a id="{$name}case" class="w3-button w3-xsmall w3-blue">Case</a>
             <a id="{$name}gen" class="w3-button w3-xsmall w3-blue">Gender</a>
             <a id="{$name}ND" class="w3-button w3-xsmall w3-blue">ND</a>
-            <a href="#" id="icon{$name}" class="w3-button w3-xsmall w3-blue"> <i class="fa fa-keyboard-o" aria-hidden="true"></i></a>
          </div>
 };
 declare function app:upconvertSense($senseAndSource) as node(){

@@ -30,6 +30,7 @@ $(document).ready(function () {
         var el = this;
         
         var reference = $(this).data('value')
+        console.log('searching ' + reference)
         var splitref = reference.split("/");
         var sourceReference = $(this).data('ref')
         var bmid = $(this).data('bmid')
@@ -42,17 +43,13 @@ $(document).ready(function () {
             var title = data[ "0"].title
             var text = data[ "0"].text
             if (data[ "0"].info) {
-                result += '<p>There is no text yet for this passage in Beta maṣāḥǝft.</p><a target="_blank" href="/works/' + bmid + '">See Work record</a>'
+                result += '<span class="RefPopup"><i class="fa fa-file-text-o" aria-hidden="true"/> Text of the passage <span  class="popuptext w3-hide w3-tiny w3-padding" id="'+reference+'"><p>There is no text yet for this passage in Beta maṣāḥǝft.</p><a target="_blank" href="/works/' + bmid + '">See Work record</a></span></span>'
             } else {
-                result += '<p>Text of ' + cit + ' .</p><p>' + text + '</p><a target="_blank" href="/works/' + bmid + '/text?start=' + splitref[1] + '">See full text</a>'
+                result += '<span class="RefPopup"><i class="fa fa-file-text-o" aria-hidden="true"/> Text of the passage <span  class="popuptext w3-hide w3-tiny w3-padding" id="'+reference+'"><p>Text of ' + cit + ' .</p><p>' + text + '</p><a target="_blank" href="/works/' + bmid + '/text?start=' + splitref[1] + '">See full text</a></span></span>'
             }
-            $(el).popover({
-                html: true,
-                content: result,
-                title: 'Text Passage'
-            });
+            $(el).html( result);
         })
-    })
+    });
     
     var lemma = ''
     var lem = $('#lemma').text()

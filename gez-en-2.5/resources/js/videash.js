@@ -1,4 +1,19 @@
 
+
+function toggletabletextview(source) {
+  var table = document.getElementById('tabularView'+source);
+  
+  var text = document.getElementById('textView'+source);
+  
+  if (table.className.indexOf("w3-show") == -1) {
+    table.className += " w3-show";
+    text.className = text.className.replace("w3-show", "w3-hide");
+  } else {
+    table.className = table.className.replace("w3-show", "");
+     text.className += " w3-show";
+  }
+}
+
 function togglElements(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
@@ -227,6 +242,12 @@ $(document).ready(function () {
     });
     
      $('.popup').on('mouseover mouseout',function () {
+    var id = $(this).data('value') 
+    console.log(id)
+    popup(id)
+});
+
+ $('.RefPopup').on('click',function () {
     var id = $(this).data('value') 
     console.log(id)
     popup(id)
