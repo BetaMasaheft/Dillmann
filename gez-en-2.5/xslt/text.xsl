@@ -76,13 +76,13 @@
     
     <xsl:template match="t:cit[@type='translation']">
         <!--        the space is hardcoded because in some cases for an unanderstood reason the spaces are ignored-->
-        <xsl:text> </xsl:text>
+<!--        <xsl:text> </xsl:text>-->
         <i>
             <xsl:if test="@xml:lang = 'la'">
                 <xsl:attribute name="class">translationLa word</xsl:attribute>
                 <xsl:attribute name="lang">la</xsl:attribute>
             </xsl:if>
-            <xsl:value-of select="."/>
+            <xsl:value-of select="replace(t:quote, '^\s+|\s+$', '')"/>
         </i>
         <sup>
             <a target="_blank" href="/Dillmann/reverse?start=1&amp;lang={@xml:lang}">
@@ -93,9 +93,9 @@
     
     <xsl:template match="t:cit[@type='transcription']">
         <!--        the space is hardcoded because in some cases for an unanderstood reason the spaces are ignored-->
-        <xsl:text> </xsl:text>
+<!--        <xsl:text> </xsl:text>-->
         <b>
-            <xsl:value-of select="."/>
+            <xsl:value-of select="replace(t:quote, '^\s+|\s+$', '')"/>
         </b>
         <xsl:text> </xsl:text>
     </xsl:template>
@@ -160,7 +160,7 @@
             </xsl:if>
             <xsl:value-of select="."/>
         </a>
-        <xsl:text> </xsl:text>
+<!--        <xsl:text> </xsl:text>-->
     </xsl:template>
     
     <xsl:template match="t:ref[not(@type)]">
