@@ -10,8 +10,12 @@
             <table class="w3-table-all w3-table-responsive">
                 <tr><th>information type</th><th>values</th></tr>
                 <tr>
-                    <th>PoS</th>
-                    <th><xsl:apply-templates select="//t:pos"/></th>
+                    <td>PoS</td>
+                    <td><xsl:apply-templates select="//t:pos"/><xsl:apply-templates select="//t:subc"/></td>
+                </tr>
+                <tr>
+                    <td>transcription</td>
+                    <td><xsl:apply-templates select="//t:cit[@type='transcription']"/></td>
                 </tr>
                 <tr>
                     <td>translations</td>
@@ -24,6 +28,18 @@
                 <tr>
                     <td>references</td>
                     <td><xsl:apply-templates select="//t:ref[@cRef]"/></td>
+                </tr>
+                <tr>
+                    <td>labels</td>
+                    <td><xsl:apply-templates select="//t:lbl"/></td>
+                </tr>
+                <tr>
+                    <td>gender</td>
+                    <td><xsl:apply-templates select="//t:gender"/></td>
+                </tr>
+                <tr>
+                    <td>case</td>
+                    <td><xsl:apply-templates select="//t:case"/></td>
                 </tr>
                 <tr>
                     <td>bibliography</td>

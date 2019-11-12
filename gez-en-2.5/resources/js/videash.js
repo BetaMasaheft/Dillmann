@@ -1,9 +1,12 @@
 
 
 function toggletabletextview(source) {
-  var table = document.getElementById('tabularView'+source);
+var tableid = 'tabularView'+source
+var textid = 'textView'+source
+console.log(tableid+textid)
+  var table = document.getElementById(tableid);
   
-  var text = document.getElementById('textView'+source);
+  var text = document.getElementById(textid);
   
   if (table.className.indexOf("w3-show") == -1) {
     table.className += " w3-show";

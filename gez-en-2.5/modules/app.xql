@@ -694,8 +694,12 @@ declare function app:editineXide($id as xs:string, $sources as node()) {
 if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
 let $ss := for $source in $sources/source return '&amp;source' || $source/@lang ||'=' ||substring-after($source/@value, '#')
 let $sourcesparam := string-join($ss, '')
+(:let $base := base-uri($config:collection-root//id($id)):)
 return
-    <a class="w3-button w3-pale-blue" href="/Dillmann/update.html?id={$id}&amp;new=false{$sourcesparam}">Update</a>
+
+<a class="w3-button w3-pale-blue" href="/Dillmann/update.html?id={$id}&amp;new=false{$sourcesparam}">Update</a>
+    (:,
+    <a  class="w3-button w3-pale-red" href="https://betamasaheft.eu:8080/exist/apps/eXide/index.html?open={$base}">Edit XML</a>):)
 )
 else ()
 };
@@ -1009,7 +1013,8 @@ else (' ' || format-number($column, '#'))}</a></span>)}
  </a>
  <div id="showroot"/>
  {for $sense in $term//tei:sense[not(@n)]
- order by $sense/@source
+ let $s := (replace($sense/@source, '#', '') ||$sense/@xml:lang)
+ order by $sense/@source 
 return  <div class="w3-panel entry">
 <h3>
 {if($sense/@source = '#traces') then 'TraCES' else 'Dillmann'}
@@ -1019,12 +1024,14 @@ case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa
 </a>) else ()}
 </h3>
 <div>
-<a class="w3-right w3-button w3-tiny w3-gray" onclick="toggletabletextview({$sense/@source||$sense/@xml:lang})">Table/Text</a>
-<div class="w3-show" id="textView{$sense/@source||$sense/@xml:lang}">
+<a class="w3-right w3-button w3-tiny w3-gray" onclick="toggletabletextview('{$s}')">Table/Text</a>
+<div id="{$s}">
+<div class="w3-show" id="textView{$s}">
 {transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/text.xsl',())}
 </div>
-<div class="w3-hide" id="tabularView{$sense/@source||$sense/@xml:lang}">
+<div class="w3-hide" id="tabularView{$s}">
 {transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/table.xsl',())}
+</div>
 </div>
 </div>
 </div>}
@@ -1045,7 +1052,9 @@ case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa
 
     </div>,
     <div class="w3-panel">
-        <h3><span id='NumOfAtt'/>Attestations in the Beta maṣāḥǝft corpus</h3>
+    
+        <h3><span id='NumOfAtt'/> Attestations in the Beta maṣāḥǝft corpus</h3>
+    <span class="w3-button w3-green" id="loadattestations">Load</span>
     <div id="attestations" />
     </div>)
 };
