@@ -94,13 +94,13 @@ $(function () {
             'alt':[
             '` 1 2 3 4 5 6 7 8 9 0 - = {bksp}',
             '{tab} q \u02b7 e r t y u i o \u1e57 [ ] \\',
-            'a \u0161 d f \u01e7 \u1e2b j k l ; \u02be {enter}',
+            'a \u0161 d f \u01e7 \u1e2b j k ḵ l ; \u02be {enter}',
             '{shift} \u017e x \u010d\u0323 \u010d b \u00f1 m , . / {shift}',
             '{accept} {alt} {space} {alt} {cancel}'],
             'alt-shift':[
             '~ ! @ # $ % ^ & * ( ) _ + {bksp}',
             '{tab} Q W E R T Y U I O \u1E56 { } |',
-            'A \u0160 D F \u01e6 \u1e2a J K L : \u02bf {enter}',
+            'A \u0160 D F \u01e6 \u1e2a J K Ḵ L : \u02bf {enter}',
             '{shift} \u017d X \u010c\u0323 \u010c B \u00d1 M < > ? {shift}',
             '{accept} {alt} {space} {alt} {cancel}']
         },

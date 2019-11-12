@@ -722,7 +722,7 @@ function app:show-hits($node as node()*, $model as map(*), $start as xs:int) {
 };:)
 
 (:storing separately this input in this function makes sure that when the page is reloaded with the results the value entered remains in the input element:)
-declare function app:queryinput ($node as node(), $model as map(*), $q as xs:string*){<input name="q" type="search" class="w3-threequarter w3-input w3-border" placeholder="Search string" value="{$q}"/>};
+declare function app:queryinput ($node as node(), $model as map(*), $q as xs:string*){<input name="q" type="search" class="w3-threequarter w3-input w3-border diacritics" placeholder="Search string" value="{$q}"/>};
 
 
 (:following function is used to list all entries.
