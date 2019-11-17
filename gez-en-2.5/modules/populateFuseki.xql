@@ -44,8 +44,10 @@ $nestedLexical,
 $describes)
 };
 
+let $operation := 'INSERT'
 
-let $tripleslexicon := '
+let $dictionary := 
+       let $tripleslexicon := '
 dillmann:lexicon a lexicog:LexicographicResource ;
                     a lime:Lexicon ;
                     lime:language "gez" ; # not sure if this should be different, this is the language about which the lexicon is
@@ -55,6 +57,8 @@ dillmann:lexicon a lexicog:LexicographicResource ;
 	    dillmann:leslau a lexicog:LexicographicResource ;
 	    dc:language "en" .
 	    '
+return
+	    fusekisparql:update('dillmann', $operation, $tripleslexicon)
 
 let $data := collection($config:data-root) 
 (:looks for the roots and orders them, so that the next one is the next root:)
@@ -63,11 +67,12 @@ let $lexicogEntries := for $lexicogentry in $data//t:rs[@type='root'] order by n
 let $limeEntry := $data//t:entry[not(descendant::t:rs[@type='root'])]
 
 let $triplesentry := 
-                for $root in subsequence($lexicogEntries, 1, 10) 
-                   let $entryURI := concat('dillmann:',string($root/@xml:id))
+                for $root in $lexicogEntries
+                   let $id := $root/@xml:id
+                   let $entryURI := concat('dillmann:',string($id))
                    let $entryN := $root/@n
-                   let $entryIndex := index-of($lexicogEntries, $lexicogEntries[@n = $entryN])
-                   let $NextEntryN := $lexicogEntries[$entryIndex +1]/@n
+                   let $entryIndex := index-of($lexicogEntries, $lexicogEntries[@xml:id = $id])
+                   let $NextEntryN := $lexicogEntries[$entryIndex[1] +1]/@n  (:added first in sequence because I got a scary "too many operands at the left of  +", hinting at the presence in the root sequence of one o more double numbered entries...:)
                    let $rootentries := $limeEntry[xs:integer(@n) ge xs:integer($entryN)][xs:integer(@n) lt xs:integer($NextEntryN)]
                    let $rootentriescount := count($rootentries)
                    let $rootmembers := for $member in $rootentries return concat('dillmann:',string($member/@xml:id), '_comp')
@@ -82,9 +87,9 @@ let $triplesentry :=
                                                          
                                                          
 (:                   roots are both lexicog and lime entries, while non roots are only lime entries.:)
-                return 
+                let $entry :=
            'dillmann:lexicon lexicog:entry  '||$entryURI|| '_entry ;
-                                              rdf:_'||string($entryIndex)||' '||$entryURI ||'_entry . #added, not in documentation, to sequence the roots in dillmann
+                                              rdf:_'||string($entryIndex[1])||' '||$entryURI ||'_entry . #added, not in documentation, to sequence the roots in dillmann
             '|| $entryURI || '_entry a lexicog:Entry
                                              '|| (if($rootentriescount ge 1) then ( '; 
                                              rdf:member ' || string-join($rootmembers, ', ') || ' .') else (' .'))||  '
@@ -93,8 +98,12 @@ let $triplesentry :=
                    ') || '
                    '||string-join($senses, '
                    ')
+                   return 
+                   fusekisparql:update('dillmann', $operation, $entry)
+                   
+                   
                                    
-let $lexicon := for $entry in subsequence(($lexicogEntries, $limeEntry), 1,10) 
+let $lexicon := for $entry in ($lexicogEntries, $limeEntry) 
                     let $entryURI := concat('dillmann:',string($entry/@xml:id))
                    let $senses := for $sense in $entry/t:sense
                                                 let $senseURI := $entryURI || '_sense_' ||string($sense/@xml:id)
@@ -109,7 +118,7 @@ let $lexicon := for $entry in subsequence(($lexicogEntries, $limeEntry), 1,10)
                                                  $senseURI||'_concept a ontolex:LexicalConcept '||(if(count($definition) ge 1) then (' ; 
                                                                                                ' ||string-join($definition, ' ; 
                                                                                                ') || ' .') else ' .'))
-                    return
+                    let $entry := 
 $entryURI || '_form a ontolex:Form ;
        ontolex:writtenRep "'||normalize-space(string-join($entry/t:form//text())) ||'"@gez .
 
@@ -117,14 +126,9 @@ $entryURI || '_form a ontolex:Form ;
    
    ' || string-join($senses, '
 ')
-
-let $all := ($tripleslexicon || 
-string-join($triplesentry, ' 
-' )||string-join($lexicon, ' 
-'))
-
-       
-let $operation := 'INSERT'
 return
-$all
-(:fusekisparql:update('dillmann', $operation, $all):)
+fusekisparql:update('dillmann', $operation, $entry)
+       
+
+return
+'finished'
