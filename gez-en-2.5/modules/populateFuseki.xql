@@ -12,7 +12,7 @@ declare function local:sense($parentURI as xs:string, $sense){
 let $parentURI_comp := $parentURI || '_comp' 
 let $nested := for $s in $sense 
               let $senseURI := $parentURI || '_sense_' ||string($s/@xml:id)
-              return local:sense($senseURI, $s/t:sense)
+              return if($s/t:sense) then local:sense($senseURI, $s/t:sense) else ()
 let $nestedLexical := for $s in $sense 
               let $senseURI := $parentURI || '_sense_' ||string($s/@xml:id)
               return $senseURI || ' a ontolex:LexicalSense  . 
@@ -85,8 +85,9 @@ let $triplesentry :=
                 return 
            'dillmann:lexicon lexicog:entry  '||$entryURI|| '_entry ;
                                               rdf:_'||string($entryIndex)||' '||$entryURI ||'_entry . #added, not in documentation, to sequence the roots in dillmann
-            '|| $entryURI || '_entry a lexicog:Entry ;
-                                             '|| (if($rootentriescount ge 1) then ( 'rdf:member ' || string-join($rootmembers, ', ') || ' .') else ())||  '
+            '|| $entryURI || '_entry a lexicog:Entry
+                                             '|| (if($rootentriescount ge 1) then ( '; 
+                                             rdf:member ' || string-join($rootmembers, ', ') || ' .') else (' .'))||  '
                                              '  ||string-join( $components, '
                    ') ||string-join( $limentries, '
                    ') || '
@@ -95,25 +96,35 @@ let $triplesentry :=
                                    
 let $lexicon := for $entry in subsequence(($lexicogEntries, $limeEntry), 1,10) 
                     let $entryURI := concat('dillmann:',string($entry/@xml:id))
+                   let $senses := for $sense in $entry/t:sense
+                                                let $senseURI := $entryURI || '_sense_' ||string($sense/@xml:id)
+                                                let $definition := if($sense/t:cit[@type="translation"]/t:quote) 
+                                                                                    then (for $d in $sense/t:cit[@type='translation']
+                                                                                                group by $L := $d/@xml:lang 
+                                                                                                   let $values := for $def in $d/t:quote return '"' || $def ||'"@'||string($L)
+                                                                                                  return 'skos:definition ' || string-join($values, ', ')) else ()
+                                                      return 
+                                                ($entryURI || ' ontolex:sense' || ' ' || $senseURI || ' .',
+                                                 $senseURI || ' ontolex:isLexicalizedSenseOf ' ||$senseURI||'_concept .',
+                                                 $senseURI||'_concept a ontolex:LexicalConcept '||(if(count($definition) ge 1) then (' ; 
+                                                                                               ' ||string-join($definition, ' ; 
+                                                                                               ') || ' .') else ' .'))
                     return
 $entryURI || '_form a ontolex:Form ;
        ontolex:writtenRep "'||normalize-space(string-join($entry/t:form//text())) ||'"@gez .
 
-   '||$entryURI||' ontolex:lexicalForm  '||$entryURI||'_form .'
+   '||$entryURI||' ontolex:lexicalForm  '||$entryURI||'_form .
+   
+   ' || string-join($senses, '
+')
 
-(:        ontolex:sense :animal_n_sense_1 ;
-        ontolex:sense :animal_n_sense_2 . '
-:)	
 let $all := ($tripleslexicon || 
 string-join($triplesentry, ' 
 ' )||string-join($lexicon, ' 
 '))
 
-let $test := 'dillmann:L6267cc5bb7fc4bc1b80b5568aa2f67d6 ontolex:lexicalForm  dillmann:L6267cc5bb7fc4bc1b80b5568aa2f67d6_form . 
-dillmann:Le069e393d9794e098b17a382d5254382_form a ontolex:Form ;
-       ontolex:writtenRep "ሆህያት"@gez .'
        
 let $operation := 'INSERT'
 return
-(:$all:)
-fusekisparql:update('dillmann', $operation, $all)
+$all
+(:fusekisparql:update('dillmann', $operation, $all):)
