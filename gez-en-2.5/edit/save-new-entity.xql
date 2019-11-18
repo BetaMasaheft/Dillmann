@@ -1,5 +1,7 @@
 xquery version "3.0" encoding "UTF-8";
 import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en" at "../modules/app.xql";
+import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
+
 import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 
@@ -35,8 +37,8 @@ else()}</senses>
 let $cU := xmldb:get-current-user()
 
 let $app-collection := '/db/apps/gez-en'
-let $data-collection := '/db/apps/gez-en/data'
-let $newdata-collection := '/db/apps/gez-en/data/new'
+let $data-collection := '/db/apps/DillmannData'
+let $newdata-collection := '/db/apps/DillmannData/new'
 let $next-id-file-path := concat($app-collection,'/edit/next-id.xml')
 
 let $nexN := max(collection($data-collection)//t:entry/@n) + 1
@@ -238,7 +240,8 @@ let $schema := doc('/db/apps/gez-en/schema/Dillmann.rng')
 (:    create file:)
 
 let $store := xmldb:store($newdata-collection, $file, $item)
-
+let $record := $config:collection-root//id($newid)
+let $updateFuseki := updatefuseki:entry($record)
 
     (:nofity editor and contributor:)
      let $sendmails :=(
