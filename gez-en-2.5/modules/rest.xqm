@@ -4,6 +4,7 @@ xquery version "3.1"  encoding "UTF-8";
 module namespace api="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/api";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 
+import module namespace fusekisparql = 'https://www.betamasaheft.uni-hamburg.de/BetMas/sparqlfuseki' at "fuseki.xqm";
 
 
 (: For interacting with the TEI document :)
@@ -18,49 +19,73 @@ declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace json="http://www.json.org";
 (: For output annotations  :)
 
+ declare
+%rest:GET
+%rest:path("/BetMas/api/Dillmann/SPARQL")
+%rest:query-param("query", "{$query}", "")
+%output:method("xml")
+function apisparql:sparqlQuery($query as xs:string*) {
+
+let $q := ((if(starts-with($query, 'PREFIX')) then () else $apisparql:prefixes) || normalize-space($query))  
+let $xml := fusekisparql:query('dillmann', $q)
+return
+($apisparql:response200XML,
+$xml
+)};
+
 declare
 %rest:GET
 %rest:path("/BetMas/api/Dillmann/rootmembers/{$id}")
 %output:method("json")
 function api:rootmembers($id as xs:string){
+let $sparqlquery := $config:sparqlPrefixes || "
+SELECT ?sequence ?id ?text ?root
+WHERE
+{
+?entry rdf:member 	dillmann:"||$id||"_comp ;
+ ?prop ?member .
+  ?member lexicog:describes ?entryorsense .
+  dillmann:lexicon ?rdfsequence ?entryorsense .
+  ?entryorsense ontolex:lexicalForm ?form .
+  ?form ontolex:writtenRep ?text .
 
-let $col :=  $config:collection-root
-let $term := $col//id($id)
-let $lem := let $terms := $term//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
-let $n := xs:integer($term/@n)
-let $cr := if($term//tei:rs[@type='root']) then 'currentRoot' else 'member'
-    let $allroots := $col//tei:rs[@type='root']
-let $nextroots := $allroots/ancestor::tei:entry[xs:integer(@n) gt $n]
-let $minN :=  xs:integer(min($nextroots/@n))
-let $nextroot := $nextroots[@n = $minN]
-let $nextrootid := $nextroot/@xml:id/string()
+  FILTER (STRSTARTS(STR(?rdfsequence), 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_'))
+BIND (xsd:integer(STRAFTER(STR(?rdfsequence), 'http://www.w3.org/1999/02/22-rdf-syntax-ns#_')) as ?sequence)
+BIND (STRBEFORE(STRAFTER(STR(?entry),'https://betamasaheft.eu/Dillmann/'), '_entry') as ?rootid)
+BIND (STRAFTER(STR(?entryorsense),'https://betamasaheft.eu/Dillmann/') as ?id)
+  BIND(IF(CONTAINS(STR(?entryorsense), ?rootid), 'currentRoot', 'member' ) as ?root)
+}
+ORDER BY ?sequence"
+let $fusekicall := fusekisparql:query('dillmann', $sparqlquery)
 
-let $prevroots := $allroots/ancestor::tei:entry[xs:integer(@n) lt $n]
-let $maxN :=  xs:integer(max($prevroots/@n))
-let $prevroot := $prevroots[@n = $maxN]
-let $prevrootid := $prevroot/@xml:id/string()
-let $nexts :=
-    for $entriesN at $p in ($n + 1) to $minN
-    let $ent := $col//tei:entry[xs:integer(@n) = $entriesN]
-    let $lem := let $terms := $ent//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
-
-    let $id := string($ent/@xml:id)
-    let $nr := if($ent//tei:rs[@type='root']) then 'nextRoot' else 'member'
-    order by $p
-    return
-        map {'id': $id, 'n': $entriesN, 'role' : $nr, 'lem' : $lem}
-let $prevs :=
- for $entriesN at $p in $maxN to ($n -1)
-    let $ent := $col//tei:entry[xs:integer(@n) = $entriesN]
-    let $lem := let $terms := $ent//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
-     let $id := string($ent/@xml:id)
-    let $pr := if($ent//tei:rs[@type='root']) then 'prevRoot' else 'member'
-    order by $p
-    return
-         map {'id': $id, 'n': $entriesN, 'role' : $pr, 'lem' : $lem}
+         let $requested := $fusekicall//sr:literal[.= $id]
+         let $thisResult := $requested/ancestor::sr:result
+         let $thisN := xs:integer($thisResult//sr:binding[@name='sequence']/sr:literal)
+         let $prevs := for $p in $fusekicall//sr:result[xs:integer(sr:binding[@name='sequence']/sr:literal) lt $thisN]
+                             let $id := $p/sr:binding[@name='id']/sr:literal/text()
+                             let $entriesN := $p/sr:binding[@name='sequence']/sr:literal/text()
+                             let $pr := $p/sr:binding[@name='root']/sr:literal/text()
+                             let $lem := $p/sr:binding[@name='text']/sr:literal/text()
+                              return
+                              map {'id': $id, 'n': $entriesN, 'role' : $pr, 'lem' : $lem}
+       let $nexts := for $p in $fusekicall//sr:result[xs:integer(sr:binding[@name='sequence']/sr:literal) gt $thisN]
+                          let $id := $p/sr:binding[@name='id']/sr:literal/text()
+                          let $entriesN := $p/sr:binding[@name='sequence']/sr:literal/text()
+                          let $pr := $p/sr:binding[@name='root']/sr:literal/text()
+                          let $lem := $p/sr:binding[@name='text']/sr:literal/text()
+                           return
+                             map {'id': $id, 'n': $entriesN, 'role' : $pr, 'lem' : $lem}
 return
-    ($config:response200Json,
-    map {'here': map {'id': $id, 'n': xs:integer($n), 'role' : $cr, 'lem' : $lem} , 'prev' : $prevs, 'next' : $nexts})
+(
+$config:response200Json,
+ map {'here': map {  'id': $id, 
+                                'n': xs:integer($thisResult/sr:binding[@name='sequence']/sr:literal/text()), 
+                                'role' : $thisResult/sr:binding[@name='root']/sr:literal/text(), 
+                                'lem' : $thisResult/sr:binding[@name='text']/sr:literal/text()
+                                } , 
+          'prev' : $prevs, 
+          'next' : $nexts}
+  )
 
 };
 

@@ -368,8 +368,8 @@ $('.internalRef').on('mouseover mouseout',function () {
 });
 
 
-$('#rootmembers').click(function () {
-    var thisid = $(this).data('value')
+$(document).ready(function () {
+    var thisid = $('#rootmembers').data('value')
     var apicall = '/api/Dillmann/rootmembers/' + thisid
     $.getJSON(apicall, function (data) {
         var h = data.here

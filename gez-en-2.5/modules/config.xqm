@@ -37,7 +37,7 @@ declare variable $config:sparqlPrefixes := "PREFIX lexicog: <http://www.w3.org/n
 declare variable $config:response200 := <rest:response>
         <http:response
             status="200">
-
+                
             <http:header
                     name="Access-Control-Allow-Origin"
                     value="*"
@@ -57,7 +57,7 @@ declare variable $config:response200Json := <rest:response>
                     />
             </http:response>
         </rest:response>;
-
+        
 declare variable $config:response200XML := <rest:response>
             <http:response
                 status="200">
@@ -79,7 +79,7 @@ declare variable $config:response400 := <rest:response>
                     value="application/json; charset=utf-8"/>
             </http:response>
         </rest:response>;
-
+        
 declare variable $config:response400XML := <rest:response>
             <http:response
                 status="400">
@@ -88,10 +88,10 @@ declare variable $config:response400XML := <rest:response>
                     value="application/xml; charset=utf-8"/>
             </http:response>
         </rest:response>;
-(:
+(: 
     Determine the application root collection from the current module load path.
 :)
-declare variable $config:app-root :=
+declare variable $config:app-root := 
     let $rawPath := system:get-module-load-path()
     let $modulePath :=
         (: strip the xmldb: part :)
@@ -222,3 +222,4 @@ declare function config:get-fonts-dir() as xs:string? {
         else
             ()
 };
+

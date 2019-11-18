@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
-    
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround"
+    data-template-with="templates/page.html" data-template-at="content">
+
     <div data-template="app:logging"/>
     <h1>Beta maṣāḥǝft API documentation</h1>
-    <div class="col-md-12" id="apidoctoc">
-        <p>The base uri for the API is <code>https://betamasaheft.eu/api/</code> which
-        will redirect you here unless specified.</p>
+    <div class="w3-container" id="apidoctoc">
+        <p>The base uri for the API is <code>https://betamasaheft.eu/api/</code> which will redirect
+            you here unless specified.</p>
         <ul>
-            
+
             <li>
                 <a class="page-scroll" href="#dillmannsearch">Search Dillmann Lexicon</a>
             </li>
             <li>
-                <a class="page-scroll" href="#dillmannlist">GET list of lemmas in Dillmann Lexicon</a>
+                <a class="page-scroll" href="#dillmannlist">GET list of lemmas in Dillmann
+                    Lexicon</a>
             </li>
             <li>
                 <a class="page-scroll" href="#dillmannlemma">GET lemma from Dillmann Lexicon</a>
             </li>
             <li>
-                <a class="page-scroll" href="#iiif">GET IIIF API Manifest</a>
+                <a class="page-scroll" href="#SPARQL">SPARQL</a>
             </li>
         </ul>
     </div>
-    
-    <div class="col-md-12">
+
+    <div class="w3-container">
         <h2 id="dillmannsearch">Search Dillmann lexicon</h2>
         <p>Search in the Dillmann lexicon works pretty much the same.</p>
-        <a class="btn btn-success page-scroll" role="button" href="#apidoctoc">Return to
-            table of contents</a>
+        <a class="btn btn-success page-scroll" role="button" href="#apidoctoc">Return to table of
+            contents</a>
         <div id="APIpatternsDillmanSearch" class="APIexamplestable">
-            <div class="row lead">
-                <div class="col-md-2">Pattern</div>
-                <div class="col-md-4">Parameters</div>
-                <div class="col-md-2">Example</div>
-                <div class="col-md-4">Result:</div>
+            <div class="w3-row lead">
+                <div class="w3-quarter">Pattern</div>
+                <div class="w3-quarter">Parameters</div>
+                <div class="w3-quarter">Example</div>
+                <div class="w3-quarter">Result:</div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-2">
+            <div class="w3-container">
+                <div class="w3-quarter">
                     <pre>/api/Dillmann/search/{element}?q={searchstring}</pre>
-                    <p>Searching in element form a lemma will return the id of that lemma and the UNPROCESSED concatenation of the text nodes in the selected element.</p>
+                    <p>Searching in element form a lemma will return the id of that lemma and the
+                        UNPROCESSED concatenation of the text nodes in the selected element.</p>
                     <ul>
                         <li>
                             <code>form</code>
@@ -71,192 +74,257 @@
                             <code>entry</code> which will eventually search everywhere.</li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <div id="APIdillmanParameters">
-                        <div class="col-md-12">
-                            <div class="col-md-4">
+                        <div class="w3-container">
+                            <div class="w3-third">
                                 <b>Parameter name</b>
                             </div>
                             <div class="col-md-8">
                                 <b>Available values</b>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <label class="col-md-4">element</label>
-                            <div class="col-md-8">you can add any tei dictionary element name to specify the element  you want to search into.</div>
+                        <div class="w3-container">
+                            <label class="w3-third">element</label>
+                            <div class="col-md-8">you can add any tei dictionary element name to
+                                specify the element you want to search into.</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 urlexample">
+                <div class="w3-quarter urlexample">
                     <pre>
                         <a id="dillmannid" href="/api/Dillmann/search/form?q=ቄጵርስስ">https://betamasaheft.eu/api/Dillmann/search/form?q=ቄጵርስስ</a>
                     </pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <pre class="APIexampleJSON" data-value="dillmannid"/>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-2"/>
-                <div class="col-md-4"/>
-                <div class="col-md-2 urlexample">
+            <div class="w3-container">
+                <div class="w3-quarter"/>
+                <div class="w3-quarter"/>
+                <div class="w3-quarter urlexample">
                     <pre>
                         <a id="dillmanntext" href="/api/Dillmann/search/sense?q=cupres*">https://betamasaheft.eu/api/Dillmann/search/sense?q=cupres*</a>
                     </pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-third">
                     <pre class="APIexampleJSON" data-value="dillmanntext"/>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="w3-container">
         <h2 id="dillmannlist">GET list of lemmas from Dillmann lexicon</h2>
-        <a class="btn btn-success page-scroll" role="button" href="#apidoctoc">Return to
-            table of contents</a>
+        <a class="btn btn-success page-scroll" role="button" href="#apidoctoc">Return to table of
+            contents</a>
         <div id="APIpatternsdillmannlist" class="APIexamplestable">
-            <div class="row lead">
-                <div class="col-md-2">Pattern</div>
-                <div class="col-md-4">Parameters</div>
-                <div class="col-md-2">Example</div>
-                <div class="col-md-4">Result:</div>
+            <div class="w3-row lead">
+                <div class="w3-quarter">Pattern</div>
+                <div class="w3-quarter">Parameters</div>
+                <div class="w3-quarter">Example</div>
+                <div class="w3-quarter">Result:</div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-2">
+            <div class="w3-container">
+                <div class="w3-quarter">
                     <pre>/api/Dillmann/list/xml</pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <div id="APIlistDillmannParameters">
-                        <div class="col-md-12">
-                            <div class="col-md-4">
+                        <div class="w3-container">
+                            <div class="w3-third">
                                 <b>Parameter name</b>
                             </div>
-                            <div class="col-md-8">
+                            <div class="w3-twothird">
                                 <b>Available values</b>
                             </div>
                         </div>
                         <form id="listdillmannparams">
-                            <div class="col-md-12">
-                                <label class="col-md-4">start</label>
-                                <div class="col-md-8">from which item to start. Default: 1.</div>
+                            <div class="w3-container">
+                                <label class="w3-third">start</label>
+                                <div class="w3-twothird">from which item to start. Default: 1.</div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-2 urlexample">
+                <div class="w3-quarter urlexample">
                     <pre>
                         <a id="Dillmannlist" target="_blank" href="/api/Dillmann/list/xml">https://betamasaheft.eu/api/Dillmann/list/xml</a>
                     </pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-third">
                     <p>Click on link.</p>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-2">
+            <div class="w3-container">
+                <div class="w3-quarter">
                     <pre>/api/Dillmann/list/json</pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <div id="APIlistDillmannParametersJ">
-                        <div class="col-md-12">
-                            <div class="col-md-4">
+                        <div class="w3-container">
+                            <div class="w3-third">
                                 <b>Parameter name</b>
                             </div>
-                            <div class="col-md-8">
+                            <div class="w3-twothird">
                                 <b>Available values</b>
                             </div>
                         </div>
                         <form id="listdillmannparamsJ">
-                            <div class="col-md-12">
-                                <label class="col-md-4">start</label>
-                                <div class="col-md-8">from which item to start. Default: 1.</div>
+                            <div class="w3-container">
+                                <label class="w3-third">start</label>
+                                <div class="w3ßtwothird">from which item to start. Default: 1.</div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-2 urlexample">
+                <div class="w3-quarter urlexample">
                     <pre>
                         <a id="DillmannlistJ" target="_blank" href="/api/Dillmann/list/json">https://betamasaheft.eu/api/Dillmann/list/json</a>
                     </pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <pre class="APIexampleJSON" data-value="DillmannlistJ"/>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="w3-container">
         <h2 id="dillmannlemma">GET lemma from Dillmann Lexicon</h2>
-        <p>You can see the raw data appending .xml to the lemma you land on. Alternatively a text only version is available appending .txt to your lemma url. These are not served by this API but by an XSLT transformation.</p>
+        <p>You can see the raw data appending .xml to the lemma you land on. Alternatively a text
+            only version is available appending .txt to your lemma url. These are not served by this
+            API but by an XSLT transformation.</p>
         <p>
-            <a href="/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06">https://betamasaheft.eu/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06</a> is the html view</p>
+            <a href="/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06"
+                >https://betamasaheft.eu/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06</a> is the
+            html view</p>
         <p>
-            <a href="/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06.xml">https://betamasaheft.eu/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06.xml</a> is the source data</p>
-        <a class="btn btn-success page-scroll" role="button" href="#apidoctoc">Return to
-           table of contents</a>
+            <a href="/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06.xml"
+                >https://betamasaheft.eu/Dillmann/lemma/Lb4b820d2caa64822aaffe29dc1ce0e06.xml</a> is
+            the source data</p>
+        <a class="btn btn-success page-scroll" role="button" href="#apidoctoc">Return to table of
+            contents</a>
         <div id="APIpatternsdillmanntxt" class="APIexamplestable">
             <div class="row lead">
-                <div class="col-md-2">Pattern</div>
-                <div class="col-md-4">Parameters</div>
-                <div class="col-md-2">Example</div>
-                <div class="col-md-4">Result:</div>
+                <div class="w3-quarter">Pattern</div>
+                <div class="w3-quarter">Parameters</div>
+                <div class="w3-quarter">Example</div>
+                <div class="w3-quarter">Result:</div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-2">
+            <div class="w3-container">
+                <div class="w3-quarter">
                     <pre>/api/Dillmann/{id}/txt</pre>
-                    <p>return only the entry in txt as in original file (retransformed with xslt)</p>
+                    <p>return only the entry in txt as in original file (retransformed with
+                        xslt)</p>
                 </div>
-                <div class="col-md-4"/>
-                <div class="col-md-2 urlexample">
+                <div class="w3-third"/>
+                <div class="w3-twothird urlexample">
                     <pre>
                         <a id="dillmannentrytxt" href="/api/Dillmann/La320bde8c90b4a769a9826eafc8004e2/txt">https://betamasaheft.eu/api/Dillmann/La320bde8c90b4a769a9826eafc8004e2/txt</a>
                     </pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <p>Click on link.</p>
                 </div>
             </div>
-        
+
         </div>
         <div id="APIpatternsdillmannlemma" class="APIexamplestable">
             <div class="row lead">
-                <div class="col-md-2">Pattern</div>
-                <div class="col-md-4">Parameters</div>
-                <div class="col-md-2">Example</div>
-                <div class="col-md-4">Result:</div>
+                <div class="w3-quarter">Pattern</div>
+                <div class="w3-quarter">Parameters</div>
+                <div class="w3-quarter">Example</div>
+                <div class="w3-quarter">Result:</div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-2">
+            <div class="w3-container">
+                <div class="w3-quarter">
                     <pre>/api/Dillmann/{id}/teientry</pre>
                     <p>return only the entry in xml</p>
                 </div>
-                <div class="col-md-4"/>
-                <div class="col-md-2 urlexample">
+                <div class="w3-third"/>
+                <div class="w3-twothird urlexample">
                     <pre>
                         <a id="dillmannentry" href="/api/Dillmann/La320bde8c90b4a769a9826eafc8004e2/teientry">https://betamasaheft.eu/api/Dillmann/La320bde8c90b4a769a9826eafc8004e2/teientry</a>
                     </pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <p>Click on link.</p>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-2">
+            <div class="w3-container">
+                <div class="w3-quarter">
                     <pre>/api/Dillmann/{id}/json</pre>
                     <p>return only the entry in json by restxq</p>
                 </div>
-                <div class="col-md-4"/>
-                <div class="col-md-2 urlexample">
+                <div class="w3-quarter"/>
+                <div class="w3-quarter urlexample">
                     <pre>
                         <a id="dillmannentryjson" href="/api/Dillmann/La320bde8c90b4a769a9826eafc8004e2/json">https://betamasaheft.eu/api/Dillmann/La320bde8c90b4a769a9826eafc8004e2/json</a>
                     </pre>
                 </div>
-                <div class="col-md-4">
+                <div class="w3-quarter">
                     <pre class="APIexampleJSON" data-value="dillmannentryjson"/>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <div class="w3-container">
+        <h2 id="SPARQL">SPARQL Query endpoint</h2>
+        <p>You can query the RDF passing a SPARQL query to <code>/api/Dillmann/SPARQL</code> with a parameter query containing the query as text.
+        The triples are stored in a Apache Fuseki instance and queried from there.</p>
+        <p>The RDF data for Dillmann is stored following the final community report for <a
+                href="https://www.w3.org/2019/09/lexicog/">The OntoLex Lemon Lexicography
+            Module</a>.</p>
+        <p>Base URI is https://betamasaheft.eu/Dillmann/</p>
+        <table class="w3-table-all">
+            <tr>
+                <th>Concept</th>
+                <th>URI pattern</th>
+                <th>content type negotiation support</th>
+            </tr>
+            <tr>
+                <td>lexicog:Entry, ontolex:LexicalEntry</td>
+                <td>https://betamasaheft.eu/Dillmann/Lfd98ecc24e5d4b2ca3c09117cdbc12f2_entry</td>
+                <td>RDF (format as per header) HTML+RDFa</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td/>
+                <td/>
+            </tr>
+            <tr>
+                <td>lexicog:LexicographicComponent</td>
+                <td><ul>
+                    <li>https://betamasaheft.eu/Dillmann/L0b39285bd52c4fb5977d443b2406552a_comp</li>
+                    <li>https://betamasaheft.eu/Dillmann/L0b39285bd52c4fb5977d443b2406552a_sense_Dmain_comp</li>
+                    <li>https://betamasaheft.eu/Dillmann/L0b39285bd52c4fb5977d443b2406552a_sense_Dmain_sense_D2_comp</li>
+                </ul></td>
+                <td/>
+            </tr>
+            <tr>
+                <td>ontolex:LexicalSense</td>
+                <td>
+                    <ul>
+                        <li>https://betamasaheft.eu/Dillmann/L0b39285bd52c4fb5977d443b2406552a_sense_Dmain</li>
+                        <li>https://betamasaheft.eu/Dillmann/L0b39285bd52c4fb5977d443b2406552a_sense_Dmain_sense_D2</li>
+                    </ul>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>ontolex:Form</td>
+                <td>https://betamasaheft.eu/Dillmann/L0b39285bd52c4fb5977d443b2406552a_entry</td>
+                <td/>
+            </tr>
+            <tr>
+                <td>ontolex:LexicalConcept</td>
+                <td>https://betamasaheft.eu/Dillmann/Lfd98ecc24e5d4b2ca3c09117cdbc12f2_sense_Dmain_concept</td>
+                <td/>
+            </tr>
+        </table>
+
+    </div>
+
     <script type="text/javascript" src="resources/js/APIexamples.js"/>
 </div>

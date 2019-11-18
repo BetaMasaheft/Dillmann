@@ -73,7 +73,7 @@ let $triplesentry :=
                    let $entryN := $root/@n
                    let $entryIndex := index-of($lexicogEntries, $lexicogEntries[@xml:id = $id])
                    let $NextEntryN := $lexicogEntries[$entryIndex[1] +1]/@n  (:added first in sequence because I got a scary "too many operands at the left of  +", hinting at the presence in the root sequence of one o more double numbered entries...:)
-                   let $rootentries := $limeEntry[xs:integer(@n) ge xs:integer($entryN)][xs:integer(@n) lt xs:integer($NextEntryN)]
+                   let $rootentries := ($root, $limeEntry[xs:integer(@n) ge xs:integer($entryN)][xs:integer(@n) lt xs:integer($NextEntryN)])
                    let $rootentriescount := count($rootentries)
                    let $rootmembers := for $member in $rootentries return concat('dillmann:',string($member/@xml:id), '_comp')
                    let $components := for $comp in $rootmembers 
@@ -81,9 +81,12 @@ let $triplesentry :=
                                                              lexicog:describes '||replace($comp, '_comp', '')||' .'
                     let $limentries := for $member in $rootentries return '
                                                          dillmann:lexicon lime:entry dillmann:'||string($member/@xml:id) || ' ;
-                                                         rdf:_'||string($entryN)||' dillmann:'||string($member/@xml:id) || ' . #added, not in document, to represent the general sequence of entries.
+                                                         rdf:_'||string($member/@n)||' dillmann:'||string($member/@xml:id) || ' . #added, not in document, to represent the general sequence of entries.
                                                          dillmann:'||string($member/@xml:id) ||  ' a ontolex:LexicalEntry .'
-                   let $senses := local:sense($entryURI,$root/t:sense) 
+                   let $senses := for $en in $rootentries
+                                            let $uri := 'dillmann:'||string($en/@xml:id)
+                                            return local:sense($uri,$en/t:sense)
+                                            
                                                          
                                                          
 (:                   roots are both lexicog and lime entries, while non roots are only lime entries.:)

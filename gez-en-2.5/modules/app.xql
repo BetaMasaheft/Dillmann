@@ -722,7 +722,7 @@ function app:show-hits($node as node()*, $model as map(*), $start as xs:int) {
 };:)
 
 (:storing separately this input in this function makes sure that when the page is reloaded with the results the value entered remains in the input element:)
-declare function app:queryinput ($node as node(), $model as map(*), $q as xs:string*){<input name="q" type="search" class="w3-threequarter w3-input w3-border diacritics" placeholder="Search string" value="{$q}"/>};
+declare function app:queryinput ($node as node(), $model as map(*), $q as xs:string*){<input name="q" type="search" class="w3-twothird w3-input w3-border diacritics" placeholder="Search string" value="{$q}"/>};
 
 
 (:following function is used to list all entries.
@@ -985,7 +985,7 @@ return
 </label>
 </div>
         </div>
-<div class="w3-bar downloadlinks w3-third">
+<div class="w3-bar downloadlinks w3-twothird">
 <div class="w3-bar-item">
 {if($term//tei:nd) then (<span class="w3-badge w3-green w3-bar-item">New</span>) 
 else(<span class="w3-badge w3-gray "><a target="_blank" 
@@ -996,11 +996,11 @@ else (' ' || format-number($column, '#'))}</a></span>)}
         </div>
         {app:pdf-link($id)}
         {app:getXML($id)}
-        
-</div>
-<div class="w3-third">
+        <div class="w3-right">
 {app:deleteEntry($id)}
 </div>
+</div>
+
 </div>
        <a class="smallArrow prev" href="{if(contains($params, 'id')) then ('?'||$params||'&amp;id='||$prev) else '/Dillmann/lemma/'||$prev}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -1696,7 +1696,7 @@ return
 if (contains($parameterslist, $parName))
                 then
                 let $lp := request:get-parameter($parName, ())
-                let $lpvals:= for $slp in $lp return "@" ||$attName || "='"|| $slp || "'"
+                let $lpvals:= for $slp in $lp return if($attName="value") then ( 'text()' || "='"|| $slp || "'") else ( "@" ||$attName || "='"|| $slp || "'")
                 let $val := if(count($lpvals) gt 1) then string-join($lpvals, ' or ') else $lpvals
                 return if(contains($parameterslist, $not))
                 then ("[not(descendant::tei:"||$el||"[" ||$val ||  "])]")
@@ -1812,7 +1812,8 @@ let $qp := if(empty($q) or $q = '') then ('$coll//tei:entry' || $erw) else '$col
 
 let $hits := for $hit in util:eval($qp) let $sorting := if(empty($q) or $q = '') then $hit//tei:form[1]/tei:foreign[1]/text()[1] else ft:score($hit) order by $sorting descending return $hit
 return
-  map {"hits" := $hits}
+  map {"hits" := $hits,
+  "query":=$qp}
   )
 
 
@@ -2044,6 +2045,7 @@ declare
               let $hom := if(root($term)//tei:form/tei:seg[@type='hom']) then concat(root($term)//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
               order by ft:score($term) descending
           return
+          
           <div class="w3-row row">
             <div class="w3-quarter">
             <div class="w3-twothird"><a class="w3-button w3-blue" href="?{$params}&amp;id={data($id)}">{$hom || $term-name}</a></div>
@@ -2411,17 +2413,17 @@ Hi {xmldb:get-current-user()}!<i class="fa fa-caret-down"></i></a>
 
             </div>
           </div>
-          <a class="w3-bar-item w3-button  w3-hide-small"  id="list" href="/Dillmann/list">Browse</a>
-          <a class="w3-bar-item w3-button  w3-hide-small" id="biblio" href="/Dillmann/bibl.html">Bibliography</a>
-          <a class="w3-bar-item w3-button  w3-hide-small" href="/Dillmann/reverse" id="reverse">Reverse Index</a>
-         <a class="w3-bar-item w3-button  w3-hide-small" href="/Dillmann/abbreviations" id="abbreviations">Abbreviations</a>
-             <a class="w3-bar-item w3-button  w3-hide-small" href="/Dillmann/citations" id="quotes">Citations</a>
-         <div class="w3-bar-item w3-button  w3-hide-small" id="downloads" data-template="app:downloadbutton"/>
-          <a class="w3-bar-item w3-button  w3-hide-small" id="getInvolved" href="/Dillmann/getinvolved.html">Get involved</a>
-          <div class="w3-bar-item w3-button  w3-hide-small" id="tutorial" data-template="app:tutorial"/>
-        <div class="w3-bar-item w3-button  w3-hide-small" id="BM" data-template="app:bmbutton"/>
+          <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium"  id="list" href="/Dillmann/list">Browse</a>
+          <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="biblio" href="/Dillmann/bibl.html">Bibliography</a>
+          <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" href="/Dillmann/reverse" id="reverse">Reverse Index</a>
+         <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" href="/Dillmann/abbreviations" id="abbreviations">Abbreviations</a>
+             <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" href="/Dillmann/citations" id="quotes">Citations</a>
+         <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="downloads" data-template="app:downloadbutton"/>
+          <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="getInvolved" href="/Dillmann/getinvolved.html">Get involved</a>
+          <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="tutorial" data-template="app:tutorial"/>
+        <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="BM" data-template="app:bmbutton"/>
 
-         <a class="w3-bar-item w3-button  w3-hide-small"
+         <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium"
           href="https://github.com/BetaMasaheft/Dillmann/issues/new?title=something%20is%20very%20wrong&amp;assignee=PietroLiuzzo">
              <i class="fa fa-exclamation-circle" aria-hidden="true"/> report issue</a>
                <a href="/Dillmann"  class="w3-padding w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
