@@ -32,7 +32,11 @@ declare variable $config:sparqlPrefixes := "PREFIX lexicog: <http://www.w3.org/n
          PREFIX dc: <http://purl.org/dc/elements/1.1/>
          PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
          PREFIX lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#>
-         PREFIX dillmann: <https://betamasaheft.eu/Dillmann/>";
+         PREFIX dillmann: <https://betamasaheft.eu/Dillmann/>
+         PREFIX traces: <https://betamasaheft.eu/morpho/>
+        PREFIX oa: <http://www.w3.org/ns/oa#>
+        PREFIX bm: <https://betamasaheft.eu/>
+        ";
 
 declare variable $config:response200 := <rest:response>
         <http:response
