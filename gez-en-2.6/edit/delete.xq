@@ -1,6 +1,8 @@
 xquery version "3.0" encoding "UTF-8";
 
 import module namespace console = "http://exist-db.org/xquery/console";
+import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
+import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
 import module namespace log="http://www.betamasaheft.eu/log" at "../modules/log.xqm";
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
@@ -8,7 +10,7 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
 let $cU := xmldb:get-current-user()
 let $backup-collection := '/db/apps/gez-en/deleted/'
-let $data-collection := '/db/apps/gez-en/data'
+let $data-collection := '/db/apps/DillmannData'
 
  
 (: get the id parameter from the URL :)
@@ -17,7 +19,7 @@ let $id := request:get-parameter('id', '')
 let $user := request:get-parameter('user', '')
 let $file := concat($id, '.xml')
 
-let $record := collection($data-collection)//id($id)
+let $record := $config:collection-root//id($id)
 let $targetfileuri := base-uri($record)
 let $item := doc($targetfileuri)
 
@@ -92,6 +94,8 @@ else
 let $filelocation :=  substring-before($targetfileuri, $id)
 (: delete the file :)
 let $delete := xmldb:remove($filelocation, $file)
+
+let $updateFuseki := updatefuseki:entry($record, 'DELETE')
 
 let $log := log:add-log-message($id, $user, 'deleted')
 return

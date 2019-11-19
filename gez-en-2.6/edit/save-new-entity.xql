@@ -1,5 +1,6 @@
 xquery version "3.0" encoding "UTF-8";
 import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en" at "../modules/app.xql";
+import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
 import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
 
 import module namespace console = "http://exist-db.org/xquery/console";
@@ -241,7 +242,7 @@ let $schema := doc('/db/apps/gez-en/schema/Dillmann.rng')
 
 let $store := xmldb:store($newdata-collection, $file, $item)
 let $record := $config:collection-root//id($newid)
-let $updateFuseki := updatefuseki:entry($record)
+let $updateFuseki := updatefuseki:entry($record, 'INSERT')
 
     (:nofity editor and contributor:)
      let $sendmails :=(
