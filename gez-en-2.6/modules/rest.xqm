@@ -6,9 +6,9 @@ import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exis
 
 import module namespace fusekisparql = 'https://www.betamasaheft.uni-hamburg.de/BetMas/sparqlfuseki' at "fuseki.xqm";
 
-
 (: For interacting with the TEI document :)
 
+declare namespace sr = "http://www.w3.org/2005/sparql-results#";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
 (: For REST annotations :)
 declare namespace rest = "http://exquery.org/ns/restxq";
@@ -24,14 +24,35 @@ declare namespace json="http://www.json.org";
 %rest:path("/BetMas/api/Dillmann/SPARQL")
 %rest:query-param("query", "{$query}", "")
 %output:method("xml")
-function apisparql:sparqlQuery($query as xs:string*) {
+function api:sparqlQuery($query as xs:string*) {
 
-let $q := ((if(starts-with($query, 'PREFIX')) then () else $apisparql:prefixes) || normalize-space($query))  
+let $q := ((if(starts-with($query, 'PREFIX')) then () else $config:sparqlprefixes) || normalize-space($query))  
 let $xml := fusekisparql:query('dillmann', $q)
 return
-($apisparql:response200XML,
+($config:response200XML,
 $xml
 )};
+
+declare
+%rest:GET
+%rest:path("/BetMas/api/Dillmann/lemmatranslit")
+%rest:query-param("q", "{$q}", "")
+%output:method("json")
+function api:lemmatranslit($q as xs:string*){
+let $sparqlquery := $config:sparqlPrefixes || '
+SELECT DISTINCT ?translit
+WHERE {
+  ?subject rdfs:label "'||$q||'"@gez ;
+           rdfs:label ?translit .
+  FILTER (lang(?translit) = "gez-trsl") 
+}'
+let $fusekicall := fusekisparql:query('traces', $sparqlquery)
+return 
+($config:response200Json,
+map{'translit' := string-join($fusekicall//sr:literal/text(),', ')}
+)
+};
+
 
 declare
 %rest:GET

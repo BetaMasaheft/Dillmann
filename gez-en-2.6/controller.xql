@@ -83,7 +83,24 @@ else
             </dispatch>
     else
          if (ends-with($exist:path, ".xml")) then
-         local:forward(concat('/', substring-after(base-uri(collection($config:data-root)//id(substring-before($exist:resource, '.xml'))), 'db/apps/')))
+         let $id := substring-before($exist:resource, '.xml')
+                            let $item := $config:collection-root/id($id)
+                            let $uri := base-uri($item)
+                            return
+                            if ($item) then
+                                <dispatch
+                                    xmlns="http://exist.sourceforge.net/NS/exist">
+                                    <forward
+                                        url="/{substring-after($uri, 'db/apps/')}"/>
+                                        <error-handler>
+                                                <forward
+                                                    url="{$exist:controller}/error/error-page.html"
+                                                    method="get"/>
+                                                <forward
+                                                    url="{$exist:controller}/modules/view.xql"/>
+                                            
+                                            </error-handler>
+                                </dispatch> else ()
             
             
             else

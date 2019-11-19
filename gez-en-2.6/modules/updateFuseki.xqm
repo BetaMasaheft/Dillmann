@@ -1,5 +1,5 @@
 xquery version "3.1" encoding "UTF-8";
-module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki'
+module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' ;
 import module namespace fusekisparql = 'https://www.betamasaheft.uni-hamburg.de/BetMas/sparqlfuseki' at "fuseki.xqm";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 
@@ -47,7 +47,7 @@ $describes)
 };
 
 
-declare function updatefuseki:entry($root){
+declare function updatefuseki:entry($root, $operation){
 let $lexicogEntries := $updatefuseki:lexicogEntries
 let $limeEntry := $updatefuseki:limeEntry
 let $id := $root/@xml:id
@@ -69,7 +69,7 @@ let $limentries := for $member in $rootentries return '
                                 dillmann:'||string($member/@xml:id) ||  ' a ontolex:LexicalEntry .'
 let $senses := for $en in $rootentries
                                  let $uri := 'dillmann:'||string($en/@xml:id)
-                                 return local:sense($uri,$en/t:sense)
+                                 return updatefuseki:sense($uri,$en/t:sense)
 (:                   roots are both lexicog and lime entries, while non roots are only lime entries.:)
 let $entry :=  'dillmann:lexicon lexicog:entry  '||$entryURI|| '_entry ;
                                       rdf:_'||string($entryIndex[1])||' '||$entryURI ||'_entry . #added, not in documentation, to sequence the roots in dillmann
@@ -84,6 +84,8 @@ let $entry :=  'dillmann:lexicon lexicog:entry  '||$entryURI|| '_entry ;
 return  fusekisparql:update('dillmann', $operation, $entry)
 ) else ()
 ,
+let $id := $root/@xml:id
+let $entryURI := concat('dillmann:',string($id))
 let $senses := for $sense in $root/t:sense
                        let $senseURI := $entryURI || '_sense_' ||string($sense/@xml:id)
                         let $definition := if($sense/t:cit[@type="translation"]/t:quote) 
@@ -99,7 +101,7 @@ let $senses := for $sense in $root/t:sense
                                                                                                ') || ' .') else ' .'))
 let $lemmaentry := 
 $entryURI || '_form a ontolex:Form ;
-       ontolex:writtenRep "'||normalize-space(string-join($entry/t:form//text())) ||'"@gez .
+       ontolex:writtenRep "'||normalize-space(string-join($root/t:form//text())) ||'"@gez .
    '||$entryURI||' ontolex:lexicalForm  '||$entryURI||'_form .
    ' || string-join($senses, '
 ')

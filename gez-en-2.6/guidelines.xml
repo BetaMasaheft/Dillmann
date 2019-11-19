@@ -4,12 +4,24 @@
     <div class="w3-container w3-margin">
         
                 <div class="w3-row-padding w3-margin w3-large">
-                    <div class="w3-col s2 m2 l2"><b>Hit the button to get the symbols...</b></div>
-                    <div class="w3-col  s2 m2 l2"><b>... or type all this...</b></div>
-                    <div class="w3-col s2 m2 l2"><b>...and it will be displayed as...</b></div>
-                    <div class="w3-col s2 m2 l2"><b>...because it is transformed into...</b></div>
-                    <div class="w3-col s2 m2 l2"><b>...which is...</b></div>
-                    <div class="w3-col s2 m2 l2"><b>...and by the way...</b></div>
+                    <div class="w3-col s2 m2 l2">
+                <b>Hit the button to get the symbols...</b>
+            </div>
+                    <div class="w3-col  s2 m2 l2">
+                <b>... or type all this...</b>
+            </div>
+                    <div class="w3-col s2 m2 l2">
+                <b>...and it will be displayed as...</b>
+            </div>
+                    <div class="w3-col s2 m2 l2">
+                <b>...because it is transformed into...</b>
+            </div>
+                    <div class="w3-col s2 m2 l2">
+                <b>...which is...</b>
+            </div>
+                    <div class="w3-col s2 m2 l2">
+                <b>...and by the way...</b>
+            </div>
                 </div>
   
         <div class="w3-row-padding">
@@ -47,9 +59,11 @@
             </div>
             <div class="w3-col s2 m2 l2">
                     <code>&lt;ref type="external" target="https://your.full.link"&gt;link text&lt;/ref&gt;</code>
-            </div><div class="w3-col s2 m2 l2">
+            </div>
+            <div class="w3-col s2 m2 l2">
                     <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-            </div><div class="w3-col s2 m2 l2">
+            </div>
+            <div class="w3-col s2 m2 l2">
                     <p>You might use this to enter your own links. For example to link to another lemma, or to link to an entity in BM. You could also use it to link to any other resource on the web. </p>
             </div>
         </div>
@@ -131,9 +145,9 @@
                                     <a href="L28a2fa17dfc84e0ca31f4e6b7ef90d96">ሐሊባ፡ </a>. If you use this and wish to enter more terms after vid, please use a comma to separate the words as in <code>((vid.)) \*gez*ገብር፡\*, \*gez*መስቀል፡\*</code>
                                 </li>
                             </ul>
-                    <button class="w3-button w3-pale-blue"  onclick="toggleGuidelinesElements('labels')"  role="button" aria-expanded="false" aria-controls="labels">Open list of existing abbreviations</button>
+                    <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('labels')" role="button" aria-expanded="false" aria-controls="labels">Open list of existing abbreviations</button>
                            
-                </div> <div class="w3-container w3-hide"  id="labels">
+                </div> <div class="w3-container w3-hide" id="labels">
                             <table class="w3-table-all">
     <thead>
         <tr>
@@ -863,7 +877,7 @@
   
                             
                 </div>
-            <div class="w3-hide"  id="posvalues">
+            <div class="w3-hide" id="posvalues">
             <table class="=w3-table-all" style="border: 1px solid black; border-collapse: collapse;">
                 <thead>
                     <tr>
@@ -1305,8 +1319,8 @@
             </div>
             <div class="w3-col s2 m2 l2">
             </div>
-            <div class="w3-col s2 m2 l2"></div>
-            <div class="w3-col s2 m2 l2"></div>
+            <div class="w3-col s2 m2 l2"/>
+            <div class="w3-col s2 m2 l2"/>
         </div>
         <div class="w3-row-padding">
             <div class="w3-col s2 m2 l2">VALUES </div>
@@ -1335,7 +1349,7 @@
             <li>rank</li>
             </ul>
             </div>
-            <div />
+            <div/>
         </div>
             </div>
     </div>

@@ -43,9 +43,9 @@ $(document).ready(function () {
             var title = data[ "0"].title
             var text = data[ "0"].text
             if (data[ "0"].info) {
-                result += '<span class="RefPopup"><i class="fa fa-file-text-o" aria-hidden="true"/> Text of the passage <span  class="popuptext w3-hide w3-tiny w3-padding" id="' + reference + '"><p>There is no text yet for this passage in Beta maṣāḥǝft.</p><a target="_blank" href="/works/' + bmid + '">See Work record</a></span></span>'
+                result += '<span class="RefPopup popup" data-value="'+reference+'"><i class="fa fa-file-text-o" aria-hidden="true"/><span class="w3-hide w3-tiny w3-padding popuptext" id="'+reference+'">Text of the passage   <span ><p>There is no text yet for this passage in Beta maṣāḥǝft.</p><a target="_blank" href="/works/' + bmid + '">See Work record</a></span></span></span>'
             } else {
-                result += '<span class="RefPopup"><i class="fa fa-file-text-o" aria-hidden="true"/> Text of the passage <span  class="popuptext w3-hide w3-tiny w3-padding" id="' + reference + '"><p>Text of ' + cit + ' .</p><p>' + text + '</p><a target="_blank" href="/works/' + bmid + '/text?start=' + splitref[1] + '">See full text</a></span></span>'
+                result += '<span class="RefPopup popup" data-value="'+reference+'"><i class="fa fa-file-text-o" aria-hidden="true"/><span class="w3-hide w3-tiny w3-padding popuptext" id="'+reference+'">Text of the passage  <span  ><p>Text of ' + cit + ' .</p><p>' + text + '</p><a target="_blank" href="/works/' + bmid + '/text?start=' + splitref[1] + '">See full text</a></span></span></span>'
             }
             $(el).html(result);
         })
@@ -224,6 +224,11 @@ $(document).ajaxComplete(function () {
         });
     });
     $('.attpopup').on('mouseover mouseout', function () {
+        var id = $(this).data('value')
+        //  console.log(id)
+        popupatt(id)
+    });
+    $('.RefPopup').on('mouseover mouseout', function () {
         var id = $(this).data('value')
         //  console.log(id)
         popupatt(id)

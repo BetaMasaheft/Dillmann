@@ -1,5 +1,6 @@
 xquery version "3.0" encoding "UTF-8";
 import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en" at "../modules/app.xql";
+import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
 import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
 import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
@@ -43,8 +44,7 @@ let $parametersName := request:get-parameter-names()
 let $cU := xmldb:get-current-user()
 let $msg := request:get-parameter('msg', ())
 let $title := 'Update Confirmation'
-let $data-collection := '/db/apps/gez-en/data'
-let $record := collection($data-collection)//id($id)
+let $record := $config:collection-root//id($id)
 
 let $rootitem := root($record)//tei:TEI
 let $backup-collection := xmldb:encode-uri('/db/apps/gez-en/EditorBackups/')
@@ -173,7 +173,7 @@ let $updateChange := update insert $change into doc($targetfileuri)//tei:revisio
 let $addroot := if($root='root' and $record//tei:form[not(descendant::tei:rs[@type='root'])]) then update insert $segRoot into doc($targetfileuri)//tei:form else ()
 let $updatemainForm := update replace $record//tei:form//tei:foreign//text() with $form
 
-let $updateFuseki := updatefuseki:entry($record)
+let $updateFuseki := updatefuseki:entry($record, 'INSERT')
 
 let $log := log:add-log-message($id, xmldb:get-current-user(), 'updated')
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)

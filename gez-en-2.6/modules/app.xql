@@ -533,8 +533,8 @@ return
  $model as map(*)){
  if(sm:id()//sm:username/text() = 'guest') then
 
- <div class="w3-dropdown-hover w3-bar-item w3-hide-small" id="logging">
-      <button class="w3-button " title="resources">Login <i class="fa fa-caret-down"></i></button>
+ <div class="w3-bar-item w3-hide-small w3-dropdown-hover "  style="margin:0;padding:0" id="logging">
+      <button class="w3-button w3-red w3-bar-item">Login <i class="fa fa-caret-down"></i></button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
 
 	<form method="post" class="w3-container" role="form"
@@ -959,7 +959,7 @@ let $params :=
 let $col :=  $config:collection-root
 let $term := $col//id($id)
 let $hom := if($term//tei:form/tei:seg[@type='hom']) then concat($term//tei:form/tei:seg[@type='hom']/text(), ' ') else ()
-let $rootline := if($term//tei:form/tei:rs[@type='root']) then (<a class="w3-button w3-small w3-bar-item" id="rootmembers" data-value="{$id}"><span class="w3-black">Root</span></a>) else (<a class="w3-button w3-grey  w3-bar-item" id="rootmembers"  data-value="{$id}">Root</a>)
+let $rootline :=<span id="rootmembers" data-value="{$id}"/>
 let $n := data($term/@n)
 let $ne := xs:integer($n) + 1
 let $pr := xs:integer($n) - 1
@@ -970,13 +970,16 @@ let $next := string($col//tei:entry[@n = $NE]/@xml:id)
 let $prev := string($col//tei:entry[@n = $PR]/@xml:id)
 (:        <button class="highlights btn btn-sm btn-info">Highlight/Hide strings matching the words in your search</button>:)
 return
-(<div class="w3-container">
+(
+<div class="w3-container">
+
+<div class="w3-col" style="width:90%">
 <div class="w3-row">
       <div class="w3-third w3-bar"><span class="w3-bar-item w3-xlarge">{$hom}
       <span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span></span>
         {if($term//tei:form/tei:foreign[@xml:lang !='gez'])
         then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
-        {if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then ($rootline) else ()}
+        {$rootline}
         <div class="w3-bar-item ">
 <label class="switch highlights">
   <input type="checkbox"/>
@@ -1002,16 +1005,14 @@ else (' ' || format-number($column, '#'))}</a></span>)}
 </div>
 
 </div>
-       <a class="smallArrow prev" href="{if(contains($params, 'id')) then ('?'||$params||'&amp;id='||$prev) else '/Dillmann/lemma/'||$prev}">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+       <a class="smallArrow prev" href="{if(request:get-parameter('id', ())) then ('?'||$params||'&amp;id='||$prev) else '/Dillmann/lemma/'||$prev}">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i><span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a>{ ' | '}
+<a  class="smallArrow next" data-value="{$next}" href="{if(request:get-parameter('id', ())) then ('?'||$params||'&amp;id='||$next) else '/Dillmann/lemma/'||$next}">
+<span class="navlemma">{$col//id($next)//tei:form/tei:foreign/text()} </span><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 
-<span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a>{ ' | '}
-<a  class="smallArrow next" data-value="{$next}" href="{if(contains($params, 'id')) then ('?'||$params||'&amp;id='||$next) else '/Dillmann/lemma/'||$next}">
-<span class="navlemma">{$col//id($next)//tei:form/tei:foreign/text()} </span>
 
- <i class="fa fa-chevron-right" aria-hidden="true"></i>
- </a>
- <div id="showroot"/>
+
+
  {for $sense in $term//tei:sense[not(@n)]
  let $s := (replace($sense/@source, '#', '') ||$sense/@xml:lang)
  order by $sense/@source 
@@ -1050,6 +1051,10 @@ case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa
 
     </div>
 
+</div>
+<div class="w3-rest">
+ <div id="showroot"/>
+</div>
     </div>,
     <div class="w3-panel">
     

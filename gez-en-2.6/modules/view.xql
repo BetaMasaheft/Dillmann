@@ -1,7 +1,6 @@
 xquery version "3.0";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
-
 (: 
  : The following modules provide functions which will be called by the 
  : templating.

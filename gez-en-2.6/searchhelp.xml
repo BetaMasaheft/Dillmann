@@ -2,8 +2,9 @@
 <div id="searchHelp" class="w3-modal">
     <div class="w3-modal-content">
         <header class="w3-container w3-red"> 
-            <span onclick="document.getElementById('searchHelp').style.display='none'" 
-                class="w3-button w3-display-topright"><i class="fa fa-times"></i></span>
+            <span onclick="document.getElementById('searchHelp').style.display='none'" class="w3-button w3-display-topright">
+                <i class="fa fa-times"/>
+            </span>
             <h2>Search Help</h2>
         </header>
         
@@ -94,9 +95,11 @@
                     <li> 'ኦ', 'ዖ'</li>
                 </ul>
                 <p>Some examples</p>
-                <ul><li>If you search Taammera, you will not find Taʾammǝra or Taʿammera but only Taammera. Try Ta`ammera
+                <ul>
+                    <li>If you search Taammera, you will not find Taʾammǝra or Taʿammera but only Taammera. Try Ta`ammera
                     instead or use the keyboard provided to enter aleph and ayn. </li>
-                    <li>If you are searching for Yāʿǝqob, you will not have a lot of luck searching Yaqob, unless some kind cataloguer has actually added it into the data as simplified spelling form. Try instead entering Yaqob~0.5 which is a fuzzy search, this will return also Yāʿǝqob. Also Ya`eqob is fine for example. </li></ul>
+                    <li>If you are searching for Yāʿǝqob, you will not have a lot of luck searching Yaqob, unless some kind cataloguer has actually added it into the data as simplified spelling form. Try instead entering Yaqob~0.5 which is a fuzzy search, this will return also Yāʿǝqob. Also Ya`eqob is fine for example. </li>
+                </ul>
                 <h4>Keys Combinations</h4>
                 <p>With this method you use keys combinations to trigger specific characters.
                     <a target="_blank" href="/combos.html">Click here for a list of the available combos.</a>
@@ -109,8 +112,9 @@
         </div>
         
         <footer class="w3-container w3-teal w3-red">
-            <span onclick="document.getElementById('searchHelp').style.display='none'" 
-                class="w3-button w3-display-topright"><i class="fa fa-times"></i></span>
+            <span onclick="document.getElementById('searchHelp').style.display='none'" class="w3-button w3-display-topright">
+                <i class="fa fa-times"/>
+            </span>
         </footer>
     </div>
 </div>

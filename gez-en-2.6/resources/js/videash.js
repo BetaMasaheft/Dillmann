@@ -80,112 +80,6 @@ $(document).ready(function () {
 }
 
    
-
-
-    
-/*    $('#completeList').dataTable();
-    
-    $('[data-toggle="popover"]').popover({
-        html: true
-    });
-    
-    $('[data-toggle="tooltip"]').tooltip();*/
-    /*
-    $('div.entry [lang="grc"]').each(function () {
-        
-        var grc = $(this)
-        
-        var normspace = $(grc).text().replace(/\s\s+/g, ' ');
-        var words = normspace.split(" ");
-        
-        $(this).empty();
-        var url = 'http://www.perseus.tufts.edu/hopper/morph?l='
-        var parm = '&la=greek'
-        $.each(words, function (i, v) {
-            $(grc).append($(" <a target='_blank' href='" + url + v + parm + "'/>").text(v + ' '));
-        });
-    });
-    
-    $('div.entry i.translationLa').each(function () {
-        
-        var la = $(this)
-        var normspace = $(la).text().replace(/\s\s+/g, ' ');
-        var words = normspace.split(" ");
-        
-        $(this).empty();
-        var url = 'http://www.perseus.tufts.edu/hopper/morph?l='
-        var parm = '&la=la'
-        $.each(words, function (i, v) {
-        if (v.endsWith('!')) {
-                console.log('esclamation mark');
-                var vv = v.substr(0, v.indexOf('!'));
-                $(la).append($("<a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '! '));
-            }else if (v.endsWith('?')) {
-                console.log('question mark');
-                var vv = v.substr(0, v.indexOf('?'));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '? '));
-            }
-            else if (v.endsWith(']')) {
-                //console.log('square brace');
-                var vv = v.substr(0, v.indexOf(']'));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '] '));
-            } else if (v.endsWith(',') && /!(I|II|III)/g.test(v)) {
-                //console.log('comma');
-                var vv = v.substr(0, v.indexOf(','));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + ', '));
-            }
-        else{    $(la).append($(" <a target='_blank' href='" + url + v + parm + "'/>").text(v + ' '));}
-        });
-    });
-    
-    $('div.entry span.dilEx').each(function () {
-        
-        var la = $(this)
-        var normspace = $(la).text().replace(/\s\s+/g, ' ');
-        var words = normspace.split(" ");
-        
-        $(this).empty();
-        var url = 'http://www.perseus.tufts.edu/hopper/morph?l='
-        var parm = '&la=la'
-        $.each(words, function (i, v) {
-            if (v.endsWith('.') && /!\w\.\w\./g.test(v)) {
-                //console.log('fullstop');
-                var vv = v.substr(0, v.indexOf('.'));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '. '));
-            }
-            
-            else if (v.endsWith(',') && v.startsWith('(')) {$(la).text(v)}
-            else if (v.endsWith(':')) {
-                //console.log('column');
-                var vv = v.substr(0, v.indexOf(':'));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + ': '));
-            } else if (v.endsWith(';')) {
-                //console.log('semi column');
-                var vv = v.substr(0, v.indexOf(';'));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '; '));
-            } else if (v.endsWith(']')) {
-                //console.log('square brace');
-                var vv = v.substr(0, v.indexOf(']'));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '] '));
-            } else if (v.endsWith('!')) {
-                console.log('esclamation mark');
-                var vv = v.substr(0, v.indexOf('!'));
-                $(la).append($("<a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '! '));
-            }else if (v.endsWith('?')) {
-                console.log('question mark');
-                var vv = v.substr(0, v.indexOf('?'));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + '? '));
-            }else if (v.endsWith(',') && /!(I|II|III)/g.test(v)) {
-                //console.log('comma');
-                var vv = v.substr(0, v.indexOf(','));
-                $(la).append($(" <a target='_blank' href='" + url + vv + parm + "'/>").text(' ' + vv + ', '));
-            } else {
-                //console.log('nocolumn')
-                $(la).append($(" <a target='_blank' href='" + url + v + parm + "'/>").text(' ' + v + ' '));
-            }
-        });
-    });
-    */
     $('div.entry [lang="gez"]').each(function (wn) {
         
        console.log(wn)
@@ -220,7 +114,7 @@ $(document).ready(function () {
          * onmouseover='popup("+'"p'+wn+i+'"'+")' onmouseout='popup("+'"p'+wn+i+'"'+")'
          * */
         if (i == countwords - 1) {
-            $(word).append($("<span class='alpheios-word popup' data-value='p" + wn + i + "'>" + nostops.w + nostops.stop + "\
+            $(word).append($("<span class='alpheios-word popup' lang='gez' data-value='p" + wn + i + "'>" + nostops.w + nostops.stop + "\
             <span class='popuptext w3-hide w3-tiny w3-padding' id='p" + wn + i + "'>\
             Search " + nostops.w + " :<br/>\
             <a href='/as.html?query=" + nostops.w + "' target='_blank'>in Beta maṣāḥǝft</a><br/>\
@@ -231,7 +125,7 @@ $(document).ready(function () {
             </span> </span>"));
         } else {
             /*onmouseover='popup("+'"p'+wn+i+'"'+")' onmouseout='popup("+'"p'+wn+i+'"'+")'*/
-            $(word).append($("<span class='alpheios-word popup' data-value='p" + wn + i + "'>" + nostops.w + nostops.stop + '&nbsp;' + "\
+            $(word).append($("<span class='alpheios-word popup' lang='gez' data-value='p" + wn + i + "'>" + nostops.w + nostops.stop + '&nbsp;' + "\
             <span class='popuptext w3-hide w3-tiny w3-padding' id='p" + wn + i + "'>\
             Search " + nostops.w + " :<br/>\
             <a href='/as.html?query=" + nostops.w + "' target='_blank'>in Beta maṣāḥǝft</a><br/>\
@@ -369,9 +263,15 @@ $('.internalRef').on('mouseover mouseout',function () {
 
 
 $(document).ready(function () {
+var thislemma = $('#lemma a').text()
+    var apicall = '/api/Dillmann/lemmatranslit?q=' + thislemma
+    $.getJSON(apicall, function (data) {
+    console.log(data)
+    $('#lemma').append('<span class="w3-medium w3-tooltip"> ' + data.translit + '<span class="w3-text">From TraCES annotations.</span></span>')});
     var thisid = $('#rootmembers').data('value')
     var apicall = '/api/Dillmann/rootmembers/' + thisid
     $.getJSON(apicall, function (data) {
+    console.log(data)
         var h = data.here
         var p = data.prev
         var n = data.next
@@ -380,68 +280,36 @@ $(document).ready(function () {
         var ptext = ''
         // add previous members to list
         // if it is one, add it directly, otherways loop
-        if (data.prev.length) {
+        if(data.prev == null) {} else {
+        if (data.prev.length >= 1) {
             for (var i = 0; i < data.prev.length; i++) {
                 var match = data.prev[i]
-                var root = ''
-                if (match.role == 'currentRoot') {
-                    root += '(This)'
-                } else if (match.role == 'nextRoot') {
-                    root += '(Next root)'
-                } else if (match.role == 'prevRoot') {
-                    root += '(Root)'
-                }
-                ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + match.id + '">' + match.lem + '</a> [#' + match.n + '] ' + root + ' </li>'
+                
+                ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + match.id + '">' + match.lem + '</a> [#' + match.n + '] </li>'
             };
         } else {
-            var proot = ''
-            if (p.role == 'currentRoot') {
-                proot += '(This)'
-            } else if (p.role == 'nextRoot') {
-                proot += '(Next root)'
-            } else if (p.role == 'prevRoot') {
-                proot += '(Root)'
-            }
-            ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + p.id + '">' + p.lem + '</a> [#' + p.n + '] ' + proot + ' </li>'
+           
+            ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + p.id + '">' + p.lem + '</a> [#' + p.n + ']  </li>'
+        }
         }
         //add current member to list, without link, in bold
-        var hroot = ''
-        if (h.role == 'currentRoot') {
-            hroot += '(This)'
-        } else if (h.role == 'nextRoot') {
-            hroot += '(Next root)'
-        } else if (h.role == 'prevRoot') {
-            hroot += '(Root)'
-        }
-        ptext += '<li class="nodot"><b>' + h.lem + '</b> [#' + h.n + '] ' + hroot + ' </li>';
+       
+        ptext += '<li class="nodot"><b>' + h.lem + '</b> [#' + h.n + '] </li>';
         // add next members until next root
-        if (data.next.length) { for (var i = 0; i < data.next.length; i++) {
+        if(data.next == null) {} else {
+        if (data.next.length >= 1) { for (var i = 0; i < data.next.length; i++) {
                 var match = data.next[i]
-                var root = ''
-                if (match.role == 'currentRoot') {
-                    root += '(This)'
-                } else if (match.role == 'nextRoot') {
-                    root += '(Next root)'
-                } else if (match.role == 'prevRoot') {
-                    root += '(Root)'
-                }
-                ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + match.id + '">' + match.lem + '</a> [# ' + match.n + '] ' + root + ' </li>'
+             
+                ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + match.id + '">' + match.lem + '</a> [# ' + match.n + ']  </li>'
             };
         } else {
-            var nroot = ''
-            if (n.role == 'currentRoot') {
-                nroot += '(This)'
-            } else if (n.role == 'nextRoot') {
-                nroot += '(Next root)'
-            } else if (n.role == 'prevRoot') {
-                nroot += '(Root)'
-            }
-            ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + n.id + '">' + n.lem + '</a> [#' + n.n + '] ' + nroot + ' </li>'
+            
+            ptext += '<li class="nodot"><a href="/Dillmann/lemma/' + n.id + '">' + n.lem + '</a> [#' + n.n + ']  </li>'
         }
-        
+        }
         //push items to list
         $("<ul/>", {
-            addClass: 'nodot',
+            class: 'w3-ul w3-small',
             html: ptext
         }).appendTo("#showroot")
     });

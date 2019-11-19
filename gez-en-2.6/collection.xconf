@@ -26,7 +26,6 @@
             <text match="//tei:entry//tei:case"/>
             <text match="//tei:entry//tei:cit"/>
             <text match="//tei:entry//tei:num"/>
-            <text match="//tei:entry//tei:subc"/>
             <text match="//tei:form/tei:foreign" boost="5"/>
             <text match="@cRef"/>
             <text match="//tei:entry//tei:foreign" boost="2"/>
@@ -42,7 +41,6 @@
             <inline qname="tei:gen"/>
             <inline qname="tei:quote"/>
             <inline qname="tei:foreign"/>
-            <inline qname="tei:subc"/>
         </lucene>
         <range>
             <create qname="tei:TEI" type="xs:string"/>
@@ -93,8 +91,7 @@
                 <field name="changewho" match="@who" type="xs:string"/>
                 <field name="changewhen" match="@when" type="xs:string"/>
             </create>
-            <create qname="tei:case" type="xs:string"/> 
-            <create qname="tei:subc" type="xs:string"/>
+            <create qname="tei:case" type="xs:string"/>
             <create qname="tei:case">
                 <field name="casevalue" match="@value" type="xs:string"/>
             </create>

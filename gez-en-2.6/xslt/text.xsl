@@ -133,10 +133,13 @@
     
     <xsl:template match="t:lbl | t:pos | t:case">
         <a>
-            <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
-            <xsl:attribute name="title">
-                <xsl:value-of select="@expand"/>
+            <xsl:attribute name="class">RefPopup popup</xsl:attribute>
+            <xsl:attribute name="data-value">
+                <xsl:value-of select="concat(name(), position())"/>
             </xsl:attribute>
+            <span class="popuptext w3-hide w3-tiny w3-padding" id="{concat(name(), position())}">
+                <xsl:value-of select="@expand"/>
+            </span>
             <xsl:value-of select="."/>
         </a>
     </xsl:template>
@@ -191,10 +194,13 @@
                     <xsl:attribute name="ref">
                         <xsl:value-of select="$ref"/>
                     </xsl:attribute>
-                    <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
-                    <xsl:attribute name="title">
-                        <xsl:value-of select="                                 if (doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation) then                                     doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation/text()                                 else                                     'not able to find explanation in abbreviation list'"/>
+                    <xsl:attribute name="class">RefPopup popup</xsl:attribute>
+                    <xsl:attribute name="data-value">
+                        <xsl:value-of select="$ref"/>
                     </xsl:attribute>
+                    <span class="popuptext w3-hide w3-tiny w3-padding" id="{$ref}">
+                        <xsl:value-of select="                                 if (doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation) then                                     doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation/text()                                 else                                     'not able to find explanation in abbreviation list'"/>
+                    </span>
                     <xsl:value-of select="@cRef"/>
                    
                     <xsl:choose>
@@ -286,7 +292,9 @@
     </xsl:template>
     
     <xsl:template match="t:subc">
-        <b><xsl:value-of select="."/></b>
+        <b>
+            <xsl:value-of select="."/>
+        </b>
     </xsl:template>
     
 
