@@ -746,7 +746,7 @@ declare
 { let $c :=  $config:collection-root
 let $n := if(request:get-parameter('new', ())) then ('[descendant::tei:nd]') else ()
 let $t := if(request:get-parameter('traces', ())) then ('[descendant::tei:sense[@source = "#traces"]]') else ()
-let $query := '$c//tei:entry'||$n ||$t
+let $query := '$c//tei:entry[strats-with(@xml:id, "L")]'||$n ||$t
 return
          for $term in util:eval($query)
 
