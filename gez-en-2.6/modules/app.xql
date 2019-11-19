@@ -641,7 +641,7 @@ else ()
 (:the link to the download page, only available for lexicon group:)
    declare function app:downloadbutton($node as element(), $model as map(*)) {
 if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
-<a href="/Dillmann/downloads.html">Downloads</a>
+<a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="/Dillmann/downloads.html">Downloads</a>
 )
 else ()
 };
