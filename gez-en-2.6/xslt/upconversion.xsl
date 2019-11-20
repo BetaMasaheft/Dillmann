@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
 
@@ -9,7 +8,7 @@
             <xsl:matching-substring>
                 <xsl:variable name="all" select="regex-group(7)"/>
                 <!--                if there is a match, a sense element is constructed and sense2 is called to look for other nested meanings-->
-                <sense>
+                <sense xml:id="{upper-case(substring($source,1,1))}main">
                     <xsl:if test="regex-group(3)">
                         <xsl:attribute name="xml:lang">
                             <xsl:value-of select="regex-group(3)"/>
@@ -203,9 +202,7 @@
         <xsl:analyze-string regex="(&gt;)(\w{{2,3}})(&gt;)((.*?)&gt;)" select="$text0">
             <xsl:matching-substring>
                 <cit type="translation" xml:lang="{regex-group(2)}">
-                    <quote>
-                        <xsl:value-of select="regex-group(5)"/>
-                    </quote>
+                    <quote><xsl:value-of select="regex-group(5)"/></quote>
                 </cit>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
@@ -222,9 +219,7 @@
         <xsl:analyze-string regex="((&gt;)(\w{{2,3}}))((!)(.*?)(&gt;))" select="$text1">
             <xsl:matching-substring>
                 <cit type="transcription" xml:lang="{regex-group(3)}">
-                    <quote>
-                        <xsl:value-of select="regex-group(6)"/>
-                    </quote>
+                    <quote><xsl:value-of select="regex-group(6)"/></quote>
                 </cit>
             </xsl:matching-substring>
             <xsl:non-matching-substring>

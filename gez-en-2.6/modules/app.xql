@@ -746,7 +746,7 @@ declare
 { let $c :=  $config:collection-root
 let $n := if(request:get-parameter('new', ())) then ('[descendant::tei:nd]') else ()
 let $t := if(request:get-parameter('traces', ())) then ('[descendant::tei:sense[@source = "#traces"]]') else ()
-let $query := '$c//tei:entry[strats-with(@xml:id, "L")]'||$n ||$t
+let $query := '$c//tei:entry'||$n ||$t
 return
          for $term in util:eval($query)
 
@@ -942,7 +942,7 @@ declare function app:revisions($term){
     </ul>
     </div>};
 
-declare function app:itemcontent ($id){
+declare function app:itemcontent ($id, $viewtype){
 let $params :=
                 string-join(
                     for $param in request:get-parameter-names()
@@ -980,13 +980,13 @@ return
         {if($term//tei:form/tei:foreign[@xml:lang !='gez'])
         then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
         {$rootline}
-        <div class="w3-bar-item ">
+        {if($viewtype='home') then <div class="w3-bar-item ">
 <label class="switch highlights">
   <input type="checkbox"/>
   <div class="slider round" data-toggle="tooltip" title="Show or Hide highlights of each element in the entry (lemma excluded!) containing your query as a string.
   This might be different from the hits on the left, but it should help you to find your match faster."></div>
 </label>
-</div>
+</div> else ()}
         </div>
 <div class="w3-bar downloadlinks w3-twothird">
 <div class="w3-bar-item">
@@ -1005,9 +1005,9 @@ else (' ' || format-number($column, '#'))}</a></span>)}
 </div>
 
 </div>
-       <a class="smallArrow prev" href="{if(request:get-parameter('id', ())) then ('?'||$params||'&amp;id='||$prev) else '/Dillmann/lemma/'||$prev}">
+       <a class="smallArrow prev" href="{if($viewtype = 'home') then ('?'||$params||'&amp;id='||$prev) else '/Dillmann/lemma/'||$prev}">
         <i class="fa fa-chevron-left" aria-hidden="true"></i><span class="navlemma">{$col//id($prev)//tei:form/tei:foreign/text()}</span></a>{ ' | '}
-<a  class="smallArrow next" data-value="{$next}" href="{if(request:get-parameter('id', ())) then ('?'||$params||'&amp;id='||$next) else '/Dillmann/lemma/'||$next}">
+<a  class="smallArrow next" data-value="{$next}" href="{if($viewtype = 'home') then ('?'||$params||'&amp;id='||$next) else '/Dillmann/lemma/'||$next}">
 <span class="navlemma">{$col//id($next)//tei:form/tei:foreign/text()} </span><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 
 
@@ -1019,9 +1019,12 @@ else (' ' || format-number($column, '#'))}</a></span>)}
 return  <div class="w3-panel entry">
 <h3>
 {if($sense/@source = '#traces') then 'TraCES' else 'Dillmann'}
-{if($sense/@source) then (let $s := substring-after($sense/@source, '#') return <a href="#" data-toggle="tooltip" title="{root($term)//tei:sourceDesc//tei:ref[@target=$s]//text()}, {
+{if($sense/@source) then (let $s := substring-after($sense/@source, '#') 
+return <a href="#" class="w3-tooltip">
+<i class="fa fa-info-circle" aria-hidden="true"></i>
+<span class="w3-text">{root($term)//tei:sourceDesc//tei:ref[@xml:id=$s]//text()}, {
 switch($sense/@xml:lang) case 'la' return 'Latin' case 'ru' return 'Russian' case 'en' return 'English' case 'de' return 'Deutsch'
-case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa fa-info-circle" aria-hidden="true"></i>
+case 'it' return 'Italian' default return string($sense/@xml:id)}</span>
 </a>) else ()}
 </h3>
 <div>
@@ -1069,7 +1072,7 @@ case 'it' return 'Italian' default return string($sense/@xml:id)} "><i class="fa
 declare function app:item($node as node(), $model as map(*)){
 let $col :=  $config:collection-root
 let $id := request:get-parameter("id", "")
-return app:itemcontent($id)
+return app:itemcontent($id, 'item')
 };
 
 
@@ -1078,7 +1081,7 @@ the difference from the previous function is in that here parameters need to be 
 :)
 declare function app:showitem($node as node()*, $model as map(*), $id as xs:string?){
 if ($id) then (
-    app:itemcontent($id)
+    app:itemcontent($id, 'home')
 )
 else (<div class="w3-panel w3-card-4 w3-sand w3-margin w3-paddgin-64">Search and click on a search result to see it here. You will be able to click on words, browse the previous and next entries, get the result on its own page and see related finds from Beta maṣāḥǝft.</div>)};
 
@@ -2380,8 +2383,8 @@ declare function app:footer($node as element(), $model as map(*)){
         </div>
         {  if(sm:id()//sm:username/text() = 'guest') then
 
-          <div class="w3-dropdown-hover w3-bar-item w3-hide-small" id="logging">
-               <button class="w3-button " title="resources">Login <i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-hover w3-hide-small" id="logging">
+               <button class="w3-button  w3-bar-item">Login <i class="fa fa-caret-down"></i></button>
                <div class="w3-dropdown-content w3-bar-block w3-card-4">
 
            <form method="post" class="w3-container" role="form"
@@ -2392,7 +2395,7 @@ declare function app:footer($node as element(), $model as map(*)){
                                  <label for="password">Password:</label>
                                      <input type="password" name="password" class="w3-input"/>
 
-                                     <button class="w3-button w3-small w3-red" type="submit">Login</button>
+                                     <button class="w3-button w3-small w3-bar-item w3-red" type="submit">Login</button>
 
                          </form>
                          </div>
@@ -2418,12 +2421,17 @@ Hi {xmldb:get-current-user()}!<i class="fa fa-caret-down"></i></a>
 
             </div>
           </div>
+          <div class="w3-dropdown-hover w3-hide-small" id="lists">
+      <button class=" w3-button" title="Resources">Resources <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
           <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium"  id="list" href="/Dillmann/list">Browse</a>
           <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="biblio" href="/Dillmann/bibl.html">Bibliography</a>
           <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" href="/Dillmann/reverse" id="reverse">Reverse Index</a>
          <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" href="/Dillmann/abbreviations" id="abbreviations">Abbreviations</a>
              <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" href="/Dillmann/citations" id="quotes">Citations</a>
          <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="downloads" data-template="app:downloadbutton"/>
+         </div>
+         </div>
           <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="getInvolved" href="/Dillmann/getinvolved.html">Get involved</a>
           <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="tutorial" data-template="app:tutorial"/>
         <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="BM" data-template="app:bmbutton"/>

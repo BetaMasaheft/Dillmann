@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:http="http://expath.org/ns/http-client" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <xsl:output encoding="UTF-8" media-type="html"/>
     <xsl:preserve-space elements="*"/>
@@ -38,7 +37,7 @@
                         Leslau <br/>
                     </xsl:when>
                     <xsl:when test="@n = 'E'">
-                        Etymology<br/>
+                        Comparative Data<br/>
                     </xsl:when>
                     <xsl:when test="@n = 'C'">
                         Cross-references <br/>
@@ -133,10 +132,9 @@
     
     <xsl:template match="t:lbl | t:pos | t:case">
         <a>
+            <xsl:attribute name="title"><xsl:value-of select="@expand"/></xsl:attribute>
             <xsl:attribute name="class">RefPopup popup</xsl:attribute>
-            <xsl:attribute name="data-value">
-                <xsl:value-of select="concat(name(), position())"/>
-            </xsl:attribute>
+            <xsl:attribute name="data-value"><xsl:value-of select="concat(name(), position())"/></xsl:attribute>
             <span class="popuptext w3-hide w3-tiny w3-padding" id="{concat(name(), position())}">
                 <xsl:value-of select="@expand"/>
             </span>
@@ -195,9 +193,7 @@
                         <xsl:value-of select="$ref"/>
                     </xsl:attribute>
                     <xsl:attribute name="class">RefPopup popup</xsl:attribute>
-                    <xsl:attribute name="data-value">
-                        <xsl:value-of select="$ref"/>
-                    </xsl:attribute>
+                    <xsl:attribute name="data-value"><xsl:value-of select="$ref"/></xsl:attribute>
                     <span class="popuptext w3-hide w3-tiny w3-padding" id="{$ref}">
                         <xsl:value-of select="                                 if (doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation) then                                     doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation/text()                                 else                                     'not able to find explanation in abbreviation list'"/>
                     </span>
@@ -292,9 +288,7 @@
     </xsl:template>
     
     <xsl:template match="t:subc">
-        <b>
-            <xsl:value-of select="."/>
-        </b>
+        <b><xsl:value-of select="."/></b>
     </xsl:template>
     
 

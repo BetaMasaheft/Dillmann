@@ -242,7 +242,19 @@ let $schema := doc('/db/apps/gez-en/schema/Dillmann.rng')
 
 let $store := xmldb:store($newdata-collection, $file, $item)
 let $record := $config:collection-root//id($newid)
-let $updateFuseki := updatefuseki:entry($record, 'INSERT')
+
+(:the senses without id should have been updated and the id can be injected into them, the main sense is instead already in the upconversion step:)
+let $addxmlids := for $sensewithoutid in $record//t:sense[@n]
+                            let $mainSense := $sensewithoutid/ancestor::t:sense[@source]
+                            let $parentSense := for $pS in $sensewithoutid/ancestor::t:sense[@n] 
+                                                            let $position := count($pS/ancestor::t:sense) 
+                                                            order by $position 
+                                                            return string($pS/@n)
+                            let $newId := substring($mainSense/@xml:id,1,1) || string-join($parentSense) || string($sensewithoutid/@n)
+                            return 
+                                      update insert attribute xml:id {$newId} into $sensewithoutid
+                                      
+let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {console:log('failed to update fuseki')}
 
     (:nofity editor and contributor:)
      let $sendmails :=(

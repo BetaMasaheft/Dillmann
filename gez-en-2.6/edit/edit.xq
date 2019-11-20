@@ -156,16 +156,26 @@ let $sensesLang := for $lang in $sensesArray/@xml:lang return $lang
 let $eachLang := for $lang in $eachsense//tei:sense[@source]/@xml:lang return $lang
 
 let $updateform :=  for $s in $eachsense//tei:sense[@xml:lang][@source]
-let $slang := string($s/@xml:lang)
-
-return
-if($sensesArray[@xml:lang = $slang]) 
-then( update replace $sensesArray[@xml:lang=$slang] with $s)
-else (update insert $s into $item//tei:entry)
+                                let $slang := string($s/@xml:lang)
+                                return
+                                    if($sensesArray[@xml:lang = $slang]) 
+                                    then( update replace $sensesArray[@xml:lang=$slang] with $s)
+                                    else (update insert $s into $item//tei:entry)
 
 let $deleteRemoved := for $removedLang in distinct-values($sensesLang[not(.=$eachLang)])
-return
-    update delete $sensesArray[@xml:lang=$removedLang]
+                                    return
+                                    update delete $sensesArray[@xml:lang=$removedLang]
+
+(:the senses without id should have been updated and the id can be injected into them, the main sense is instead already in the upconversion step:)
+let $addxmlids := for $sensewithoutid in $sensesArray//tei:sense[@n]
+                            let $mainSense := $sensewithoutid/ancestor::tei:sense[@source]
+                            let $parentSense := for $pS in $sensewithoutid/ancestor::tei:sense[@n] 
+                                                            let $position := count($pS/ancestor::tei:sense) 
+                                                            order by $position 
+                                                            return string($pS/@n)
+                            let $newId := substring($mainSense/@xml:id,1,1) || string-join($parentSense) || string($sensewithoutid/@n)
+                            return 
+                                      update insert attribute xml:id {$newId} into $sensewithoutid
 
 let $segRoot := <rs xmlns="http://www.tei-c.org/ns/1.0" type="root"/>
 let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(xmldb:get-current-user()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' case 'Magda' return 'MK' case 'Daria' return 'DE' case 'Susanne' return 'SH' case 'Wolfgang' return 'WD' case 'Maria' return 'MB' case 'Andreas' return 'AE' case 'LeonardBahr' return 'LB' case 'Ralph' return 'RL' case 'Jeremy' return 'JB' case 'Joshua' return 'JF'  default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
@@ -173,7 +183,7 @@ let $updateChange := update insert $change into doc($targetfileuri)//tei:revisio
 let $addroot := if($root='root' and $record//tei:form[not(descendant::tei:rs[@type='root'])]) then update insert $segRoot into doc($targetfileuri)//tei:form else ()
 let $updatemainForm := update replace $record//tei:form//tei:foreign//text() with $form
 
-let $updateFuseki := updatefuseki:entry($record, 'INSERT')
+let $updateFuseki := try{updatefuseki:entry($record, 'INSERT')} catch * {console:log('failed to update fuseki')}
 
 let $log := log:add-log-message($id, xmldb:get-current-user(), 'updated')
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)

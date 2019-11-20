@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -16,20 +15,18 @@
         <link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"/>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/css/keyboard-basic.min.css"/>
-        
-        <script type="text/javascript" src="$shared/resources/scripts/jquery/jquery-1.7.1.min.js"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alpheios-embedded@0.6.1/dist/style/style.min.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alpheios-embedded@0.6.1/dist/style/style-embedded.min.css"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
-<link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/css/keyboard-basic.min.css"/>
+        <script type="text/javascript" src="$shared/resources/scripts/jquery/jquery-1.7.1.min.js"/>
+        
     </head>
     <body id="body">
         <div class="w3-top">
             <div class="w3-bar w3-black w3-card">
-                <a class="w3-bar-item w3-button  w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu">
-                    <i class="fa fa-bars"/>
-                </a>
+                <a class="w3-bar-item w3-button  w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"/></a>
 
                 <div class="w3-bar-item w3-hide-small" id="brand">
                     <a href="/Dillmann/">Lexicon Linguae Aethiopicae</a>
@@ -40,14 +37,16 @@
                 <div class="w3-dropdown-hover w3-hide-small" id="about">
                       <button class=" w3-button" title="about">
                         <div data-template="app:greetings"/>
-                      <i class="fa fa-caret-down"/>
-                    </button>
+                      <i class="fa fa-caret-down"/></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                   <a class="w3-bar-item w3-button" href="/Dillmann/about.html">About this app</a>
                   <a class="w3-bar-item w3-button" href="/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
 
                 </div>
               </div>
+                <div class="w3-dropdown-hover w3-hide-small" id="lists">
+                    <button class=" w3-button" title="Resources">Resources <i class="fa fa-caret-down"></i></button>     
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
                 <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" id="list" href="/Dillmann/list">Browse</a>
                 <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" id="biblio" href="/Dillmann/bibl.html">Bibliography</a>
                 <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="/Dillmann/reverse" id="reverse">Reverse Index</a>
@@ -55,6 +54,8 @@
                 <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="/Dillmann/citations" id="quotes">Citations</a>
                 <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="downloads" data-template="app:downloadbutton"/>
                 <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="getInvolved" href="/Dillmann/getinvolved.html">Get involved</a>
+                </div>
+                    </div>
                 <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="tutorial" data-template="app:tutorial"/>
                 <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="BM" data-template="app:bmbutton"/>
 
