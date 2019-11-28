@@ -30,7 +30,7 @@ $(document).ready(function () {
         var el = this;
         
         var reference = $(this).data('value')
-        console.log('searching ' + reference)
+       // console.log('searching ' + reference)
         var splitref = reference.split("/");
         var sourceReference = $(this).data('ref')
         var bmid = $(this).data('bmid')
@@ -54,7 +54,7 @@ $(document).ready(function () {
     
     var lemma = ''
     var lem = $('#lemma').text()
-    //console.log(lem)
+   // console.log(lem)
     // this assumes a case exactely like "ሲኖዶስ et ሴኖዶስ" and that the kwic search rest function will read the white space as OR
     if (/et/i.test(lem)) {
         var split = lem.split(' ');
@@ -65,8 +65,8 @@ $(document).ready(function () {
     //console.log(lemma)
     var apiurl = base + '/api/kwicsearch?element=ab&element=title&element=q&element=p&element=l&element=incipit&element=explicit&element=colophon&element=summary&element=persName&element=placeName&q='
     
-    var call = apiurl + lemma
-    //console.log(call)
+    var call = apiurl + lemma.replace(/I/gi, '')
+   // console.log(call)
     
     $('#lemma').append('፡')
     $('.navlemma').append('፡')
@@ -147,7 +147,7 @@ $(document).ready(function () {
                     }
                     //                console.log(parsedtext)
                     var url = "/" + coll + '/' + id + "/main?hi=" + encodeURIComponent(lemma)
-                    items.push('<div  class="w3-panel w3-pale-blue w3-card-4 w3-padding-64"><h3><a href="' + url + '">' + title + "</a><span class='w3-badge'>" + match.hitsCount + "</span></h3><div lang='gez' class='word'>" + parsedtext + "</div></div>");
+                    items.push('<div  class="w3-third w3-panel w3-card-4 w3-padding-64"><h3><a href="' + url + '">' + title + "</a><span class='w3-badge'>" + match.hitsCount + "</span></h3><div lang='gez' class='word'>" + parsedtext + "</div></div>");
                     
                     
                     $("<div/>", {

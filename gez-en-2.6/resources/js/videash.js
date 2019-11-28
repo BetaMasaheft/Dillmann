@@ -3,7 +3,7 @@
 function toggletabletextview(source) {
     var tableid = 'tabularView' + source
     var textid = 'textView' + source
-    console.log(tableid + textid)
+    //console.log(tableid + textid)
     var table = document.getElementById(tableid);
     
     var text = document.getElementById(textid);
@@ -62,8 +62,8 @@ $('.highlights').change(function () {
 $(document).ready(function () {
     
     var fullq = getUrlParameter('q');
-    console.log(fullq)
-    if (fullq.length == 0) {console.log(fullq.length)
+    // console.log(fullq)
+    if (fullq == '') {//console.log(fullq.length)
     } else { if (/[\*\?\~\(]/g.test(fullq)) {
             var q = fullq.replace(/[\*\?\~\(]/g, '')
         } else {
@@ -85,7 +85,7 @@ $(document).ready(function () {
     
     $('div.entry [lang="gez"]').each(function (wn) {
         
-        console.log(wn)
+      //  console.log(wn)
         
         var word = $(this)
         /*make all spaces a single space*/
@@ -143,31 +143,31 @@ $(document).ready(function () {
     
     $('.popup').on('mouseover mouseout', function () {
         var id = $(this).data('value')
-        console.log(id)
+        //console.log(id)
         popup(id)
     });
     
     $('.RefPopup').on('click', function () {
         var id = $(this).data('value')
-        console.log(id)
+       // console.log(id)
         popup(id)
     });
     
     function blink(id) {
-        console.log(id)
+     //   console.log(id)
         var pointedDiv = document.getElementById(id);
         if (pointedDiv.className.indexOf("w3-card-4") == -1) {
-            console.log('no w3 class, add it')
+        //    console.log('no w3 class, add it')
             pointedDiv.className += " w3-card-4";
         } else {
-            console.log('remove w3 class')
+          //  console.log('remove w3 class')
             pointedDiv.className = pointedDiv.className.replace(" w3-card-4", "");
         }
     }
     
     $('.internalRef').on('mouseover mouseout', function () {
         var id = $(this).data('value')
-        console.log(id)
+       // console.log(id)
         blink(id)
     });
     
@@ -192,7 +192,7 @@ $(document).ready(function () {
         var vtooltip = v.children("span").children("span")
         var vid = vtext.substring(0, vtext.indexOf('፡'))
         var trimvid = vid.replace('፡', '')
-        console.log(trimvid)
+      //  console.log(trimvid)
         var apiurl = '/api/Dillmann/search/form?q='
         $.getJSON(apiurl + trimvid, function (data) {
             var newurl = data[ "0"].id
@@ -275,7 +275,9 @@ $(document).ready(function () {
       //  console.log(data)
         $('#lemma').append('<span class="w3-medium w3-tooltip"> ' + data.translit + '<span class="w3-text">From TraCES annotations.</span></span>')
     });
-    var thisid = $('#rootmembers').data('value')
+    var trimmed = $('#rootmembers').data('value')
+    var removeOrdinals = trimmed.replace(/I/gi,'')
+    var thisid = removeOrdinals
     var apicall = '/api/Dillmann/rootmembers/' + thisid
     $.getJSON(apicall, function (data) {
        // console.log(data)
