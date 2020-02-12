@@ -36,11 +36,11 @@ declare function functx:escape-for-regex( $arg as xs:string? )  as xs:string {
 
   declare function app:personslist($node as element(), $model as map(*)){
 
-if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
  let $BMpersons := collection('/db/apps/BetMas/data/persons/')//tei:person[tei:persName[@xml:lang='gez'][not(@type='normalized')]]
  let $hits := for $BMperson in subsequence($BMpersons,1,50) return $BMperson
  return
- map {'hits' := $hits}
+ map {'hits' : $hits}
  )
  else ('sorry, this page is only for editors')
  };
@@ -120,12 +120,12 @@ if ($username = 'guest') then (
                 <p>Did you just arrive here by mistake or do you want to know what people look at on ths webiste? You can ask Pietro, he will provide you the data from google analytics, which is much nicer.</p>
                 </div>
 )
-else if(($username = xmldb:get-current-user())or xmldb:is-admin-user(xmldb:get-current-user())) then
+else if(($username = sm:id()//sm:real/sm:username/string())or sm:is-dba(sm:id()//sm:real/sm:username/string())) then
 
 <div
                 id="content"
                 class="container-fluid w3-container w3-margin">
-                <h2>{if($username != xmldb:get-current-user()) then 'Dear ' || xmldb:get-current-user() || ' you see this because you are admin. --->' else ()}
+                <h2>{if($username != sm:id()//sm:real/sm:username/string()) then 'Dear ' || sm:id()//sm:real/sm:username/string() || ' you see this because you are admin. --->' else ()}
                 Dear {$username}, thank you very much for all your nice work for the project!</h2>
                 <div
                     class="w3-container w3-margin">
@@ -279,7 +279,7 @@ let $url :=  replace(request:get-uri(), '/exist/apps/gez-en', '/Dillmann')
    let $logparams := if(count($paramstobelogged) >= 1) then '?' || string-join($paramstobelogged, '&amp;') else ()
    let $logurl := $url || $logparams
    return
-   log:add-log-message($logurl, xmldb:get-current-user(), 'page')
+   log:add-log-message($logurl, sm:id()//sm:real/sm:username/string(), 'page')
 
 };
 
@@ -407,12 +407,12 @@ The letters are available as buttons on the side bar and when clicked will reloa
 
                 return
                      map {
-                         "hit" := $t,
-                         "roots" := (for $r in $root
+                         "hit" : $t,
+                         "roots" : (for $r in $root
                             return string($r))
                      }
     return
-        map {'hits' := $trans, 'langs' := $langs}
+        map {'hits' : $trans, 'langs' : $langs}
 
  };
 
@@ -609,7 +609,7 @@ return
 
 (:on login, print the name of the logged user:)
 declare function app:greetings($node as element(), $model as map(*)){
-<a target="_blank" href="/Dillmann/user/{xmldb:get-current-user()}">Hi {xmldb:get-current-user()}!</a>
+<a target="_blank" href="/Dillmann/user/{sm:id()//sm:real/sm:username/string()}">Hi {sm:id()//sm:real/sm:username/string()}!</a>
     };
 
 (:the button to the pdf of a file. the request ending with .pdf triggers in the controller a xslt transformation    :)
@@ -631,7 +631,7 @@ declare function app:greetings($node as element(), $model as map(*)){
 
 (:    the button linking the the new entry form, an html page with a form posting data to a xql which will store a file and notify the editors:)
    declare function app:newentry($node as element(), $model as map(*)) {
-if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
 <a class="w3-button w3-green" href="/Dillmann/newentry.html">
                    New Entry
                 </a>)
@@ -640,7 +640,7 @@ else ()
 
 (:the link to the download page, only available for lexicon group:)
    declare function app:downloadbutton($node as element(), $model as map(*)) {
-if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
 <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="/Dillmann/downloads.html">Downloads</a>
 )
 else ()
@@ -648,7 +648,7 @@ else ()
 
 (:the link to Beta Masaheft, only available for logged users:)
    declare function app:bmbutton($node as element(), $model as map(*)) {
-if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
 <a href="https://betamasaheft.eu/" class="w3-bar-item w3-button  w3-hide-small" target="_blank">Beta maṣāḥǝft</a>
 
 )
@@ -657,7 +657,7 @@ else ()
 
 (:the link to Beta Masaheft, only available for logged users:)
    declare function app:tutorial($node as element(), $model as map(*)) {
-if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
 <a href="https://betamasaheft.eu/Dillmann/tutorialextended.html" target="_blank" class="w3-bar-item w3-button  w3-hide-small">Tutorial</a>
 
 )
@@ -681,7 +681,7 @@ else (
 (:the button to delete an entry, only available for lexicon group:)
 
   declare function app:deleteEntry($id) {
-if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
 <a class="w3-button w3-red w3-bar-item delete" href="/Dillmann/edit/delete-confirm.xq?id={$id}">
                    <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>)
@@ -691,7 +691,7 @@ else ()
 (:the button to edit an entry, only available for lexicon group. the name of the function is old, it does not go anymore to exide but to the update form:)
 
 declare function app:editineXide($id as xs:string, $sources as node()) {
-if(contains(sm:get-user-groups(xmldb:get-current-user()), 'lexicon')) then (
+if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
 let $ss := for $source in $sources/source return '&amp;source' || $source/@lang ||'=' ||substring-after($source/@value, '#')
 let $sourcesparam := string-join($ss, '')
 (:let $base := base-uri($config:collection-root//id($id)):)
@@ -1096,8 +1096,8 @@ let $file := if ($new='true') then
         'new-instance.xml'
     else
          $config:collection-root//id($id)
-return map {'file' := $file,
-'id' := $id}
+return map {'file' : $file,
+'id' : $id}
 };
 
 
@@ -1242,7 +1242,7 @@ let $file := $model('file')
 return
 
                ( <h2>Edit Entry</h2>,
-           <div class="w3-panel w3-card-2"><p>Hi {xmldb:get-current-user()}! You are updating {$file//tei:form/tei:foreign/text()}, that is great!</p>
+           <div class="w3-panel w3-card-2"><p>Hi {sm:id()//sm:real/sm:username/string()}! You are updating {$file//tei:form/tei:foreign/text()}, that is great!</p>
            <p> Please follow the data entry support on the side of this form for editing the entries.</p>
            <p> Remember, you are here editing the dictionaries as sources of information, not annotating texts. The structure given to the entries is useful for many purposes.</p></div>,
                 <form id="updateEntry" action="/Dillmann/edit/edit.xq" class="w3-container w3-padding input_fields_wrap" method="post">
@@ -1334,7 +1334,7 @@ $newsense
 
 declare function app:DoUpdate($node as node()*, $model as map(*)){
 let $parametersName := request:get-parameter-names()
-let $cU := xmldb:get-current-user()
+let $cU := sm:id()//sm:real/sm:username/string()
 let $file := $model('file')
 let $id := $model('id')
 let $msg := request:get-parameter('msg', ())
@@ -1460,7 +1460,7 @@ return
     update delete $sensesArray[@xml:lang=$removedLang]
 
 
-let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(xmldb:get-current-user()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' default return 'AE'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
+let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(sm:id()//sm:real/sm:username/string()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' default return 'AE'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
 let $updateChange := update insert $change into doc($targetfileuri)//tei:revisionDesc
 
 (:nofity editor and contributor:)
@@ -1748,7 +1748,7 @@ let $query := if(empty($q) or $q = '') then ('$coll//tei:entry' || $c ||$l ||$p)
 
 let $hits := for $hit in util:eval($query) return $hit
 return
- map {"hits" := $hits}
+ map {"hits" : $hits}
 
 };
 
@@ -1782,7 +1782,7 @@ let $formatCun := format-number($cun, '0000')
 let $hits := for $hit in $coll//tei:entry//tei:cb[@n=$formatCun] return $hit
 
 return
-  map {"hits" := $hits}
+  map {"hits" : $hits}
 )
 else ()
 
@@ -1795,14 +1795,14 @@ then(
 
 let $hits := for $hit in $coll//tei:entry//tei:ref[@cRef=$q] return $hit
 return
-  map {"hits" := $hits}
+  map {"hits" : $hits}
 )
 else if($ref = 'addenda')
 then(
 
 let $hits := for $hit in $coll//tei:entry//tei:ref[contains(@target, $q)] return $hit
 return
-  map {"hits" := $hits}
+  map {"hits" : $hits}
 )
 else(
 let $qtext := if(empty($q)) then () else app:substitutionsInQuery($q)
@@ -1820,8 +1820,8 @@ let $qp := if(empty($q) or $q = '') then ('$coll//tei:entry' || $erw) else '$col
 
 let $hits := for $hit in util:eval($qp) let $sorting := if(empty($q) or $q = '') then $hit//tei:form[1]/tei:foreign[1]/text()[1] else ft:score($hit) order by $sorting descending return $hit
 return
-  map {"hits" := $hits,
-  "query":=$qp}
+  map {"hits" : $hits,
+  "query": $qp}
   )
 
 
@@ -1836,8 +1836,8 @@ return
    return
                 (: Process nested templates :)
                 map {
-                    "hits" := $hits,
-                    "query" := $queryExpr
+                    "hits" : $hits,
+                    "query" : $queryExpr
                 }
 
  ))
@@ -1886,7 +1886,7 @@ declare %private function app:create-query($query-string as xs:string?, $mode as
         then
             let $luceneParse := app:parse-lucene($query-string)
 
-            let $luceneXML := util:parse($luceneParse)
+            let $luceneXML := parse-xml($luceneParse)
             let $lucene2xml := app:lucene2xml($luceneXML/node(), $mode)
             return $lucene2xml
         (:otherwise the query is performed by selecting one of the special options (any, all, phrase, near, fuzzy, wildcard or regex):)
@@ -2322,9 +2322,9 @@ return
 $bibl
     return
    map {
-                    "hits" := $bms,
-                    "total" := count($bms),
-                    "type" := 'bibliography'
+                    "hits" : $bms,
+                    "total" : count($bms),
+                    "type" : 'bibliography'
 
                 }
 
@@ -2412,9 +2412,9 @@ declare function app:footer($node as element(), $model as map(*)){
             <div class="w3-dropdown-hover w3-hide-small" id="about">
                   <a 
                   class=" w3-button" title="about" 
-                  href="/Dillmann/user/{xmldb:get-current-user()}"  
+                  href="/Dillmann/user/{sm:id()//sm:real/sm:username/string()}"  
                   target="_blank">
-Hi {xmldb:get-current-user()}!<i class="fa fa-caret-down"></i></a>
+Hi {sm:id()//sm:real/sm:username/string()}!<i class="fa fa-caret-down"></i></a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
               <a class="w3-bar-item w3-button" href="/Dillmann/about.html">About this app</a>
               <a class="w3-bar-item w3-button" href="/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
