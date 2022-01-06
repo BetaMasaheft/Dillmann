@@ -1,10 +1,10 @@
 xquery version "3.1"  encoding "UTF-8";
 
 
-module namespace api="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/api";
-import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
+module namespace api="http://betamasaheft.eu/Dillmann/api";
+import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "xmldb:exist:///db/apps/gez-en/modules/config.xqm";
 
-import module namespace fusekisparql = 'https://www.betamasaheft.uni-hamburg.de/BetMas/sparqlfuseki' at "fuseki.xqm";
+import module namespace fusekisparql = 'https://www.betamasaheft.uni-hamburg.de/gez-en/sparqlfuseki' at "xmldb:exist:///db/apps/gez-en/modules/fuseki.xqm";
 
 (: For interacting with the TEI document :)
 
@@ -21,7 +21,7 @@ declare namespace json="http://www.json.org";
 
  declare
 %rest:GET
-%rest:path("/BetMas/api/Dillmann/SPARQL")
+%rest:path("/api/Dillmann/SPARQL")
 %rest:query-param("query", "{$query}", "")
 %output:method("xml")
 function api:sparqlQuery($query as xs:string*) {
@@ -33,9 +33,10 @@ return
 $xml
 )};
 
+
 declare
 %rest:GET
-%rest:path("/BetMas/api/Dillmann/lemmatranslit")
+%rest:path("/api/Dillmann/lemmatranslit")
 %rest:query-param("q", "{$q}", "")
 %output:method("json")
 function api:lemmatranslit($q as xs:string*){
@@ -49,20 +50,20 @@ WHERE {
 let $fusekicall := fusekisparql:query('traces', $sparqlquery)
 return 
 ($config:response200Json,
-map{'translit' := string-join($fusekicall//sr:literal/text(),', ')}
+map{'translit' : string-join($fusekicall//sr:literal/text(),', ')}
 )
 };
 
 
 declare
 %rest:GET
-%rest:path("/BetMas/api/Dillmann/rootmembers/{$id}")
+%rest:path("/api/Dillmann/rootmembers/{$id}")
 %output:method("json")
 function api:rootmembers($id as xs:string){
 let $sparqlquery := $config:sparqlPrefixes || "
 SELECT ?sequence ?id ?text ?root
 WHERE
-{
+{ dillmann:lexicon lexicog:entry ?entry .
 ?entry rdf:member 	dillmann:"||$id||"_comp ;
  ?prop ?member .
   ?member lexicog:describes ?entryorsense .
@@ -99,13 +100,14 @@ let $fusekicall := fusekisparql:query('dillmann', $sparqlquery)
 return
 (
 $config:response200Json,
- map {'here': map {  'id': $id, 
-                                'n': xs:integer($thisResult/sr:binding[@name='sequence']/sr:literal/text()), 
-                                'role' : $thisResult/sr:binding[@name='root']/sr:literal/text(), 
-                                'lem' : $thisResult/sr:binding[@name='text']/sr:literal/text()
-                                } , 
-          'prev' : $prevs, 
-          'next' : $nexts}
+ map {'here': 
+            map {  'id': $id, 
+                    'n': xs:integer($thisResult/sr:binding[@name='sequence']/sr:literal/text()), 
+                    'role' : $thisResult/sr:binding[@name='root']/sr:literal/text(), 
+                    'lem' : $thisResult/sr:binding[@name='text']/sr:literal/text()
+                } , 
+        'prev' : $prevs, 
+        'next' : $nexts}
   )
 
 };
@@ -116,7 +118,7 @@ $config:response200Json,
 (:                   searches Dillmann lexicon:)
 declare
 %rest:GET
-%rest:path("/BetMas/api/Dillmann/search/{$element}")
+%rest:path("/api/Dillmann/search/{$element}")
 %rest:query-param("q", "{$q}", "")
 %output:method("json")
 function api:searchDillmann($element as xs:string?,
@@ -162,7 +164,7 @@ $q as xs:string*) {
 
 declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/list/xml")
+    %rest:path("/api/Dillmann/list/xml")
     %rest:query-param("start", "{$start}", 1)
     %output:method("xml")
 function api:getListofLemmas($lemma as xs:string?, $start as xs:integer*){
@@ -199,7 +201,7 @@ function api:getListofLemmas($lemma as xs:string?, $start as xs:integer*){
 
 declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/list/json")
+    %rest:path("/api/Dillmann/list/json")
     %rest:query-param("start", "{$start}", 1)
     %output:method("json")
 function api:getListofLemmasJ($lemma as xs:string?, $start as xs:integer*){
@@ -236,7 +238,7 @@ function api:getListofLemmasJ($lemma as xs:string?, $start as xs:integer*){
 
 declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/{$lemma}/teientry")
+    %rest:path("/api/Dillmann/{$lemma}/teientry")
     %output:method("xml")
 function api:getLemma($lemma as xs:string?){
 
@@ -254,7 +256,7 @@ if(exists($item)) then
 
 declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/{$lemma}/json")
+    %rest:path("/api/Dillmann/{$lemma}/json")
     %output:method("json")
 function api:getLemmaJson($lemma as xs:string?){
 
@@ -266,13 +268,13 @@ if(exists($item)) then
    $item
   )
   else
-  ($config:response400, map{'info' := ($lemma || 'is not a lemma unique id of any entry.')}
+  ($config:response400, map{'info' : ($lemma || 'is not a lemma unique id of any entry.')}
   )
                    };
 
 declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/{$lemma}/txt")
+    %rest:path("/api/Dillmann/{$lemma}/txt")
     %output:method("text")
 function api:getLemmaTXT($lemma as xs:string?){
 
@@ -289,7 +291,7 @@ if(exists($item)) then
 (:get 1000 to 1000 the all as txt :)
 declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/all/txt")
+    %rest:path("/api/Dillmann/all/txt")
     %rest:query-param("start", "{$start}", 1)
     %rest:query-param("total", "{$total}", 1000)
     %output:method("text")
@@ -306,7 +308,7 @@ let $filecontent := for $d in subsequence( $config:collection-root//tei:entry[st
 
  declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/number/{$n}")
+    %rest:path("/api/Dillmann/number/{$n}")
     %output:method("json")
 function api:getLemmaNumber($n as xs:string?){
 ($config:response200Json,
@@ -315,16 +317,16 @@ let $match :=  $config:collection-root//tei:entry[@n = $n]
 let $entry := string($match/@xml:id)
 return
 map {
-  'number' : $n,
-  'lemma' : $entry
+  'number': $n,
+  'lemma': $entry
   })
-                   };
+};
 
 
 (:format of $n must be c0000:)
  declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/column/{$n}")
+    %rest:path("/api/Dillmann/column/{$n}")
     %output:method("json")
 function api:getLemmaColumn($n as xs:string?){
 ($config:response200Json,
@@ -341,7 +343,7 @@ map {
 
  declare
     %rest:GET
-    %rest:path("/BetMas/api/Dillmann/otherlemmas")
+    %rest:path("/api/Dillmann/otherlemmas")
 
 %rest:query-param("lemma", "{$lemma}", "")
     %output:method("json")
@@ -367,4 +369,4 @@ map {
   'response' : $response,
   'total' : count($hits)
   })
-                   };
+};
