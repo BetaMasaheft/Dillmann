@@ -12,6 +12,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 import module namespace log="http://www.betamasaheft.eu/log" at "log.xqm";
+import module namespace console="http://exist-db.org/xquery/console";
 
 declare variable $app:SESSION := "gez-en:all";
 declare variable $app:searchphrase as xs:string := request:get-parameter('q',());
@@ -272,7 +273,7 @@ else if(($username = sm:id()//sm:real/sm:username/string())or sm:is-dba(sm:id()/
 
  (:~ logging function to be called from templating pages:)
 declare function app:logging ($node as node(), $model as map(*)){
-
+let $test := console:log('got to logging function')
 let $url :=  replace(request:get-uri(), '/exist/apps/gez-en', '/Dillmann')
  let $parameterslist := request:get-parameter-names()
    let $paramstobelogged := for $p in $parameterslist for $value in request:get-parameter($p, ()) return ($p || '=' || $value)
@@ -977,8 +978,8 @@ return
 <div class="w3-row">
       <div class="w3-third w3-bar"><span class="w3-bar-item w3-xlarge">{$hom}
       <span id="lemma"><a target="_blank" href="/Dillmann/lemma/{$id}">{let $terms := root($term)//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms}</a></span></span>
-        {if($term//tei:form/tei:foreign[@xml:lang !='gez'])
-        then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ()}
+        {(:if($term//tei:form/tei:foreign[@xml:lang !='gez'])
+        then (<sup>{string($term//tei:form/tei:foreign[@xml:lang !='gez']/@xml:lang)}</sup>) else ():)()}
         {$rootline}
         {if($viewtype='home') then <div class="w3-bar-item ">
 <label class="switch highlights">
@@ -1044,7 +1045,7 @@ case 'it' return 'Italian' default return string($sense/@xml:id)}</span>
       <div class="w3-bar">
       <a class="w3-bar-item w3-button w3-pale-green" onclick="togglElements('revisions')">Revisions</a>
       {app:editineXide($id, <sources>{for $s in $term/tei:sense return <source lang="{$s/@xml:lang}" value="{$s/@source}"></source>}</sources>)}
-   <a class="w3-bar-item w3-button w3-green" target="_blank" href="mailto:pietro.liuzzo@uni-hamburg.de?Subject=[Dillmann]%20{$id}">
+   <a class="w3-bar-item w3-button w3-green" target="_blank" href="mailto:info@betamasaheft.eu?Subject=[Dillmann]%20{$id}">
    <i class="fa fa-envelope-o" aria-hidden="true"></i>
 </a></div>
 {app:revisions($term)}
@@ -1498,7 +1499,6 @@ mail:send-email($contributorMessage, 'public.uni-hamburg.de', ())
     <to>susanne.hummel@uni-hamburg.de</to>
     <to>vitagrazia.pisani@gmail.com</to><to>wolfgang.dickhut@gmail.com</to>
     <cc></cc>
-    <bcc>pietro.liuzzo@gmail.com</bcc>
     <subject>Lexicon Linguae Aethiopicae says: {$filename} has been updated!</subject>
     <message>
       <xhtml>
@@ -2372,6 +2372,7 @@ declare function app:footer($node as element(), $model as map(*)){
         };
 
   declare function app:NavB($node as element(), $model as map(*)){
+ let $user := sm:id()//sm:username/text() return
     <div class="w3-top">
         <div class="w3-bar w3-black w3-card">
             <a class="w3-bar-item w3-button  w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)"
@@ -2381,7 +2382,7 @@ declare function app:footer($node as element(), $model as map(*)){
                     <a href="/Dillmann/">{$config:expath-descriptor/expath:title/text()}</a>
 
         </div>
-        {  if(sm:id()//sm:username/text() = 'guest') then
+        {  if($user = 'guest') then
 
           <div class="w3-dropdown-hover w3-hide-small" id="logging">
                <button class="w3-button  w3-bar-item">Login <i class="fa fa-caret-down"></i></button>
@@ -2412,9 +2413,9 @@ declare function app:footer($node as element(), $model as map(*)){
             <div class="w3-dropdown-hover w3-hide-small" id="about">
                   <a 
                   class=" w3-button" title="about" 
-                  href="/Dillmann/user/{sm:id()//sm:real/sm:username/string()}"  
+                  href="/Dillmann/user/{$user}"  
                   target="_blank">
-Hi {sm:id()//sm:real/sm:username/string()}!<i class="fa fa-caret-down"></i></a>
+Hi {$user}!<i class="fa fa-caret-down"></i></a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
               <a class="w3-bar-item w3-button" href="/Dillmann/about.html">About this app</a>
               <a class="w3-bar-item w3-button" href="/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
@@ -2437,7 +2438,7 @@ Hi {sm:id()//sm:real/sm:username/string()}!<i class="fa fa-caret-down"></i></a>
         <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="BM" data-template="app:bmbutton"/>
 
          <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium"
-          href="https://github.com/BetaMasaheft/Dillmann/issues/new?title=something%20is%20very%20wrong&amp;assignee=PietroLiuzzo">
+          href="https://github.com/BetaMasaheft/Dillmann/issues/new?title=something%20is%20wrong">
              <i class="fa fa-exclamation-circle" aria-hidden="true"/> report issue</a>
                <a href="/Dillmann"  class="w3-padding w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
     </div>
@@ -2452,7 +2453,7 @@ Hi {sm:id()//sm:real/sm:username/string()}!<i class="fa fa-caret-down"></i></a>
                         <h4 class="modal-title">This is a testing and dev website!</h4>
                     </div>
                     <div class="modal-body">
-                        <p>        You are looking at a pre-alpha version of this website. If you are not an editor you should not even be seeing it at all. For questions <a  target="_blank" href="mailto:pietro.liuzzo@uni-hamburg.de?Subject=Issue%20Report%20BetaMasaheft">contact the dev team</a>.</p>
+                        <p>        You are looking at a pre-alpha version of this website. If you are not an editor you should not even be seeing it at all. For questions <a  target="_blank" href="mailto:info@betamasaheft.eu?Subject=Issue%20Report%20BetaMasaheft">contact the dev team</a>.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
