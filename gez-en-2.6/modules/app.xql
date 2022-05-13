@@ -118,7 +118,7 @@ if ($username = 'guest') then (
 <div
                 id="content"
                 class="container-fluid w3-container w3-margin">
-                <p>Did you just arrive here by mistake or do you want to know what people look at on ths webiste? You can ask Pietro, he will provide you the data from google analytics, which is much nicer.</p>
+                <p>Did you just arrive here by mistake or do you want to know what people look at on ths webiste? You can ask the <a href="/getinvolved.html">team behind the Lexicon</a>.</p>
                 </div>
 )
 else if(($username = sm:id()//sm:real/sm:username/string())or sm:is-dba(sm:id()//sm:real/sm:username/string())) then
@@ -741,6 +741,9 @@ declare
     %templates:default("new", 'false()')
     %templates:default("traces", 'false()')
     %templates:default("lang", 'la')
+    %templates:wrap
+    %templates:default('start', 1)
+    %templates:default("per-page", 10)
     function app:list($node as node(), $model as map(*), $new, $traces, $lang){
 
 <div id="accordion" class="panel-group" role="tablist" aria-multiselectable="true">
@@ -2349,7 +2352,8 @@ return
     {
    for $citingentity in $ptrs/@target
    group by $root :=    $citingentity/ancestor::tei:entry
-   let $lem := root($root)//tei:entry/tei:form/tei:foreign[1]/text()
+   return
+   for $lem in distinct-values(root($root)//tei:entry/tei:form/tei:foreign[1]/text())
    order by $lem
     return
     <li><a href="/Dillmann/lemma/{string($root/@xml:id)}">{$lem}</a></li>
@@ -2466,3 +2470,99 @@ Hi {$user}!<i class="fa fa-caret-down"></i></a>
          declare function app:searchhelp($node as element(), $model as map(*)){
           doc('../searchhelp.xml')
         };
+        
+        
+        (: returns a map with all the terms in the dictionary :)
+ declare
+ %templates:wrap
+    %templates:default("new", 'false()')
+    %templates:default("traces", 'false()')
+    %templates:default("lang", 'la')
+    %templates:default("mode", 'cit')
+    function app:lista($node as element(), $model as map(*), $firstletter as xs:string?, $lang as xs:string?, $mode as xs:string){
+(:     if a parameter letter is given, then construct xpath to select only the elements whose content starts with that letter.
+The letters are available as buttons on the side bar and when clicked will reload the page with that parameter. :)
+    let $starts-with := if($firstletter) then ('[starts-with(.,"' || $firstletter || '")]') else ()
+    let $data-collection := '/db/apps/DillmannData'
+    let $c :=  $config:collection-root
+(:    selects the cit elements, which contain translations and output distinct values of the language for the side menu:)
+    let $langs := if($mode='foreign') then (distinct-values($c//tei:foreign/@xml:lang)) else distinct-values($c//tei:cit/@xml:lang)
+(:    selects among cit elements with the selected language, by default latin as it is majoritary:)
+    let $translations := if($mode='foreign') then ($c//tei:foreign[@xml:lang = $lang]) else $c//tei:cit[@type='translation'][@xml:lang = $lang]
+     let $gez := $c//tei:foreign[@xml:lang =  'gez']
+
+(:    build the query with the letter parameter:)
+    let $query:= '$gez' || $starts-with
+    
+       let $trans := for $word at $p in util:eval($query)
+            let $trimmedword := replace(replace($word,'\s+$',''),'^\s+','')
+            let $root := root($word)//tei:entry/@xml:id
+            group by $t := $trimmedword
+            order by $t
+
+                return
+                     map {
+                         "hit" : $t,
+                         "roots" : (for $r in $root
+                            return string($r))
+                     }
+    return
+        map {'hits' : $trans, 'langs' : $langs}
+
+ };
+
+(: takes map result from app:lista and prints a navbar with buttons to filter results and the selected results:)
+ declare
+ %templates:wrap
+    %templates:default('start', 1)
+    %templates:default("per-page", 50)
+    function app:listb($node as element(), $model as map(*), $start as xs:integer, $per-page as xs:integer){
+ let $data := $model('hits')
+ let $langs := $model('langs')
+
+ return
+
+
+     <div class="w3-container w3-margin">
+     <div class="w3-quarter w3-animate-left">     
+     <div class="w3-bar-block w3-margin">{for $hit in $data
+         let $firstletter := substring($hit('hit'), 1, 1)
+            group by $f := $firstletter
+             order by $f 
+            return
+               <a class="w3-bar-item w3-button w3-blue" href="?start=1&amp;firstletter={$f}">{$f} <span class="w3-badge w3-right w3-margin-right">{count($hit)}</span></a>}
+               <a class="w3-bar-item w3-button w3-green" href="?start=1">back to full list</a>
+      </div>
+
+      </div>
+          <div class="w3-threequarter">  { 
+          <div class="w3-margin w3-container">{
+ for $hit in subsequence($data, $start, $per-page)
+ return
+ <div class="row">
+     <div class="w3-col w3-twothird">
+     <div class="w3-bar-block">
+     {for $r in $hit('roots')
+
+     let $entry :=  $config:collection-root//id($r)
+     let $term-name := let $terms := $entry//tei:form/tei:foreign/text() return if (count($terms) gt 1) then string-join($terms, ' et ') else $terms
+
+         return
+             <a class="w3-bar-item" target="blank" href="/Dillmann/lemma/{$r}">{$term-name}</a>
+     }
+        </div>
+     </div>
+     <div  class="w3-col w3-rest">
+{for $r in $hit('roots')
+     let $entry :=  $config:collection-root//id($r)
+     let $sense := $entry//tei:sense[not(@n)]
+     for $s in $sense
+                order by $s/@source
+     return
+    transform:transform($s, 'xmldb:exist:///db/apps/gez-en/xslt/text.xsl',())}
+     </div>
+ </div>}
+ </div>
+ }</div>
+ </div>
+ };
