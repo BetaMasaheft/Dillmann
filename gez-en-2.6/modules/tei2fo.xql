@@ -352,7 +352,9 @@ declare function fo:tei2fo($nodes as node()*) {
  else (), <fo:block>{fo:tei2fo($node/node())}</fo:block>}
  </fo:block-container>
  else
-( if($node/@n) then (<fo:inline font-weight="bold">{string($node/@n) || ')'} </fo:inline>) else (),
+(  if ($node/@n='E') then <fo:block font-weight="bold">Comparative and etymological data</fo:block>
+    else if ($node/@n='C') then <fo:block font-weight="bold">Cross-references</fo:block> 
+    else if($node/@n) then (<fo:inline font-weight="bold">{string($node/@n) || ')'} </fo:inline>) else (),
                         fo:tei2fo($node/node()))
                   
             case element() return
