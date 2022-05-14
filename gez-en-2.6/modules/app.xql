@@ -2064,7 +2064,7 @@ declare
             </div>
              <div class="w3-threequarter">
              <div class="w3-threequarter">{for $match in subsequence($expanded//exist:match, 1, 3) return  kwic:get-summary($expanded, $match,<config width="40"/>)}</div>
-             <div class="w3-quarter">{app:editineXide($id, <sources>{for $s in root($term)//tei:sense return <source lang="{$s/@xml:lang}" value="{$s/@source}"></source>}</sources>)}</div>
+             <div class="w3-quarter">{(::app:editineXide($id, <sources>{for $s in root($term)//tei:sense return <source lang="{$s/@xml:lang}" value="{$s/@source}"></source>}</sources>)::)()}</div>
              </div>
 
         </div>
