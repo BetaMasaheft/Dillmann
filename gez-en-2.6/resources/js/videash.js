@@ -271,10 +271,10 @@ $(document).ready(function () {
 $(document).ready(function () {
     var thislemma = $('#lemma a').text()
     var apicall = '/api/Dillmann/lemmatranslit?q=' + thislemma
-    $.getJSON(apicall, function (data) {
+   // $.getJSON(apicall, function (data) {
       //  console.log(data)
-        $('#lemma').append('<span class="w3-medium w3-tooltip"> ' + data.translit + '<span class="w3-text">From TraCES annotations.</span></span>')
-    });
+//        $('#lemma').append('<span class="w3-medium w3-tooltip"> ' + data.translit + '<span class="w3-text">From TraCES annotations.</span></span>')
+ //   });
     var trimmed = $('#rootmembers').data('value')
     var removeOrdinals = trimmed.replace(/I/gi,'')
     var thisid = removeOrdinals
