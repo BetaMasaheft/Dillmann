@@ -33,7 +33,7 @@ return
 $xml
 )};
 
-
+(::
 declare
 %rest:GET
 %rest:path("/api/Dillmann/lemmatranslit")
@@ -53,7 +53,7 @@ return
 map{'translit' : string-join($fusekicall//sr:literal/text(),', ')}
 )
 };
-
+::)
 
 declare
 %rest:GET
