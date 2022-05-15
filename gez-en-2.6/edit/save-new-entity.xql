@@ -1,7 +1,7 @@
 xquery version "3.0" encoding "UTF-8";
 import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en" at "../modules/app.xql";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
-import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
+import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/gez-en/updatefuseki' at "../modules/updateFuseki.xqm";
 
 import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
@@ -35,7 +35,7 @@ app:upconvertSense($couple)
 else()}</senses>
 
 
-let $cU := xmldb:get-current-user()
+let $cU := sm:id()//sm:real/sm:username/string()
 
 let $app-collection := '/db/apps/gez-en'
 let $data-collection := '/db/apps/DillmannData'
@@ -94,7 +94,7 @@ return
             <body>
                 <div
                     id="confirmation">
-                    <p>Dear {xmldb:get-current-user()}, unfortunately <span
+                    <p>Dear {sm:id()//sm:real/sm:username/string()}, unfortunately <span
                             class="lead">{$newid}</span> already exists!
                         Please, hit the button below and try a different id.</p>
                     <a
@@ -158,13 +158,11 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                     <titleStmt>
                         <title
                             xml:lang="{$formlang}">{$form}</title>
-                       <author>Alessandro Bausi</author>
-                <author>Andreas Ellwardt</author>
+                       <editor>Alessandro Bausi</editor>
                 </titleStmt>
                 <publicationStmt>
                        <authority>Hiob-Ludolf-Zentrum für Äthiopistik</authority>
-                <publisher>TraCES project.
-                                    https://www.traces.uni-hamburg.de/</publisher>
+                <publisher>Hiob-Ludolf-Zentrum für Äthiopistik</publisher>
                 <pubPlace>Hamburg</pubPlace>
                 <availability>
                     <licence target="https://creativecommons.org/licenses/by-sa-nc/4.0/">
@@ -173,14 +171,14 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                 </availability>
             </publicationStmt>
             <sourceDesc>
-                <p>A thoroughly elaborated txt version of <ref xml:id="dillmann"
+                <p>The origin of the lexicon is in a thoroughly elaborated txt version of <ref xml:id="dillmann"
                   target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
                   Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
                      Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
                   Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
             </p>
-            <p><ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
-                  TraCES (Grant Agreement 338756)</ref></p>
+            <p>Additional records were created by the project <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">
+                  TraCES (ERC Advanced Grant, Grant Agreement 338756)</ref></p>
             </sourceDesc>
 
                 </fileDesc>
@@ -291,14 +289,10 @@ else
   ,
 
   let $EditorialBoardMessage := <mail>
-    <from>pietro.liuzzo@uni-hamburg.de</from>
+    <from>eugenia.sokolinski@uni-hamburg.de</from>
     {if($editorsnotification = 'yes') then
-    (<to>andreas.ellwardt@uni-hamburg.de</to>,
-    <to>susanne.hummel@uni-hamburg.de</to>,
-    <to>wolfgang.dickhut@uni-hamburg.de</to>,
-    <to>vitagrazia.pisani@gmail.com</to>,
+    (<to>vitagrazia.pisani@gmail.com</to>,
     <to>magdalena.krzyzanowska-2@uni-hamburg.de</to>) else ()}
-    <to>pietro.liuzzo@gmail.com</to>
     <subject>Lexicon Linguae Aethiopicae says: {$form} has been created!</subject>
     <message>
       <xhtml>
@@ -326,7 +320,7 @@ else
   console:log('message not sent to editor')
 )
 
-let $log := log:add-log-message('/Dillmann/lemma/'||$newid, xmldb:get-current-user(), 'created')
+let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:username/string(), 'created')
 (: update the next-id.xml file :)
 let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
 
@@ -379,7 +373,7 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
             <body>
                 <div
                     id="confirmation" class="col-md-4 col-md-offset-4 alert alert-success"><h1
-                        class="lead">Thank you very much {xmldb:get-current-user()}!</h1>
+                        class="lead">Thank you very much {sm:id()//sm:real/sm:username/string()}!</h1>
                     <p> Your entry for
                         <a href="/Dillmann/lemma/{substring-before($file, '.xml')}" target="_blank"><span
                             class="lead">{$form}</span></a> has been saved!</p>
