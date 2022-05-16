@@ -256,15 +256,15 @@ $(document).ready(function () {
         });
     });
     
-    $('div.entry .HINC').each(function () {
-        //console.log($(this))
-        var v = $(this)
-        var next = $('.smallArrow.next')
-        //console.log(next)
-        var n = next.data('value')
-        var newa = ' <a target="_blank" href="/Dillmann/lemma/' + n + '">' + $(v).text() + ' ' + $(next).text() + '  <i class="fa fa-external-link-square" aria-hidden="true"/></a>'
-        $(v).replaceWith(newa)
-    });
+    //$('div.entry .HINC').each(function () {
+   //     //console.log($(this))
+ //       var v = $(this)
+  //      var next = $('.smallArrow.next')
+  //      //console.log(next)
+  //      var n = next.data('value')
+  //      var newa = ' <a class="clean" target="_blank" href="/Dillmann/lemma/' + n + '">' + $(v).text() + ' ' + $(next).text() + '  <i class="fa fa-external-link-square" aria-hidden="true"/></a>'
+  //      $(v).replaceWith(newa)
+  //  });
 });
 
 
