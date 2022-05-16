@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <html>
-    <head> </head>
+    <head><title>Grammar abbreviations</title> </head>
     <body>
         <table><!--
          <tr>
@@ -823,7 +822,7 @@
             <tr>
                 <td>   </td>
                 <td>   </td>
-                <td> Inst. </td>
+                <td> instr. </td>
                 <td> Instrumentalis. </td>
             </tr>
             <tr>
@@ -1222,6 +1221,12 @@
                 <td>   </td>
                 <td> part. </td>
                 <td> participium. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> particle </td>
+                <td> particle. </td>
             </tr>
             <tr>
                 <td>   </td>
