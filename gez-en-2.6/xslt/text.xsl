@@ -258,7 +258,7 @@
         </span>
     </xsl:template>
     <xsl:template match="t:ref[@target][@type='external']">
-        <a>
+        <a class="clean">
             <xsl:attribute name="href">
                 <xsl:value-of select="@target"/>
             </xsl:attribute>
@@ -278,7 +278,8 @@
         <xsl:text> (</xsl:text>
         <a href="{@target}" class="internalRef" data-value="{substring-after(@target, '#')}">
             <xsl:choose>
-                <xsl:when test="starts-with(@target, '#D')">Dillmann</xsl:when>
+                <xsl:when test="starts-with(@target, '#D')">Dillmana
+                    nn</xsl:when>
                 <xsl:when test="starts-with(@target, '#T')">Traces</xsl:when>
                 <xsl:when test="starts-with(@target, '#L')">Leslau</xsl:when>
             </xsl:choose>

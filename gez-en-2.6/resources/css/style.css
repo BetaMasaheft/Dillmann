@@ -1,6 +1,10 @@
 /* Application styles could go here */
 /* The switch - the box around the slider */
 
+.clean{text-decoration:none;}
+
+#dataentrysupport * .notes {max-height:100pt; overflow:auto;}
+
 .attpopup,
 .popup {
     position: relative;
