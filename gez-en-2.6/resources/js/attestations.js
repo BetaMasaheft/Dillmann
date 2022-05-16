@@ -16,7 +16,7 @@ function callformpart(file, id) {
 };
 
 $("#erweitertesuche").one("click", function () {
-    callformpart('as.html', 'erweiterte');
+    callformpart('newSearch.html', 'erweiterte');
 });
 
 $("#erweitertesuche").click(function () {
@@ -34,7 +34,7 @@ $(document).ready(function () {
         var splitref = reference.split("/");
         var sourceReference = $(this).data('ref')
         var bmid = $(this).data('bmid')
-        var apiDTS = base + '/api/dts/text/'
+        var apiDTS = '/api/dts/text/'
         var result = ""
         
         $.getJSON(apiDTS + reference, function (data) {
@@ -45,7 +45,7 @@ $(document).ready(function () {
             if (data[ "0"].info) {
                 result += '<span class="RefPopup popup" data-value="'+reference+'"><i class="fa fa-file-text-o" aria-hidden="true"/><span class="w3-hide w3-small w3-padding popuptext" id="'+reference+'">Text of the passage   <span ><p>There is no text yet for this passage in Beta maṣāḥǝft.</p><a target="_blank" href="/works/' + bmid + '">See Work record</a></span></span></span>'
             } else {
-                result += '<span class="RefPopup popup" data-value="'+reference+'"><i class="fa fa-file-text-o" aria-hidden="true"/><span class="w3-hide w3-small w3-padding popuptext" id="'+reference+'">Text of the passage  <span  ><p>Text of ' + cit + ' .</p><p>' + text + '</p><a target="_blank" href="/works/' + bmid + '/text?start=' + splitref[1] + '">See full text</a></span></span></span>'
+                result += '<span class="RefPopup popup" data-value="'+reference+'"><i class="fa fa-file-text-o" aria-hidden="true"/><span class="w3-hide w3-small w3-padding popuptext" id="'+reference+'">Text of the passage  <span  ><p>Text of ' + cit + ' .</p><p>' + text + '</p><a target="_blank" href="/works/' + bmid + '/text?ref=' + splitref[1] + '">See full text</a></span></span></span>'
             }
             $(el).html(result);
         })
@@ -63,7 +63,7 @@ $(document).ready(function () {
         lemma = $('#lemma').text()
     }
     //console.log(lemma)
-    var apiurl = base + '/api/kwicsearch?element=ab&element=title&element=q&element=p&element=l&element=incipit&element=explicit&element=colophon&element=summary&element=persName&element=placeName&q='
+    var apiurl =  '/api/kwicsearch?element=ab&element=title&element=q&element=p&element=l&element=incipit&element=explicit&element=colophon&element=summary&element=persName&element=placeName&q='
     
     var call = apiurl + lemma.replace(/I/gi, '')
    // console.log(call)
@@ -203,7 +203,7 @@ $(document).ajaxComplete(function () {
                 $(word).append($("<span class='alpheios-word attpopup' data-value='atp" + wn + i + "'>" + nostops.w + nostops.stop + "\
                 <span class='popuptext w3-hide w3-tiny w3-padding' id='atp" + wn + i + "'>\
                 Search " + nostops.w + " :<br/>\
-                <a href='/as.html?query=" + nostops.w + "' target='_blank'>in Beta maṣāḥǝft</a><br/>\
+                <a href='/newSearch.html?searchType=text&mode=none&query=" + nostops.w + "' target='_blank'>in Beta maṣāḥǝft</a><br/>\
                 <a href='/morpho?query=" + nostops.w + "' target='_blank'>in the Gǝʿǝz Morphological Parser</a><br/>\
                 <a href='/morpho/corpus?query=" + nostops.w + "&type=string' target='_blank'>in the TraCES annotations</a><br/>\
                 <a href='" + url + parm + nostops.w + "' target='_blank'>in the Online Lexicon</a><br/>\
@@ -214,7 +214,7 @@ $(document).ajaxComplete(function () {
                 $(word).append($("<span class='alpheios-word attpopup' data-value='atp" + wn + i + "'>" + nostops.w + nostops.stop + '&nbsp;' + "\
                 <span class='popuptext w3-hide w3-tiny w3-padding' id='atp" + wn + i + "'>\
                 Search " + nostops.w + " :<br/>\
-                <a href='/as.html?query=" + nostops.w + "' target='_blank'>in Beta maṣāḥǝft</a><br/>\
+                <a href='/newSearch.html?query=" + nostops.w + "&searchType=text&mode=none' target='_blank'>in Beta maṣāḥǝft</a><br/>\
                 <a href='/morpho?query=" + nostops.w + "' target='_blank'>in the Gǝʿǝz Morphological Parser</a><br/>\
                 <a href='/morpho/corpus?query=" + nostops.w + "&type=string' target='_blank'>in the TraCES annotations</a><br/>\
                 <a href='" + url + parm + nostops.w + "' target='_blank'>in the Online Lexicon</a><br/>\
