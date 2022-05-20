@@ -1,5 +1,5 @@
 <html>
-    <head><title>Grammar abbreviations</title> </head>
+    <head><title>Dillmann abbreviations</title> </head>
     <body>
         <table><!--
          <tr>
@@ -194,6 +194,12 @@
                 <td>   </td>
                 <td> c. </td>
                 <td> columna. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> c. term. adj. </td>
+                <td> cum terminatione adjectivi. </td>
             </tr>
             <tr>
                 <td>   </td>
@@ -780,6 +786,12 @@
             <tr>
                 <td>   </td>
                 <td>   </td>
+                <td> Isenb. </td>
+                <td> Isenberg. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
                 <td> Jer. </td>
                 <td> Jeremiae prophetia. </td>
             </tr>
@@ -1273,6 +1285,12 @@
             <tr>
                 <td>   </td>
                 <td>   </td>
+                <td> Pl. Pl.</td>
+                <td> Pluralis pluralis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
                 <td> praep. </td>
                 <td> praepositio. </td>
             </tr>
@@ -1383,6 +1401,12 @@
                 <td>   </td>
                 <td> rom. </td>
                 <td> romanae editionis. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> Rosenm. </td>
+                <td> Rosenmüller (Bochart). </td>
             </tr>
             <tr>
                 <td>   </td>
@@ -1540,6 +1564,12 @@
                 <td>   </td>
                 <td> term. </td>
                 <td> terminatio. </td>
+            </tr>
+            <tr>
+                <td>   </td>
+                <td>   </td>
+                <td> term. adj. </td>
+                <td> terminatio adjectivi. </td>
             </tr>
             <tr>
                 <td>   </td>

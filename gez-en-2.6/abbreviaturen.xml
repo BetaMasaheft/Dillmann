@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <abbreviaturen>
     
     <abbreviatur>
@@ -271,11 +270,13 @@
         <bmID/>
     </abbreviatur>
     <abbreviatur>
-        <reference>Abb. Cat. p.</reference>
+        <reference>Abb. Cat.</reference>
+        <dillmanExplanation>Catalogue raisonné de manuscrits éthiopiens appartenant à Antoine d’Abbadie</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
-        <reference>Abbad. Cat. p.</reference>
+        <reference>Abbad. Cat.</reference>
+        <dillmanExplanation>Catalogue raisonné de manuscrits éthiopiens appartenant à Antoine d’Abbadie</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
@@ -296,11 +297,13 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Abtel.</reference>
-        <bmID/>
+        <dillmanExplanation>Abtelisat.</dillmanExplanation>
+        <bmID>LIT2677ACABt1</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Abtel. Ap.</reference>
-        <bmID/>
+        <dillmanExplanation>Abtelisat.</dillmanExplanation>
+        <bmID>LIT2677ACABt1</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Abush.</reference>
@@ -373,16 +376,7 @@
         <dillmanExplanation>Amosi prophetia.</dillmanExplanation>
         <normalization/>
         <bmID>LIT3145Amos</bmID>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Amh. c.</reference>
-        <dillmanProposedAbk>c.</dillmanProposedAbk>
-        <dillmanAttestedAbk/>
-        <dillmanExplanation>columna.</dillmanExplanation>
-        <normalization>col.</normalization>
-        <bmID/>
-    </abbreviatur>
-  
+    </abbreviatur>   
     <abbreviatur>
         <reference>Apoc.</reference>
         <dillmanProposedAbk>Apoc.</dillmanProposedAbk>
@@ -723,7 +717,7 @@
         <reference>Chr. ho.</reference>
         <dillmanProposedAbk>Chr. ho.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Chrysostomi homiliae (in epistolam ad Hebraeos; citatur secundum numerous homiliarum vel Tagsâʃsorum).</dillmanExplanation>
+        <dillmanExplanation>Chrysostomi homiliae (in epistolam ad Hebraeos; citatur secundum numerous homiliarum vel Tagsâsorum).</dillmanExplanation>
         <normalization>Chr. ho.</normalization>
         <bmID>LIT3171Commen</bmID>
     </abbreviatur>
@@ -731,7 +725,7 @@
         <reference>Chr. Ta.</reference>
         <dillmanProposedAbk>Chr. Ta.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Chrysostomi Tagsâʃs (in epistolam ad Hebraeos; citatur secundum numerous homiliarum vel Tagsâʃsorum).</dillmanExplanation>
+        <dillmanExplanation>Chrysostomi Tagsâs (in epistolam ad Hebraeos; citatur secundum numerous homiliarum vel Tagsâsorum).</dillmanExplanation>
         <normalization>Chr. Ta.</normalization>
         <bmID>LIT3171Commen</bmID>
     </abbreviatur>
@@ -788,6 +782,10 @@
         <bmID/>
     </abbreviatur>
     <abbreviatur>
+        <reference>Cod. Berolinensi</reference>
+        <bmID>BerOrFol117</bmID>
+    </abbreviatur>
+    <abbreviatur>
         <reference>Cod. Ae. Bibl. Bodl. p.</reference>
         <bmID/>
     </abbreviatur>
@@ -832,12 +830,14 @@
         <bmID>LIT3521Epistle</bmID>
     </abbreviatur>
     <abbreviatur>
-        <reference>Comm. p.</reference>
-        <bmID/>
+        <reference>Comm. </reference>
+        <dillmanExplanation>Ludolfi Ad suam Historiam Æthiopicam antehac editam Commentarius (1691).</dillmanExplanation>
+        <bmID>STU0001Commentarius</bmID>
     </abbreviatur>
     <abbreviatur>
-        <reference>Comment. p.</reference>
-        <bmID/>
+        <reference>Comment.</reference>
+        <dillmanExplanation>Ludolfi Ad suam Historiam Æthiopicam antehac editam Commentarius (1691).</dillmanExplanation>
+        <bmID>STU0001Commentarius</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Comp. Ae. p.</reference>
@@ -959,7 +959,7 @@
         <reference>Enc.</reference>
         <dillmanProposedAbk>Enc.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies, vid. Sx.</dillmanExplanation>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
         <normalization/>
         <bmID>LIT2375Synaxa</bmID>
     </abbreviatur>
@@ -973,7 +973,10 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Mag.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Maggabit</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Mar.</reference>
@@ -981,31 +984,52 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Masc.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Maskaram</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Mij.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Miyazya</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Nah.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Nahase</bmID>>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Pag.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Pagwemen</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Sen.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Sane</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Teq.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Teqemt</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Ter</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Terr</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>EndoraeAbush.</reference>
@@ -1058,7 +1082,7 @@
         <dillmanAttestedAbk/>
         <dillmanExplanation>Epistola Zar’a Jacobi regis, in Ludolfi Comm. Hist. p. 301 seq.</dillmanExplanation>
         <normalization/>
-        <bmID/>
+        <bmID>LIT4544Epistle</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Es.</reference>
@@ -1082,7 +1106,10 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Esth. apocr.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Esther, liber biblicus (apocr.).</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT1362Esther</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Ex.</reference>
@@ -1094,7 +1121,9 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Ex. Sx. Ter</reference>
-        <bmID/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Terr</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Terr</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Exp. Dec.</reference>
@@ -1114,14 +1143,10 @@
         <reference>Fal.</reference>
         <dillmanProposedAbk>Fal.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Maʃshafa Falasfa.</dillmanExplanation>
+        <dillmanExplanation>Mashafa Falasfa.</dillmanExplanation>
         <normalization/>
         <bmID>LIT1925Mashaf</bmID>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Fal. f.</reference>
-        <bmID/>
-    </abbreviatur>
+    </abbreviatur>    
     <abbreviatur>
         <reference>Fek. Jas.</reference>
         <dillmanProposedAbk>Fek. Jas.</dillmanProposedAbk>
@@ -1150,7 +1175,7 @@
         <reference>Gad. Ad.</reference>
         <dillmanProposedAbk>Gad. Ad.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Gadela Adam.</dillmanExplanation>
+        <dillmanExplanation>Gadela Adam (in UBTaeth27).</dillmanExplanation>
         <normalization/>
         <bmID>LIT1415GadlaA</bmID>
     </abbreviatur>
@@ -1209,11 +1234,7 @@
         <dillmanExplanation>Gadela Za Michael.</dillmanExplanation>
         <normalization/>
         <bmID/>
-    </abbreviatur>
-    <abbreviatur>
-        <reference>Gad. Ad. f.</reference>
-        <bmID/>
-    </abbreviatur>
+    </abbreviatur>    
     <abbreviatur>
         <reference>Gal.</reference>
         <dillmanProposedAbk>Gal.</dillmanProposedAbk>
@@ -1360,10 +1381,12 @@
     </abbreviatur> 
     <abbreviatur>
         <reference>Hieroz. II.</reference>
+        <dillmanExplanation>Samuel Bochart, Hierozoicon, Sive Bipartitum Opus De Animalibus S. Scripturae: Cum Indice Septuplici, II. Authorum, qui citantur</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
         <reference>Hieroz. III.</reference>
+        <dillmanExplanation>Samuel Bochart, Hierozoicon, Sive Bipartitum Opus De Animalibus S. Scripturae: Cum Indice Septuplici, III. Vocum Hebr. Chald. Syriac. Samaritani et Aethiopici Sermonis. De Avibus, Serpentibus, Insectis, Aquaticis, et Fabulosis Animalibus</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
@@ -1801,8 +1824,9 @@
         <bmID/>
     </abbreviatur>
     <abbreviatur>
-        <reference>Lud. Comm. p.</reference>
-        <bmID/>
+        <reference>Lud. Comm.</reference>
+        <dillmanExplanation>Ludolfi Ad suam Historiam Æthiopicam antehac editam Commentarius (1691).</dillmanExplanation>
+        <bmID>STU0001Commentarius</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Macc.</reference>
@@ -1936,7 +1960,7 @@
         <reference>M. M.</reference>
         <dillmanProposedAbk>M. M.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
-        <dillmanExplanation>Maʃshafa Mistîr.</dillmanExplanation>
+        <dillmanExplanation>Mashafa Mistîr.</dillmanExplanation>
         <normalization/>
         <bmID>LIT1952Mashaf</bmID>
     </abbreviatur>
@@ -2025,8 +2049,10 @@
         <bmID>LIT2083Octate</bmID>
     </abbreviatur>
     <abbreviatur>
-        <reference>Octat. Comm. p.</reference>
-        <bmID/>
+        <reference>Octat. Comm.</reference>
+        <dillmanExplanation>Octateuchus Aethiopicus, in Ludolfi Comm. Hist.</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2083Octate</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Or. Az.</reference>
@@ -2398,39 +2424,60 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Enc. Haml.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Hamle</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Hamle</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Enc. Sen.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Sane</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Sane</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Enc. Ter</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Terr</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Terr</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Gemb.</reference>
-        <bmID/>
+        <dillmanExplanation>Synaxaria; sequuntur nomina mensium Genbôt</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Genbot</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Genb.</reference>
-        <bmID/>
+        <dillmanExplanation>Synaxaria; sequuntur nomina mensium Genbôt</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Genbot</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Ham.</reference>
-        <bmID/>
+        <dillmanExplanation>Synaxaria; sequuntur nomina mensium Hamlê</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Hamle</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Haml.</reference>
-        <bmID/>
+        <dillmanExplanation>Synaxaria; sequuntur nomina mensium Hamlê</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Hamle</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Hed.</reference>
-        <bmID/>
+        <dillmanExplanation>Synaxaria; sequuntur nomina mensium Hedar</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Hedar</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Hml.</reference>
-        <bmID/>
+        <dillmanExplanation>Synaxaria; sequuntur nomina mensium Hamlê</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Hamle</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Jac</reference>
@@ -2446,7 +2493,10 @@
     </abbreviatur>-->
     <abbreviatur>
         <reference>Sx. Mag.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Maggabit</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Maggabit</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Mar.</reference>
@@ -2454,55 +2504,94 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Masc</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Maskaram</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Maskaram</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Masc.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Maskaram</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Maskaram</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Masc. Enc.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Maskaram</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Maskaram</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Mij.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Miyazya</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Miyazya</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Nah.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Nahase</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Nahase</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Pag.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Pagwemen</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Pagwemen</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Sen</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Sane</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Sane</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Sen.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Sane</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Sane</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Tach.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Tahsas</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Tahsas</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Tachs.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Tahsas</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Tahsas</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Tah.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Tahsas</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Tahsas</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Teq.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Teqemt</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Teqemt</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. Ter</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Terr</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Terr</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Sx. f.</reference>
@@ -2546,11 +2635,17 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Tach.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Tahsas</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Tahsas</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Tachs.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Tahsas</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Tahsas</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Tag.</reference>
@@ -2570,7 +2665,10 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Teq.</reference>
-        <bmID/>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies: Teqemt</dillmanExplanation>
+        <normalization/>
+        <bmID>LIT2375Synaxa#Teqemt</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Th. Petr. Prov.</reference>
@@ -2659,7 +2757,7 @@
         <dillmanAttestedAbk/>
         <dillmanExplanation>Visio Baruchi ficticia.</dillmanExplanation>
         <normalization/>
-        <bmID/>
+        <bmID>LIT1120Apocal</bmID>
     </abbreviatur>
 
     <abbreviatur>
