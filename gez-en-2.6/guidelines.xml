@@ -1,46 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <div class="w3-half w3-padding-64" id="dataentrysupport">
     <h3>Data entry support</h3>
     <div class="w3-container w3-margin">
         
                 <div class="w3-row-padding w3-margin w3-large">
-                    <div class="w3-col s2 m2 l2">
-                <b>Hit the button to get the symbols...</b>
-            </div>
-                    <div class="w3-col  s2 m2 l2">
-                <b>... or type all this...</b>
-            </div>
-                    <div class="w3-col s2 m2 l2">
-                <b>...and it will be displayed as...</b>
-            </div>
-                    <div class="w3-col s2 m2 l2">
-                <b>...because it is transformed into...</b>
-            </div>
-                    <div class="w3-col s2 m2 l2">
-                <b>...which is...</b>
-            </div>
-                    <div class="w3-col s2 m2 l2">
-                <b>...and by the way...</b>
-            </div>
+                    <div class="w3-col s2 m2 l2"><b>Hit the button to get the symbols...</b></div>
+                    <div class="w3-col  s2 m2 l2"><b>... or type all this...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...and it will be displayed as...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...because it is transformed into...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...which is...</b></div>
+                    <div class="w3-col s2 m2 l2"><b>...and by the way...</b></div>
                 </div>
   
         <div class="w3-row-padding">
             <div class="w3-col s2 m2 l2">
-                        <a href="#" class="w3-button w3-blue w3-small">Meaning</a>
+                        <a href="#" class="w3-button w3-blue w3-small">Sense</a>
             </div>
-            <div class="w3-col s2 m2 l2">&lt;A&lt; The first meaning &gt;A&gt;</div>
+            <div class="w3-col s2 m2 l2">&lt;A&lt; The first sense &gt;A&gt;</div>
             <div class="w3-col s2 m2 l2">
                             <b>A)</b> The first meaning</div>
             <div class="w3-col s2 m2 l2">
-                            <code>&lt;sense n="A"&gt;The first meaning&lt;/sense&gt;</code>
+                            <code>&lt;sense n="A"&gt;The first sense &lt;/sense&gt;</code>
             </div>
             <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-sense.html">TEI element sense</a>
             </div>
-            <div class="w3-col s2 m2 l2">
-                            <ul>
-                                <li>You can nest as many of this as you want. e.g. &lt;A&lt; this has two submeanings &lt;a&lt; meaning 1 &gt;1&gt; and &lt;2&lt; meaning 2 &gt;2&gt;  &gt;A&gt; </li>
-                                <li>The order of the section uses at the first level Upper Case letters, at the second level numbers, at the third level lower case letters and at the third level greek letters.</li>
+            <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
+                                <li>You can nest as many of this as you want. e.g. &lt;A&lt; this has two nested senses &lt;a&lt; sense 1 &gt;1&gt; and &lt;2&lt; sense 2 &gt;2&gt;  &gt;A&gt; </li>
+                                <li>The order of the section uses at the first level Upper Case letters, at the second level numbers, at the third level lower case letters and at the third level Greek letters.</li>
                                 
                                 <li>
                     To specify the language of use &lt;Ade&lt; .... &gt;A&gt; for example, where <b>de</b> is 
@@ -59,11 +46,9 @@
             </div>
             <div class="w3-col s2 m2 l2">
                     <code>&lt;ref type="external" target="https://your.full.link"&gt;link text&lt;/ref&gt;</code>
-            </div>
-            <div class="w3-col s2 m2 l2">
+            </div><div class="w3-col s2 m2 l2">
                     <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
-            </div>
-            <div class="w3-col s2 m2 l2">
+            </div><div class="w3-col s2 m2 l2 notes">
                     <p>You might use this to enter your own links. For example to link to another lemma, or to link to an entity in BM. You could also use it to link to any other resource on the web. </p>
             </div>
         </div>
@@ -73,7 +58,7 @@
                 </div>
                 <div class="w3-col s2 m2 l2">#D2a</div>
                 <div class="w3-col s2 m2 l2">
-                    <a href="https://your.full.link">(Dillmann 2 a)</a> on click you will be brought there. on hover the pointed meaning will be highlighted with a shadow. 
+                    <a href="https://your.full.link">(Dillmann 2 a)</a> on click you will be brought there. on hover the pointed sense will be highlighted with a shadow. 
                 </div>
                 <div class="w3-col s2 m2 l2">
                     <code>&lt;ptr target="#D2a"/&gt;</code>
@@ -81,7 +66,7 @@
                 <div class="w3-col s2 m2 l2">
                     <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ptr.html">TEI element ptr</a>
                 </div>
-                <div class="w3-col s2 m2 l2">
+                <div class="w3-col s2 m2 l2 notes">
                     <p>You might use this to enter refernces to other parts of the main entry. The identifier is build looking at the numbers actually given, so, if a sense has only a b c, then you may refer to #Da, #Db, etc. 
                     for the main sense, or its entirety, use #Dmain, #Tmain, #Lmain.</p>
                 </div>
@@ -100,7 +85,7 @@
             <div class="w3-col s2 m2 l2">
                 <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-subc.html">TEI element subc</a>
             </div>
-            <div class="w3-col s2 m2 l2">
+            <div class="w3-col s2 m2 l2 notes">
                 <p>You might use this to mark up instances of reference to a specific subtype of verb.</p>
             </div>
         </div>
@@ -118,7 +103,7 @@
                 <div class="w3-col s2 m2 l2">
                     <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
                 </div>
-                <div class="w3-col s2 m2 l2">
+                <div class="w3-col s2 m2 l2 notes">
                     <p>You might use this to enter quickly links to Beta maṣāḥǝft. Please make sure you stick to BM in upper case as this is what is used. Also make sure that the identifier
                         which you provide exists and is correct. You do not need to provide the title, it will be printed requesting from Beta maṣāḥǝft the most up to date title available for that resource.</p>
                 </div>
@@ -138,8 +123,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-lbl.html">TEI element lbl</a>
                 </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>Use one of Dillmann's abbreviation and you will get the tooltip explaining it.</li>
                                 <li>Try also <code>((vid.)) \*gez*ሐሊባ፡\*</code> to get a direct link to the form you enter, like <a data-toggle="tooltip" data-title="videas">vid.</a>
                                     <a href="L28a2fa17dfc84e0ca31f4e6b7ef90d96">ሐሊባ፡ </a>. If you use this and wish to enter more terms after vid, please use a comma to separate the words as in <code>((vid.)) \*gez*ገብር፡\*, \*gez*መስቀል፡\*</code>
@@ -159,7 +144,7 @@
     <tr>
     <td>sub finem</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>s. fin.</li>
         </ul>
     </td>
@@ -167,7 +152,7 @@
 <tr>
     <td>inusitatus</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>inus.</li>
         </ul>
     </td>
@@ -175,7 +160,7 @@
 <tr>
     <td>versio nova</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>vers. nov.</li>
         </ul>
     </td>
@@ -183,7 +168,7 @@
 <tr>
     <td>conferas</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Cfr.</li>
             <li>cfr.</li>
         </ul>
@@ -192,7 +177,7 @@
 <tr>
     <td>Versio Latina Jubilaeorum libri, exstat in libro: Monumenta sacra et profana e codicibus Bibl. Ambrosianae tom. I, fasc. I. ed Ceriani, Mediol. 1861. 4°.</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Vers. Lat.</li>
         </ul>
     </td>
@@ -200,7 +185,7 @@
 <tr>
     <td>participium</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Part.</li>
         </ul>
     </td>
@@ -208,7 +193,7 @@
 <tr>
     <td>idem</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>id.</li>
         </ul>
     </td>
@@ -216,7 +201,7 @@
 <tr>
     <td>duplex</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>dupl.</li>
         </ul>
     </td>
@@ -224,7 +209,7 @@
 <tr>
     <td>videas</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>vid. sub</li>
             <li>vid.</li>
             <li>Vid.</li>
@@ -235,7 +220,7 @@
 <tr>
     <td>singularis</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>sing.</li>
             <li>Sing.</li>
         </ul>
@@ -244,7 +229,7 @@
 <tr>
     <td>Vocabularium Aethiopicum, -a -a</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Voc. Ae.</li>
         </ul>
     </td>
@@ -252,7 +237,7 @@
 <tr>
     <td>collatio, -is vel collectivum, -e</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>coll.</li>
         </ul>
     </td>
@@ -260,7 +245,7 @@
 <tr>
     <td>concretus, e (opp.  abstracto)</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>concr.</li>
         </ul>
     </td>
@@ -269,7 +254,7 @@
 <tr>
     <td>secundum</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>sec.</li>
             <li>Sec.</li>
         </ul>
@@ -278,7 +263,7 @@
 <tr>
     <td>obscoene</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>obsc.</li>
         </ul>
     </td>
@@ -286,7 +271,7 @@
 <tr>
     <td>Laurence, Henochi, IV Ezrae, Asc. Jesaiae librorum editor.</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Cod. Laur.</li>
             <li>cod. Laur.</li>
         </ul>
@@ -295,7 +280,7 @@
 <tr>
     <td>annotatio</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>ann.</li>
         </ul>
     </td>
@@ -303,7 +288,7 @@
 <tr>
     <td>translate</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>transl.</li>
         </ul>
     </td>
@@ -311,7 +296,7 @@
 <tr>
     <td>terminatio</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>term.</li>
         </ul>
     </td>
@@ -319,7 +304,7 @@
 <tr>
     <td>romanae editionis</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>rom.</li>
             <li>ed. rom.</li>
         </ul>
@@ -328,7 +313,7 @@
 <tr>
     <td>auctore, auctoritate</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>auct.</li>
             <li>Auct.</li>
         </ul>
@@ -338,7 +323,7 @@
     <td>Formula
                             Confessionis</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Form. Conf.</li>
         </ul>
     </td>
@@ -346,7 +331,7 @@
 <tr>
     <td>eadem quae</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>e.q.</li>
         </ul>
     </td>
@@ -354,7 +339,7 @@
 <tr>
     <td>vel</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>v.</li>
         </ul>
     </td>
@@ -362,7 +347,7 @@
 <tr>
     <td>exempli gratia</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>ex. gr.</li>
         </ul>
     </td>
@@ -370,7 +355,7 @@
 <tr>
     <td>idem quod</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>i.q.</li>
             <li>id.q.</li>
         </ul>
@@ -379,7 +364,7 @@
 <tr>
     <td>radices</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>radd.</li>
             <li>Radd.</li>
         </ul>
@@ -388,7 +373,7 @@
 <tr>
     <td>vicinus</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>vic.</li>
             <li>Vic.</li>
         </ul>
@@ -397,7 +382,7 @@
 <tr>
     <td>varia lectio</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>var.</li>
         </ul>
     </td>
@@ -405,7 +390,7 @@
 <tr>
     <td>persona</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>pers.</li>
             <li>Pers.</li>
         </ul>
@@ -414,7 +399,7 @@
 <tr>
     <td>collatio, -is vel collectivum, -e</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>coll.</li>
             <li>Coll.</li>
         </ul>
@@ -423,7 +408,7 @@
 <tr>
     <td>Singularis</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Sing.</li>
             <li>Sg.</li>
         </ul>
@@ -432,7 +417,7 @@
 <tr>
     <td>versio antiqua</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>vers. ant.</li>
         </ul>
     </td>
@@ -440,7 +425,7 @@
 <tr>
     <td>Formula Confessionis</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Form. Conf.</li>
         </ul>
     </td>
@@ -448,7 +433,7 @@
 <tr>
     <td>versio altera</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>vers. alt.</li>
         </ul>
     </td>
@@ -456,7 +441,7 @@
 <tr>
     <td>construitur cum</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>c.c.</li>
         </ul>
     </td>
@@ -464,7 +449,7 @@
 <tr>
     <td>edidit</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>ed.</li>
         </ul>
     </td>
@@ -472,7 +457,7 @@
 <tr>
     <td>status constructus</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>st. c.</li>
         </ul>
     </td>
@@ -480,7 +465,7 @@
 <tr>
     <td>radix</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>rad.</li>
             <li>Rad.</li>
         </ul>
@@ -489,7 +474,7 @@
 <tr>
     <td>scilicet</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>sc.</li>
         </ul>
     </td>
@@ -497,7 +482,7 @@
 <tr>
     <td>cum</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>c.</li>
         </ul>
     </td>
@@ -506,7 +491,7 @@
 <tr>
     <td>Vocabularium Aethiopicum, -a -a.</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Voc. Ae.</li>
         </ul>
     </td>
@@ -514,7 +499,7 @@
 <tr>
     <td>sequens</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>seq.</li>
         </ul>
     </td>
@@ -522,7 +507,7 @@
 <tr>
     <td>Radices Abbadianae (collectio radicum Geez linguae Mss.).</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Rad. Abb.</li>
         </ul>
     </td>
@@ -530,7 +515,7 @@
 <tr>
     <td>lexicon</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>lex.</li>
             <li>Lex.</li>
         </ul>
@@ -539,7 +524,7 @@
 <tr>
     <td>columna</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>col.</li>
         </ul>
     </td>
@@ -547,7 +532,7 @@
 <tr>
     <td>oppositum, -o, -nitur</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>opp.</li>
         </ul>
     </td>
@@ -555,7 +540,7 @@
 <tr>
     <td>pluralis</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Pl.</li>
             <li>pl.</li>
             <li>Plur.</li>
@@ -565,7 +550,7 @@
 <tr>
     <td>quod videas</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>q.v.</li>
         </ul>
     </td>
@@ -573,7 +558,7 @@
 <tr>
     <td>concretus, e (opp. abstracto)</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>concr.</li>
         </ul>
     </td>
@@ -581,7 +566,7 @@
 <tr>
     <td>d'Abbadie</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Abb.</li>
         </ul>
     </td>
@@ -589,7 +574,7 @@
 <tr>
     <td>Novum Testamentum</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>N.T.</li>
         </ul>
     </td>
@@ -597,7 +582,7 @@
 <tr>
     <td>Epilogus</td>
     <td>
-        <ul>
+        <ul class="w3-ul">
             <li>Epil.</li>
         </ul>
     </td>
@@ -619,8 +604,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gramGrp.html">TEI element gramGrp</a>
                 </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>There is no need to nest these. Use it just to group information.</li>
                                 <li>See below case, gender and PoS.</li>
                             </ul>
@@ -643,9 +628,9 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
                 </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
-                                <li>PLEASE DO NOT CONFUSE WITH THE ENCODING OF TEXT WHICH IS SIMPLY IN ANOTHER LANGUAGE IN THE ENTRY, WITH RESPECT TO THE MAIN LANGUAGE OF THE MEANING!!!!</li>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
+                                <li>PLEASE DO NOT CONFUSE WITH THE ENCODING OF TEXT WHICH IS SIMPLY IN ANOTHER LANGUAGE IN THE ENTRY, WITH RESPECT TO THE MAIN LANGUAGE OF THE SENSE!!!!</li>
                                 <li>Remember to specify the language according to  
                     the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
                     code for languages.</li>
@@ -667,8 +652,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cit.html">TEI element cit</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>Remember to specify the language according to  
                     the <a target="_blank" href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">ISO 639-1</a> 
                     code for languages.</li>
@@ -688,8 +673,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-foreign.html">TEI element foreign</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>This is fine for anything which is not a translation. it simply says: here is a piece 
                                 of text in another language.</li>
                                 <li>Notice, the app will know that this is in Syriac.</li>
@@ -717,8 +702,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>Eventually, if there is a text, you will see in the popup the line(s) you are quoting.</li>
                                 <li>you might find also this notation *Kuf. |35*p.|, this is for where a unit is specified by Dillmann.</li>
                                 <li>If there is no exact passage, please leave the second part of the notation empy. e.g. *Kuf.|*</li>
@@ -738,8 +723,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cb.html">TEI element cb</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>Unless there is something to fix, it is very unlikely that you are going to use this</li>
                             </ul>
                         </div>
@@ -756,8 +741,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-ref.html">TEI element ref</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>You can use this to make a simple column reference into a link to that column, which is useful if the entry starts several columns before.</li>
                             </ul>
                         </div>
@@ -770,7 +755,7 @@
                 <div class="w3-col s2 m2 l2">[§,73]bm:Dillmann1857Gramm
                     <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('bibliopointers')" aria-expanded="false" aria-controls="bibliopointers">Open list of tags already used</button>
   
-                <ul id="bibliopointers" class="w3-hide">
+                <ul id="bibliopointers" class="w3-hide w3-ul">
     <li>bm:DaBassano1918DictTgr</li>
     <li>bm:Yohannis1955TigrAmhDict</li>
     <li>bm:Guidi1901Vocabolario</li>
@@ -845,8 +830,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-bibl.html">TEI element bibl</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>The bm: part must be a <a href="https://zotero.org/groups/358366/">unique tag in the Ethio Studies Group Zotero</a> Library! </li>
                                 <li>If you only want to give a reference to a work omit the [] part, simply add bm:Dillmann1857Gramm</li>
                                 <li>p., s., n. $ before comma will be normalized to the allowed values of citedRange page, item and paragraph respectively.</li>
@@ -869,8 +854,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-pos.html">TEI element pos</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
                             </ul>
                     <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('posvalues')" role="button" aria-expanded="false" aria-controls="posvalues">Open list of available PoS values</button>
@@ -910,6 +895,10 @@
                         <td style="border: 1px solid black;">Infin. nom.</td>
                         <td style="border: 1px solid black;">infinitivus nominalis,
                             nominascens</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black;">instr.</td>
+                        <td style="border: 1px solid black;">Instrumentalis</td>
                     </tr>
                     <tr>
                         <td style="border: 1px solid black;">peregr. n.</td>
@@ -1027,8 +1016,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-case.html">TEI element case</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
                             </ul>
                         </div>
@@ -1049,7 +1038,7 @@
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-gen.html">TEI element gen</a>
                         </div>
                 <div class="w3-col s2 m2 l2">
-                            <ul>
+                            <ul class="w3-ul">
                                 <li>This must be inside a gramGrp element! e.g. [[+refl.+ @acc.@ ˆm.ˆ]] </li>
                             </ul>
                         </div>
@@ -1070,8 +1059,8 @@
                 <div class="w3-col s2 m2 l2">
                             This is an elment not defined by TEI, but added to the schem from TraCES
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>This should be in any entry which is not in Dillmann. You can click the button to add it.</li>
                             </ul>
                         </div>
@@ -1087,8 +1076,8 @@
                 <div class="w3-col s2 m2 l2">
                             <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-note.html">TEI element note</a>
                         </div>
-                <div class="w3-col s2 m2 l2">
-                            <ul>
+                <div class="w3-col s2 m2 l2 notes">
+                            <ul class="w3-ul">
                                 <li>Do you really need this? I doubt, but there are things there which are not better specified. Perhaps specify them in one of the above or suggest something new!</li>
                             </ul>
                         </div>
@@ -1098,7 +1087,7 @@
                     <div class="w3-col s2 m2 l2">Places</div>
             <div class="w3-col s2 m2 l2"> <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('placeTypes')" aria-expanded="false" aria-controls="placeTypes">Open list of place types in BM</button>
   
-            <ul class="w3-hide" id="placeTypes">
+            <ul class="w3-hide w3-ul" id="placeTypes">
                             <li>
                                 <a href="/authority-files/list?keyword=tabiya">ṭābiyā</a>
                             </li>
@@ -1106,7 +1095,7 @@
                                 <a href="/authority-files/list?keyword=dabr">dabr</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=gadam">gadam</a>
+                                <a href="/authority-files/list?keyword=gadam">gadām</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=gatar">gaṭar</a>
@@ -1118,7 +1107,7 @@
                                 <a href="/authority-files/list?keyword=settlement">settlement</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=archaeologicalSite">Archaeological Site</a>
+                                <a href="/authority-files/list?keyword=archaeologicalSite">archaeological site</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=shrine">shrine</a>
@@ -1133,7 +1122,7 @@
                                 <a href="/authority-files/list?keyword=monastery">monastery</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=church">Church</a>
+                                <a href="/authority-files/list?keyword=church">church</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=lake">lake</a>
@@ -1163,7 +1152,7 @@
                                 <a href="/authority-files/list?keyword=port">port</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=religiousSite">religious Site</a>
+                                <a href="/authority-files/list?keyword=religiousSite">religious site</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=zone">zone</a>
@@ -1196,7 +1185,7 @@
                                 <a href="/authority-files/list?keyword=forest">forest</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=administrativeUnit">Administrative Unit</a>
+                                <a href="/authority-files/list?keyword=administrativeUnit">administrative unit</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=emirate">emirate</a>
@@ -1205,7 +1194,7 @@
                                 <a href="/authority-files/list?keyword=plain">plain</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=rockSite">rockSite</a>
+                                <a href="/authority-files/list?keyword=rockSite">rock site</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=volcano">volcano</a>
@@ -1232,7 +1221,7 @@
                                 <a href="/authority-files/list?keyword=chapel">chapel</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=zoba">zoba</a>
+                                <a href="/authority-files/list?keyword=zoba">zobā</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=wadi">wādī</a>
@@ -1247,7 +1236,7 @@
                                 <a href="/authority-files/list?keyword=well">well</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=awragga">ʾawraǧǧā</a>
+                                <a href="/authority-files/list?keyword=awragga">ʾawrāǧǧā</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=site">site</a>
@@ -1307,7 +1296,7 @@
                                 <a href="/authority-files/list?keyword=bay">bay</a>
                             </li>
                             <li>
-                                <a href="/authority-files/list?keyword=academicInstitution">Academic Institution</a>
+                                <a href="/authority-files/list?keyword=academicInstitution">academic institution</a>
                             </li>
                             <li>
                                 <a href="/authority-files/list?keyword=library">library</a>
@@ -1328,7 +1317,7 @@
                     <div class="w3-col s2 m2 l2"> 
                         <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('persTypes')" aria-expanded="false" aria-controls="persTypes">Open list of place types in BM</button>
   
-            <ul class="w3-hide" id="persTypes">
+            <ul class="w3-hide w3-ul" id="persTypes">
             <li>military</li>
             <li>academic</li>
             <li>political</li>
@@ -1342,7 +1331,7 @@
             <div class="w3-col s2 m2 l2"> 
                 <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('persRoles')" aria-expanded="false" aria-controls="persRoles">Open list of person roles in BM</button>
   
-            <ul id="persRoles" class="w3-hide">
+            <ul id="persRoles" class="w3-hide w3-ul">
             <li>function</li>
             <li>title</li>
             <li>office</li>
@@ -1352,4 +1341,5 @@
             <div/>
         </div>
             </div>
+  
     </div>
