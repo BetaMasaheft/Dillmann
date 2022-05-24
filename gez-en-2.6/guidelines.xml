@@ -1315,7 +1315,7 @@
             <div class="w3-col s2 m2 l2">VALUES </div>
                     <div class="w3-col s2 m2 l2">Person (occupation)</div>
                     <div class="w3-col s2 m2 l2"> 
-                        <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('persTypes')" aria-expanded="false" aria-controls="persTypes">Open list of place types in BM</button>
+                        <button class="w3-button w3-pale-blue" onclick="toggleGuidelinesElements('persTypes')" aria-expanded="false" aria-controls="persTypes">Open list of occupation types in BM</button>
   
             <ul class="w3-hide w3-ul" id="persTypes">
             <li>military</li>
