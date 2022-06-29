@@ -37,10 +37,13 @@
                         Leslau <br/>
                     </xsl:when>
                     <xsl:when test="@n = 'E'">
-                        Comparative Data<br/>
+                        Comparative and etymological data<br/>
                     </xsl:when>
                     <xsl:when test="@n = 'C'">
                         Cross-references <br/>
+                    </xsl:when>
+                    <xsl:when test="@n = 'X'">
+                        Compounds<br/>
                     </xsl:when>
                     <xsl:otherwise>
                     <xsl:value-of select="@n"/>

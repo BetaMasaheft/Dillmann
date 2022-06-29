@@ -256,7 +256,7 @@ switch ($key)
                         case "PL" return 'Pietro Maria Liuzzo'
                         case "VP" return 'Vitagrazia Pisani'
                         case "SH" return 'Susanne Hummel'
-                        case "MK" return 'Magdalena Krzyzanowska'
+                        case "MK" return 'Magdalena Krzyżanowska'
                         case "AE" return 'Andreas Ellwardt'
                         case "MB" return 'Maria Bulakh'
                         case "WD" return 'Wolfgang Dickhut'
@@ -354,6 +354,7 @@ declare function fo:tei2fo($nodes as node()*) {
  else
 (  if ($node/@n='E') then <fo:block font-weight="bold">Comparative and etymological data</fo:block>
     else if ($node/@n='C') then <fo:block font-weight="bold">Cross-references</fo:block> 
+      else if ($node/@n='X') then <fo:block font-weight="bold">Compounds</fo:block>
     else if($node/@n) then (<fo:inline font-weight="bold">{string($node/@n) || ')'} </fo:inline>) else (),
                         fo:tei2fo($node/node()))
                   
@@ -365,7 +366,13 @@ declare function fo:tei2fo($nodes as node()*) {
 
 declare function fo:Zotero($ZoteroUniqueBMtag as xs:string) {
     let $xml-url := concat('https://api.zotero.org/groups/358366/items?tag=', $ZoteroUniqueBMtag, '&amp;format=bib&amp;locale=en-GB&amp;style=hiob-ludolf-centre-for-ethiopian-studies&amp;linkwrap=1')
-    let $data := httpclient:get(xs:anyURI($xml-url), true(), <Headers/>)
+   let $req :=
+        <http:request
+        http-version="1.1"
+            href="{xs:anyURI($xml-url)}"
+            method="GET">
+        </http:request>
+   let $data :=  http:send-request($req)[2]
     let $datawithlink := fo:tei2fo($data//div[@class = 'csl-entry'])
     return
         $datawithlink
