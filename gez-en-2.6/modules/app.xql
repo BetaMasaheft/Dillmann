@@ -1022,11 +1022,11 @@ else (' ' || format-number($column, '#'))}</a></span>)}
  order by $sense/@source 
 return  <div class="w3-panel entry">
 <h3>
-{if($sense/@source = '#traces') then 'TraCES' else 'Dillmann'}
+{if($sense/@source = '#traces') then 'HLCEES' else 'Dillmann'}
 {if($sense/@source) then (let $s := substring-after($sense/@source, '#') 
 return <a href="#" class="w3-tooltip">
 <i class="fa fa-info-circle" aria-hidden="true"></i>
-<span class="w3-text">{root($term)//tei:sourceDesc//tei:ref[@xml:id=$s]//text()}, {
+<span class="w3-text">{root($term)//tei:sourceDesc//tei:ref[@xml:id=$s]//text()} and follow-up projects, {
 switch($sense/@xml:lang) case 'la' return 'Latin' case 'ru' return 'Russian' case 'en' return 'English' case 'de' return 'Deutsch'
 case 'it' return 'Italian' default return string($sense/@xml:id)}</span>
 </a>) else ()}
