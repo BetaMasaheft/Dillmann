@@ -1022,7 +1022,7 @@ else (' ' || format-number($column, '#'))}</a></span>)}
  order by $sense/@source 
 return  <div class="w3-panel entry">
 <h3>
-{if($sense/@source = '#traces') then 'HLCEES' else 'Dillmann'}
+{if($sense/@source = '#traces') then 'TraCES*' else 'Dillmann'}
 {if($sense/@source) then (let $s := substring-after($sense/@source, '#') 
 return <a href="#" class="w3-tooltip">
 <i class="fa fa-info-circle" aria-hidden="true"></i>
