@@ -278,6 +278,7 @@
                     <xsl:when test="starts-with(@target, '#D')">Dillmann</xsl:when>
                     <xsl:when test="starts-with(@target, '#T')">Traces</xsl:when>
                     <xsl:when test="starts-with(@target, '#L')">Leslau</xsl:when>
+                    <xsl:when test="starts-with(@target, '#G')">Grebaut</xsl:when>
                 </xsl:choose>
                 <xsl:value-of select="replace(replace(substring-after(@target, '#'), '[DTL]', ''), '(.)', ' $1')"/>
             </a>

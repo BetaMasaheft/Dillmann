@@ -349,6 +349,7 @@ declare function fo:tei2fo($nodes as node()*) {
  <fo:block font-weight="bold" >{(' TraCES ' || string($node/@xml:lang) || ' ')}</fo:block>
  ) 
  else if ($node/@n='L') then <fo:block font-weight="bold">Leslau</fo:block>
+  else if ($node/@n='G') then <fo:block font-weight="bold">Grebaut</fo:block>
  else (), <fo:block>{fo:tei2fo($node/node())}</fo:block>}
  </fo:block-container>
  else

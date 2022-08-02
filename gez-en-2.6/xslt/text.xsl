@@ -6,28 +6,28 @@
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
-<!--        breaks current showitem function-->
-      
-<xsl:template match="text()[parent::t:sense[@xml:lang='la'] or ancestor::t:sense[@xml:lang='la']]">
+    <!--        breaks current showitem function-->
     
-    <!--<xsl:text> </xsl:text>-->
-    <xsl:for-each select="tokenize(normalize-space(.), ' ')">
-        <xsl:choose>
-            <xsl:when test=". = 'Hinc' or . = 'hinc'">
-                <span class="HINC">
-                    <xsl:value-of select="."/>
-                </span>
-            </xsl:when>
-            <xsl:otherwise>
-                    <span class="dilEx word">
-                <xsl:value-of select="."/>
-            </span>
-            <xsl:text> </xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
+    <xsl:template match="text()[parent::t:sense[@xml:lang='la'] or ancestor::t:sense[@xml:lang='la']]">
         
-    </xsl:for-each>
-</xsl:template>
+        <!--<xsl:text> </xsl:text>-->
+        <xsl:for-each select="tokenize(normalize-space(.), ' ')">
+            <xsl:choose>
+                <xsl:when test=". = 'Hinc' or . = 'hinc'">
+                    <span class="HINC">
+                        <xsl:value-of select="."/>
+                    </span>
+                </xsl:when>
+                <xsl:otherwise>
+                    <span class="dilEx word">
+                        <xsl:value-of select="."/>
+                    </span>
+                    <xsl:text> </xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+        </xsl:for-each>
+    </xsl:template>
     <xsl:template match="t:sense[@n]">
         <div class="w3-container sense" id="{@xml:id}">
             <b>
@@ -35,6 +35,9 @@
                     
                     <xsl:when test="@n = 'L'">
                         Leslau <br/>
+                    </xsl:when>
+                    <xsl:when test="@n = 'G'">
+                        Grebaut <br/>
                     </xsl:when>
                     <xsl:when test="@n = 'E'">
                         Comparative and etymological data<br/>
@@ -46,21 +49,21 @@
                         Compounds<br/>
                     </xsl:when>
                     <xsl:otherwise>
-                    <xsl:value-of select="@n"/>
-                <xsl:text>)</xsl:text>
-                </xsl:otherwise>
+                        <xsl:value-of select="@n"/>
+                        <xsl:text>)</xsl:text>
+                    </xsl:otherwise>
                 </xsl:choose>
             </b>
             <xsl:apply-templates/>
         </div>
     </xsl:template>
-
+    
     <xsl:template match="t:hi[@rend='sup']">
         <sup>
             <xsl:value-of select="."/>
         </sup>
     </xsl:template>
-
+    
     <xsl:template match="t:lb[@n]">
         <xsl:if test="matches(@n, '[A-Z]')">
             <hr/>
@@ -71,14 +74,14 @@
         <br/>
         <b>
             <xsl:value-of select="@n"/>
-        <xsl:text>)</xsl:text>
+            <xsl:text>)</xsl:text>
         </b>
     </xsl:template>
     
     
     <xsl:template match="t:cit[@type='translation']">
         <!--        the space is hardcoded because in some cases for an unanderstood reason the spaces are ignored-->
-<!--        <xsl:text> </xsl:text>-->
+        <!--        <xsl:text> </xsl:text>-->
         <i>
             <xsl:if test="@xml:lang = 'la'">
                 <xsl:attribute name="class">translationLa word</xsl:attribute>
@@ -95,7 +98,7 @@
     
     <xsl:template match="t:cit[@type='transcription']">
         <!--        the space is hardcoded because in some cases for an unanderstood reason the spaces are ignored-->
-<!--        <xsl:text> </xsl:text>-->
+        <!--        <xsl:text> </xsl:text>-->
         <b>
             <xsl:value-of select="replace(t:quote, '^\s+|\s+$', '')"/>
         </b>
@@ -104,31 +107,29 @@
     
     <xsl:template match="t:foreign">
         <xsl:text> </xsl:text>
-        <span lang="{@xml:lang}" class="word">
-            
-            <xsl:choose>
-                <xsl:when test="@xml:lang = 'ar'">
-                    <xsl:attribute name="dir">rtl</xsl:attribute>
-                </xsl:when>
-                <xsl:when test="@xml:lang = 'syr'">
-                    <xsl:attribute name="dir">rtl</xsl:attribute>
-                </xsl:when>
-                <xsl:when test="@xml:lang = 'he'">
-                    <xsl:attribute name="dir">rtl</xsl:attribute>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="dir">ltr</xsl:attribute>
-                </xsl:otherwise>
-            </xsl:choose>
+        <span lang="{@xml:lang}" class="word"><xsl:choose>
+            <xsl:when test="@xml:lang = 'ar'">
+                <xsl:attribute name="dir">rtl</xsl:attribute>
+            </xsl:when>
+            <xsl:when test="@xml:lang = 'syr'">
+                <xsl:attribute name="dir">rtl</xsl:attribute>
+            </xsl:when>
+            <xsl:when test="@xml:lang = 'he'">
+                <xsl:attribute name="dir">rtl</xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:attribute name="dir">ltr</xsl:attribute>
+            </xsl:otherwise>
+        </xsl:choose>
             <xsl:value-of select="."/>
             
         </span>
         <xsl:choose>
-                <xsl:when test="@xml:lang = 'ar' or @xml:lang = 'syr' or @xml:lang = 'he'">
-                    <span dir="ltr"/>
-                </xsl:when>
-                
-            </xsl:choose>
+            <xsl:when test="@xml:lang = 'ar' or @xml:lang = 'syr' or @xml:lang = 'he'">
+                <span dir="ltr"/>
+            </xsl:when>
+            
+        </xsl:choose>
         <xsl:text> </xsl:text>
     </xsl:template>
     
@@ -164,7 +165,7 @@
             </xsl:if>
             <xsl:value-of select="."/>
         </a>
-<!--        <xsl:text> </xsl:text>-->
+        <!--        <xsl:text> </xsl:text>-->
     </xsl:template>
     
     <xsl:template match="t:ref[not(@type)]">
@@ -172,24 +173,24 @@
             <xsl:when test="@target">
                 <xsl:variable name="id" select="substring-after(@target, '#')"/>
                 <xsl:variable name="t" select="substring-after(@target, '#c')"/>
-               <xsl:choose>
+                <xsl:choose>
                     <xsl:when test="number($t) ge 1425">
-                   <a target="_blank" href="http://www.tau.ac.il/~hacohen/Lexicon/pp{format-number(if(xs:integer($t) mod 2 = 1) then xs:integer($t) else (xs:integer($t)  -1), '#')}.html">
-                       <i class="fa fa-cogs" aria-hidden="true"/>
-                   </a>
-                   </xsl:when>
-                  <xsl:otherwise>
+                        <a target="_blank" href="http://www.tau.ac.il/~hacohen/Lexicon/pp{format-number(if(xs:integer($t) mod 2 = 1) then xs:integer($t) else (xs:integer($t)  -1), '#')}.html">
+                            <i class="fa fa-cogs" aria-hidden="true"/>
+                        </a>
+                    </xsl:when>
+                    <xsl:otherwise>
                         <a target="_blank" href="#" class="internalLink" data-value="{$id}">
-                     <xsl:value-of select="$t"/>
-                </a>
+                            <xsl:value-of select="$t"/>
+                        </a>
                     </xsl:otherwise>
-               </xsl:choose>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="@cRef">
                 <xsl:variable name="cRefs">
                     <xsl:value-of select="normalize-space(@cRef)"/>
                 </xsl:variable>
-
+                
                 <xsl:variable name="ref" select="normalize-space(concat(@cRef, @loc))"/>
                 <a>
                     <xsl:attribute name="ref">
@@ -201,7 +202,7 @@
                         <xsl:value-of select="                                 if (doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation) then                                     doc('xmldb:exist:///db/apps/gez-en/abbreviaturen.xml')//abbreviatur[reference[. = $cRefs]]/dillmanExplanation/text()                                 else                                     'not able to find explanation in abbreviation list'"/>
                     </span>
                     <xsl:value-of select="@cRef"/>
-                   
+                    
                     <xsl:choose>
                         <xsl:when test="                                      @cRef = 'Jsp.' or                             @cRef = 'Laur.' or                             @cRef = 'Syn.' or                             @cRef = 'Isenb.'                             ">
                             <xsl:text> p. </xsl:text>
@@ -234,7 +235,7 @@
                             <a class="reference" data-ref="{$ref}" data-bmid="{$bmID}" data-value="{$bmID}/{$loc}">
                                 <i class="fa fa-file-text-o" aria-hidden="true"/>
                             </a>
-<xsl:text> </xsl:text>
+                            <xsl:text> </xsl:text>
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -255,18 +256,15 @@
     </xsl:template>
     <xsl:template match="t:cb">
         <span class="badge columns">
-        <i class="fa fa-columns" aria-hidden="true"/>
-        <xsl:text> n. </xsl:text>
-        <xsl:value-of select="format-number(@n, '#')"/>
+            <i class="fa fa-columns" aria-hidden="true"/>
+            <xsl:text> n. </xsl:text>
+            <xsl:value-of select="format-number(@n, '#')"/>
         </span>
     </xsl:template>
     <xsl:template match="t:ref[@target][@type='external']">
-        <a class="clean">
-            <xsl:attribute name="href">
-                <xsl:value-of select="@target"/>
-            </xsl:attribute>
-            <xsl:value-of select="."/>
-        </a>
+        <a class="cleantext" style="text-decoration:none;"><xsl:attribute name="href">
+            <xsl:value-of select="@target"/>
+        </xsl:attribute><xsl:apply-templates/></a>
     </xsl:template>
     <xsl:template match="t:ref[@target][@type='BM']">
         <a class="MainTitle" data-value="{@target}">
@@ -281,10 +279,10 @@
         <xsl:text> (</xsl:text>
         <a href="{@target}" class="internalRef" data-value="{substring-after(@target, '#')}">
             <xsl:choose>
-                <xsl:when test="starts-with(@target, '#D')">Dillmana
-                    nn</xsl:when>
+                <xsl:when test="starts-with(@target, '#D')">Dillmann</xsl:when>
                 <xsl:when test="starts-with(@target, '#T')">Traces</xsl:when>
                 <xsl:when test="starts-with(@target, '#L')">Leslau</xsl:when>
+                <xsl:when test="starts-with(@target, '#G')">Grebaut</xsl:when>
             </xsl:choose>
             <xsl:value-of select="replace(replace(substring-after(@target, '#'), '[DTL]', ''), '(.)', ' $1')"/>
         </a>
@@ -295,5 +293,5 @@
         <b><xsl:value-of select="."/></b>
     </xsl:template>
     
-
+    
 </xsl:stylesheet>
