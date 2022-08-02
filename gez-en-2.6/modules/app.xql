@@ -114,7 +114,7 @@ declare
 
 let $username := request:get-parameter("username", "")
 return
-if ($username = 'guest') then (
+if ($username = 'guest' or $username = '') then (
 <div
                 id="content"
                 class="container-fluid w3-container w3-margin">
@@ -885,6 +885,7 @@ switch ($key)
                         case "Pietro" return 'PL'
                         case "Vitagrazia" return 'VP'
                         case "Susanne" return 'SH'
+                        case "Eugenia" return 'ES'
                         case "Magda" return 'MK'
                         case "Andreas" return 'AE'
                         case "Maria" return 'MB'
@@ -901,7 +902,7 @@ declare function app:editorKey($key as xs:string){
 switch ($key)
                         case "ES" return 'Eugenia Sokolinski'
                         case "AE" return 'Andreas Ellwardt'
-                        case "AE" return 'Wolfgang Dickhut'
+                        case "WD" return 'Wolfgang Dickhut'
                         case "DN" return 'Denis Nosnitsin'
                         case "MV" return 'Massimo Villa'
                         case "DR" return 'Dorothea Reule'
@@ -920,8 +921,6 @@ switch ($key)
                         case "AA" return 'Abreham Adugna'
                         case "EG" return 'Ekaterina Gusarova'
                         case "IR" return 'Irene Roticiani'
-                        case "MB" return 'Maria Bulakh'
-                        case "WD" return 'Wolfgang Dickhut'
                         case "JB" return 'Jeremy Brown'
                         case "JF" return 'Joshua Falconer'
                         case "RL" return 'Ralph Lee'
@@ -1034,7 +1033,7 @@ case 'it' return 'Italian' default return string($sense/@xml:id)}</span>
 <div>
 <a class="w3-right w3-button w3-tiny w3-gray" onclick="toggletabletextview('{$s}')">Table/Text</a>
 <div id="{$s}">
-<div class="w3-show" id="textView{$s}">
+<div class="w3-show" id="textView{$s}" style="text-decoration:none;">
 {transform:transform($sense, 'xmldb:exist:///db/apps/gez-en/xslt/text.xsl',())}
 </div>
 <div class="w3-hide" id="tabularView{$s}">
@@ -1377,7 +1376,6 @@ return
                         <title
                             xml:lang="gez">{$form}</title>
                        <author>Alessandro Bausi</author>
-                <author>Andreas Ellwardt</author>
                 </titleStmt>
                 <publicationStmt>
                        <authority>Hiob-Ludolf-Zentrum für Äthiopistik</authority>
@@ -1391,14 +1389,14 @@ return
                 </availability>
             </publicationStmt>
             <sourceDesc>
-                <p>A thoroughly elaborated txt version of <ref xml:id="dillmann"
+                <p>The origin of the lexicon is in a thoroughly elaborated txt version of <ref xml:id="dillmann"
                   target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
                   Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
                      Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
                   Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
             </p>
-            <p><ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
-                  TraCES (Grant Agreement 338756)</ref></p>
+            <p>Additional records were created by the project <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">
+                  TraCES (ERC Advanced Grant, Grant Agreement 338756)</ref> and other follow-up projects</p>
             </sourceDesc>
 
                 </fileDesc>
@@ -1464,13 +1462,13 @@ return
     update delete $sensesArray[@xml:lang=$removedLang]
 
 
-let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(sm:id()//sm:real/sm:username/string()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' default return 'AE'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
+let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(sm:id()//sm:real/sm:username/string()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
 let $updateChange := update insert $change into doc($targetfileuri)//tei:revisionDesc
 
 (:nofity editor and contributor:)
 let $sendmails :=(
 let $contributorMessage := <mail>
-    <from>pietro.liuzzo@uni-hamburg.de</from>
+    <from>aethiopistik@uni-hamburg.de</from>
     <to>{sm:get-account-metadata($cU, xs:anyURI('http://axschema.org/contact/email'))}</to>
     <cc></cc>
     <bcc></bcc>
@@ -1498,9 +1496,9 @@ mail:send-email($contributorMessage, 'public.uni-hamburg.de', ())
   ,
 
   let $EditorialBoardMessage := <mail>
-    <from>pietro.liuzzo@uni-hamburg.de</from>
-    <to>susanne.hummel@uni-hamburg.de</to>
-    <to>vitagrazia.pisani@gmail.com</to><to>wolfgang.dickhut@gmail.com</to>
+    <from>aethiopistik@uni-hamburg.de</from>
+    <to>magdalena.krzyzanowska-2@uni-hamburg.de</to>
+    <to>eugenia.sokolinski@uni-hamburg.de</to>
     <cc></cc>
     <subject>Lexicon Linguae Aethiopicae says: {$filename} has been updated!</subject>
     <message>
@@ -2423,6 +2421,7 @@ Hi {$user}!<i class="fa fa-caret-down"></i></a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
               <a class="w3-bar-item w3-button" href="/Dillmann/about.html">About this app</a>
               <a class="w3-bar-item w3-button" href="/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
+              <a class="w3-bar-item w3-button" href="/Dillmann/latestchanges.html">Latest changes</a>
 
             </div>
           </div>
