@@ -202,7 +202,7 @@
         <xsl:analyze-string regex="(&gt;)(\w{{2,3}})(&gt;)((.*?)&gt;)" select="$text0">
             <xsl:matching-substring>
                 <cit type="translation" xml:lang="{regex-group(2)}">
-                    <quote><xsl:value-of select="regex-group(5)"/></quote>
+                    <t:quote xmlns:t="http://www.tei-c.org/ns/1.0"><xsl:value-of select="regex-group(5)"/></t:quote>
                 </cit>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
@@ -219,7 +219,7 @@
         <xsl:analyze-string regex="((&gt;)(\w{{2,3}}))((!)(.*?)(&gt;))" select="$text1">
             <xsl:matching-substring>
                 <cit type="transcription" xml:lang="{regex-group(3)}">
-                    <quote><xsl:value-of select="regex-group(6)"/></quote>
+                    <t:quote xmlns:t="http://www.tei-c.org/ns/1.0"><xsl:value-of select="regex-group(6)"/></t:quote>
                 </cit>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
@@ -266,6 +266,7 @@
                         <xsl:when test="regex-group(1) = 'coll.'">collatio, -is vel collectivum,
                             -e</xsl:when>
                         <xsl:when test="regex-group(1) = 'cfr.'">conferas</xsl:when>
+                        <xsl:when test="regex-group(1) = 'lit.'">literally</xsl:when>
                         <xsl:when test="regex-group(1) = 'vers. ant.'">versio antiqua</xsl:when>
                         <xsl:when test="regex-group(1) = 'Sing.'">Singularis</xsl:when>
                         <xsl:when test="regex-group(1) = 'Sg.'">Singularis</xsl:when>
