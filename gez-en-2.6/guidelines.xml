@@ -722,7 +722,7 @@
         </div>
         <div class="w3-row-padding">
             <div class="w3-col s2 m2 l2">no button here</div>
-                <div class="w3-col s2 m2 l2">{'|{Dil.1234}|'}</div>
+                <div class="w3-col s2 m2 l2">|{DiL.1234}|</div>
                 <div class="w3-col s2 m2 l2">
                             <i class="fa fa-columns" aria-hidden="true"/>n. 1327 </div>
                 <div class="w3-col s2 m2 l2">
@@ -739,7 +739,7 @@
         </div>
         <div class="w3-row-padding">
             <div class="w3-col s2 m2 l2">no button here</div>
-                <div class="w3-col s2 m2 l2">{'{Dil.1234}'}</div>
+                <div class="w3-col s2 m2 l2">{'{DiL.1234}'}</div>
                 <div class="w3-col s2 m2 l2">
                             <a href="#" class="internalLink" data-value="c1327">1327 </a>
                     </div>

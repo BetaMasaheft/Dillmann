@@ -996,8 +996,8 @@ return
 {if($term//tei:nd) then (<span class="w3-badge w3-green w3-bar-item">New</span>) 
 else(<span class="w3-badge w3-gray "><a target="_blank" 
 href="{concat('http://www.tau.ac.il/~hacohen/Lexicon/pp', format-number(if(xs:integer($column) mod 2 = 1) then 
-if($term//tei:cb) then (xs:integer($column)  -2) else $column else (xs:integer($column)  -1), '#'), '.html')}">
-<i class="fa fa-columns" aria-hidden="true"/> {if($term//tei:cb) then (string(number(format-number($column, '#')) - 1) || '/' || format-number($column, '#')) 
+if($term//tei:cb) then (xs:integer($column)  -0) else $column else (xs:integer($column)  -1), '#'), '.html')}">
+<i class="fa fa-columns" aria-hidden="true"/> {if($term//tei:cb) then (string(number(format-number($column, '#'))) ) 
 else (' ' || format-number($column, '#'))}</a></span>)}
         </div>
         {app:pdf-link($id)}
