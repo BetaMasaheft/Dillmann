@@ -154,6 +154,9 @@
     <xsl:template match="t:nd">
         <xsl:text>{ND}</xsl:text>
     </xsl:template>
+    <xsl:template match="t:lb">
+        <xsl:text>{LB}</xsl:text>
+    </xsl:template>
     <xsl:template match="t:ref[@type='external'][@target][not(parent::t:bibl)]">
         <xsl:text>(</xsl:text>
         <xsl:apply-templates/>

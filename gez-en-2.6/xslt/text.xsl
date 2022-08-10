@@ -78,6 +78,9 @@
         </b>
     </xsl:template>
     
+    <xsl:template match="t:lb">        
+        <br/>        
+    </xsl:template>
     
     <xsl:template match="t:cit[@type='translation']">
         <!--        the space is hardcoded because in some cases for an unanderstood reason the spaces are ignored-->

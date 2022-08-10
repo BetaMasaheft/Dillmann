@@ -697,6 +697,22 @@
                 <nd/>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
+                <xsl:variable name="text15" select="."/>
+                <xsl:call-template name="lb">
+                    <xsl:with-param name="text15" select="$text15"/>
+                </xsl:call-template>
+                
+            </xsl:non-matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
+    <xsl:template name="lb">
+        <xsl:param name="text15"/>
+        <xsl:analyze-string regex="\{{LB\}}" select="$text15">
+            <xsl:matching-substring>
+                <lb/>
+            </xsl:matching-substring>
+            <xsl:non-matching-substring>
                 <xsl:value-of select="."/>
             </xsl:non-matching-substring>
         </xsl:analyze-string>

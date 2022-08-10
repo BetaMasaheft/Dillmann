@@ -1055,7 +1055,26 @@
                             </ul>
                         </div>
         </div>
+
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">no button</div>
             
+            <div class="w3-col s2 m2 l2">{LB}</div>
+            <div class="w3-col s2 m2 l2">line break</div>
+            <div class="w3-col s2 m2 l2">
+                <code>&lt;lb/&gt;</code>
+            </div>
+            <div class="w3-col s2 m2 l2">
+                <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-note.html">TEI element lb</a>
+            </div>
+            <div class="w3-col s2 m2 l2 notes">
+                <ul class="w3-ul">
+                    <li>If you really need to introduce a new line in the layout, without any meaning.</li>
+                </ul>
+            </div>
+        </div>
+
+
         <div class="w3-row-padding">
             <div class="w3-col s2 m2 l2">
                         <a href="#" class="w3-button w3-blue w3-small">ND</a>
