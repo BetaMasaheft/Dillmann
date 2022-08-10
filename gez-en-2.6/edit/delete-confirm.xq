@@ -13,7 +13,7 @@ let $id := request:get-parameter("id", "")
 let $data-collection := '/db/apps/gez-en/data/'
 let $doc := collection($data-collection)//id($id)
 let $form := $doc//t:form/t:foreign/text()
-let $user := xmldb:get-current-user()
+let $user := sm:id()//sm:username/text()
 
    let $log := log:add-log-message('/Dillmann/lemma/'||$id, $user, 'delete confirmation requested')
 return
