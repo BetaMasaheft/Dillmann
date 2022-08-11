@@ -432,6 +432,7 @@
                         <xsl:when test="regex-group(1) = 'denom.'">denominates</xsl:when>
                         <xsl:when test="regex-group(1) = 'conj.'">conjunctio</xsl:when>
                         <xsl:when test="regex-group(1) = 'rel.'">relativum</xsl:when>
+                        <xsl:when test="regex-group(1) = 'encl. particle'">enclictic particle</xsl:when>
                         <xsl:otherwise>not found</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
