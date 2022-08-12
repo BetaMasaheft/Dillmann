@@ -1,7 +1,7 @@
 xquery version "3.0" encoding "UTF-8";
 import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en" at "../modules/app.xql";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
-import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
+import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/gez-en/updatefuseki' at "../modules/updateFuseki.xqm";
 import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 
@@ -41,7 +41,7 @@ declare function local:mergeMain($a, $b  as item()*  )  as item()* {
   };
   
 let $parametersName := request:get-parameter-names()
-let $cU := xmldb:get-current-user()
+let $cU := sm:id()//sm:real/sm:username/string()
 let $msg := request:get-parameter('msg', ())
 let $title := 'Update Confirmation'
 let $record := $config:collection-root//id($id)
@@ -56,7 +56,7 @@ let $backupfilename := ($id||'BACKUP'||format-dateTime(current-dateTime(), "[Y,4
 let $item := doc($targetfileuri)
 let $store := xmldb:store($backup-collection, $backupfilename, $item)
 
-let $log := log:add-log-message($backupfilename, xmldb:get-current-user(), 'backup')
+let $log := log:add-log-message($backupfilename, sm:id()//sm:real/sm:username/string(), 'backup')
 return
 if(contains($parametersName, 'sense')) then (
 let $eachsense := <senses>{for $parm in $parametersName
@@ -81,7 +81,6 @@ return:)
                         <title
                             xml:lang="{$formlang}">{$form}</title>
                        <author>Alessandro Bausi</author>
-                <author>Andreas Ellwardt</author>
                 </titleStmt>
                 <publicationStmt>
                        <authority>Hiob-Ludolf-Zentrum für Äthiopistik</authority>
@@ -99,10 +98,10 @@ return:)
                   target="https://archive.org/details/lexiconlinguaeae00dilluoft">Dillmann,
                   Christian Friedrich August. <emph>Lexicon linguae aethiopicae, cum indice latino.
                      Adiectum est vocabularium tigre dialecti septentrionalis compilatum</emph> a W.
-                  Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
+                  Munziger. Lipsiae: Th.O. Weigel, 1865</ref>
             </p>
             <p><ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">ERC Advanced Grant
-                  TraCES (Grant Agreement 338756)</ref></p>
+                  TraCES (Grant Agreement 338756) and follow-up projects</ref></p>
             </sourceDesc>
                 
                 </fileDesc>
@@ -178,14 +177,14 @@ let $addxmlids := for $sensewithoutid in $sensesArray//tei:sense[@n]
                                       update insert attribute xml:id {$newId} into $sensewithoutid
 
 let $segRoot := <rs xmlns="http://www.tei-c.org/ns/1.0" type="root"/>
-let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(xmldb:get-current-user()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' case 'Magda' return 'MK' case 'Daria' return 'DE' case 'Susanne' return 'SH' case 'Wolfgang' return 'WD' case 'Maria' return 'MB' case 'Andreas' return 'AE' case 'LeonardBahr' return 'LB' case 'Ralph' return 'RL' case 'Jeremy' return 'JB' case 'Joshua' return 'JF'  default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
+let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(sm:id()//sm:real/sm:username/string()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' case 'Magda' return 'MK' case 'Daria' return 'DE' case 'Susanne' return 'SH' case 'Wolfgang' return 'WD' case 'Maria' return 'MB' case 'Andreas' return 'AE' case 'LeonardBahr' return 'LB' case 'Ralph' return 'RL' case 'Jeremy' return 'JB' case 'Joshua' return 'JF'  default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
 let $updateChange := update insert $change into doc($targetfileuri)//tei:revisionDesc
 let $addroot := if($root='root' and $record//tei:form[not(descendant::tei:rs[@type='root'])]) then update insert $segRoot into doc($targetfileuri)//tei:form else ()
 let $updatemainForm := update replace $record//tei:form//tei:foreign//text() with $form
 
 let $updateFuseki := try{updatefuseki:entry($record, 'INSERT')} catch * {console:log('failed to update fuseki')}
 
-let $log := log:add-log-message($id, xmldb:get-current-user(), 'updated')
+let $log := log:add-log-message($id, sm:id()//sm:real/sm:username/string(), 'updated')
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)
 let $backupedfile := doc(concat($backup-collection, '/',  $backupfilename))
 let $diff := local:mergeMain($backupedfile//tei:entry/*, $rootitem//tei:entry/*)
