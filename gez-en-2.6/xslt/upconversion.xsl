@@ -101,7 +101,7 @@
     <xsl:template name="sense4">
         <xsl:param name="sense4"/>
         <!--        <sense><xsl:value-of select="$sense2"/></sense>-->
-        <xsl:analyze-string regex="(&lt;([a-z\dαβγδεζηθιλκμνξοπρστ•абвгдежзийклмнопрстуфхцчшщэюя–]))((\w{{2,3}})?(&lt;))(.*?)(&gt;\2&gt;)" select="$sense4" flags="s">
+        <xsl:analyze-string regex="(&lt;([A-Za-z\dαβγδεζηθιλκμνξοπρστ•абвгдежзийклмнопрстуфхцчшщэюя–]))((\w{{2,3}})?(&lt;))(.*?)(&gt;\2&gt;)" select="$sense4" flags="s">
             <xsl:matching-substring>
                 <xsl:variable name="all" select="regex-group(6)"/>
                 <sense>
@@ -133,7 +133,7 @@
     <xsl:template name="sense5">
         <xsl:param name="sense5"/>
         <!--        <sense><xsl:value-of select="$sense2"/></sense>-->
-        <xsl:analyze-string regex="(&lt;([a-z\dαβγδεζηθιλκμνξοπρστ•абвгдежзийклмнопрстуфхцчшщэюя–]))((\w{{2,3}})?(&lt;))(.*?)(&gt;\2&gt;)" select="$sense5" flags="s">
+        <xsl:analyze-string regex="(&lt;([A-Za-z\dαβγδεζηθιλκμνξοπρστ•абвгдежзийклмнопрстуфхцчшщэюя–]))((\w{{2,3}})?(&lt;))(.*?)(&gt;\2&gt;)" select="$sense5" flags="s">
             <xsl:matching-substring>
                 <xsl:variable name="all" select="regex-group(6)"/>
                 <sense>
