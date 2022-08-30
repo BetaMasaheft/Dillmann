@@ -968,10 +968,13 @@ let $ne := xs:integer($n) + 1
 let $pr := xs:integer($n) - 1
 let $NE := string($ne)
 let $PR := string($pr)
-let $column := if($term//tei:cb) then string(($term//tei:cb/@n)[1]) else string(max($col//tei:cb[xs:integer(ancestor::tei:entry/@n) <= xs:integer($n)][@xml:id]/@n))
-let $next := string($col//tei:entry[@n = $NE]/@xml:id)
-let $prev := string($col//tei:entry[@n = $PR]/@xml:id)
-(:        <button class="highlights btn btn-sm btn-info">Highlight/Hide strings matching the words in your search</button>:)
+let $ne2 := xs:integer($n) + 2
+let $pr2 := xs:integer($n) - 2
+let $NE2 := string($ne2)
+let $PR2 := string($pr2)
+let $column := if($term//tei:cb) then string(($term//tei:cb/@n)[1]) else if($term//tei:ref[@type='hacohen']) then string(($term//tei:ref[@type='hacohen']/@n)[1]) else string(max($col//tei:cb[xs:integer(ancestor::tei:entry/@n) <= xs:integer($n)][@xml:id]/@n))
+let $next := if($col//tei:entry[@n = $NE]/@xml:id) then string($col//tei:entry[@n = $NE]/@xml:id) else string($col//tei:entry[@n = $NE2]/@xml:id)
+let $prev := if($col//tei:entry[@n = $PR]/@xml:id) then string($col//tei:entry[@n = $PR]/@xml:id) else string($col//tei:entry[@n = $PR2]/@xml:id)(:        <button class="highlights btn btn-sm btn-info">Highlight/Hide strings matching the words in your search</button>:)
 return
 (
 <div class="w3-container">
