@@ -1866,7 +1866,7 @@ declare
 
 declare
     %templates:wrap function app:biblio-count($node as node()*, $model as map(*)) {
-    <h3>There are <span xmlns="http://www.w3.org/1999/xhtml" id="hit-count">{ $model("total") }</span> distinc bibliographical sources.</h3>
+    <h3>There are <span xmlns="http://www.w3.org/1999/xhtml" id="hit-count">{ $model("total") }</span> distinct bibliographical sources.</h3>
 
 };
 
