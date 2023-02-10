@@ -177,7 +177,7 @@ let $addxmlids := for $sensewithoutid in $sensesArray//tei:sense[@n]
                                       update insert attribute xml:id {$newId} into $sensewithoutid
 
 let $segRoot := <rs xmlns="http://www.tei-c.org/ns/1.0" type="root"/>
-let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(sm:id()//sm:real/sm:username/string()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' case 'Magda' return 'MK' case 'Daria' return 'DE' case 'Susanne' return 'SH' case 'Wolfgang' return 'WD' case 'Maria' return 'MB' case 'Andreas' return 'AE' case 'LeonardBahr' return 'LB' case 'Ralph' return 'RL' case 'Jeremy' return 'JB' case 'Joshua' return 'JF'  default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
+let $change := <change xmlns="http://www.tei-c.org/ns/1.0" who="{switch(sm:id()//sm:real/sm:username/string()) case 'Pietro' return 'PL' case 'Vitagrazia' return 'VP' case 'Alessandro' return 'AB' case 'Magda' return 'MK' case 'Daria' return 'DE' case 'Susanne' return 'SH' case 'Wolfgang' return 'WD' case 'Maria' return 'MB' case 'Andreas' return 'AE' case 'LeonardBahr' return 'LB' case 'Ralph' return 'RL' case 'Jeremy' return 'JB' case 'Joshua' return 'JF'  case 'Eugenia' return 'ES' default return 'AB'}" when="{format-date(current-date(), "[Y0001]-[M01]-[D01]")}">{$msg}</change>
 let $updateChange := update insert $change into doc($targetfileuri)//tei:revisionDesc
 let $addroot := if($root='root' and $record//tei:form[not(descendant::tei:rs[@type='root'])]) then update insert $segRoot into doc($targetfileuri)//tei:form else ()
 let $updatemainForm := update replace $record//tei:form//tei:foreign//text() with $form
@@ -188,7 +188,7 @@ let $log := log:add-log-message($id, sm:id()//sm:real/sm:username/string(), 'upd
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)
 let $backupedfile := doc(concat($backup-collection, '/',  $backupfilename))
 let $diff := local:mergeMain($backupedfile//tei:entry/*, $rootitem//tei:entry/*)
-
+(:
 (:nofity editor and contributor:)
 let $sendmails := if($cU = 'Andreas') then () else
 let $contributorMessage := <mail>
@@ -227,7 +227,7 @@ if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
 else
   console:log('message not sent to contributor')
   
-  
+  :)
   
 return
  <html>
