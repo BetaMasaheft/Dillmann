@@ -435,6 +435,7 @@
                         <xsl:when test="regex-group(1) = 'encl. particle'">enclictic particle</xsl:when>
                         <xsl:when test="regex-group(1) = 'act. part.'">active participle</xsl:when>
                         <xsl:when test="regex-group(1) = 'pass. part.'">passive participle</xsl:when>
+                        <xsl:when test="regex-group(1) = 'procl. particle'">proclitic particle</xsl:when>
                         <xsl:otherwise>not found</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
