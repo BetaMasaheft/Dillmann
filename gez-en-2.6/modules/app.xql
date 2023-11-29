@@ -1400,6 +1400,8 @@ return
             </p>
             <p>Additional records were created by the project <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">
                   TraCES (ERC Advanced Grant, Grant Agreement 338756)</ref> and other follow-up projects</p>
+              <p>Sources include also <ref xml:id="grebaut"
+                  target="https://archive.org/details/supplmentaulexic0000grba">Sylvain Grébaut, Supplément au lexicon linguae aethiopicae de August Dillmann: (1865) et édition du lexique de Juste d'Urbin (1850 - 1855), Paris Imprimerie Nationale 1952</ref></p>
             </sourceDesc>
 
                 </fileDesc>
