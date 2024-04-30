@@ -270,7 +270,7 @@ declare function fo:lang($lang as xs:string) {
     switch ($lang)
         case 'ar'
             return
-                (attribute font-family {'coranica'}, attribute writing-mode {'rl'})
+                (attribute font-family {'NotoNaskhArabic'}, attribute writing-mode {'rl'})
         case 'he'
             return
                 (attribute font-family {'Titus'}, attribute writing-mode {'rl'})
