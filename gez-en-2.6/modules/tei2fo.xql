@@ -413,7 +413,7 @@ declare function fo:main($id as xs:string) {
                 <fo:simple-page-master master-name="Dillmann" margin-top="10mm"
                         margin-bottom="10mm" margin-left="12mm"
                         margin-right="12mm">
-                    <fo:region-body column-count="2" column-gap="10mm" margin-top="20mm" margin-left="0mm" margin-right="0mm" margin-bottom="20mm" />
+                    <fo:region-body column-count="2" column-gap="10mm" margin-top="20mm" margin-bottom="20mm" provisional-distance-between-starts="3mm" end-indent="3mm" start-indent="3mm"/>
                         <fo:region-before extent="20mm"/>
 		<fo:region-after extent="20mm"/>
 			
