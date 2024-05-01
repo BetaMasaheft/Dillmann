@@ -282,7 +282,7 @@ declare function fo:lang($lang as xs:string) {
                 attribute font-family {'Cardo'}
        case 'cop'
             return
-                attribute font-family {'Titus'}
+                attribute font-family {'NotoSansCoptic'}
         case 'gez'
             return
                 (attribute font-family {'Ludolfus'}, attribute letter-spacing {'0.5pt'}, attribute font-size {'0.9em'})
