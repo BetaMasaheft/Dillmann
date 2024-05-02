@@ -75,12 +75,12 @@
             <div class="w3-col s2 m2 l2">
                 <a href="#" class="w3-button w3-blue w3-small">verb subcategory</a>
             </div>
-            <div class="w3-col s2 m2 l2">^II,3^</div>
+            <div class="w3-col s2 m2 l2">^I,1^</div>
             <div class="w3-col s2 m2 l2">
-                <b>II,3</b>
+                <b>I,1</b>
             </div>
             <div class="w3-col s2 m2 l2">
-                <code>&lt;subc&gt;II,3&lt;/subc&gt;</code>
+                <code>&lt;subc&gt;I,1&lt;/subc&gt;</code>
             </div>
             <div class="w3-col s2 m2 l2">
                 <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-subc.html">TEI element subc</a>
@@ -736,6 +736,23 @@
                                 <li>Unless there is something to fix, it is very unlikely that you are going to use this</li>
                             </ul>
                         </div>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col s2 m2 l2">no button here</div>
+            <div class="w3-col s2 m2 l2">|{pdf.1234}|</div>
+            <div class="w3-col s2 m2 l2">
+                <i class="fa fa-columns" aria-hidden="true"/>(pdf link) </div>
+            <div class="w3-col s2 m2 l2">
+                <code>&lt;ref type="hacohen" n="1234"/&gt;</code>
+            </div>
+            <div class="w3-col s2 m2 l2">
+                <a target="_blank" href="www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-cb.html">TEI element ref</a>
+            </div>
+            <div class="w3-col s2 m2 l2 notes">
+                <ul class="w3-ul">
+                    <li>Can be used to fix the link between the record and the page in PDF</li>
+                </ul>
+            </div>
         </div>
         <div class="w3-row-padding">
             <div class="w3-col s2 m2 l2">no button here</div>
