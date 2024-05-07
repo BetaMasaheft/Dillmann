@@ -945,6 +945,30 @@ declare function app:revisions($term){
     </ul>
     </div>};
 
+declare function app:cite($term){
+       <div class="w3-panel w3-card-2 w3-pale-blue w3-hide" id="cite">
+                <ul>
+               {root($term)//tei:form[1]/tei:foreign[1]}, lemma contributed by 
+               {
+let $ids := (root($term)//tei:revisionDesc/tei:change/@who)
+let $cleanids := for $i in distinct-values($ids) return replace($i, '#', '') 
+for $author in distinct-values($cleanids)
+let $time := max(root($term)//tei:revisionDesc/tei:change/xs:date(@when))
+order by $time descending
+                return
+<author>{app:editorKey(string($author))}</author>
+} to the <i>Online Lexicon Linguae Aethiopicae</i>, ed. Alessandro Bausi,  
+               
+{let $time := max(root($term)//tei:revisionDesc/tei:change/xs:date(@when))
+return
+<date type="lastModified">last modified on {format-date($time, "[Y0001]-[M01]-[D01]")}</date>
+}
+<idno type="url">
+{($config:appUrl||'/Dillmann/lemma/' ||string(root($term)//tei:entry/@xml:id))} 
+</idno> <date type="accessed">, accessed on {format-date(current-date(), "[Y0001]-[M01]-[D01]")} </date>
+    </ul>
+    </div>};
+ 
 declare function app:itemcontent ($id, $viewtype){
 let $params :=
                 string-join(
@@ -1052,9 +1076,10 @@ case 'it' return 'Italian' default return string($sense/@xml:id)}</span>
       {app:editineXide($id, <sources>{for $s in $term/tei:sense return <source lang="{$s/@xml:lang}" value="{$s/@source}"></source>}</sources>)}
    <a class="w3-bar-item w3-button w3-green" target="_blank" href="mailto:info@betamasaheft.eu?Subject=[Dillmann]%20{$id}">
    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-</a></div>
+</a>
+<a class="w3-bar-item w3-button w3-pale-green" onclick="togglElements('cite')">Cite this lemma</a></div>
 {app:revisions($term)}
-
+{app:cite($term)}
 
 <div>
 
