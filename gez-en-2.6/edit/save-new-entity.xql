@@ -137,6 +137,9 @@ return
             case 'Vitagrazia'
                 return
                     'VP'
+            case 'Eugenia'
+                return
+                    'ES'
             default return
                 'unknown'
                 (: get the form data that has been "POSTed" to this XQuery :)
@@ -178,7 +181,9 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                   Munziger. Lipsiae: Th.O. Weigel, 1865.</ref>
             </p>
             <p>Additional records were created by the project <ref xml:id="traces" target="https://www.traces.uni-hamburg.de/">
-                  TraCES (ERC Advanced Grant, Grant Agreement 338756)</ref></p>
+                  TraCES (ERC Advanced Grant, Grant Agreement 338756) and follow-up projects at HLCEES</ref></p>
+             <p>Sources include also <ref xml:id="grebaut"
+                  target="https://archive.org/details/supplmentaulexic0000grba">Sylvain Grébaut, Supplément au lexicon linguae aethiopicae de August Dillmann: (1865) et édition du lexique de Juste d'Urbin (1850 - 1855), Paris: Imprimerie Nationale, 1952</ref> and <ref xml:id="leslau">Wolf Leslau, Comparative Dictionary of Geʻez (Classical Ethiopic): Geʻez-English, English-Geʻez, with an Index of the Semitic Roots, Wiesbaden: Harrassowitz, 1987</ref></p>
             </sourceDesc>
 
                 </fileDesc>
@@ -194,9 +199,11 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                     </encodingDesc>
                 <profileDesc>
 
-                    <langUsage>
-                         <language ident="en">English</language>
-                <language ident="la">latin</language>
+             <langUsage>
+                 <language ident="en">English</language>
+                 <language ident="fr">French</language>
+                <language ident="de">German</language>
+                <language ident="la">Latin</language>
                 <language ident="it">Italian</language>
                 <language ident="gez">Gǝʿǝz</language>
                 <language ident="grc">Ancient Greek</language>
@@ -206,7 +213,7 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
                 <language ident="geo">Georgian</language>
                 <language ident="cop">Coptic</language>
                 <language ident="osa">Old South Arabian</language>
-                    </langUsage>
+             </langUsage>
                 </profileDesc>
                 <revisionDesc>
                     <change
@@ -257,7 +264,7 @@ let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {conso
     (:nofity editor and contributor:)
      let $sendmails :=(
      let $contributorMessage := <mail>
-    <from>pietro.liuzzo@uni-hamburg.de</from>
+    <from>aethiopistik@uni-hamburg.de</from>
     <to>{sm:get-account-metadata($cU, xs:anyURI('http://axschema.org/contact/email'))}</to>
     <cc></cc>
     <bcc></bcc>
@@ -281,7 +288,7 @@ let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {conso
     </message>
   </mail>
 return
-if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
+if ( mail:send-email($contributorMessage, 'uni-hamburg.de', ()) ) then
   console:log('Sent Message to editor OK')
 else
   console:log('message not sent to editor')
@@ -291,7 +298,7 @@ else
   let $EditorialBoardMessage := <mail>
     <from>eugenia.sokolinski@uni-hamburg.de</from>
     {if($editorsnotification = 'yes') then
-    (<to>vitagrazia.pisani@gmail.com</to>,
+    (<to>eugenia.sokolinski@gmail.com</to>,
     <to>magdalena.krzyzanowska-2@uni-hamburg.de</to>) else ()}
     <subject>Lexicon Linguae Aethiopicae says: {$form} has been created!</subject>
     <message>
