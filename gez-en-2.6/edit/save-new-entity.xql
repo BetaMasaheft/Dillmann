@@ -260,12 +260,19 @@ let $addxmlids := for $sensewithoutid in $record//t:sense[@n]
                                       update insert attribute xml:id {$newId} into $sensewithoutid
                                       
 let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {console:log('failed to update fuseki')}
+(: update the next-id.xml file :)
+let $remove-used-id := update delete doc($next-id-file-path)/data/id[1]
 
+(:    permissions:)
+   let $assigntoGroup := sm:chgrp(xs:anyURI($newdata-collection||'/'||$file), 'lexicon')
+   let $setpermissions := sm:chmod(xs:anyURI($newdata-collection||'/'||$file), 'rwxrwxr-x')
+   (:
     (:nofity editor and contributor:)
      let $sendmails :=(
      let $contributorMessage := <mail>
     <from>aethiopistik@uni-hamburg.de</from>
-    <to>{sm:get-account-metadata($cU, xs:anyURI('http://axschema.org/contact/email'))}</to>
+    <to>magdalena.krzyzanowska-2@uni-hamburg.de</to>
+    <!--<to>{sm:get-account-metadata($cU, xs:anyURI('http://axschema.org/contact/email'))}</to>-->
     <cc></cc>
     <bcc></bcc>
     <subject>Thank you from Lexicon Linguae Aethiopicae for your contribution!</subject>
@@ -288,17 +295,17 @@ let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {conso
     </message>
   </mail>
 return
-if ( mail:send-email($contributorMessage, 'uni-hamburg.de', ()) ) then
+if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
   console:log('Sent Message to editor OK')
 else
   console:log('message not sent to editor')
 
-  ,
+ ,
 
   let $EditorialBoardMessage := <mail>
     <from>eugenia.sokolinski@uni-hamburg.de</from>
     {if($editorsnotification = 'yes') then
-    (<to>eugenia.sokolinski@gmail.com</to>,
+    (<to>aethiopistik@uni-hamburg.de</to>,
     <to>magdalena.krzyzanowska-2@uni-hamburg.de</to>) else ()}
     <subject>Lexicon Linguae Aethiopicae says: {$form} has been created!</subject>
     <message>
@@ -325,15 +332,10 @@ if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
   console:log('Sent Message to editor OK')
 else
   console:log('message not sent to editor')
-)
-
+):)
+(:
 let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:username/string(), 'created')
-(: update the next-id.xml file :)
-let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
-
-(:    permissions:)
-   let $assigntoGroup := sm:chgrp(xs:anyURI($newdata-collection||'/'||$file), 'lexicon')
-   let $setpermissions := sm:chmod(xs:anyURI($newdata-collection||'/'||$file), 'rwxrwxr-x')
+:)
     (:confirmation page with instructions for editors:)
     return
         <html>
@@ -381,7 +383,7 @@ let $remove-used-id :=  update delete doc($next-id-file-path)/data/id[1]
                 <div
                     id="confirmation" class="col-md-4 col-md-offset-4 alert alert-success"><h1
                         class="lead">Thank you very much {sm:id()//sm:real/sm:username/string()}!</h1>
-                    <p> Your entry for
+                    <p> Your entry for 
                         <a href="/Dillmann/lemma/{substring-before($file, '.xml')}" target="_blank"><span
                             class="lead">{$form}</span></a> has been saved!</p>
                    {if($editorsnotification = 'yes') then (<p>A notification email has been sent to you for your records and to the editors.</p>) else <p>You have not notified the editors about this change. If you wish to do so, please tick the corresponding box next time.</p>}

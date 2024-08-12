@@ -1215,10 +1215,10 @@ declare function app:newForm ($node as node()*, $model as map(*)){
        
         <div class="w3-container">
         <div class="w3-quarter"><button id="confirmcreatenew" type="submit" class="w3-button w3-green">Confirm (or lose all)</button></div>
-        <div class="w3-threequarter">
+<!--        <div class="w3-threequarter">
     <input type="checkbox" class="w3-check" id="notifyEditors" name="notifyEditors" value="yes"/>
     <label for="notifyEditors">Send an email to the editors about this change</label>
-  </div>
+  </div>-->
  </div>
  </div>
     </form>
