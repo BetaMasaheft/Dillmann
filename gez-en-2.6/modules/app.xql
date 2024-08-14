@@ -1321,10 +1321,10 @@ return
        
         <div class="w3-container">
         <div class="w3-quarter"><button id="confirmcreatenew" type="submit" class="w3-button w3-green">Confirm (or lose all)</button></div>
-        <div class="w3-threequarter">
+ <!--       <div class="w3-threequarter">
     <input type="checkbox" class="w3-check" id="notifyEditors" name="notifyEditors" value="yes"/>
     <label for="notifyEditors">Send an email to the editors about this change</label>
-  </div>
+  </div>-->
  </div> 
  </div>
                 </form>
@@ -1556,7 +1556,7 @@ return
 <div class="alert alert-success">
     <h2>{$title}</h2>
     <p class="lead">Dear {$cU}, Lemma  <a href="/Dillmann/lemma/{$id}">{$filename}</a> has been updated successfully!</p>
-   <p>A notification email has been sent to the editors.</p>
+   
    <p class="lead">Thank you!</p>
   </div>
   )
