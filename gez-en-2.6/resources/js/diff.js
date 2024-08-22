@@ -13,7 +13,7 @@ $(document).ready(function () {
     var filename = $('#filename').text()
     var msg = $('#msg').text()
     var nE = ""
-    if ( $('#notifyEditors').length ) {
+    if ( $('#notifyEditors').is(":checked")) {
  
     nE+='yes';
  

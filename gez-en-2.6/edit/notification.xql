@@ -46,9 +46,9 @@ del {background-color:lightcoral}'}
   
   
 return
-  if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
+(:  if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
   console:log('Sent Message to editor OK')
-else
+else :)
   console:log('message not sent to editor')
   
   
