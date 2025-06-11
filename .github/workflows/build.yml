@@ -47,17 +47,21 @@ jobs:
         working-directory: ./gez-en-2.6
         run: ant
 
+      - name: Add Expath Dependency
+        working-directory: ./gez-en-2.6/build/
+        run: wget https://github.com/eXist-db/shared-resources/releases/download/v0.9.1/shared-resources-0.9.1.xar -O 001.xar
+
       # Install
-    #   - name: Start exist-ci containers
-    #     run: |
-    #       docker run -dit -p 8080:8080 -v ${{ github.workspace }}/gez-en-2.6/build:/exist/autodeploy \
-    #       --name exist --rm --health-interval=2s --health-start-period=4s \
-    #       duncdrum/existdb:${{ matrix.exist-version }}
-    #       sleep 10s
+      - name: Start exist-ci containers
+        run: |
+          docker run -dit -p 8080:8080 -v ${{ github.workspace }}/gez-en-2.6/build:/exist/autodeploy \
+          --name exist --rm --health-interval=2s --health-start-period=4s \
+          duncdrum/existdb:${{ matrix.exist-version }}
+          sleep 15s
 
       # Test
-    #   - name: Run test
-    #     run: bats --tap test/*.bats
+      - name: Run test
+        run: bats --tap test/*.bats
 
       # Lint commit messages
       # - name: lint commit message
