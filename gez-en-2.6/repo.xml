@@ -10,7 +10,7 @@
     <target>gez-en</target>
     <prepare>pre-install.xql</prepare>
     <finish/>
-    <permissions user="Pietro" group="dba" mode="rw-rw-r--"/>
+    <permissions user="BetaMasaheftAdmin" group="dba" mode="rw-rw-r--"/>
     
     
     
