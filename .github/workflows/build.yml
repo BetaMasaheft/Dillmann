@@ -54,7 +54,8 @@ jobs:
       # Install
       - name: Start exist-ci containers
         run: |
-          docker run -dit -p 8080:8080 -v ${{ github.workspace }}/gez-en-2.6/build:/exist/autodeploy \
+          docker cp ./gez-en-2.6/build/*.xar /exist/autodeploy
+          docker run -dit -p 8080:8080  \
           --name exist --rm --health-interval=2s --health-start-period=4s \
           duncdrum/existdb:${{ matrix.exist-version }}
           sleep 15s
