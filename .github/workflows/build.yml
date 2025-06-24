@@ -42,13 +42,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java-version }}
-        
-      - name: Build Expath Package
-        working-directory: ./gez-en-2.6
-        run: ant
+      - run: ant
 
       - name: Add Expath Dependency
-        working-directory: ./gez-en-2.6/build/
+        working-directory: ./build/
         run: |
           wget https://github.com/eXist-db/shared-resources/releases/download/v0.9.1/shared-resources-0.9.1.xar -O 001.xar
           wget http://exist-db.org/exist/apps/public-repo/public/monex-4.2.2.xar -O 002.xar
@@ -56,7 +53,7 @@ jobs:
       # Install
       - name: Start exist-ci containers
         run: |
-          docker run -dit -p 8080:8080 -v ${{ github.workspace }}/gez-en-2.6/build:/exist/autodeploy \
+          docker run -dit -p 8080:8080 -v ${{ github.workspace }}/build:/exist/autodeploy \
           --name exist --rm --health-interval=2s --health-start-period=4s \
           duncdrum/existdb:${{ matrix.exist-version }}
           sleep 15s
