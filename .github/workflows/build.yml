@@ -49,13 +49,14 @@ jobs:
 
       - name: Add Expath Dependency
         working-directory: ./gez-en-2.6/build/
-        run: wget https://github.com/eXist-db/shared-resources/releases/download/v0.9.1/shared-resources-0.9.1.xar -O 001.xar
+        run: |
+          wget https://github.com/eXist-db/shared-resources/releases/download/v0.9.1/shared-resources-0.9.1.xar -O 001.xar
+          wget http://exist-db.org/exist/apps/public-repo/public/monex-4.2.2.xar -O 002.xar
 
       # Install
       - name: Start exist-ci containers
         run: |
-          docker cp ./gez-en-2.6/build/*.xar /exist/autodeploy
-          docker run -dit -p 8080:8080  \
+          docker run -dit -p 8080:8080 -v ${{ github.workspace }}/gez-en-2.6/build:/exist/autodeploy \
           --name exist --rm --health-interval=2s --health-start-period=4s \
           duncdrum/existdb:${{ matrix.exist-version }}
           sleep 15s
