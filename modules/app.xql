@@ -3,7 +3,6 @@ xquery version "3.0";
 module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mail="http://exist-db.org/xquery/mail";
-declare namespace functx = "http://www.functx.com";
 declare namespace expath="http://expath.org/ns/pkg";
 declare namespace l = "http://log.log";
 
@@ -11,31 +10,24 @@ import module namespace kwic = "http://exist-db.org/xquery/kwic"    at "resource
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 import module namespace validation = "http://exist-db.org/xquery/validation";
+(: TODO(DP): see #511:)
 import module namespace log="http://www.betamasaheft.eu/log" at "log.xqm";
 import module namespace console="http://exist-db.org/xquery/console";
+import module namespace functx = "http://www.functx.com";
 
 declare variable $app:SESSION := "gez-en:all";
 declare variable $app:searchphrase as xs:string := request:get-parameter('q',());
 declare variable $app:abbreviaturen := doc('/db/apps/gez-en/abbreviaturen.xml');
 
-declare function functx:contains-any-of( $arg as xs:string? ,$searchStrings as xs:string* )  as xs:boolean {
-
-   some $searchString in $searchStrings
-   satisfies contains($arg,$searchString)
- } ;
-(:modified by applying functx:escape-for-regex() :)
-declare function functx:number-of-matches ( $arg as xs:string? ,    $pattern as xs:string )  as xs:integer {
+(:modified from functx by applying functx:escape-for-regex() :)
+declare function app:number-of-matches ( $arg as xs:string? ,    $pattern as xs:string )  as xs:integer {
 
    count(tokenize(functx:escape-for-regex(functx:escape-for-regex($arg)),functx:escape-for-regex($pattern))) - 1
  } ;
-declare function functx:escape-for-regex( $arg as xs:string? )  as xs:string {
-
-   replace($arg,
-           '(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')
- } ;
 
 
-  declare function app:personslist($node as element(), $model as map(*)){
+
+declare function app:personslist($node as element(), $model as map(*)){
 
 if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
  let $BMpersons := collection('/db/apps/BetMas/data/persons/')//tei:person[tei:persName[@xml:lang='gez'][not(@type='normalized')]]
@@ -2138,23 +2130,23 @@ declare %private function app:sanitize-lucene-query($query-string as xs:string) 
     (:Remove colons – Lucene fields are not supported.:)
     let $query-string := translate($query-string, ":", " ")
     let $query-string :=
-	   if (functx:number-of-matches($query-string, '"') mod 2)
+	   if (app:number-of-matches($query-string, '"') mod 2)
 	   then $query-string
 	   else replace($query-string, '"', ' ') (:if there is an uneven number of quotation marks, delete all quotation marks.:)
     let $query-string :=
-	   if ((functx:number-of-matches($query-string, '\(') + functx:number-of-matches($query-string, '\)')) mod 2 eq 0)
+	   if ((app:number-of-matches($query-string, '\(') + app:number-of-matches($query-string, '\)')) mod 2 eq 0)
 	   then $query-string
 	   else translate($query-string, '()', ' ') (:if there is an uneven number of parentheses, delete all parentheses.:)
     let $query-string :=
-	   if ((functx:number-of-matches($query-string, '\[') + functx:number-of-matches($query-string, '\]')) mod 2 eq 0)
+	   if ((app:number-of-matches($query-string, '\[') + app:number-of-matches($query-string, '\]')) mod 2 eq 0)
 	   then $query-string
 	   else translate($query-string, '[]', ' ') (:if there is an uneven number of brackets, delete all brackets.:)
     let $query-string :=
-	   if ((functx:number-of-matches($query-string, '{') + functx:number-of-matches($query-string, '}')) mod 2 eq 0)
+	   if ((app:number-of-matches($query-string, '{') + app:number-of-matches($query-string, '}')) mod 2 eq 0)
 	   then $query-string
 	   else translate($query-string, '{}', ' ') (:if there is an uneven number of braces, delete all braces.:)
     let $query-string :=
-	   if ((functx:number-of-matches($query-string, '<') + functx:number-of-matches($query-string, '>')) mod 2 eq 0)
+	   if ((app:number-of-matches($query-string, '<') + app:number-of-matches($query-string, '>')) mod 2 eq 0)
 	   then $query-string
 	   else translate($query-string, '<>', ' ') (:if there is an uneven number of angle brackets, delete all angle brackets.:)
     return $query-string
