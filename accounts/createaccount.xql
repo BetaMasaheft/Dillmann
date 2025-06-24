@@ -77,7 +77,7 @@ if (sm:user-exists($user)) then
                     src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="$shared/resources/scripts/loadsource.js"></script>
+                    src="resources/scripts/loadsource.js"></script>
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
@@ -131,7 +131,7 @@ if (sm:user-exists($user)) then
                     src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="$shared/resources/scripts/loadsource.js"></script>
+                    src="resources/scripts/loadsource.js"></script>
                 <script
                     type="text/javascript"
                     src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
