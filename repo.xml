@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <meta xmlns="http://exist-db.org/xquery/repo">
-    <description>Lexicon Linguae Aethiopicae</description>
+    <description>Lexicon Linguae Aethiopicae (App)</description>
     <author>Pietro Maria Liuzzo</author>
     <website>http://www.betamasaheft.eu/Dillmann/</website>
     <status>alpha</status>

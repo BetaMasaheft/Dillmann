@@ -1,3 +1,5 @@
-build/*.xar
+build/
 .DS_Store
 log/*.xml
+node_modules/
+.vscode/
