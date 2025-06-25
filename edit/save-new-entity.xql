@@ -87,7 +87,7 @@ return
                     src="resources/scripts/loadsource.js"></script>
                 <script
                     type="text/javascript"
-                    src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
+                    src="resources/scripts/bootstrap-3.0.3.min.js"></script>
 
                 <title>This id already exists!</title>
             </head>
@@ -375,7 +375,7 @@ let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:u
                     src="resources/scripts/loadsource.js"></script>
                 <script
                     type="text/javascript"
-                    src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
+                    src="resources/scripts/bootstrap-3.0.3.min.js"></script>
 
                 <title>Save Confirmation</title>
             </head>
@@ -430,7 +430,7 @@ let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:u
 
                    <script
                     type="text/javascript"
-                    src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
+                    src="resources/scripts/bootstrap-3.0.3.min.js"></script>
 
 
                 <title>Save Confirmation</title>

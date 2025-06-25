@@ -55,7 +55,7 @@ return
                     src="resources/scripts/loadsource.js"></script>
                 <script
                     type="text/javascript"
-                    src="$shared/resources/scripts/bootstrap-3.0.3.min.js"></script>
+                    src="resources/scripts/bootstrap-3.0.3.min.js"></script>
                     
                 
     </head>
