@@ -54,14 +54,13 @@ jobs:
       - name: authenticate gh cli
         run: gh auth status
 
-      # - name: Debug list releases
-      #   run: gh release list -R BetaMasaheft/DillmannData
-      #   env:
-      #     GH_TOKEN: ${{ secrets.CI_BOT_PAT }}
-
       - name: Add Expath Dependency
         working-directory: ./build/
         run: gh release download -R BetaMasaheft/DillmannData -p '*.xar' -O '001.xar'
+
+      - name: check contents
+        working-directory: build/
+        run: ls
 
       # Deploy Package in Container
       - name: Pull Base Image
@@ -74,13 +73,34 @@ jobs:
         run: docker cp ./build/. exist:/exist/autodeploy/
 
       - name: Start Exist Container
-        run: docker start exist && sleep 30
+        run: docker start exist 
+
+      - name: Wait for server to start
+        timeout-minutes: 3 
+        run: |
+          echo "Waiting for server to start..."
+          until docker logs exist 2>&1 | grep -q "Server has started"; do
+            echo "Still waiting..."
+            sleep 2
+          done
 
       # Test
       - name: Run test
         run: bats --tap test/*.bats
-
-      # Lint commit messages
-      # - name: lint commit message
-      #   uses: wagoid/commitlint-github-action@v6
   
+      - name: debug logs
+        if: failure()
+        run: docker logs exist | grep 'ERROR'
+
+      - name: Copy logs on failure
+        if: failure()
+        run: |
+          echo "Copying logs..."
+          docker cp exist:/exist/logs/exist.log ./exist.log
+
+      - name: Upload logs artifact
+        if: failure() && matrix.exist-version == 11
+        uses: actions/upload-artifact@v4
+        with:
+          name: exist-log
+          path: exist.log
