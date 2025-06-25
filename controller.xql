@@ -51,20 +51,7 @@ if ($exist:path eq '') then
         <redirect
             url="{request:get-uri()}/"/>
     </dispatch>
-    
-    (: Resource paths starting with $shared are loaded from the shared-resources app :)
-else
-    if (contains($exist:path, "/$shared/")) then
-        <dispatch
-            xmlns="http://exist.sourceforge.net/NS/exist">
-            <forward
-                url="/shared-resources/{substring-after($exist:path, '/$shared/')}">
-                <set-header
-                    name="Cache-Control"
-                    value="max-age=3600, must-revalidate"/>
-            </forward>
-        </dispatch>
- 
+     
   else if (contains($exist:path, "openapi/")) then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     <forward
