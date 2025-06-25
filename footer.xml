@@ -15,7 +15,7 @@
         </div>
         <div class="w3-third">
             <a class="poweredby" href="http://exist-db.org">
-                <img src="$shared/resources/images/powered-by.svg" alt="Powered by eXist-db"/>
+                <img src="resources/images/powered-by.svg" alt="Powered by eXist-db"/>
             </a>
             <a class="poweredby" href="http://www.tei-c.org/">
                 <img src="resources/images/We-use-TEI.png" alt="We use TEI"/>
