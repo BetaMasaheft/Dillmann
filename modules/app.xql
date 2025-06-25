@@ -7,7 +7,8 @@ declare namespace expath="http://expath.org/ns/pkg";
 declare namespace l = "http://log.log";
 
 import module namespace kwic = "http://exist-db.org/xquery/kwic"    at "resource:org/exist/xquery/lib/kwic.xql";
-import module namespace templates="http://exist-db.org/xquery/templates" ;
+import module namespace templates="http://exist-db.org/xquery/html-templating";
+import module namespace lib="http://exist-db.org/xquery/html-templating/lib";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 (: TODO(DP): see #511:)

@@ -44,20 +44,20 @@ jobs:
           java-version: ${{ matrix.java-version }}
       - run: ant
 
-      - name: Add Expath Dependency
-        working-directory: ./build/
-        run: |
-          wget https://github.com/eXist-db/shared-resources/releases/download/v0.9.1/shared-resources-0.9.1.xar -O 001.xar
+      # - name: Add Expath Dependency
+      #   working-directory: ./build/
+      #   run: |
+      #     wget https://github.com/eXist-db/shared-resources/releases/download/v0.9.1/shared-resources-0.9.1.xar -O 001.xar
 
       # Deploy Package in Container
       - name: Pull Base Image
         run: docker pull duncdrum/existdb:${{ matrix.exist-version }}
 
       - name: Create CI Container
-        run: docker create  --name exist -p 8080:8080 duncdrum/existdb:${{ matrix.exist-version }} 
+        run: docker create  --name exist -p 8080:8080 --health-interval=1s --health-start-period=1s duncdrum/existdb:${{ matrix.exist-version }} 
 
       - name: Prep CI Container
-        run: docker cp ./build/ exist:/exist/autodeploy/
+        run: docker cp ./build/. exist:/exist/autodeploy/
 
       - name: Start Exist Container
         run: docker start exist && sleep 30

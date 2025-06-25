@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns="http://expath.org/ns/pkg" name="http://betamasaheft.aai.uni-hamburg.de/gez-en/" abbrev="gez-en" version="2.7.0" spec="1.0">
+<package xmlns="http://expath.org/ns/pkg" name="http://betamasaheft.aai.uni-hamburg.de/gez-en/" abbrev="gez-en" version="3.0.0" spec="1.0">
     <title>Lexicon Linguae Aethiopicae (App)</title>
-    <dependency package="http://exist-db.org/apps/shared"/>
+    <dependency processor="http://exist-db.org" semver-min="6.0.0"/>
+    <dependency package="http://exist-db.org/html-templating" semver-min="1.2.1"/>
     <dependency package="http://www.functx.com"/>
 </package>
