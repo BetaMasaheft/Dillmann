@@ -58,7 +58,7 @@ if (sm:user-exists($user)) then
                 <link
                     rel="stylesheet"
                     type="text/css"
-                    href="$shared/resources/css/bootstrap-3.0.3.min.css"/>
+                    href="resources/css/bootstrap-3.0.3.min.css"/>
                 <link
                     rel="stylesheet"
                     href="resources/font-awesome-4.7.0/css/font-awesome.min.css"/>
@@ -112,7 +112,7 @@ if (sm:user-exists($user)) then
                 <link
                     rel="stylesheet"
                     type="text/css"
-                    href="$shared/resources/css/bootstrap-3.0.3.min.css"/>
+                    href="resources/css/bootstrap-3.0.3.min.css"/>
                 <link
                     rel="stylesheet"
                     href="resources/font-awesome-4.7.0/css/font-awesome.min.css"/>
