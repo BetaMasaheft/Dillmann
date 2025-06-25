@@ -48,15 +48,19 @@ jobs:
         working-directory: ./build/
         run: |
           wget https://github.com/eXist-db/shared-resources/releases/download/v0.9.1/shared-resources-0.9.1.xar -O 001.xar
-          wget http://exist-db.org/exist/apps/public-repo/public/monex-4.2.2.xar -O 002.xar
 
-      # Install
-      - name: Start exist-ci containers
-        run: |
-          docker run -dit -p 8080:8080 -v ${{ github.workspace }}/build:/exist/autodeploy \
-          --name exist --rm --health-interval=2s --health-start-period=4s \
-          duncdrum/existdb:${{ matrix.exist-version }}
-          sleep 20s
+      # Deploy Package in Container
+      - name: Pull Base Image
+        run: docker pull duncdrum/existdb:${{ matrix.exist-version }}
+
+      - name: Create CI Container
+        run: docker create  --name exist -p 8080:8080 duncdrum/existdb:${{ matrix.exist-version }} 
+
+      - name: Prep CI Container
+        run: docker cp ./build/ exist:/exist/autodeploy/
+
+      - name: Start Exist Container
+        run: docker start exist && sleep 30
 
       # Test
       - name: Run test
