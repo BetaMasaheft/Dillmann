@@ -1,5 +1,5 @@
 xquery version "3.1" encoding "UTF-8";
-import module namespace fusekisparql = 'https://www.betamasaheft.uni-hamburg.de/BetMas/sparqlfuseki' at "fuseki.xqm";
+import module namespace fusekisparql = 'https://www.betamasaheft.uni-hamburg.de/gez-en/sparqlfuseki' at "fuseki.xqm";
 import module namespace config = "http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 
 declare namespace t = "http://www.tei-c.org/ns/1.0";
