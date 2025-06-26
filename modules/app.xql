@@ -12,7 +12,7 @@ import module namespace lib="http://exist-db.org/xquery/html-templating/lib";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 (: TODO(DP): see #511:)
-import module namespace log="http://www.betamasaheft.eu/log" at "log.xqm";
+import module namespace log="http://www.betamasaheft.eu/Dillmann/log" at "log.xqm";
 import module namespace console="http://exist-db.org/xquery/console";
 import module namespace functx = "http://www.functx.com";
 

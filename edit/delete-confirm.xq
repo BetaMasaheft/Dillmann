@@ -2,7 +2,7 @@ xquery version "3.0" encoding "UTF-8";
 
 import module namespace console = "http://exist-db.org/xquery/console";
 
-import module namespace log="http://www.betamasaheft.eu/log" at "../modules/log.xqm";
+import module namespace log="http://www.betamasaheft.eu/Dillmann/log" at "../modules/log.xqm";
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 
 declare namespace l = "http://log.log";

@@ -3,7 +3,7 @@ xquery version "3.0" encoding "UTF-8";
 import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
 import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
-import module namespace log="http://www.betamasaheft.eu/log" at "../modules/log.xqm";
+import module namespace log="http://www.betamasaheft.eu/Dillmann/log" at "../modules/log.xqm";
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
