@@ -99,7 +99,7 @@ jobs:
           docker cp exist:/exist/logs/exist.log ./exist.log
 
       - name: Upload logs artifact
-        if: failure() && matrix.exist-version == 11
+        if: failure() && matrix.exist-version == 'release'
         uses: actions/upload-artifact@v4
         with:
           name: exist-log
