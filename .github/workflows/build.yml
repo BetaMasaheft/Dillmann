@@ -85,7 +85,7 @@ jobs:
           done
 
       # Test
-      - name: Run test
+      - name: Run smoke test
         run: bats --tap test/*.bats
   
       - name: debug logs
@@ -104,3 +104,6 @@ jobs:
         with:
           name: exist-log
           path: exist.log
+
+      - name: run e2e test
+        run: npx cypress run

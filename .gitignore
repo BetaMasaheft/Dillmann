@@ -3,3 +3,6 @@ build/
 log/*.xml
 node_modules/
 .vscode/
+test/cypress/screenshots/
+test/cypress/videos/
+test/cypress/downloads/
