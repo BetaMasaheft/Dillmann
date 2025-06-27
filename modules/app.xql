@@ -558,7 +558,7 @@ return
 
               </form>
  (:
- if(xmldb:get-current-user() = 'guest') then
+ if(sm:id() = 'guest') then
  <li class="dropdown">
           <a href="#"
           class="dropdown-toggle"
@@ -2159,7 +2159,7 @@ declare %private function app:sanitize-lucene-query($query-string as xs:string) 
 };
 
 (: Function to translate a Lucene search string to an intermediate string mimicking the XML syntax,
-with some additions for later parsing of boolean operators. The resulting intermediary XML search string will be parsed as XML with util:parse().
+with some additions for later parsing of boolean operators. The resulting intermediary XML search string will be parsed as XML with fn:parse-xml().
 Based on Ron Van den Branden, https://rvdb.wordpress.com/2010/08/04/exist-lucene-to-xml-syntax/:)
 (:TODO:
 The following cases are not covered:
@@ -2232,7 +2232,7 @@ declare %private function app:parse-lucene($string as xs:string) {
                                 concat('<query>', replace(normalize-space($string), '_', '"'), '</query>')
 };
 
-(: Function to transform the intermediary structures in the search query generated through app:parse-lucene() and util:parse()
+(: Function to transform the intermediary structures in the search query generated through app:parse-lucene() and fn:parse-xml()
 to full-fledged boolean expressions employing XML query syntax.
 Based on Ron Van den Branden, https://rvdb.wordpress.com/2010/08/04/exist-lucene-to-xml-syntax/:)
 declare %private function app:lucene2xml($node as item(), $mode as xs:string) {

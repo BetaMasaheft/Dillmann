@@ -14,7 +14,7 @@ declare namespace t = "http://www.tei-c.org/ns/1.0";
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
 
-let $cU := xmldb:get-current-user()
+let $cU := sm:id()
 let $backup-collection := '/db/apps/gez-en/deleted/'
 let $data-collection := '/db/apps/DillmannData'
 
