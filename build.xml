@@ -17,6 +17,7 @@
             <exclude name=".vscode/**" />
             <exclude name="node_modules/**" />
             <exclude name=".gitignore" />
+            <exclude name=".dockerignore" />
             <exclude name="test/cypress/screenshots/**" />
             <exclude name="test/cypress/downloads/**" />
             <exclude name="test/cypress/videos/**" />

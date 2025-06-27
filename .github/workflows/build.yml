@@ -105,5 +105,5 @@ jobs:
           name: exist-log
           path: exist.log
 
-      - name: run e2e test
-        run: npx cypress run
+      - name: Run Cypress e2e test
+        uses: cypress-io/github-action@v6
