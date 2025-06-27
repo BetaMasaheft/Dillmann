@@ -270,9 +270,6 @@ return
                     src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
                 <script
                     type="text/javascript"
-                    src="resources/scripts/loadsource.js"></script>
-                <script
-                    type="text/javascript"
                     src="resources/scripts/bootstrap-3.0.3.min.js"></script>
                 
                 <title>Save Confirmation</title>
@@ -325,11 +322,7 @@ return
                     href="resources/css/style.css"/>
                 <script
                     type="text/javascript"
-                    src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-                <script
-                    type="text/javascript"
-                    src="resources/scripts/loadsource.js"></script>           
-                    
+                    src="https://code.jquery.com/jquery-1.11.0.min.js"></script> 
                    <script
                     type="text/javascript"
                     src="resources/scripts/bootstrap-3.0.3.min.js"></script>

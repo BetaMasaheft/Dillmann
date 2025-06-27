@@ -80,7 +80,6 @@ return if (sm:user-exists($user)) then
         <script
           src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"
           type="text/javascript" />
-        <script src="resources/scripts/loadsource.js" type="text/javascript" />
         <script
           src="resources/scripts/bootstrap-3.0.3.min.js"
           type="text/javascript" />
@@ -120,7 +119,6 @@ return if (sm:user-exists($user)) then
         <script
           src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"
           type="text/javascript" />
-        <script src="resources/scripts/loadsource.js" type="text/javascript" />
         <script
           src="resources/scripts/bootstrap-3.0.3.min.js"
           type="text/javascript" />
