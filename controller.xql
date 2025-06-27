@@ -1,9 +1,10 @@
 xquery version "3.1";
 
-declare namespace t = "http://www.tei-c.org/ns/1.0";
+declare namespace exist = "http://exist.sourceforge.net/NS/exist";
 
 import module namespace config = "http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "modules/config.xqm";
 import module namespace login = "http://exist-db.org/xquery/login" at "resource:org/exist/xquery/modules/persistentlogin/login.xql";
+import module namespace request = "http://exist-db.org/xquery/request";
 
 declare variable $exist:path external;
 
