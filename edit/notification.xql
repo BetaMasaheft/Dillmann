@@ -1,6 +1,10 @@
 xquery version "3.0" encoding "UTF-8";
-import module namespace console = "http://exist-db.org/xquery/console";
+
+import module namespace request = "http://exist-db.org/xquery/request";
+import module namespace util = "http://exist-db.org/xquery/util";
+
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
+
 let $data := request:get-data()
 
 let $diff := request:get-parameter('diff', ())
@@ -47,8 +51,8 @@ del {background-color:lightcoral}'}
   
 return
 (:  if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
+  util:log(info, 'Sent Message to editor OK')
 else :)
-  console:log('message not sent to editor')
+  util:log(info, 'message not sent to editor')
   
   

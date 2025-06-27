@@ -2,8 +2,14 @@ xquery version "3.0" encoding "UTF-8";
 import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en" at "../modules/app.xql";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
 import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/gez-en/updatefuseki' at "../modules/updateFuseki.xqm";
-import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace validation = "http://exist-db.org/xquery/validation";
+import module namespace request = "http://exist-db.org/xquery/request";
+import module namespace util = "http://exist-db.org/xquery/util";
+import module namespace xmldb="http://exist-db.org/xquery/xmldb";
+import module namespace sm = "http://exist-db.org/xquery/securitymanager";
+
+
+
 
 import module namespace log="http://www.betamasaheft.eu/Dillmann/log" at "../modules/log.xqm";
 
@@ -182,14 +188,14 @@ let $updateChange := update insert $change into doc($targetfileuri)//tei:revisio
 let $addroot := if($root='root' and $record//tei:form[not(descendant::tei:rs[@type='root'])]) then update insert $segRoot into doc($targetfileuri)//tei:form else ()
 let $updatemainForm := update replace $record//tei:form//tei:foreign//text() with $form
 
-let $updateFuseki := try{updatefuseki:entry($record, 'INSERT')} catch * {console:log('failed to update fuseki')}
+let $updateFuseki := try{updatefuseki:entry($record, 'INSERT')} catch * {util:log(warn, 'failed to update fuseki')}
 
 let $log := log:add-log-message($id, sm:id()//sm:real/sm:username/string(), 'updated')
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)
 let $backupedfile := doc(concat($backup-collection, '/',  $backupfilename))
 let $diff := local:mergeMain($backupedfile//tei:entry/*, $rootitem//tei:entry/*)
 (:
-(:nofity editor and contributor:)
+(: nofity editor and contributor :)
 let $sendmails := if($cU = 'Andreas') then () else
 let $contributorMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
@@ -223,9 +229,9 @@ let $contributorMessage := <mail>
   </mail>
 return
 if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to contributor OK')
+  util:log(info, 'Sent Message to contributor OK')
 else
-  console:log('message not sent to contributor')
+  util:log(info, 'message not sent to contributor')
   
   :)
   
@@ -293,8 +299,7 @@ return
   </div>
   </body>
   </html>
-  )
-  else (
+  ) else (
   <html>
             
             <head>

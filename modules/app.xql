@@ -1,20 +1,25 @@
 xquery version "3.0";
 
 module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
-declare namespace mail="http://exist-db.org/xquery/mail";
 declare namespace expath="http://expath.org/ns/pkg";
 declare namespace l = "http://log.log";
 
-import module namespace kwic = "http://exist-db.org/xquery/kwic"    at "resource:org/exist/xquery/lib/kwic.xql";
+import module namespace kwic = "http://exist-db.org/xquery/kwic";
 import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace lib="http://exist-db.org/xquery/html-templating/lib";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "config.xqm";
 import module namespace validation = "http://exist-db.org/xquery/validation";
 (: TODO(DP): see #511:)
 import module namespace log="http://www.betamasaheft.eu/Dillmann/log" at "log.xqm";
-import module namespace console="http://exist-db.org/xquery/console";
 import module namespace functx = "http://www.functx.com";
+
+import module namespace xmldb="http://exist-db.org/xquery/xmldb";
+import module namespace request = "http://exist-db.org/xquery/request";
+import module namespace sm = "http://exist-db.org/xquery/securitymanager";
+import module namespace mail = "http://exist-db.org/xquery/mail";
+import module namespace util = "http://exist-db.org/xquery/util";
 
 declare variable $app:SESSION := "gez-en:all";
 declare variable $app:searchphrase as xs:string := request:get-parameter('q',());
@@ -266,7 +271,7 @@ else if(($username = sm:id()//sm:real/sm:username/string())or sm:is-dba(sm:id()/
 
  (:~ logging function to be called from templating pages:)
 declare function app:logging ($node as node(), $model as map(*)){
-let $test := console:log('got to logging function')
+let $test := util:log(info, 'got to logging function')
 let $url :=  replace(request:get-uri(), '/exist/apps/gez-en', '/Dillmann')
  let $parameterslist := request:get-parameter-names()
    let $paramstobelogged := for $p in $parameterslist for $value in request:get-parameter($p, ()) return ($p || '=' || $value)

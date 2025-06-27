@@ -2,11 +2,14 @@ xquery version "3.0" encoding "UTF-8";
 import module namespace app="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en" at "../modules/app.xql";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
 import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/gez-en/updatefuseki' at "../modules/updateFuseki.xqm";
-
-import module namespace console = "http://exist-db.org/xquery/console";
+import module namespace request = "http://exist-db.org/xquery/request";
+import module namespace sm = "http://exist-db.org/xquery/securitymanager";
+import module namespace mail = "http://exist-db.org/xquery/mail";
+import module namespace util = "http://exist-db.org/xquery/util";
+import module namespace xmldb="http://exist-db.org/xquery/xmldb";
 import module namespace validation = "http://exist-db.org/xquery/validation";
-
 import module namespace log="http://www.betamasaheft.eu/Dillmann/log" at "../modules/log.xqm";
+
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 declare namespace s = "http://www.w3.org/2005/xpath-functions";
 
@@ -259,7 +262,7 @@ let $addxmlids := for $sensewithoutid in $record//t:sense[@n]
                             return 
                                       update insert attribute xml:id {$newId} into $sensewithoutid
                                       
-let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {console:log('failed to update fuseki')}
+let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {util:log(warn, 'failed to update fuseki')}
 (: update the next-id.xml file :)
 let $remove-used-id := update delete doc($next-id-file-path)/data/id[1]
 
@@ -296,9 +299,9 @@ let $remove-used-id := update delete doc($next-id-file-path)/data/id[1]
   </mail>
 return
 if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
+  util:log(info, 'Sent Message to editor OK')
 else
-  console:log('message not sent to editor')
+  util:log(info, 'message not sent to editor')
 
  ,
 
@@ -329,9 +332,9 @@ else
   </mail>
 return
 if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
+  util:log(info, 'Sent Message to editor OK')
 else
-  console:log('message not sent to editor')
+  util:log(info, 'message not sent to editor')
 ):)
 (:
 let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:username/string(), 'created')

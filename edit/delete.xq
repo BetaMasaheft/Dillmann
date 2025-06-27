@@ -1,9 +1,15 @@
 xquery version "3.0" encoding "UTF-8";
 
-import module namespace console = "http://exist-db.org/xquery/console";
 import module namespace config="http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "../modules/config.xqm";
 import module namespace updatefuseki = 'https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki' at "../modules/updateFuseki.xqm";
 import module namespace log="http://www.betamasaheft.eu/Dillmann/log" at "../modules/log.xqm";
+import module namespace xmldb="http://exist-db.org/xquery/xmldb";
+import module namespace request = "http://exist-db.org/xquery/request";
+import module namespace sm = "http://exist-db.org/xquery/securitymanager";
+import module namespace mail = "http://exist-db.org/xquery/mail";
+import module namespace util = "http://exist-db.org/xquery/util";
+
+
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
@@ -52,9 +58,9 @@ let $contributorMessage := <mail>
   </mail>
 return
 if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
+  util:log(info, 'Sent Message to editor OK')
 else
-  console:log('message not sent to editor')
+  util:log(info,'message not sent to editor')
   
   ,
   
@@ -86,9 +92,9 @@ else
   </mail>
 return
 if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to editor OK')
+  util:log(info, 'Sent Message to editor OK')
 else
-  console:log('message not sent to editor')
+  util:log(info, 'message not sent to editor')
 )
 
 let $filelocation :=  substring-before($targetfileuri, $id)

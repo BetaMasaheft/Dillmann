@@ -1,5 +1,8 @@
 xquery version "1.0";
 
+import module namespace util = "http://exist-db.org/xquery/util";
+import module namespace xmldb = "http://exist-db.org/xquery/xmldb";
+
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
 
 let $data-collection := '/db/apps/DillmannData'

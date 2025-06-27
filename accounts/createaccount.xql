@@ -1,6 +1,13 @@
 xquery version "3.0" encoding "UTF-8";
-import module namespace console = "http://exist-db.org/xquery/console";
+
+import module namespace request = "http://exist-db.org/xquery/request";
+import module namespace sm = "http://exist-db.org/xquery/securitymanager";
+import module namespace mail = "http://exist-db.org/xquery/mail";
+import module namespace util = "http://exist-db.org/xquery/util";
+
+
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
+
 
 let $email := request:get-parameter('email', ())
 let $name := request:get-parameter('name', ())
@@ -36,9 +43,9 @@ let $newuserMessage := <mail>
   </mail>
 return
 if ( mail:send-email($newuserMessage, 'public.uni-hamburg.de', ()) ) then
-  console:log('Sent Message to new user OK')
+  util:log(info, 'Sent Message to new user OK')
 else
-  console:log('message not sent to new user')
+  util:log(info, 'message not sent to new user')
 
 
 return
