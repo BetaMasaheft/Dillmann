@@ -53,9 +53,9 @@ let $sendnotification :=
     </message>
   </mail>
   return if (mail:send-email($newuserMessage, "public.uni-hamburg.de", ())) then
-      util:log(info, "Sent Message to new user OK")
+      util:log("info", "Sent Message to new user OK")
     else
-      util:log(info, "message not sent to new user")
+      util:log("info", "message not sent to new user")
 
 return if (sm:user-exists($user)) then
     <html>

@@ -66,9 +66,9 @@ let $sendmails := (
   return if (
       mail:send-email($contributorMessage, "public.uni-hamburg.de", ())
     ) then
-      util:log(info, "Sent Message to editor OK")
+      util:log("info", "Sent Message to editor OK")
     else
-      util:log(info, "message not sent to editor"),
+      util:log("info", "message not sent to editor"),
   let $EditorialBoardMessage := <mail>
     <from>pietro.liuzzo@uni-hamburg.de</from>
     {
@@ -110,9 +110,9 @@ let $sendmails := (
   return if (
       mail:send-email($EditorialBoardMessage, "public.uni-hamburg.de", ())
     ) then
-      util:log(info, "Sent Message to editor OK")
+      util:log("info", "Sent Message to editor OK")
     else
-      util:log(info, "message not sent to editor")
+      util:log("info", "message not sent to editor")
 )
 
 let $filelocation := substring-before($targetfileuri, $id)

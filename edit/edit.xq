@@ -188,7 +188,7 @@ let $updateChange := update insert $change into doc($targetfileuri)//tei:revisio
 let $addroot := if($root='root' and $record//tei:form[not(descendant::tei:rs[@type='root'])]) then update insert $segRoot into doc($targetfileuri)//tei:form else ()
 let $updatemainForm := update replace $record//tei:form//tei:foreign//text() with $form
 
-let $updateFuseki := try{updatefuseki:entry($record, 'INSERT')} catch * {util:log(warn, 'failed to update fuseki')}
+let $updateFuseki := try{updatefuseki:entry($record, 'INSERT')} catch * {util:log("warn", 'failed to update fuseki')}
 
 let $log := log:add-log-message($id, sm:id()//sm:real/sm:username/string(), 'updated')
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)
@@ -229,9 +229,9 @@ let $contributorMessage := <mail>
   </mail>
 return
 if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
-  util:log(info, 'Sent Message to contributor OK')
+  util:log("info", 'Sent Message to contributor OK')
 else
-  util:log(info, 'message not sent to contributor')
+  util:log("info", 'message not sent to contributor')
   
   :)
   

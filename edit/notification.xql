@@ -60,5 +60,5 @@ del {background-color:lightcoral}"
 </mail>
 
 return (: if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
-  util:log(info, 'Sent Message to editor OK')
-else :) util:log(info, "message not sent to editor")
+  util:log("info", 'Sent Message to editor OK')
+else :) util:log("info", "message not sent to editor")

@@ -271,7 +271,7 @@ else if(($username = sm:id()//sm:real/sm:username/string())or sm:is-dba(sm:id()/
 
  (:~ logging function to be called from templating pages:)
 declare function app:logging ($node as node(), $model as map(*)){
-let $test := util:log(info, 'got to logging function')
+let $test := util:log("info", 'got to logging function')
 let $url :=  replace(request:get-uri(), '/exist/apps/gez-en', '/Dillmann')
  let $parameterslist := request:get-parameter-names()
    let $paramstobelogged := for $p in $parameterslist for $value in request:get-parameter($p, ()) return ($p || '=' || $value)

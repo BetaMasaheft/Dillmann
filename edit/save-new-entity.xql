@@ -262,7 +262,7 @@ let $addxmlids := for $sensewithoutid in $record//t:sense[@n]
                             return 
                                       update insert attribute xml:id {$newId} into $sensewithoutid
                                       
-let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {util:log(warn, 'failed to update fuseki')}
+let $updateFuseki := try {updatefuseki:entry($record, 'INSERT') } catch * {util:log("warn", 'failed to update fuseki')}
 (: update the next-id.xml file :)
 let $remove-used-id := update delete doc($next-id-file-path)/data/id[1]
 
@@ -299,9 +299,9 @@ let $remove-used-id := update delete doc($next-id-file-path)/data/id[1]
   </mail>
 return
 if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
-  util:log(info, 'Sent Message to editor OK')
+  util:log("info", 'Sent Message to editor OK')
 else
-  util:log(info, 'message not sent to editor')
+  util:log("info", 'message not sent to editor')
 
  ,
 
@@ -332,9 +332,9 @@ else
   </mail>
 return
 if ( mail:send-email($EditorialBoardMessage, 'public.uni-hamburg.de', ()) ) then
-  util:log(info, 'Sent Message to editor OK')
+  util:log("info", 'Sent Message to editor OK')
 else
-  util:log(info, 'message not sent to editor')
+  util:log("info", 'message not sent to editor')
 ):)
 (:
 let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:username/string(), 'created')
