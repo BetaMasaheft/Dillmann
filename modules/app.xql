@@ -39,7 +39,7 @@ if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon'
  let $BMpersons := collection('/db/apps/BetMas/data/persons/')//tei:person[tei:persName[@xml:lang='gez'][not(@type='normalized')]]
  let $hits := for $BMperson in subsequence($BMpersons,1,50) return $BMperson
  return
- map {'hits' : $hits}
+ map {'hits': $hits}
  )
  else ('sorry, this page is only for editors')
  };
@@ -406,12 +406,12 @@ The letters are available as buttons on the side bar and when clicked will reloa
 
                 return
                      map {
-                         "hit" : $t,
-                         "roots" : (for $r in $root
+                         "hit": $t,
+                         "roots": (for $r in $root
                             return string($r))
                      }
     return
-        map {'hits' : $trans, 'langs' : $langs}
+        map {'hits': $trans, 'langs': $langs}
 
  };
 
@@ -1125,7 +1125,7 @@ let $file := if ($new='true') then
         'new-instance.xml'
     else
          $config:collection-root//id($id)
-return map {'file' : $file,
+return map {'file': $file,
 'id' : $id}
 };
 
@@ -1777,7 +1777,7 @@ let $query := if(empty($q) or $q = '') then ('$coll//tei:entry' || $c ||$l ||$p)
 
 let $hits := for $hit in util:eval($query) return $hit
 return
- map {"hits" : $hits}
+ map {"hits": $hits}
 
 };
 
@@ -1811,7 +1811,7 @@ let $formatCun := format-number($cun, '0000')
 let $hits := for $hit in $coll//tei:entry//tei:cb[@n=$formatCun] return $hit
 
 return
-  map {"hits" : $hits}
+  map {"hits": $hits}
 )
 else ()
 
@@ -1824,14 +1824,14 @@ then(
 
 let $hits := for $hit in $coll//tei:entry//tei:ref[@cRef=$q] return $hit
 return
-  map {"hits" : $hits}
+  map {"hits": $hits}
 )
 else if($ref = 'addenda')
 then(
 
 let $hits := for $hit in $coll//tei:entry//tei:ref[contains(@target, $q)] return $hit
 return
-  map {"hits" : $hits}
+  map {"hits": $hits}
 )
 else(
 let $qtext := if(empty($q)) then () else app:substitutionsInQuery($q)
@@ -1849,7 +1849,7 @@ let $qp := if(empty($q) or $q = '') then ('$coll//tei:entry' || $erw) else '$col
 
 let $hits := for $hit in util:eval($qp) let $sorting := if(empty($q) or $q = '') then $hit//tei:form[1]/tei:foreign[1]/text()[1] else ft:score($hit) order by $sorting descending return $hit
 return
-  map {"hits" : $hits,
+  map {"hits": $hits,
   "query": $qp}
   )
 
@@ -1865,8 +1865,8 @@ return
    return
                 (: Process nested templates :)
                 map {
-                    "hits" : $hits,
-                    "query" : $queryExpr
+                    "hits": $hits,
+                    "query": $queryExpr
                 }
 
  ))
@@ -2351,9 +2351,9 @@ return
 $bibl
     return
    map {
-                    "hits" : $bms,
-                    "total" : count($bms),
-                    "type" : 'bibliography'
+                    "hits": $bms,
+                    "total": count($bms),
+                    "type": 'bibliography'
 
                 }
 
@@ -2529,12 +2529,12 @@ The letters are available as buttons on the side bar and when clicked will reloa
 
                 return
                      map {
-                         "hit" : $t,
-                         "roots" : (for $r in $root
+                         "hit": $t,
+                         "roots": (for $r in $root
                             return string($r))
                      }
     return
-        map {'hits' : $trans, 'langs' : $langs}
+        map {'hits': $trans, 'langs': $langs}
 
  };
 
