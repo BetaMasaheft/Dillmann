@@ -4,17 +4,17 @@ describe('Dillman page', () => {
     // see 02_Contrib 3-6
     // see 06-users/lemma.cy.js
     beforeEach(() => {
-        cy.visit('gez-en/')
+        cy.visit('Dillmann/')
     })
 
-    it('should announce Beta version warning', () => {
+    it('should display Beta version warning', () => {
         cy.get('#body')
             .should('contain', 'This app is a prototype Beta version.')
     })
 
-    describe('lemma search', () => {
+    describe('lemma search with mouse', () => {
         // see 03_user 18
-        it('should work with mouse', () => {
+        it('should show results', () => {
             cy.get('[name="q"]')
                 .type('ሀሰሰ')
             cy.get('[name="mode"]').should('have.value', 'none')
@@ -48,10 +48,11 @@ describe('Dillman page', () => {
             // a record appears indicated by the newly visible h3 dillman section
             cy.get('.entry')
               .contains('Dillman')
-        });
+        })
+    })
 
-
-        it('should work with keyboard', () => {
+    describe('fuzzy search with keyboard', () => {
+                it('should work with keyboard', () => {
             // 3_user 18.3 
             // select mode of searching as Fuzzy Search
             cy.get('[name="mode"]').select('fuzzy')

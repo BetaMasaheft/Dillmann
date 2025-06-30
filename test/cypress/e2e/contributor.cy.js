@@ -3,7 +3,7 @@ const username = "admin"
 describe('Contributor pages', () => {
 
     beforeEach(() => {
-        cy.visit('gez-en')
+        cy.visit('Dillmann')
         //In Navigation bar (left), select Login, in the dropdown insert login credentials
         cy.get('#logging')
         cy.get('.w3-dropdown-content')
@@ -97,7 +97,7 @@ describe('Contributor pages', () => {
             cy.get('.alert-success')
               .invoke('text')
               .should('include','this is a new lemma!')
-            // cy.intercept('/gez-en/newentry.html', (req) => {
+            // cy.intercept('/Dillmann/newentry.html', (req) => {
             //     req.reply({
             //       statusCode: 200, // default
             //     })
@@ -114,13 +114,13 @@ describe('Contributor pages', () => {
         // see 02_05    
 
           it('Edit existing entry', () => {
-            cy.visit('gez-en/lemma/L111j0m1v77fds7qynv79wee76jx62ae1')
+            cy.visit('Dillmann/lemma/L111j0m1v77fds7qynv79wee76jx62ae1')
             // Click "Update" button
             cy.contains("Update").click()
             cy.get('.w3-panel')
               .invoke('text')
               .should('include','You are updating')
-            // cy.intercept('/gez-en/update.html', (req) => {
+            // cy.intercept('/Dillmann/update.html', (req) => {
             //     req.reply({
             //       statusCode: 200, // default
             //     })
