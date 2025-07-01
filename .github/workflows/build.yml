@@ -67,13 +67,7 @@ jobs:
         run: docker pull duncdrum/existdb:${{ matrix.exist-version }}
 
       - name: Create CI Container
-        run: docker create  --name exist -p 8080:8080 --health-interval=1s --health-start-period=1s duncdrum/existdb:${{ matrix.exist-version }} 
-
-      - name: Prep CI Container
-        run: docker cp ./build/. exist:/exist/autodeploy/
-
-      - name: Start Exist Container
-        run: docker start exist 
+        run: docker-compose up -d --build
 
       - name: Wait for server to start
         timeout-minutes: 3 
