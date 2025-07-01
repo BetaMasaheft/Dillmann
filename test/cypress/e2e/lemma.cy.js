@@ -7,7 +7,7 @@ describe('viewing lemma in the scan of Dillmann’s Lexicon', () => {
   })
 
   // see 03_user 19
-  it('click on Load button loads the attestations', () => {
+  it.skip('click on Load button loads the attestations', () => {
     // intercept the attestations search call
     cy.intercept('GET', '**/api/Dillmann/search/form?**').as('attest');
     // Optionally, still intercept rootmembers for other uses

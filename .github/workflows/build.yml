@@ -102,7 +102,7 @@ jobs:
         if: failure() && matrix.exist-version == 'release'
         uses: actions/upload-artifact@v4
         with:
-          name: exist-log
+          name: Dillmann-exist-log
           path: exist.log
 
       - name: Run Cypress e2e test
