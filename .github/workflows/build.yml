@@ -35,7 +35,7 @@ jobs:
       - name: Install Test Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libxml2-utils bats
+          sudo apt-get install -y libxml2-utils bats 
       # sanity check
       # TODO(DP) Validate ?
       - name: Ensure all XML files are well-formed
@@ -51,23 +51,23 @@ jobs:
           java-version: ${{ matrix.java-version }}
       - run: ant
 
-      - name: authenticate gh cli
-        run: gh auth status
+      # - name: authenticate gh cli
+      #   run: gh auth status
 
-      - name: Add Expath Dependency
-        working-directory: ./build/
-        run: gh release download -R BetaMasaheft/DillmannData -p '*.xar' -O '001.xar'
+      # - name: Add Expath Dependency
+      #   working-directory: ./build/
+      #   run: gh release download -R BetaMasaheft/DillmannData -p '*.xar' -O '001.xar'
 
-      - name: check contents
-        working-directory: build/
-        run: ls
+      # - name: check contents
+      #   working-directory: build/
+      #   run: ls
 
       # Deploy Package in Container
       - name: Pull Base Image
         run: docker pull duncdrum/existdb:${{ matrix.exist-version }}
 
       - name: Create CI Container
-        run: docker-compose up -d --build
+        run: docker compose up -d --build
 
       - name: Wait for server to start
         timeout-minutes: 3 
