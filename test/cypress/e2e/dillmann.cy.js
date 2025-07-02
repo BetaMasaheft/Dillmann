@@ -4,7 +4,7 @@ describe('Dillman page', () => {
     // see 02_Contrib 3-6
     // see 06-users/lemma.cy.js
     beforeEach(() => {
-        cy.visit('Dillmann/')
+        cy.visit('/')
     })
 
     it('should display Beta version warning', () => {

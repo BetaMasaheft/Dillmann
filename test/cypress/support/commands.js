@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// TODO(DP): needs tuning see login.cy.js
+Cypress.Commands.add('loginByApi', (username, password) => {
+  cy.request({
+    method: 'POST',
+    url: 'user/',
+    form: true,
+    body: {
+      username,
+      password
+    }
+  }).then((resp) => {
+    expect(resp.status).to.eq(200);
+  });
+});
