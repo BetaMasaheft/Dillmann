@@ -32,6 +32,12 @@ services:
       - "8080:8080"
     environment:
       - EXISTDB_ADMIN_PASSWORD=admin
+    healthcheck:
+      interval: 10s
+      timeout: 7s
+      retries: 3
+      start_period: 1s
+      start_interval: 5s
     networks:
       - backend
 
