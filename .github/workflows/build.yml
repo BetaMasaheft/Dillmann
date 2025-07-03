@@ -35,7 +35,20 @@ jobs:
       - name: Install Test Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libxml2-utils bats 
+          sudo apt-get install -y libxml2-utils bats
+          
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64 
+          # platforms: all
+
+      - name: Make buildkit default
+        uses: docker/setup-buildx-action@v3
+        id: buildx
+        with:
+          install: true
+
       # sanity check
       # TODO(DP) Validate ?
       - name: Ensure all XML files are well-formed
@@ -62,12 +75,12 @@ jobs:
       #   working-directory: build/
       #   run: ls
 
-      # Deploy Package in Container
-      - name: Pull Base Image
-        run: docker pull duncdrum/existdb:${{ matrix.exist-version }}
+      # Build Package in Container
+      - name: Build Images
+        run: docker compose build --build-arg EXIST_VERSION=${{ matrix.exist-version }}
 
       - name: Create CI Container
-        run: docker compose up -d --build
+        run: docker compose up -d
 
       - name: Wait for server to start
         timeout-minutes: 3 
@@ -93,10 +106,10 @@ jobs:
           docker cp exist:/exist/logs/exist.log ./exist.log
 
       - name: Upload logs artifact
-        if: failure() && matrix.exist-version == 'release'
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: Dillmann-exist-log
+          name: Dillmann-exist-${{ matrix.exist-version }}-log
           path: exist.log
 
       - name: Run Cypress e2e test

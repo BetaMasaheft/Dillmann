@@ -1,6 +1,6 @@
 const username = "admin" 
 
-describe('Contributor pages', () => {
+describe('User page', () => {
 
     beforeEach(() => {
         cy.visit('/user/admin')
