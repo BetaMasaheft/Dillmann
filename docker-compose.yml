@@ -27,7 +27,6 @@ services:
       context: .
       args:
         EXIST_VERSION: release
-        BUILD: local
     container_name: exist
     ports:
       - "8080:8080"

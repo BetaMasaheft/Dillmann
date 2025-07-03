@@ -77,7 +77,7 @@ jobs:
 
       # Build Package in Container
       - name: Build Images
-        run: docker compose build --build-arg EXIST_VERSION=${{ matrix.exist-version }}
+        run: docker build --build-arg EXIST_VERSION=${{ matrix.exist-version }} .
 
       - name: Create CI Container
         run: docker compose up -d
