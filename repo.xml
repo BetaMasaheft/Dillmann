@@ -9,7 +9,5 @@
     <type>application</type>
     <target>gez-en</target>
     <prepare>pre-install.xql</prepare>
-    <finish />
     <permissions user="BetaMasaheftAdmin" group="dba" mode="rw-rw-r--" />
-    <deployed>2017-11-16T15:43:53.038+01:00</deployed>
 </meta>
