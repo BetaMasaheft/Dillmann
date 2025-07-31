@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-106157246-1"/>
+        <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-106157246-1');
+</script>
+        <link rel="shortcut icon" href="resources/images/minilogo.ico"/>
+        <title data-template="config:app-title">App Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta data-template="config:app-meta"/>
+        <link rel="stylesheet" href="resources/font-awesome-4.7.0/css/font-awesome.min.css"/>
+        <link href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alpheios-embedded@0.6.1/dist/style/style.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alpheios-embedded@0.6.1/dist/style/style-embedded.min.css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/css/keyboard-basic.min.css"/>
+        <script type="text/javascript" src="resources/scripts/jquery-1.7.1.min.js"/>
+        
+    </head>
+    <body id="body">
+        <div class="w3-top">
+            <div class="w3-bar w3-black w3-card">
+                <a class="w3-bar-item w3-button  w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"/></a>
+
+                <div class="w3-bar-item w3-hide-small" id="brand">
+                    <a href="/Dillmann/">Lexicon Linguae Aethiopicae</a>
+                    
+                </div>
+                <div data-template="app:login"/>
+
+                <div class="w3-dropdown-hover w3-hide-small" id="about">
+                      <button class=" w3-button" title="about">
+                        <div data-template="app:greetings"/>
+                      <i class="fa fa-caret-down"/></button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                  <a class="w3-bar-item w3-button" href="/Dillmann/about.html">About this app</a>
+                  <a class="w3-bar-item w3-button" href="/Dillmann/DillmannProlegomena.html">Dillmann Prolegomena</a>
+
+                </div>
+              </div>
+                <div class="w3-dropdown-hover w3-hide-small" id="lists">
+                    <button class=" w3-button" title="Resources">Resources <i class="fa fa-caret-down"></i></button>     
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" id="list" href="/Dillmann/list">Browse</a>
+                <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" id="biblio" href="/Dillmann/bibl.html">Bibliography</a>
+                <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="/Dillmann/reverse" id="reverse">Reverse Index</a>
+                <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="/Dillmann/abbreviations" id="abbreviations">Abbreviations</a>
+                <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="/Dillmann/citations" id="quotes">Citations</a>
+                <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="downloads" data-template="app:downloadbutton"/>
+                <a class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="getInvolved" href="/Dillmann/getinvolved.html">Get involved</a>
+                </div>
+                    </div>
+                <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="tutorial" data-template="app:tutorial"/>
+                <div class="w3-bar-item w3-button  w3-hide-small w3-hide-medium" id="BM" data-template="app:bmbutton"/>
+
+                <a class="w3-bar-item w3-button  w3-hide-small  w3-hide-medium" href="https://github.com/BetaMasaheft/Dillmann/issues/new?title=something%20is%20very%20wrong&amp;assignee=PietroLiuzzo">
+                 <i class="fa fa-exclamation-circle" aria-hidden="true"/> report issue</a>
+
+        </div>
+        </div>
+
+        <div data-template="app:searchhelp"/>
+
+        <div id="content" class="w3-main w3-margin w3-padding-64 alpheios-enabled"/>
+
+<div class="w3-container">
+            <div class="w3-panel w3-leftbar w3-sand w3-xxsmall">
+            <p> This app is a prototype Beta version. Be aware that it might not be available at times also without prior notice, it might still crash or work only in part. The data is also undergoing continuous editorial work and the numeric results should not be used without caution. It has no proper style associated first of all and it is not meant to work in all browser and all machines.
+                We assume you will have the latest Chrome for best experience and that you will have the <a href="https://www.google.com/get/noto/" target="_blank">NOTO font family</a> installed on your machine.
+                You should be able to use the app with any browser but we cannot guarantee even the minimum look and feel.
+                Click the orange button if you want to report a problem, we are glad to keep track. </p>
+                <p>
+                Among the many known issues and adjustments that are still to be carried out, note the following: particularly in Syriac and Arabic passages, at times, space between words is not correctly displayed; conversely, in some passages superfluous extra-spaces are displayed; Coptic entries might not be correctly displayed, especially if you do not have fonts for Coptic (see above).
+                </p>
+                <p>Page number links will link you to the <a href="http://www.tau.ac.il/~hacohen/Lexicon.html">Lexicon Linguae Aethiopicae online pdf version by Ran HaCohen</a>. The correctness of the page link depends on the correctness of the data.</p>
+            </div>
+          </div>
+
+
+        <div data-template="app:footer"/>
+        <script src="https://cdn.jsdelivr.net/npm/alpheios-embedded@0.6.1/dist/alpheios-embedded.min.js"/>
+        <script type="text/javascript" src="resources/alpheios/alpheiosStart.js"/>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.keyboard.js"/>
+
+        <!-- keyboard extensions (optional) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.mousewheel.min.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.keyboard.extension-typing.min.js"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-keyboard/1.26.22/js/jquery.keyboard.extension-altkeyspopup.min.js"/>
+        <script src="resources/js/diacriticskeyboard.js" type="text/javascript"/>
+        <script src="resources/js/jquery.scrollExtend.min.js" type="text/javascript"/>
+<script src="resources/js/NewBiblio.js" type="text/javascript"/>
+        <script src="resources/js/videash.js" type="text/javascript"/>
+        <script src="resources/js/titles.js" type="text/javascript"/>
+     <script type="text/javascript" src="resources/js/attestations.js"/>
+  <!--   <script type="text/javascript" src="resources/js/tooltipsandpopovers.js"/>-->
+        </body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fop version="1.0">
+    <strict-configuration>true</strict-configuration>
+    <strict-validation>false</strict-validation>
+    <base>./</base>
+    <renderers>
+        <renderer mime="application/pdf">
+            <fonts>
+                <!-- TODO(DP): These paths cannot work see #517 -->
+                <font kerning="yes"
+                    embed-url="file:/etc/exist/./webapp/WEB-INF/data/expathrepo/gez-en-2.0/resources/fonts/NotoSans-Regular.ttf">
+                    <font-triplet name="Noto" style="normal" weight="normal" />
+                </font>
+                <font kerning="yes"
+                    embed-url="file:/etc/exist/./webapp/WEB-INF/data/expathrepo/gez-en-2.0/resources/fonts/NotoSans-Bold.ttf">
+                    <font-triplet name="Noto" style="normal" weight="700" />
+                </font>
+                <font kerning="yes"
+                    embed-url="file:/etc/exist/./webapp/WEB-INF/data/expathrepo/gez-en-2.0/resources/fonts/NotoSans-Italic.ttf">
+                    <font-triplet name="Noto" style="italic" weight="normal" />
+                </font>
+                <font kerning="yes"
+                    embed-url="file:/etc/exist/./webapp/WEB-INF/data/expathrepo/gez-en-2.0/resources/fonts/NotoSans-BoldItalic.ttf">
+                    <font-triplet name="Noto" style="italic" weight="700" />
+                </font>
+                <font kerning="yes"
+                    embed-url="file:/etc/exist/./webapp/WEB-INF/data/expathrepo/gez-en-2.0/resources/fonts/NotoSansEthiopic-Regular.ttf">
+                    <font-triplet name="NotoSansEthiopic" style="normal" weight="normal" />
+                </font>
+                <font kerning="yes"
+                    embed-url="file:/etc/exist/./webapp/WEB-INF/data/expathrepo/gez-en-2.0/resources/fonts/NotoSansEthiopic-Bold.ttf">
+                    <font-triplet name="NotoSansEthiopic" style="normal" weight="700" />
+                </font>
+            </fonts>
+        </renderer>
+    </renderers>
+</fop>

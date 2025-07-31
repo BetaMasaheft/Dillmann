@@ -1,0 +1,30 @@
+{
+  "name": "dillmann",
+  "version": "3.0.0",
+  "description": "Lexicon Linguae Aethiopicae",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BetaMasaheft/Dillmann.git"
+  },
+  "author": "Duncan Paterson",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/BetaMasaheft/Dillmann/issues"
+  },
+  "homepage": "https://betamasaheft.eu/Dillmann/",
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "jquery": "^1.12.4"
+  },
+  "devDependencies": {
+    "cypress": "^14.5.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-xquery": "^1.2.4"
+  }
+}
