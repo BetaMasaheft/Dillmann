@@ -248,8 +248,13 @@ else if ($exist:path eq "/") then
 
 else if (ends-with($exist:resource, ".html")) then
   (: the html page is run through view.xql to expand templates :)
+  (: Ensure login:set-user is called in forward block to establish session from cookie :)
 
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    <forward url="{ $exist:controller }/{ $exist:resource }">
+      { $login("org.exist.login", (), false()) }
+      <set-header name="Cache-Control" value="no-cache" />
+    </forward>
     <view>
       <forward url="{ $exist:controller }/modules/view.xql">
         { $login("org.exist.login", (), false()) }
@@ -260,6 +265,16 @@ else if (ends-with($exist:resource, ".html")) then
       <forward method="get" url="{ $exist:controller }/error-page.html" />
       <forward url="{ $exist:controller }/modules/view.xql" />
     </error-handler>
+  </dispatch>
+
+else if (contains($exist:path, "edit/edit.xq")) then
+  (: edit.xq requires authentication :)
+  (: Ensure login:set-user is called to establish session from cookie :)
+  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    <forward url="{ $exist:controller }/edit/edit.xq">
+      { $login("org.exist.login", (), false()) }
+      <set-header name="Cache-Control" value="no-cache" />
+    </forward>
   </dispatch>
 
 else
