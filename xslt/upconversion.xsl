@@ -8,7 +8,17 @@
             <xsl:matching-substring>
                 <xsl:variable name="all" select="regex-group(7)"/>
                 <!--                if there is a match, a sense element is constructed and sense2 is called to look for other nested meanings-->
-                <sense xml:id="{upper-case(substring($source,1,1))}main">
+                <sense>
+                    <xsl:attribute name="xml:id">
+                        <xsl:choose>
+                            <xsl:when test="matches(upper-case(substring($source,1,1)), '[A-Z_]')">
+                                <xsl:value-of select="concat(upper-case(substring($source,1,1)), 'main')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat('_', upper-case(substring($source,1,1)), 'main')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
                     <xsl:if test="regex-group(3)">
                         <xsl:attribute name="xml:lang">
                             <xsl:value-of select="regex-group(3)"/>
