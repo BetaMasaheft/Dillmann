@@ -9,5 +9,6 @@
     <type>application</type>
     <target>gez-en</target>
     <prepare>pre-install.xql</prepare>
+    <finish>post-install.xql</finish>
     <permissions user="BetaMasaheftAdmin" group="dba" mode="rw-rw-r--" />
 </meta>
