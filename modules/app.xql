@@ -687,10 +687,12 @@ if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon'
 else ()
 };
 
-(:the button to edit an entry, only available for lexicon group. the name of the function is old, it does not go anymore to exide but to the update form:)
+(:the button to edit an entry, only available for lexicon or dba group. the name of the function is old, it does not go anymore to exide but to the update form:)
 
 declare function app:editineXide($id as xs:string, $sources as node()) {
-if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
+let $groups := sm:get-user-groups(sm:id()//sm:real/sm:username/string())
+return
+if(contains($groups, 'lexicon') or contains($groups, 'dba')) then (
 let $ss := for $source in $sources/source return '&amp;source' || $source/@lang ||'=' ||substring-after($source/@value, '#')
 let $sourcesparam := string-join($ss, '')
 (:let $base := base-uri($config:collection-root//id($id)):)
