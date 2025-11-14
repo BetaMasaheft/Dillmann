@@ -1,6 +1,6 @@
 xquery version "3.1" encoding "UTF-8";
 
-module namespace updatefuseki = "https://www.betamasaheft.uni-hamburg.de/BetMas/updatefuseki";
+module namespace updatefuseki = "https://www.betamasaheft.uni-hamburg.de/gez-en/updatefuseki";
 
 declare namespace t = "http://www.tei-c.org/ns/1.0";
 
@@ -48,7 +48,7 @@ declare function updatefuseki:sense ($parentURI as xs:string, $sense) {
         " .
               "
   let $rdfSeq :=
-    for $s in $sense
+    for $s at $p in $sense
     let $senseURI := $parentURI || "_sense_" || string($s/@xml:id)
     let $senseURI_comp := $senseURI || "_comp"
     return "rdf:_" || $p || " " || $senseURI_comp

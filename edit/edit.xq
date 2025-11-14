@@ -47,10 +47,31 @@ declare function local:mergeMain($a, $b  as item()*  )  as item()* {
   };
   
 let $parametersName := request:get-parameter-names()
-let $cU := sm:id()//sm:real/sm:username/string()
+(: Check authentication - user must be logged in and in lexicon or dba group :)
+(: Note: login:set-user in controller should establish session, but we check here to be safe :)
+let $currentUser := sm:id()//sm:real/sm:username/string()
+let $userGroups := if($currentUser != 'guest') then sm:get-user-groups($currentUser) else ''
+let $isAuthenticated := $currentUser != 'guest' and (contains($userGroups, 'lexicon') or contains($userGroups, 'dba'))
+let $cU := $currentUser
 let $msg := request:get-parameter('msg', ())
 let $title := 'Update Confirmation'
 let $record := $config:collection-root//id($id)
+
+(: If not authenticated, return error page before attempting any updates :)
+return if (not($isAuthenticated)) then
+    <html>
+        <head>
+            <title>Authentication Required</title>
+        </head>
+        <body>
+            <h1>Authentication Required</h1>
+            <p>You must be logged in and have edit privileges (lexicon or dba group) to edit entries.</p>
+            <p>Current user: {$currentUser}</p>
+            <p>User groups: {$userGroups}</p>
+            <a href="/Dillmann/">Return to home</a>
+        </body>
+    </html>
+else
 
 let $rootitem := root($record)//tei:TEI
 let $backup-collection := xmldb:encode-uri('/db/apps/gez-en/EditorBackups/')
@@ -58,11 +79,19 @@ let $targetfileuri := base-uri($record)
 let $filename := $record//tei:form/tei:foreign/text()
 
 (:saves a copy of the file before editing in a backup folder in order to be able to mechanically restore in case of editing errors since no actual versioning is in place.:)
+(: Collection is created during installation via post-install.xql :)
 let $backupfilename := ($id||'BACKUP'||format-dateTime(current-dateTime(), "[Y,4][M,2][D,2][H01][m01][s01]")||'.xml')
 let $item := doc($targetfileuri)
-let $store := xmldb:store($backup-collection, $backupfilename, $item)
+let $store := try { 
+    if(xmldb:collection-available($backup-collection)) then 
+        xmldb:store($backup-collection, $backupfilename, $item)
+    else 
+        () 
+} catch * { 
+    util:log("warn", "Could not store backup: " || $err:description)
+}
 
-let $log := log:add-log-message($backupfilename, sm:id()//sm:real/sm:username/string(), 'backup')
+let $log := if($store) then log:add-log-message($backupfilename, sm:id()//sm:real/sm:username/string(), 'backup') else ()
 return
 if(contains($parametersName, 'sense')) then (
 let $eachsense := <senses>{for $parm in $parametersName
@@ -192,7 +221,7 @@ let $updateFuseki := try{updatefuseki:entry($record, 'INSERT')} catch * {util:lo
 
 let $log := log:add-log-message($id, sm:id()//sm:real/sm:username/string(), 'updated')
 (:this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that:)
-let $backupedfile := doc(concat($backup-collection, '/',  $backupfilename))
+let $backupedfile := if($store and doc-available(concat($backup-collection, '/',  $backupfilename))) then doc(concat($backup-collection, '/',  $backupfilename)) else $item
 let $diff := local:mergeMain($backupedfile//tei:entry/*, $rootitem//tei:entry/*)
 (:
 (: nofity editor and contributor :)

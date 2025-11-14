@@ -687,10 +687,12 @@ if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon'
 else ()
 };
 
-(:the button to edit an entry, only available for lexicon group. the name of the function is old, it does not go anymore to exide but to the update form:)
+(:the button to edit an entry, only available for lexicon or dba group. the name of the function is old, it does not go anymore to exide but to the update form:)
 
 declare function app:editineXide($id as xs:string, $sources as node()) {
-if(contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), 'lexicon')) then (
+let $groups := sm:get-user-groups(sm:id()//sm:real/sm:username/string())
+return
+if(contains($groups, 'lexicon') or contains($groups, 'dba')) then (
 let $ss := for $source in $sources/source return '&amp;source' || $source/@lang ||'=' ||substring-after($source/@value, '#')
 let $sourcesparam := string-join($ss, '')
 (:let $base := base-uri($config:collection-root//id($id)):)
@@ -1376,9 +1378,18 @@ let $targetfileuri := base-uri($record)
 let $filename := $file//tei:form/tei:foreign/text()
 
 (:saves a copy of the file before editing in a backup folder in order to be able to mechanically restore in case of editing errors since no actual versioning is in place.:)
+(: Collection is created during installation via post-install.xql :)
 let $backupfilename := ($id||'BACKUP'||format-dateTime(current-dateTime(), "[Y,4][M,2][D,2][H01][m01][s01]")||'.xml')
 let $item := doc($targetfileuri)
-let $store := xmldb:store($backup-collection, $backupfilename, $item)
+let $store := try {
+    if(xmldb:collection-available($backup-collection)) then 
+        xmldb:store($backup-collection, $backupfilename, $item)
+    else 
+        ()
+} catch * {
+    util:log("warn", "Could not store backup file: " || $err:description)
+    ()
+}
 
 return
 if(contains($parametersName, 'sense')) then (
