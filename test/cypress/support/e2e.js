@@ -43,6 +43,13 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   }
 })
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // Ignore highlightWithinTextarea errors - this is a 3rd party library issue
+  if (err.message.includes('highlightWithinTextarea is not a function')) {
+    return false
+  }
+})
+
 // Ignore generic cross-origin script errors (e.g., “Script error.”)
 Cypress.on('uncaught:exception', (err) => {
   if (err.message.includes('Script error') || err.message.includes('cross origin script')) {
@@ -59,6 +66,14 @@ beforeEach(() => {
   cy.intercept('POST', 'https://www.google-analytics.com/**', (req) => {
     req.reply({ statusCode: 204, body: '' });
   });
+
+  // Intercept Zotero API requests to clean up logs
+  cy.intercept({
+    method: 'GET',
+    url: 'https://api.zotero.org/groups/358366/**'
+  }, (req) => {
+    req.continue();
+  }).as('zotero-api');
 });
 
 
