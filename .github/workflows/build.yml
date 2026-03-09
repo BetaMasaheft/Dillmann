@@ -38,7 +38,7 @@ jobs:
           sudo apt-get install -y libxml2-utils bats
           
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
         with:
           platforms: linux/amd64,linux/arm64 
           # platforms: all
