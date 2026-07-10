@@ -6,3 +6,7 @@ updates:
     interval: "weekly"
   commit-message:
     prefix: "chore(gha):"
+  groups:
+    actions:
+      patterns:
+      - "*"
