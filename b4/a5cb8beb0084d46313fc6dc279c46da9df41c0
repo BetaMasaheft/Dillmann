@@ -1,0 +1,54 @@
+test/cypress/support/commands.js
+  s_16a6cdccdd371f::t_157407d30d9f20 27-45
+test/cypress/support/read-only-policy.js
+  s_16a6cdccdd371f::t_fa5f9220c1508b 1-77
+test/cypress/e2e/read-only-guard.cy.js
+  s_16a6cdccdd371f::t_f082cff413624a 1-96
+test/cypress/e2e/user_admin.cy.js
+  s_16a6cdccdd371f::t_9ab1d476688594 48-52
+  s_16a6cdccdd371f::t_87e14c6b1ecc85 9-11
+  s_16a6cdccdd371f::t_5ce240a289821f 77-86,88
+  s_16a6cdccdd371f::t_ef30440a921371 30,34
+  s_de4e41d1a53e51::t_46b960db835f4a 1-5,14-15,17,19-29,32,35-43,45,47,56,60-61,63-65,67-69,71-74,90-91
+  s_16a6cdccdd371f::t_151ad34091d6d7 6-8,16,31,33,53-55,57,59,62,70
+README.md
+  s_16a6cdccdd371f::t_26f8d2346ae82f 82
+  s_de4e41d1a53e51::t_d9731068c6b023 80
+test/cypress/support/read-only.js
+  s_16a6cdccdd371f::t_938a0ee4538087 2-6,13,16-21,23-27,30,32-42,44-45,47-49,51,58-59,61,66,69-78
+  s_de4e41d1a53e51::t_391402fe7f1032 1,11-12,22,28-29,31,46,50,60,62-65,67-68,79
+  s_16a6cdccdd371f::t_30b087359c0505 43
+  s_16a6cdccdd371f::t_b9393f45dd6285 52-57
+  s_16a6cdccdd371f::t_21c4908b1d2068 7-10,14-15
+test/cypress/e2e/editor.cy.js
+  s_16a6cdccdd371f::t_97096fd26eca3e 1-2,4,12-38,60-61
+  s_16a6cdccdd371f::t_ec1a350124f317 11
+  s_16a6cdccdd371f::t_7a029dbcc823f9 41-58
+  s_16a6cdccdd371f::t_0537e1d895c5d3 5-9
+test/cypress/support/e2e.js
+  s_16a6cdccdd371f::t_9fab4818aedabb 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.14",
+  "base_commit_sha": "b4a5cb8beb0084d46313fc6dc279c46da9df41c0",
+  "prompts": {},
+  "sessions": {
+    "s_16a6cdccdd371f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bc75cbc0-e576-4db7-a2e7-0e4670c53636",
+        "model": "claude-fable-5"
+      },
+      "human_author": null
+    },
+    "s_de4e41d1a53e51": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "b4e3ecdc-3b86-4f5e-b635-ee7ad1e44324",
+        "model": "default"
+      },
+      "human_author": "duncdrum <d.paterson@me.com>"
+    }
+  }
+}
