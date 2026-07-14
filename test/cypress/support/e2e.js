@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import './read-only'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // we expect a 3rd party library error with message 'trimmed is undefined'
