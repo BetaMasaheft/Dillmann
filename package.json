@@ -6,7 +6,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "deploy:dev": "ant && EXISTDB_SERVER=http://localhost:8080 EXISTDB_USER=admin EXISTDB_PASS=admin xst package install local-files build/*.xar"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "jquery": "^1.12.4"
   },
   "devDependencies": {
+    "@existdb/xst": "^4.1.2",
     "cypress": "^15.18.1",
     "prettier": "^3.9.5",
     "prettier-plugin-xquery": "^1.6.3"
