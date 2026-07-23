@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "@existdb/xst": "^4.1.2",
-    "cypress": "^15.18.1",
-    "prettier": "^3.9.5",
+    "cypress": "^15.19.0",
+    "prettier": "^3.9.6",
     "prettier-plugin-xquery": "^1.6.3"
   }
 }
