@@ -20,7 +20,7 @@
   },
   "homepage": "https://betamasaheft.eu/Dillmann/",
   "dependencies": {
-    "bootstrap": "^3.4.1",
+    "bootstrap": "^5.3.8",
     "jquery": "^1.12.4"
   },
   "devDependencies": {
