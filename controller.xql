@@ -18,55 +18,40 @@ declare variable $exist:root external;
 
 declare variable $login := login:set-user#3;
 
-declare function local:forward ($url) {
-  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <forward absolute="yes" url="{ $url }" />
-  </dispatch>
+declare function local:forward($url) {
+  <dispatch xmlns="http://exist.sourceforge.net/NS/exist"><forward absolute="yes" url="{ $url }" /></dispatch>
 };
 
-declare function local:forwardlist ($name) {
+declare function local:forwardlist($name) {
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     <forward url="{ $exist:controller }/{ $name }.html" />
     <view><forward url="{ $exist:controller }/modules/view.xql" /></view>
   </dispatch>
 };
 
-declare function local:redirect ($path) {
-  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <redirect url="{ $path }" />
-  </dispatch>
+declare function local:redirect($path) {
+  <dispatch xmlns="http://exist.sourceforge.net/NS/exist"><redirect url="{ $path }" /></dispatch>
 };
 
-declare function local:viewxql ($id) {
+declare function local:viewxql($id) {
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     <forward url="{ $exist:controller }/view-item.html">
       { $login("org.exist.login", (), false()) }
       <set-header name="Cache-Control" value="no-cache" />
     </forward>
     <view>
-      <forward url="{ $exist:controller }/modules/view.xql">
-        <add-parameter name="id" value="{ $id }" />
-      </forward>
+      <forward url="{ $exist:controller }/modules/view.xql"><add-parameter name="id" value="{ $id }" /></forward>
     </view>
   </dispatch>
 };
 
 if ($exist:path eq "") then
-  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <redirect url="{ request:get-uri() }/" />
-  </dispatch>
+  <dispatch xmlns="http://exist.sourceforge.net/NS/exist"><redirect url="{ request:get-uri() }/" /></dispatch>
 
 else if (contains($exist:path, "openapi/")) then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <forward
-      method="get"
-      url="/openapi/{
-        $exist:path => substring-after("/openapi/") => replace("json", "xq")
-      }"
-    >
-      <add-parameter
-        name="target"
-        value="{ substring-after($exist:root, "://") || $exist:controller }" />
+    <forward method="get" url="/openapi/{ $exist:path => substring-after("/openapi/") => replace("json", "xq") }">
+      <add-parameter name="target" value="{ substring-after($exist:root, "://") || $exist:controller }" />
       <add-parameter name="register" value="false" />
     </forward>
   </dispatch>
@@ -74,27 +59,22 @@ else if (contains($exist:path, "openapi/")) then
 (: Requests for javascript libraries are resolved to the file system :)
 else if (contains($exist:path, "resources/")) then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <forward
-      url="{ $exist:controller }/resources/{
-        substring-after($exist:path, "resources/")
-      }" />
+    <forward url="{ $exist:controller }/resources/{ substring-after($exist:path, "resources/") }" />
   </dispatch>
 else if (ends-with($exist:path, ".xml")) then
   let $id := substring-before($exist:resource, ".xml")
   let $item := $config:collection-root/id($id)
   let $uri := base-uri($item)
   return if ($item) then
-      <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="/{ substring-after($uri, "db/apps/") }" />
-        <error-handler>
-          <forward
-            method="get"
-            url="{ $exist:controller }/error/error-page.html" />
-          <forward url="{ $exist:controller }/modules/view.xql" />
-        </error-handler>
-      </dispatch>
-    else (
-    )
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+      <forward url="/{ substring-after($uri, "db/apps/") }" />
+      <error-handler>
+        <forward method="get" url="{ $exist:controller }/error/error-page.html" />
+        <forward url="{ $exist:controller }/modules/view.xql" />
+      </error-handler>
+    </dispatch>
+  else (
+  )
 
 else if (contains($exist:path, "/api/")) then
   if (ends-with($exist:path, "/")) then
@@ -105,9 +85,7 @@ else if ($exist:path eq "/list") then
   local:forwardlist("list-items")
 else if ($exist:path eq "/new") then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <forward url="{ $exist:controller }/list-items.html">
-      <add-parameter name="new" value="true" />
-    </forward>
+    <forward url="{ $exist:controller }/list-items.html"><add-parameter name="new" value="true" /></forward>
     <view><forward url="{ $exist:controller }/modules/view.xql" /></view>
   </dispatch>
 else if ($exist:path eq "/citations") then
@@ -119,16 +97,16 @@ else if ($exist:path eq "/abbreviations") then
 else if (ends-with($exist:resource, ".pdf")) then
   let $id := substring-before($exist:resource, ".pdf")
   return <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-      <forward url="{ $exist:controller }/modules/tei2fo.xql">
-        { $login("org.exist.login", (), false()) }
-        <set-header name="Cache-Control" value="no-cache" />
-        <add-parameter name="id" value="{ $id }" />
-      </forward>
-      <error-handler>
-        <forward method="get" url="{ $exist:controller }/error-page.html" />
-        <forward url="{ $exist:controller }/modules/view.xql" />
-      </error-handler>
-    </dispatch>
+    <forward url="{ $exist:controller }/modules/tei2fo.xql">
+      { $login("org.exist.login", (), false()) }
+      <set-header name="Cache-Control" value="no-cache" />
+      <add-parameter name="id" value="{ $id }" />
+    </forward>
+    <error-handler>
+      <forward method="get" url="{ $exist:controller }/error-page.html" />
+      <forward url="{ $exist:controller }/modules/view.xql" />
+    </error-handler>
+  </dispatch>
 else if (contains($exist:path, "lemma/")) then
   local:viewxql($exist:resource)
 
@@ -136,90 +114,65 @@ else if (contains($exist:path, "lemma/")) then
 else if (matches($exist:path, "L[a-z0-9]{32}")) then
   let $accepts := request:get-header("Accept")
   return if (
-      contains($accepts, "rdf")
-    ) (: if RDF is requested the request is forwarded to FUSEKI with DESCRIBE for the requested resource
+    contains($accepts, "rdf")
+  ) (: if RDF is requested the request is forwarded to FUSEKI with DESCRIBE for the requested resource
     The request header of the original request should be also passed, so that if a specific format is requested from Fuseki,
     this should be returned
 
     this covers all request to entities for rdf and rdf formats
  :) then
-      let $query := $config:sparqlPrefixes || "DESCRIBE <" || $exist:path || ">"
-      return <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-          <forward
-            absolute="yes"
-            url="{ concat("/fuseki/dillmann/query?query=", $query) }"
-          >
-            <set-header name="Cache-Control" value="no-cache" />
-            {
-              let $headerslist := request:get-header-names()
-              for $header in $headerslist
-              return <set-header
-                  name="{ $header }"
-                  value="{ request:get-header($header) }" />
-            }
-          </forward>
-        </dispatch>
-    else if (
-      contains($accepts, "html")
-    ) then (: if html is requested for a request to a concept URI, this should resolve to the correct HTML page, with the correct anchor where possible :) (
-      if (
-        matches($exist:path, "L[a-z0-9]{32}_entry")
-      ) (: lexicog:Entry should redirect to main page :) then (
-        local:viewxql(replace($exist:resource, "_entry", ""))
-      ) else if (
-        matches($exist:path, "L[a-z0-9]{32}_sense")
-      ) (: ontolex:LexicalSense :) then (
-        let $lastid := analyze-string(
-          $exist:resource,
-          "(_sense_)([A-Za-z0-9]+)"
+    let $query := $config:sparqlPrefixes || "DESCRIBE <" || $exist:path || ">"
+    return <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+      <forward absolute="yes" url="{ concat("/fuseki/dillmann/query?query=", $query) }">
+        <set-header name="Cache-Control" value="no-cache" />
+        {
+          let $headerslist := request:get-header-names()
+          for $header in $headerslist
+          return <set-header name="{ $header }" value="{ request:get-header($header) }" />
+        }
+      </forward>
+    </dispatch>
+  else if (
+    contains($accepts, "html")
+  ) then (: if html is requested for a request to a concept URI, this should resolve to the correct HTML page, with the correct anchor where possible :) (
+    if (matches($exist:path, "L[a-z0-9]{32}_entry")) (: lexicog:Entry should redirect to main page :) then (
+      local:viewxql(replace($exist:resource, "_entry", ""))
+    ) else if (matches($exist:path, "L[a-z0-9]{32}_sense")) (: ontolex:LexicalSense :) then (
+      let $lastid := analyze-string($exist:resource, "(_sense_)([A-Za-z0-9]+)")
+      return local:forward(
+        concat(
+          "/Dillmann/lemma/",
+          substring-before($exist:resource, "_"),
+          "#",
+          $lastid/*:match[last()]/*:group[@nr = "2"]/text()
         )
+      )
+    ) else if (
+      matches($exist:path, "L[a-z0-9]{32}_form")
+    ) (: ontolex:Form should redirect to the lemma in the HTML :) then (
+      local:forward(concat("/Dillmann/lemma/", substring-before($exist:resource, "_"), "#lemma"))
+    ) else if (
+      matches($exist:path, "L[a-z0-9]{32}_comp")
+    ) (: lexicog:LexicographicComponent should check again for sense or redirect to entry :) then (
+      if (matches($exist:path, "_sense")) (: check again for sense or redirect to entry :) then (
+        let $lastid := analyze-string($exist:resource, "(_sense_)([A-Za-z0-9]+)")
         return local:forward(
-            concat(
-              "/Dillmann/lemma/",
-              substring-before($exist:resource, "_"),
-              "#",
-              $lastid/*:match[last()]/*:group[@nr = "2"]/text()
-            )
-          )
-      ) else if (
-        matches($exist:path, "L[a-z0-9]{32}_form")
-      ) (: ontolex:Form should redirect to the lemma in the HTML :) then (
-        local:forward(
           concat(
             "/Dillmann/lemma/",
             substring-before($exist:resource, "_"),
-            "#lemma"
+            "#",
+            $lastid/*:match[last()]/*:group[@nr = "2"]/text()
           )
         )
-      ) else if (
-        matches($exist:path, "L[a-z0-9]{32}_comp")
-      ) (: lexicog:LexicographicComponent should check again for sense or redirect to entry :) then (
-        if (
-          matches($exist:path, "_sense")
-        ) (: check again for sense or redirect to entry :) then (
-          let $lastid := analyze-string(
-            $exist:resource,
-            "(_sense_)([A-Za-z0-9]+)"
-          )
-          return local:forward(
-              concat(
-                "/Dillmann/lemma/",
-                substring-before($exist:resource, "_"),
-                "#",
-                $lastid/*:match[last()]/*:group[@nr = "2"]/text()
-              )
-            )
-        ) (: if it is not a sense component, then is a  lexicog:LexicographicComponent , redirect to main HTML page :) else (
-          local:forward(
-            concat("/Dillmann/lemma/", substring-before($exist:resource, "_"))
-          )
-        )
-      ) else (
+      ) (: if it is not a sense component, then is a  lexicog:LexicographicComponent , redirect to main HTML page :) else (
+        local:forward(concat("/Dillmann/lemma/", substring-before($exist:resource, "_")))
       )
     ) else (
-      (: this should cover the basic ontolex:LexicalEntry, with a pattern which simply looks https://betamasaheft.eu/Dillmann/[lemmaid] :)
-      local:viewxql($exist:resource)
     )
+  ) else (
+    (: this should cover the basic ontolex:LexicalEntry, with a pattern which simply looks https://betamasaheft.eu/Dillmann/[lemmaid] :)
+    local:viewxql($exist:resource)
+  )
 else if (contains($exist:path, "user/")) then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     <forward url="{ $exist:controller }/user.html">
@@ -279,6 +232,4 @@ else if (contains($exist:path, "edit/edit.xq")) then
 
 else
   (: everything else is passed through :)
-  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <cache-control cache="yes" />
-  </dispatch>
+  <dispatch xmlns="http://exist.sourceforge.net/NS/exist"><cache-control cache="yes" /></dispatch>

@@ -1,98 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/home.html" data-template-at="content">
-  <div data-template="app:logging"/>
-    <!--<div class="alert alert-warning">Between 26th and 29th March we will update the Beta maṣāḥǝft website with a new look
+<div
+  xmlns="http://www.w3.org/1999/xhtml"
+  data-template="templates:surround"
+  data-template-with="templates/home.html"
+  data-template-at="content"
+>
+  <div data-template="app:logging" />
+  <!--<div class="alert alert-warning">Between 26th and 29th March we will update the Beta maṣāḥǝft website with a new look
         and several other changes in the application logic.
         Although this service will not change, please be aware that in those days the application might not work at all.</div>-->
-    <div class="w3-half">
-
-        <div class="w3-container">
-            <form action="" class="w3-container" id="searchForm">
-                <div class="w3-row">
-                    
-                        <span data-template="app:queryinput"/>
-<div class="w3-bar w3-third">
-    <span class="kb w3-bar-item w3-button w3-pale-green  w3-hide-medium  w3-hide-small">
-                                <i class="fa fa-keyboard-o" aria-hidden="true"/>
-                            </span>
-    <span class="w3-bar-item w3-button w3-gray w3-hide-medium  w3-hide-small" onclick="document.getElementById('searchHelp').style.display='block'">
-                                <i class="fa fa-info-circle" aria-hidden="true"/>
-                            </span>
-    <span class="w3-bar-item w3-button w3-pale-gray w3-hide-medium  w3-hide-small" id="erweitertesuche">
-                                    <i class="fa fa-plus" aria-hidden="true"/>
-                         </span>
-
-                        <button id="f-btn-search" type="submit" class="w3-bar-item w3-button w3-green">
-                                <i class="fa fa-search" aria-hidden="true"/>
-                            </button>
-                        
-                    
-                    </div>
-                     </div>
-                <div class="w3-row">
-                    <div class="w3-half">
-                <span class="w3-container">
-                    <label>Search mode</label>
-                    <select name="mode" class="w3-select w3-border" data-template="templates:form-control" id="searchmode">
-                        <option value="none" selected="selected">Normal, with homophones</option>
-                        <option value="any">Any of the search terms</option>
-                        <option value="all">All Search Terms</option>
-                        <option value="phrase">Phrase Search</option>
-                        <option value="near-ordered">Proximity Search (Ordered)</option>
-                        <option value="near-unordered">Proximity Search (Unordered)</option>
-                        <option value="fuzzy">Fuzzy Search</option>
-                        <option value="wildcard">Wildcard Search</option>
-                        <option value="regex">Regex Search</option>
-                    </select>
-
-                </span>
-                    </div>
-                    <div class="w3-half">
-                    <span class="w3-container">
-                        <label>Search only in citations</label>
-                            <br/>
-                        <label class="switch">
-                            <input type="checkbox" value="ref" name="ref" id="citationsOnly"/>
-                            <div class="slider round" data-toggle="tooltip" title="Search only ref elements."/>
-                        </label>
-                </span>
-                    </div>
-                    </div>
-            </form>
-
-
-        </div>
-        <div class="w3-container">
-        <div class="w3-half">
-        <div data-template="app:gotocolumn"/>
-        </div>
-        <div class="w3-half">
-
-            <div data-template="app:newentry"/>
-        </div>
-        </div>
+  <div class="w3-half">
     <div class="w3-container">
-        <div data-template="app:query">
-            <div>
-                <a href="." class="nav-link" data-template="app:copy-params"/>
-                <div data-template="app:hit-count"/>
-                <div class="hidden-xs">
-                    <ul class="pagination" data-template="app:paginate" data-template-per-page="20" data-template-max-pages="9" data-template-min-hits="21"/>
-                </div>
+      <form action="" class="w3-container" id="searchForm">
+        <div class="w3-row">
+          <span data-template="app:queryinput" />
+          <div class="w3-bar w3-third">
+            <span class="kb w3-bar-item w3-button w3-pale-green w3-hide-medium w3-hide-small">
+              <i class="fa fa-keyboard-o" aria-hidden="true" />
+            </span>
+            <span
+              class="w3-bar-item w3-button w3-gray w3-hide-medium w3-hide-small"
+              onclick="document.getElementById('searchHelp').style.display = 'block'"
+            >
+              <i class="fa fa-info-circle" aria-hidden="true" />
+            </span>
+            <span class="w3-bar-item w3-button w3-pale-gray w3-hide-medium w3-hide-small" id="erweitertesuche">
+              <i class="fa fa-plus" aria-hidden="true" />
+            </span>
 
-                <!-- query results -->
-                <div data-template="app:fullRes" data-template-per-page="20" id="results" class="w3-container w3-padding"/>
-
-                <!-- bottom pagination for larger device -->
-                <div class="hidden-xs">
-                    <ul class="pagination" data-template="app:paginate" data-template-per-page="20" data-template-max-pages="9" data-template-min-hits="21"/>
-                </div>
-            </div>
+            <button id="f-btn-search" type="submit" class="w3-bar-item w3-button w3-green">
+              <i class="fa fa-search" aria-hidden="true" />
+            </button>
+          </div>
         </div>
+        <div class="w3-row">
+          <div class="w3-half">
+            <span class="w3-container">
+              <label>Search mode</label>
+              <select name="mode" class="w3-select w3-border" data-template="templates:form-control" id="searchmode">
+                <option value="none" selected="selected">Normal, with homophones</option>
+                <option value="any">Any of the search terms</option>
+                <option value="all">All Search Terms</option>
+                <option value="phrase">Phrase Search</option>
+                <option value="near-ordered">Proximity Search (Ordered)</option>
+                <option value="near-unordered">Proximity Search (Unordered)</option>
+                <option value="fuzzy">Fuzzy Search</option>
+                <option value="wildcard">Wildcard Search</option>
+                <option value="regex">Regex Search</option>
+              </select>
+            </span>
+          </div>
+          <div class="w3-half">
+            <span class="w3-container">
+              <label>Search only in citations</label>
+              <br />
+              <label class="switch">
+                <input type="checkbox" value="ref" name="ref" id="citationsOnly" />
+                <div class="slider round" data-toggle="tooltip" title="Search only ref elements." />
+              </label>
+            </span>
+          </div>
+        </div>
+      </form>
     </div>
+    <div class="w3-container">
+      <div class="w3-half">
+        <div data-template="app:gotocolumn" />
+      </div>
+      <div class="w3-half">
+        <div data-template="app:newentry" />
+      </div>
+    </div>
+    <div class="w3-container">
+      <div data-template="app:query">
+        <div>
+          <a href="." class="nav-link" data-template="app:copy-params" />
+          <div data-template="app:hit-count" />
+          <div class="hidden-xs">
+            <ul
+              class="pagination"
+              data-template="app:paginate"
+              data-template-per-page="20"
+              data-template-max-pages="9"
+              data-template-min-hits="21"
+            />
+          </div>
 
-</div>
-    <div class="w3-half">
-        <div data-template="app:showitem"/>
+          <!-- query results -->
+          <div data-template="app:fullRes" data-template-per-page="20" id="results" class="w3-container w3-padding" />
+
+          <!-- bottom pagination for larger device -->
+          <div class="hidden-xs">
+            <ul
+              class="pagination"
+              data-template="app:paginate"
+              data-template-per-page="20"
+              data-template-max-pages="9"
+              data-template-min-hits="21"
+            />
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="w3-half">
+    <div data-template="app:showitem" />
+  </div>
 </div>

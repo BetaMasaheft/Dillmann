@@ -14,46 +14,46 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-import './read-only'
+import "./commands";
+import "./read-only";
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on("uncaught:exception", (err, runnable) => {
   // we expect a 3rd party library error with message 'trimmed is undefined'
   // and don't want to fail the test so we return false
   // see #4
-  if (err.message.includes('trimmed is undefined')) {
-    return false
+  if (err.message.includes("trimmed is undefined")) {
+    return false;
   }
-})
+});
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on("uncaught:exception", (err, runnable) => {
   // we expect a 3rd party library error with message 'trimmed is undefined'
   // and don't want to fail the test so we return false
   // see #4
-  if (err.message.includes('activation element [object NodeList] is missing')) {
-    return false
+  if (err.message.includes("activation element [object NodeList] is missing")) {
+    return false;
   }
-})
+});
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on("uncaught:exception", (err, runnable) => {
   // we expect a 3rd party library error with message 'trimmed is undefined'
   // and don't want to fail the test so we return false
   // see #4
-  if (err.message.includes('Cannot read properties of undefined ')) {
-    return false
+  if (err.message.includes("Cannot read properties of undefined ")) {
+    return false;
   }
-})
+});
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on("uncaught:exception", (err, runnable) => {
   // Ignore highlightWithinTextarea errors - this is a 3rd party library issue
-  if (err.message.includes('highlightWithinTextarea is not a function')) {
-    return false
+  if (err.message.includes("highlightWithinTextarea is not a function")) {
+    return false;
   }
-})
+});
 
 // Ignore generic cross-origin script errors (e.g., “Script error.”)
-Cypress.on('uncaught:exception', (err) => {
-  if (err.message.includes('Script error') || err.message.includes('cross origin script')) {
+Cypress.on("uncaught:exception", (err) => {
+  if (err.message.includes("Script error") || err.message.includes("cross origin script")) {
     return false;
   }
 });
@@ -64,19 +64,21 @@ Cypress.on('uncaught:exception', (err) => {
 // })
 beforeEach(() => {
   // only silence GA pings, not our real API
-  cy.intercept('POST', 'https://www.google-analytics.com/**', (req) => {
-    req.reply({ statusCode: 204, body: '' });
+  cy.intercept("POST", "https://www.google-analytics.com/**", (req) => {
+    req.reply({ statusCode: 204, body: "" });
   });
 
   // Intercept Zotero API requests to clean up logs
-  cy.intercept({
-    method: 'GET',
-    url: 'https://api.zotero.org/groups/358366/**'
-  }, (req) => {
-    req.continue();
-  }).as('zotero-api');
+  cy.intercept(
+    {
+      method: "GET",
+      url: "https://api.zotero.org/groups/358366/**",
+    },
+    (req) => {
+      req.continue();
+    },
+  ).as("zotero-api");
 });
-
 
 // 2a) Stub font files to prevent sanitizer errors
 // beforeEach(() => {
@@ -114,7 +116,6 @@ beforeEach(() => {
 //     { log: false }
 //   );
 // });
-
 
 // Globally intercept all requests to /Dillmann/** and proxy them to /exist/apps/gez-en/**
 // beforeEach(() => {

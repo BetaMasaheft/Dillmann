@@ -9,7 +9,7 @@
  */
 
 /** POST paths that are known non-write endpoints. Currently none. */
-export const ALLOWED_POST_PATHS = []
+export const ALLOWED_POST_PATHS = [];
 
 /**
  * eXist login-module request params. The #login-nav form has no action
@@ -17,61 +17,60 @@ export const ALLOWED_POST_PATHS = []
  * recognised by their body, which must contain nothing but these params.
  * (An empty password value is fine: the dev stack logs in admin without one.)
  */
-const SESSION_PARAM_NAMES = ['user', 'password', 'duration', 'logout']
+const SESSION_PARAM_NAMES = ["user", "password", "duration", "logout"];
 
 /** Hosts whose data this policy protects; read-only.js adds the baseUrl host. */
-export const DEFAULT_APP_HOSTNAMES = ['betamasaheft.eu']
+export const DEFAULT_APP_HOSTNAMES = ["betamasaheft.eu"];
 
-const WRITE_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE']
+const WRITE_METHODS = ["POST", "PUT", "PATCH", "DELETE"];
 
 // Relative URLs (e.g. from cy.request) resolve against this sentinel origin
 // and are treated as app requests.
-const RELATIVE_URL_BASE = 'http://app.invalid'
+const RELATIVE_URL_BASE = "http://app.invalid";
 
-function bodyParamNames (body) {
-  if (typeof body === 'string' && body !== '') {
-    return [...new URLSearchParams(body).keys()]
+function bodyParamNames(body) {
+  if (typeof body === "string" && body !== "") {
+    return [...new URLSearchParams(body).keys()];
   }
-  if (body && typeof body === 'object') {
-    return Object.keys(body)
+  if (body && typeof body === "object") {
+    return Object.keys(body);
   }
-  return []
+  return [];
 }
 
-export function isSessionPost (body) {
-  const names = bodyParamNames(body)
+export function isSessionPost(body) {
+  const names = bodyParamNames(body);
 
   if (names.length === 0 || !names.every((name) => SESSION_PARAM_NAMES.includes(name))) {
-    return false
+    return false;
   }
 
-  return names.includes('logout') ||
-    (names.includes('user') && names.includes('password'))
+  return names.includes("logout") || (names.includes("user") && names.includes("password"));
 }
 
-export function isDataWriteRequest (req, appHostnames = DEFAULT_APP_HOSTNAMES) {
-  const method = req.method.toUpperCase()
+export function isDataWriteRequest(req, appHostnames = DEFAULT_APP_HOSTNAMES) {
+  const method = req.method.toUpperCase();
 
   if (!WRITE_METHODS.includes(method)) {
-    return false
+    return false;
   }
 
-  const url = new URL(req.url, RELATIVE_URL_BASE)
-  const isAppHost = url.hostname === 'app.invalid' ||
-    appHostnames.some((hostname) =>
-      url.hostname === hostname || url.hostname.endsWith('.' + hostname))
+  const url = new URL(req.url, RELATIVE_URL_BASE);
+  const isAppHost =
+    url.hostname === "app.invalid" ||
+    appHostnames.some((hostname) => url.hostname === hostname || url.hostname.endsWith("." + hostname));
 
   if (!isAppHost) {
-    return false
+    return false;
   }
 
-  if (method !== 'POST') {
-    return true
+  if (method !== "POST") {
+    return true;
   }
 
   if (ALLOWED_POST_PATHS.some((pattern) => pattern.test(url.pathname))) {
-    return false
+    return false;
   }
 
-  return !isSessionPost(req.body)
+  return !isSessionPost(req.body);
 }

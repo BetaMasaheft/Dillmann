@@ -16,25 +16,23 @@ let $morph :=
   return string($m/@name) || " " || $m/text()
 let $tokens := if ($annotation//t:fs[@type = "tokens"]) then (
   for $token in $annotation//t:fs[@type = "tokens"]/t:f[@name = "lit"]
-  let $tokenURI := string($annotation/@xml:id) ||
-    "_" ||
-    string($token/position())
+  let $tokenURI := string($annotation/@xml:id) || "_" || string($token/position())
   let $morphtok :=
     for $m in $token//t:fs[@type = "morpho"]/t:f[not(@name = "lex")]
     return string($m/@name) || " " || $m/text()
   return $annoID ||
-      " traces:hasToken traces:" ||
-      $tokenURI ||
-      " .
+    " traces:hasToken traces:" ||
+    $tokenURI ||
+    " .
         traces:" ||
-      $tokenURI ||
-      ' a traces:Token ;
+    $tokenURI ||
+    ' a traces:Token ;
         rdfs:comment "' ||
-      string-join($morphtok, " - ") ||
-      '" ;
+    string-join($morphtok, " - ") ||
+    '" ;
         rdfs:seeAlso dillmann:' ||
-      substring-before($token//t:f[@name = "lex"]/text(), "--") ||
-      " ."
+    substring-before($token//t:f[@name = "lex"]/text(), "--") ||
+    " ."
 ) else
   $annoID ||
     ' rdfs:comment "' ||

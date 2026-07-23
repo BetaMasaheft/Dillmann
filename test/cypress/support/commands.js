@@ -28,31 +28,27 @@
 // action attribute (posts to the page itself); the dev stack accepts admin
 // with an empty password, so typing the password is optional.
 // see BetaMasaheft/Dillmann/issues/387 for the hover workaround
-Cypress.Commands.add('login', (username = 'admin', password = '') => {
-  cy.get('#logging')
-  cy.get('.w3-dropdown-content')
-    .invoke('removeAttr', 'class')
-  cy.get('input[name="user"]')
-    .type(username)
-  if (password !== '') {
-    cy.get('input[name="password"]').type(password)
+Cypress.Commands.add("login", (username = "admin", password = "") => {
+  cy.get("#logging");
+  cy.get(".w3-dropdown-content").invoke("removeAttr", "class");
+  cy.get('input[name="user"]').type(username);
+  if (password !== "") {
+    cy.get('input[name="password"]').type(password);
   }
-  cy.get('#login-nav > .w3-button')
-    .click()
-  cy.get('#about', { timeout: 10000 })
-    .should('contain', `Hi ${username}!`)
-})
+  cy.get("#login-nav > .w3-button").click();
+  cy.get("#about", { timeout: 10000 }).should("contain", `Hi ${username}!`);
+});
 
 // TODO(DP): needs tuning see login.cy.js
-Cypress.Commands.add('loginByApi', (username, password) => {
+Cypress.Commands.add("loginByApi", (username, password) => {
   cy.request({
-    method: 'POST',
-    url: 'user/',
+    method: "POST",
+    url: "user/",
     form: true,
     body: {
       username,
-      password
-    }
+      password,
+    },
   }).then((resp) => {
     expect(resp.status).to.eq(200);
   });

@@ -1,9 +1,8 @@
 # Dillmann Lexicon eXist-db app
 
-This application, built in eXist-db, uses basic techniques to display data from the digitization process of the *Lexicon Linguae Aethiopicae* of Augustus Dillmann. It is deployed at the moment only for registered users with the relevant data at the University of Hamburg. The application assumes a local collection [DillmannData](https://github.com/BetaMasaheft/DillmannData) where the files are stored. Data is encoded in TEI using the Dictionary module.
+This application, built in eXist-db, uses basic techniques to display data from the digitization process of the _Lexicon Linguae Aethiopicae_ of Augustus Dillmann. It is deployed at the moment only for registered users with the relevant data at the University of Hamburg. The application assumes a local collection [DillmannData](https://github.com/BetaMasaheft/DillmannData) where the files are stored. Data is encoded in TEI using the Dictionary module.
 
 This dataset has the following doi:10.25592/uhhfdm.130
-
 
 ## Requirements
 
@@ -12,39 +11,33 @@ This dataset has the following doi:10.25592/uhhfdm.130
 - [Node.js](https://nodejs.org/) (for testing)
 - [Bats](https://bats-core.readthedocs.io/en/stable/) (for testing)
 
-
 ## Features
-
 
 ### Preprocessing
 
 Heavy preprocessing of data has been carried out with regex in oxygen to encode the text starting from a txt version provided by Andreas Ellwardt. The data is being processed within this application to improve the structure and the reusability of the large amount of information provided by this work. all parts of speech, abbreviations, citations, translations, notes, nesting of meaning, column breaks, internal references etc., have been marked up in TEI XML and the app relies on that markup as a structure.
 
-
 ### Search
 
-* homophones of the ethiopic language are searched as a standard if not otherwise specified. 
-* modes as per eXist-db sample app are also provided, with code from the demo application of eXist-db only slightly modified.
-
+- homophones of the ethiopic language are searched as a standard if not otherwise specified.
+- modes as per eXist-db sample app are also provided, with code from the demo application of eXist-db only slightly modified.
 
 ### XQuery
 
-* the functions allow a group of editors to edit records with a simplified syntax in simple text, with no editor, with two XSLT transformations. The form contains also the guidelines for the editing
-* before submitting the new file this is validated against the schema.
-* columns are computed from the data and linked to the pdf version available [here](http://www.tau.ac.il/~hacohen/Lexicon.html)
-
+- the functions allow a group of editors to edit records with a simplified syntax in simple text, with no editor, with two XSLT transformations. The form contains also the guidelines for the editing
+- before submitting the new file this is validated against the schema.
+- columns are computed from the data and linked to the pdf version available [here](http://www.tau.ac.il/~hacohen/Lexicon.html)
 
 ### jquery
 
-* The bibliography is pulled from [Zotero EthioStudies group library](https://www.zotero.org/groups/358366/ethiostudies).
-* The queries to Beta Masaheft for related passages and text citations are also done with jquery. Each citation in the format John 1.1 is linked in a popup to the exact passage, if this is available in Beta Masaheft, otherwise it is linked to the record of the edition.
+- The bibliography is pulled from [Zotero EthioStudies group library](https://www.zotero.org/groups/358366/ethiostudies).
+- The queries to Beta Masaheft for related passages and text citations are also done with jquery. Each citation in the format John 1.1 is linked in a popup to the exact passage, if this is available in Beta Masaheft, otherwise it is linked to the record of the edition.
 
 ### RESTXQ
 
-* api search of text is also set for use
-* list from api can be obtained
-* records can be called by id
-
+- api search of text is also set for use
+- list from api can be obtained
+- records can be called by id
 
 ## Deployment
 
@@ -69,7 +62,6 @@ sudo docker compose up -d --build
 ```
 
 For more details, see the `docker-compose.yml` file in the repository.
-
 
 ## Development and testing
 

@@ -14,10 +14,7 @@ import module namespace app = "http://betamasaheft.aai.uni-hamburg.de:8080/exist
 declare option output:method "html5";
 declare option output:media-type "text/html";
 
-let $config := map {
-  $templates:CONFIG_APP_ROOT: $config:app-root,
-  $templates:CONFIG_STOP_ON_ERROR: true()
-}
+let $config := map {$templates:CONFIG_APP_ROOT: $config:app-root, $templates:CONFIG_STOP_ON_ERROR: true()}
 (:
  : We have to provide a lookup function to templates:apply to help it
  : find functions in the imported application modules. The templates

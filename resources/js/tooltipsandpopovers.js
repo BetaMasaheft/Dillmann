@@ -1,11 +1,11 @@
 $(document).ready(function () {
-    $('#completeList').dataTable();
+  $("#completeList").dataTable();
 });
 $(document).ready(function () {
-    $('[data-toggle="popover"]').popover({
-        html: true
-    });
+  $('[data-toggle="popover"]').popover({
+    html: true,
+  });
 });
 $(document).ready(function () {
-    $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 });

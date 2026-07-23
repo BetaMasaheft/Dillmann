@@ -10,70 +10,71 @@
  * disposable local stack (docker compose) — never against production.
  */
 
-import { isDataWriteRequest, DEFAULT_APP_HOSTNAMES } from './read-only-policy.js'
+import { isDataWriteRequest, DEFAULT_APP_HOSTNAMES } from "./read-only-policy.js";
 
-const allowWrites = () => Boolean(Cypress.env('ALLOW_WRITES'))
+const allowWrites = () => Boolean(Cypress.env("ALLOW_WRITES"));
 
-let readOnlyViolations = []
+let readOnlyViolations = [];
 
-function getAppHostnames () {
-  const hostnames = [...DEFAULT_APP_HOSTNAMES]
-  const baseUrl = Cypress.config('baseUrl')
+function getAppHostnames() {
+  const hostnames = [...DEFAULT_APP_HOSTNAMES];
+  const baseUrl = Cypress.config("baseUrl");
 
   if (baseUrl) {
-    const baseHostname = new URL(baseUrl).hostname
+    const baseHostname = new URL(baseUrl).hostname;
     if (!hostnames.includes(baseHostname)) {
-      hostnames.push(baseHostname)
+      hostnames.push(baseHostname);
     }
   }
 
-  return hostnames
+  return hostnames;
 }
 
-Cypress.Commands.overwrite('request', (originalFn, ...args) => {
-  const options = typeof args[0] === 'object' && args[0] !== null
-    ? args[0]
-    : args.length >= 2
-      ? { method: args[0], url: args[1], body: args[2] }
-      : { url: args[0] }
+Cypress.Commands.overwrite("request", (originalFn, ...args) => {
+  const options =
+    typeof args[0] === "object" && args[0] !== null
+      ? args[0]
+      : args.length >= 2
+        ? { method: args[0], url: args[1], body: args[2] }
+        : { url: args[0] };
 
-  const method = String(options.method || 'GET')
-  const url = String(options.url || '')
+  const method = String(options.method || "GET");
+  const url = String(options.url || "");
 
   if (!allowWrites() && isDataWriteRequest({ method, url, body: options.body }, getAppHostnames())) {
-    throw new Error(`[read-only E2E] blocked cy.request ${method.toUpperCase()} ${url}`)
+    throw new Error(`[read-only E2E] blocked cy.request ${method.toUpperCase()} ${url}`);
   }
 
-  return originalFn(...args)
-})
+  return originalFn(...args);
+});
 
 beforeEach(() => {
-  readOnlyViolations = []
+  readOnlyViolations = [];
 
   if (allowWrites()) {
-    Cypress.log({ name: 'read-only', message: 'guard DISABLED via ALLOW_WRITES — writes will persist' })
-    return
+    Cypress.log({ name: "read-only", message: "guard DISABLED via ALLOW_WRITES — writes will persist" });
+    return;
   }
 
-  const appHostnames = getAppHostnames()
+  const appHostnames = getAppHostnames();
 
   cy.intercept({ middleware: true }, (req) => {
     if (!isDataWriteRequest(req, appHostnames)) {
-      return
+      return;
     }
 
-    const message = `[read-only E2E] blocked ${req.method} ${req.url}`
-    readOnlyViolations.push(message)
-    req.reply({ statusCode: 503, body: message })
-  })
-})
+    const message = `[read-only E2E] blocked ${req.method} ${req.url}`;
+    readOnlyViolations.push(message);
+    req.reply({ statusCode: 503, body: message });
+  });
+});
 
 afterEach(() => {
   if (readOnlyViolations.length === 0) {
-    return
+    return;
   }
 
-  const message = readOnlyViolations.join('; ')
-  readOnlyViolations = []
-  throw new Error(message)
-})
+  const message = readOnlyViolations.join("; ");
+  readOnlyViolations = [];
+  throw new Error(message);
+});
