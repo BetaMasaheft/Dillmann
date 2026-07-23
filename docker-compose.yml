@@ -26,13 +26,27 @@ services:
     build:
       context: .
       args:
-        EXIST_VERSION: release
+        EXIST_VERSION: ${EXIST_VERSION:-release}
     container_name: exist
     ports:
       - "8080:8080"
     environment:
       - EXISTDB_ADMIN_PASSWORD=admin
     healthcheck:
+      test:
+        [
+          "CMD",
+          "java",
+          "org.exist.start.Main",
+          "client",
+          "--no-gui",
+          "--user",
+          "guest",
+          "--password",
+          "guest",
+          "--xpath",
+          "system:get-version()",
+        ]
       interval: 10s
       timeout: 7s
       retries: 3
