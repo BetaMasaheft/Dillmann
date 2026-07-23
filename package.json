@@ -7,7 +7,10 @@
   },
   "scripts": {
     "test": "cypress run",
-    "deploy:dev": "ant && EXISTDB_SERVER=http://localhost:8080 EXISTDB_USER=admin EXISTDB_PASS=admin xst package install local-files build/*.xar"
+    "deploy:dev": "ant && EXISTDB_SERVER=http://localhost:8080 EXISTDB_USER=admin EXISTDB_PASS=admin xst package install local-files build/*.xar",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -25,8 +28,15 @@
   },
   "devDependencies": {
     "@existdb/xst": "^4.1.2",
-    "cypress": "^15.18.1",
-    "prettier": "^3.9.5",
+    "cypress": "^15.19.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.2.0",
+    "prettier": "^3.9.6",
     "prettier-plugin-xquery": "^1.6.3"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ]
   }
 }

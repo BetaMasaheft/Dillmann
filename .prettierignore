@@ -1,0 +1,17 @@
+node_modules/
+package-lock.json
+build/
+
+# vendored third-party libraries - not ours to reformat
+resources/font-awesome-4.7.0/
+resources/**/*.min.js
+resources/**/*.min.css
+resources/css/dataTables.bootstrap.css
+
+# pre-existing syntax errors prettier can't parse - not ours to silently
+# rewrite here
+tutorial.html
+tutorialextended.html
+# entirely dead code, wrapped in a hand-escaped (\: ... :\) outer comment -
+# superseded by edit/save-new-entity.xql, never executed
+edit/save-new.xq
