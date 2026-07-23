@@ -10,3 +10,17 @@ updates:
     actions:
       patterns:
       - "*"
+
+- package-ecosystem: "npm"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  commit-message:
+    prefix: "chore(deps):"
+  groups:
+    npm-dependencies:
+      patterns:
+      - "*"
+      update-types:
+      - "minor"
+      - "patch"

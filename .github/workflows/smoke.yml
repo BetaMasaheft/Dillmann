@@ -1,0 +1,37 @@
+name: Install smoke
+
+# Pure install smoke: does this package autodeploy cleanly into a bare
+# eXist? The full stack + Cypress integration lane lives in build.yml.
+#
+# DillmannData isn't published to the registry, so a sibling job fetches
+# its latest release xar and hands it over as an artifact. functx and
+# html-templating are declared expath-pkg.xml dependencies - xst resolves
+# those against the registry automatically on install, no extra-packages
+# entry needed (verified: both installed cleanly with zero explicit step).
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  fetch-dillmann-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download DillmannData's latest release xar
+        run: |
+          mkdir extra-xars
+          curl -sfL -o extra-xars/01-DillmannData.xar \
+            https://github.com/BetaMasaheft/DillmannData/releases/latest/download/dill-data.xar
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dillmann-extra-xars
+          path: extra-xars/*.xar
+          retention-days: 1
+
+  smoke:
+    needs: fetch-dillmann-data
+    uses: BetaMasaheft/.github/.github/workflows/install-smoke.yml@main
+    with:
+      extra-xars-artifact: dillmann-extra-xars
