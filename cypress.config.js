@@ -5,13 +5,13 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: 'http://localhost/Dillmann/',
+    baseUrl: "http://localhost/Dillmann/",
     trashAssetsBeforeRuns: true,
-    supportFile: 'test/cypress/support/e2e.js', 
-    specPattern: 'test/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
-    screenshotsFolder: 'test/cypress/screenshots',
-    videosFolder: 'test/cypress/videos',
-    fixturesFolder: 'test/cypress/fixtures',
-    downloadsFolder: 'test/cypress/downloads'
+    supportFile: "test/cypress/support/e2e.js",
+    specPattern: "test/cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
+    screenshotsFolder: "test/cypress/screenshots",
+    videosFolder: "test/cypress/videos",
+    fixturesFolder: "test/cypress/fixtures",
+    downloadsFolder: "test/cypress/downloads",
   },
 });

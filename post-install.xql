@@ -14,10 +14,8 @@ declare variable $dir external;
 declare variable $target external;
 
 (: Create EditorBackups collection if it doesn't exist :)
-let $backup-collection := concat($target, '/EditorBackups')
-return
-    if (not(xmldb:collection-available($backup-collection))) then
-        xmldb:create-collection($target, 'EditorBackups')
-    else
-        ()
-
+let $backup-collection := concat($target, "/EditorBackups")
+return if (not(xmldb:collection-available($backup-collection))) then
+  xmldb:create-collection($target, "EditorBackups")
+else (
+)

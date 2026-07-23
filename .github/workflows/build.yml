@@ -15,12 +15,12 @@ jobs:
       EXIST_VERSION: ${{ matrix.exist-version }}
     continue-on-error: ${{ matrix.exist-version == 'latest' }}
     strategy:
-       fail-fast: false
-       matrix:
-         # release = blocking; latest = early warning for upstream eXist
-         # breakage, informational only (same pattern as BetMasApi's old
-         # 6.4.1/7.0.0-beta3 matrix)
-         exist-version: [release, latest]
+      fail-fast: false
+      matrix:
+        # release = blocking; latest = early warning for upstream eXist
+        # breakage, informational only (same pattern as BetMasApi's old
+        # 6.4.1/7.0.0-beta3 matrix)
+        exist-version: [release, latest]
 
     steps:
       # Checkout code
@@ -46,8 +46,8 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v5
         with:
-          distribution: 'temurin'
-          java-version: '21'
+          distribution: "temurin"
+          java-version: "21"
       - run: ant
 
       # Build Package in Container

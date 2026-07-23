@@ -8,15 +8,15 @@ import module namespace config = "http://betamasaheft.aai.uni-hamburg.de:8080/ex
 (: https://www.w3.org/2019/09/lexicog/ :)
 
 (: takes 1 parent URI and a sequence of nested senses :)
-declare function local:sense ($parentURI as xs:string, $sense) {
+declare function local:sense($parentURI as xs:string, $sense) {
   let $parentURI_comp := $parentURI || "_comp"
   let $nested :=
     for $s in $sense
     let $senseURI := $parentURI || "_sense_" || string($s/@xml:id)
     return if ($s/t:sense) then
-        local:sense($senseURI, $s/t:sense)
-      else (
-      )
+      local:sense($senseURI, $s/t:sense)
+    else (
+    )
   let $nestedLexical :=
     for $s in $sense
     let $senseURI := $parentURI || "_sense_" || string($s/@xml:id)
@@ -26,28 +26,21 @@ declare function local:sense ($parentURI as xs:string, $sense) {
     for $s in $sense
     let $senseURI := $parentURI || "_sense_" || string($s/@xml:id)
     let $senseURI_comp := $senseURI || "_comp"
-    return $senseURI_comp ||
-        " a lexicog:LexicographicComponent . 
+    return $senseURI_comp || " a lexicog:LexicographicComponent . 
               "
   let $describes :=
     for $s in $sense
     let $senseURI := $parentURI || "_sense_" || string($s/@xml:id)
     let $senseURI_comp := $senseURI || "_comp"
-    return $senseURI_comp ||
-        " lexicog:describes " ||
-        $senseURI ||
-        " .
+    return $senseURI_comp || " lexicog:describes " || $senseURI || " .
               "
   let $rdfSeq :=
     for $s in $sense
     let $senseURI := $parentURI || "_sense_" || string($s/@xml:id)
     let $senseURI_comp := $senseURI || "_comp"
     return "rdf:_" || $p || " " || $senseURI_comp
-  let $rdfSeqStatement := $parentURI_comp ||
-    " " ||
-    string-join($rdfSeq, "; 
-") ||
-    " .
+  let $rdfSeqStatement := $parentURI_comp || " " || string-join($rdfSeq, "; 
+") || " .
 "
   return ($rdfSeqStatement, $nested, $components, $nestedLexical, $describes)
 };
@@ -74,7 +67,7 @@ let $lexicogEntries :=
   for $lexicogentry in $data//t:rs[@type = "root"]
   order by number($lexicogentry/ancestor::t:entry/@n)
   return $lexicogentry/ancestor::t:entry
-    (: takes all the non roots, so that they can be grabbed by looking at @n :)
+  (: takes all the non roots, so that they can be grabbed by looking at @n :)
 let $limeEntry := $data//t:entry[not(descendant::t:rs[@type = "root"])]
 
 let $triplesentry :=
@@ -86,9 +79,7 @@ let $triplesentry :=
   let $NextEntryN := $lexicogEntries[$entryIndex[1] +
     1]/@n (: added first in sequence because I got a scary "too many operands at the left of  +", hinting at the presence in the root sequence of one o more double numbered entries... :)
   let $rootentries := (
-    $root,
-    $limeEntry[xs:integer(@n) ge xs:integer($entryN)][xs:integer(@n) lt
-      xs:integer($NextEntryN)]
+    $root, $limeEntry[xs:integer(@n) ge xs:integer($entryN)][xs:integer(@n) lt xs:integer($NextEntryN)]
   )
   let $rootentriescount := count($rootentries)
   let $rootmembers :=
@@ -97,24 +88,24 @@ let $triplesentry :=
   let $components :=
     for $comp in $rootmembers
     return $comp ||
-        " a lexicog:LexicographicComponent ;
+      " a lexicog:LexicographicComponent ;
                                                              lexicog:describes " ||
-        replace($comp, "_comp", "") ||
-        " ."
+      replace($comp, "_comp", "") ||
+      " ."
   let $limentries :=
     for $member in $rootentries
     return "
                                                          dillmann:lexicon lime:entry dillmann:" ||
-        string($member/@xml:id) ||
-        " ;
+      string($member/@xml:id) ||
+      " ;
                                                          rdf:_" ||
-        string($member/@n) ||
-        " dillmann:" ||
-        string($member/@xml:id) ||
-        " . #added, not in document, to represent the general sequence of entries.
+      string($member/@n) ||
+      " dillmann:" ||
+      string($member/@xml:id) ||
+      " . #added, not in document, to represent the general sequence of entries.
                                                          dillmann:" ||
-        string($member/@xml:id) ||
-        " a ontolex:LexicalEntry ."
+      string($member/@xml:id) ||
+      " a ontolex:LexicalEntry ."
   let $senses :=
     for $en in $rootentries
     let $uri := "dillmann:" || string($en/@xml:id)
@@ -136,9 +127,7 @@ let $triplesentry :=
     (
       if ($rootentriescount ge 1) then (
         "; 
-                                             rdf:member " ||
-          string-join($rootmembers, ", ") ||
-          " ."
+                                             rdf:member " || string-join($rootmembers, ", ") || " ."
       ) else (
         " ."
       )
@@ -171,27 +160,24 @@ let $lexicon :=
     ) else (
     )
     return (
-        $entryURI || " ontolex:sense" || " " || $senseURI || " .",
-        $senseURI ||
-          " ontolex:isLexicalizedSenseOf " ||
-          $senseURI ||
-          "_concept .",
-        $senseURI ||
-          "_concept a ontolex:LexicalConcept " ||
-          (
-            if (count($definition) ge 1) then (
-              " ; 
+      $entryURI || " ontolex:sense" || " " || $senseURI || " .",
+      $senseURI || " ontolex:isLexicalizedSenseOf " || $senseURI || "_concept .",
+      $senseURI ||
+        "_concept a ontolex:LexicalConcept " ||
+        (
+          if (count($definition) ge 1) then (
+            " ; 
                                                                                                " ||
-                string-join(
-                  $definition,
-                  " ; 
+              string-join(
+                $definition,
+                " ; 
                                                                                                "
-                ) ||
-                " ."
-            ) else
+              ) ||
               " ."
-          )
-      )
+          ) else
+            " ."
+        )
+    )
   let $entry := $entryURI ||
     '_form a ontolex:Form ;
        ontolex:writtenRep "' ||

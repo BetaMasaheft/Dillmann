@@ -23,9 +23,9 @@ let $trans :=
   order by $t
 
   return map {
-      "hit": $t,
-      "roots":
-        for $r in $root
-        return string($r)
-    }
+    "hit": $t,
+    "roots":
+      for $r in $root
+      return string($r)
+  }
 return map {"hits": $trans}

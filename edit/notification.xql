@@ -35,22 +35,15 @@ let $EditorialBoardMessage := <mail>
       <html>
         <head>
           <title>This is a summary of the changes made to { $filename }</title>
-          <style>
-            {
-              "ins {background-color:chartreuse}
-del {background-color:lightcoral}"
-            }
-          </style>
+          <style>{ "ins {background-color:chartreuse}
+del {background-color:lightcoral}" }</style>
         </head>
         <body>
           <p>{ $msg }</p>
           <p>These are the difference visible in the txt output:</p>
           <div>{ $html//BODY/child::node() }</div>
           <p>
-            <a
-              href="https://betamasaheft.eu/Dillmann/lemma/{ $id }"
-              target="_blank"
-            >See {
+            <a href="https://betamasaheft.eu/Dillmann/lemma/{ $id }" target="_blank">See {
                 $filename
               } online!</a> There you can also update the file again.</p>
         </body>
