@@ -21,7 +21,7 @@
   "homepage": "https://betamasaheft.eu/Dillmann/",
   "dependencies": {
     "bootstrap": "^3.4.1",
-    "jquery": "^1.12.4"
+    "jquery": "^4.0.0"
   },
   "devDependencies": {
     "@existdb/xst": "^4.1.2",
