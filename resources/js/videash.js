@@ -269,6 +269,10 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
+    // #rootmembers only exists on lemma-detail pages, not the search root
+    if ($('#rootmembers').length === 0) {
+        return
+    }
     var thislemma = $('#lemma a').text()
     var apicall = '/api/Dillmann/lemmatranslit?q=' + thislemma
    // $.getJSON(apicall, function (data) {

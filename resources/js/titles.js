@@ -6,7 +6,7 @@ $(document).on('ready', function () {
 
 
 function checkfortitles() {
-    if ($('.MainTitle')) {
+    if ($('.MainTitle').length) {
         printTitle();
     } else {
         setTimeout(printTitle, 50);
@@ -15,7 +15,7 @@ function checkfortitles() {
 
 
 function checkforWordCounts() {
-    if ($('.WordCount')) {
+    if ($('.WordCount').length) {
         printWC();
     } else {
         setTimeout(printWC, 50);
