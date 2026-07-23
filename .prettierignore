@@ -12,6 +12,3 @@ resources/css/dataTables.bootstrap.css
 # rewrite here
 tutorial.html
 tutorialextended.html
-# entirely dead code, wrapped in a hand-escaped (\: ... :\) outer comment -
-# superseded by edit/save-new-entity.xql, never executed
-edit/save-new.xq
