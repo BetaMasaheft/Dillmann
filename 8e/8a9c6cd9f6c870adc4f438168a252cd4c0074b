@@ -1,0 +1,20 @@
+package.json
+  s_f621eb37f8854e::t_b91abf1923dcd0 9-10
+  s_f621eb37f8854e::t_063f8b35182be0 27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "8e8a9c6cd9f6c870adc4f438168a252cd4c0074b",
+  "prompts": {},
+  "sessions": {
+    "s_f621eb37f8854e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "50c55e94-39a7-4bfc-8532-53c810e8d334",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "duncdrum <d.paterson@me.com>"
+    }
+  }
+}
