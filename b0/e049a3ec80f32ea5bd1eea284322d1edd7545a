@@ -1,0 +1,29 @@
+package.json
+  s_f621eb37f8854e::t_785a786e13164d 29,31-32
+  s_f621eb37f8854e::t_4c894885dc41fd 30,34-38
+  s_f621eb37f8854e::t_4da6e9232f20e0 9-12
+.github/workflows/format-check.yml
+  s_f621eb37f8854e::t_80eb194e5978fe 1-28
+.husky/pre-commit
+  s_f621eb37f8854e::t_5204cf3f1645bd 1
+.prettierrc.js
+  s_f621eb37f8854e::t_eb558bf3b0e33f 1-7
+package-lock.json
+  s_f621eb37f8854e::t_c113eb222f0fd4 16-19,550-552,1073-1088,1252-1275,1572-1584,1595-1597,1940-1949,2036-2045,2280-2296
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "b0e049a3ec80f32ea5bd1eea284322d1edd7545a",
+  "prompts": {},
+  "sessions": {
+    "s_f621eb37f8854e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "50c55e94-39a7-4bfc-8532-53c810e8d334",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "duncdrum <d.paterson@me.com>"
+    }
+  }
+}
