@@ -25,8 +25,10 @@
 
 # Make sure the package has been deployed
 @test "logs show package deployment" {
+  # one mention per declared dependency (html-templating, functx, roaster) plus
+  # one for the "Deploying package" line itself
   result=$(docker logs exist | grep -ow -c 'http://betamasaheft.aai.uni-hamburg.de/gez-en/')
-  [ "$result" -eq 3 ]
+  [ "$result" -eq 4 ]
 }
 
 @test "logs are error free" {
