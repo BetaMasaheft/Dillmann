@@ -91,9 +91,10 @@ declare function api:searchDillmann($request as map(*)) {
     let $login := xmldb:login("/db/apps/BetMas/data", "Pietro", "Hdt7.10")
     let $data-collection := "/db/apps/DillmannData"
 
-    let $eval-string := concat("$config:collection-root//tei:", $element, "[ft:query(*,'", $q, "')]")
     let $hits :=
-      for $hit in util:eval($eval-string)
+      for $hit in
+        $config:collection-root//*[local-name() = $element and
+          namespace-uri() = "http://www.tei-c.org/ns/1.0"][ft:query(*, $q)]
       order by ft:score($hit) descending
       return $hit
     return if (count($hits) gt 0) then (
@@ -240,9 +241,8 @@ declare function api:getLemmaColumn($request as map(*)) {
 
 declare function api:getsamelemma($request as map(*)) {
   let $lemma as xs:string* := $request?parameters?lemma
-  let $eval-string := concat(" $config:collection-root//tei:form/tei:foreign[ft:query(.,'", $lemma, "')]")
   let $hits :=
-    for $hit in util:eval($eval-string)
+    for $hit in $config:collection-root//tei:form/tei:foreign[ft:query(., $lemma)]
     order by ft:score($hit) descending
     return $hit
   let $response := if (count($hits) ge 1) then

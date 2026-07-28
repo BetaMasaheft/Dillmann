@@ -35,6 +35,17 @@ it("GET /api/Dillmann/search/form?q=...", () => {
   });
 });
 
+it("GET /api/Dillmann/search/{element}?q=... with a quote does not break the query", () => {
+  // element and q used to be spliced into a util:eval string; a quote in either
+  // one used to break out of the generated XPath and crash the request
+  cy.request({
+    url: "/api/Dillmann/search/form?q=" + encodeURIComponent("o'clock"),
+    failOnStatusCode: false,
+  }).then((res) => {
+    expect(res.status).to.eq(200);
+  });
+});
+
 it("GET /api/Dillmann/list/xml", () => {
   cy.request({ url: "/api/Dillmann/list/xml?start=1", failOnStatusCode: false }).then((res) => {
     expect(res.status).to.eq(200);
@@ -131,6 +142,18 @@ it("GET /api/Dillmann/column/c0497", () => {
 it("GET /api/Dillmann/otherlemmas?lemma=...", () => {
   cy.request({
     url: "/api/Dillmann/otherlemmas?lemma=" + encodeURIComponent("ባሕቲት"),
+    failOnStatusCode: false,
+  }).then((res) => {
+    expect(res.status).to.eq(200);
+    expect(res.body).to.have.property("total");
+  });
+});
+
+it("GET /api/Dillmann/otherlemmas?lemma=... with a quote does not break the query", () => {
+  // lemma used to be spliced into a util:eval string; a quote in it used to
+  // break out of the generated XPath and crash the request
+  cy.request({
+    url: "/api/Dillmann/otherlemmas?lemma=" + encodeURIComponent("o'clock"),
     failOnStatusCode: false,
   }).then((res) => {
     expect(res.status).to.eq(200);
