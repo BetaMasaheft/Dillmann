@@ -1,0 +1,412 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Dillmann API",
+    "description": "API for the Dillmann Lexicon Linguae Aethiopicae. Generated from the existing RESTXQ (%rest:*) annotations in modules/rest.xqm as part of migrating this app to the eXist-db 'roaster' OpenAPI router.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Beta maṣāḥǝft",
+      "url": "https://betamasaheft.eu"
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "api"
+    }
+  ],
+  "paths": {
+    "/api/Dillmann/SPARQL": {
+      "get": {
+        "operationId": "api:sparqlQuery",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/rootmembers/{id}": {
+      "get": {
+        "operationId": "api:rootmembers",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/search/{element}": {
+      "get": {
+        "operationId": "api:searchDillmann",
+        "tags": ["api"],
+        "summary": "searches Dillmann lexicon",
+        "parameters": [
+          {
+            "name": "element",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/list/xml": {
+      "get": {
+        "operationId": "api:getListofLemmas",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/list/json": {
+      "get": {
+        "operationId": "api:getListofLemmasJ",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/{lemma}/teientry": {
+      "get": {
+        "operationId": "api:getLemma",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "lemma",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not a lemma unique id of any entry",
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/{lemma}/json": {
+      "get": {
+        "operationId": "api:getLemmaJson",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "lemma",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not a lemma unique id of any entry",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/{lemma}/txt": {
+      "get": {
+        "operationId": "api:getLemmaTXT",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "lemma",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not a lemma unique id of any entry",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/all/txt": {
+      "get": {
+        "operationId": "api:getHugeTXT",
+        "tags": ["api"],
+        "summary": "get 1000 to 1000 the all as txt",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "total",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/number/{n}": {
+      "get": {
+        "operationId": "api:getLemmaNumber",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/column/{n}": {
+      "get": {
+        "operationId": "api:getLemmaColumn",
+        "tags": ["api"],
+        "summary": "format of $n must be c0000",
+        "parameters": [
+          {
+            "name": "n",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Dillmann/otherlemmas": {
+      "get": {
+        "operationId": "api:getsamelemma",
+        "tags": ["api"],
+        "parameters": [
+          {
+            "name": "lemma",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

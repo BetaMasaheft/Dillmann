@@ -48,14 +48,6 @@ declare function local:viewxql($id) {
 if ($exist:path eq "") then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist"><redirect url="{ request:get-uri() }/" /></dispatch>
 
-else if (contains($exist:path, "openapi/")) then
-  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <forward method="get" url="/openapi/{ $exist:path => substring-after("/openapi/") => replace("json", "xq") }">
-      <add-parameter name="target" value="{ substring-after($exist:root, "://") || $exist:controller }" />
-      <add-parameter name="register" value="false" />
-    </forward>
-  </dispatch>
-
 (: Requests for javascript libraries are resolved to the file system :)
 else if (contains($exist:path, "resources/")) then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -80,7 +72,15 @@ else if (contains($exist:path, "/api/")) then
   if (ends-with($exist:path, "/")) then
     local:redirect("/Dillmann/apidoc.html")
   else
-    local:forward(concat("/restxq/gez-en", $exist:path))
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+      <forward url="{ $exist:controller }/modules/api.xql">
+        <set-header name="Access-Control-Allow-Origin" value="*" />
+        <set-header name="Access-Control-Allow-Credentials" value="true" />
+        <set-header name="Access-Control-Allow-Methods" value="GET, POST, DELETE, PUT, PATCH, OPTIONS" />
+        <set-header name="Access-Control-Allow-Headers" value="Accept, Content-Type, Authorization, X-Start" />
+        <set-header name="Cache-Control" value="no-cache" />
+      </forward>
+    </dispatch>
 else if ($exist:path eq "/list") then
   local:forwardlist("list-items")
 else if ($exist:path eq "/new") then
