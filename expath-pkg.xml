@@ -2,7 +2,8 @@
 <package xmlns="http://expath.org/ns/pkg" name="http://betamasaheft.aai.uni-hamburg.de/gez-en/"
   abbrev="gez-en" spec="1.0" version="1.0.0">
     <title>Lexicon Linguae Aethiopicae (App)</title>
-    <dependency processor="http://exist-db.org" semver-min="6.0.0"/>
+    <dependency processor="http://exist-db.org" semver-min="6.4.0"/>
     <dependency package="http://exist-db.org/html-templating" semver-min="1.2.1"/>
     <dependency package="http://www.functx.com"/>
+    <dependency package="http://e-editiones.org/roaster" semver-min="1.12.1"/>
 </package>

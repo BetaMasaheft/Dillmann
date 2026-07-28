@@ -6,57 +6,29 @@ module namespace api = "http://betamasaheft.eu/Dillmann/api";
 
 declare namespace sr = "http://www.w3.org/2005/sparql-results#";
 declare namespace tei = "http://www.tei-c.org/ns/1.0";
-(: For REST annotations :)
-declare namespace rest = "http://exquery.org/ns/restxq";
-declare namespace http = "http://expath.org/ns/http-client";
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace json = "http://www.json.org";
 
 import module namespace config = "http://betamasaheft.aai.uni-hamburg.de:8080/exist/apps/gez-en/config" at "xmldb:exist:///db/apps/gez-en/modules/config.xqm";
 import module namespace fusekisparql = "https://www.betamasaheft.uni-hamburg.de/gez-en/sparqlfuseki" at "xmldb:exist:///db/apps/gez-en/modules/fuseki.xqm";
+import module namespace roaster = "http://e-editiones.org/roaster";
 
-(: For output annotations :)
-
-declare
-  %rest:GET %rest:path("/api/Dillmann/SPARQL") %rest:query-param("query", "{$query}", "") %output:method("xml")
-function api:sparqlQuery($query as xs:string*) {
+declare function api:sparqlQuery($request as map(*)) {
+  let $query as xs:string* := $request?parameters?query
   let $q := (
     (
       if (starts-with($query, "PREFIX")) then (
       ) else
-        $config:sparqlprefixes
+        $config:sparqlPrefixes
     ) ||
       normalize-space($query)
   )
   let $xml := fusekisparql:query("dillmann", $q)
-  return ($config:response200XML, $xml)
+  return $xml
 };
 
-(: :
-declare
-%rest:GET
-%rest:path("/api/Dillmann/lemmatranslit")
-%rest:query-param("q", "{$q}", "")
-%output:method("json")
-function api:lemmatranslit($q as xs:string*){
-let $sparqlquery := $config:sparqlPrefixes || '
-SELECT DISTINCT ?translit
-WHERE {
-  ?subject rdfs:label "'||$q||'"@gez ;
-           rdfs:label ?translit .
-  FILTER (lang(?translit) = "gez-trsl")
-}'
-let $fusekicall := fusekisparql:query('traces', $sparqlquery)
-return
-($config:response200Json,
-map{'translit': string-join($fusekicall//sr:literal/text(),', ')}
-)
-};
-: :)
-
-declare %rest:GET %rest:path("/api/Dillmann/rootmembers/{$id}") %output:method("json") function api:rootmembers(
-  $id as xs:string
-) {
+declare function api:rootmembers($request as map(*)) {
+  let $id as xs:string := $request?parameters?id
   let $sparqlquery := $config:sparqlPrefixes ||
     "
 SELECT ?sequence ?id ?text ?root
@@ -97,27 +69,24 @@ ORDER BY ?sequence"
     let $pr := $p/sr:binding[@name = "root"]/sr:literal/text()
     let $lem := $p/sr:binding[@name = "text"]/sr:literal/text()
     return map {"id": $id, "n": $entriesN, "role": $pr, "lem": $lem}
-  return (
-    $config:response200Json,
-    map {
-      "here":
-        map {
-          "id": $id,
-          "n": xs:integer($thisResult/sr:binding[@name = "sequence"]/sr:literal/text()),
-          "role": $thisResult/sr:binding[@name = "root"]/sr:literal/text(),
-          "lem": $thisResult/sr:binding[@name = "text"]/sr:literal/text()
-        },
-      "prev": $prevs,
-      "next": $nexts
-    }
-  )
+  return map {
+    "here":
+      map {
+        "id": $id,
+        "n": xs:integer($thisResult/sr:binding[@name = "sequence"]/sr:literal/text()),
+        "role": $thisResult/sr:binding[@name = "root"]/sr:literal/text(),
+        "lem": $thisResult/sr:binding[@name = "text"]/sr:literal/text()
+      },
+    "prev": $prevs,
+    "next": $nexts
+  }
 };
 
 (: searches Dillmann lexicon :)
-declare
-  %rest:GET %rest:path("/api/Dillmann/search/{$element}") %rest:query-param("q", "{$q}", "") %output:method("json")
-function api:searchDillmann($element as xs:string?, $q as xs:string*) {
-  if ($q = "") then (
+declare function api:searchDillmann($request as map(*)) {
+  let $element as xs:string? := $request?parameters?element
+  let $q as xs:string* := $request?parameters?q
+  return if ($q = "") then (
   ) else
     let $login := xmldb:login("/db/apps/BetMas/data", "Pietro", "Hdt7.10")
     let $data-collection := "/db/apps/DillmannData"
@@ -128,7 +97,6 @@ function api:searchDillmann($element as xs:string?, $q as xs:string*) {
       order by ft:score($hit) descending
       return $hit
     return if (count($hits) gt 0) then (
-      $config:response200Json,
       <json:value>
         {
           for $hit in $hits
@@ -141,7 +109,6 @@ function api:searchDillmann($element as xs:string?, $q as xs:string*) {
         }
       </json:value>
     ) else (
-      $config:response200Json,
       <json:value>
         <json:value json:array="true">
           <id>0</id>
@@ -153,171 +120,137 @@ function api:searchDillmann($element as xs:string?, $q as xs:string*) {
     )
 };
 
-declare
-  %rest:GET %rest:path("/api/Dillmann/list/xml") %rest:query-param("start", "{$start}", 1) %output:method("xml")
-function api:getListofLemmas($lemma as xs:string?, $start as xs:integer*) {
-  (
-    $config:response200Json,
-    let $hits :=
-      for $hit in $config:collection-root//tei:entry
-      order by xs:integer($hit/@n)
-      return $hit
-    let $total := count($hits)
-    return <list>
-      <lemmas>
-        {
-          for $lem in subsequence($hits, $start, 20)
-          return <lemma>
-            <id>{ string($lem/@xml:id) }</id>
-            <n>{ string($lem/@n) }</n>
-            <form>{ string($lem//tei:form) }</form>
-          </lemma>
-        }
-      </lemmas>
-      <total>{ $total }</total>
-      <current>{ $start }-{ ($start + 20) - 1 }</current>
-      {
-        if ($total > $start) then (
-          <next>{ $start + 20 }-{ ($start + 40) - 1 }</next>,
-          if ($start > 20) then
-            <prev>{ $start - 20 }-{ $start - 1 }</prev>
-          else (
-          )
-        ) else (
-        )
-      }
-    </list>
-  )
-};
-
-declare
-  %rest:GET %rest:path("/api/Dillmann/list/json") %rest:query-param("start", "{$start}", 1) %output:method("json")
-function api:getListofLemmasJ($lemma as xs:string?, $start as xs:integer*) {
-  (
-    $config:response200Json,
-    let $hits :=
-      for $hit in $config:collection-root//tei:entry
-      order by xs:integer($hit/@n)
-      return $hit
-    let $total := count($hits)
-    return <json:value>
+declare function api:getListofLemmas($request as map(*)) {
+  let $start as xs:integer* := $request?parameters?start
+  let $hits :=
+    for $hit in $config:collection-root//tei:entry
+    order by xs:integer($hit/@n)
+    return $hit
+  let $total := count($hits)
+  return <list>
+    <lemmas>
       {
         for $lem in subsequence($hits, $start, 20)
-        return <lemmas>
+        return <lemma>
           <id>{ string($lem/@xml:id) }</id>
           <n>{ string($lem/@n) }</n>
-          <lemma>{ normalize-space(string($lem//tei:form)) }</lemma>
-        </lemmas>
+          <form>{ string($lem//tei:form) }</form>
+        </lemma>
       }
-      <total>{ $total }</total>
-      <current>{ $start }-{ ($start + 20) - 1 }</current>
-      {
-        if ($total > $start) then (
-          <next>{ $start + 20 }-{ ($start + 40) - 1 }</next>,
-          if ($start > 20) then
-            <prev>{ $start - 20 }-{ $start - 1 }</prev>
-          else (
-          )
-        ) else (
+    </lemmas>
+    <total>{ $total }</total>
+    <current>{ $start }-{ ($start + 20) - 1 }</current>
+    {
+      if ($total > $start) then (
+        <next>{ $start + 20 }-{ ($start + 40) - 1 }</next>,
+        if ($start > 20) then
+          <prev>{ $start - 20 }-{ $start - 1 }</prev>
+        else (
         )
-      }
-    </json:value>
-  )
+      ) else (
+      )
+    }
+  </list>
 };
 
-declare %rest:GET %rest:path("/api/Dillmann/{$lemma}/teientry") %output:method("xml") function api:getLemma(
-  $lemma as xs:string?
-) {
+declare function api:getListofLemmasJ($request as map(*)) {
+  let $start as xs:integer* := $request?parameters?start
+  let $hits :=
+    for $hit in $config:collection-root//tei:entry
+    order by xs:integer($hit/@n)
+    return $hit
+  let $total := count($hits)
+  return <json:value>
+    {
+      for $lem in subsequence($hits, $start, 20)
+      return <lemmas>
+        <id>{ string($lem/@xml:id) }</id>
+        <n>{ string($lem/@n) }</n>
+        <lemma>{ normalize-space(string($lem//tei:form)) }</lemma>
+      </lemmas>
+    }
+    <total>{ $total }</total>
+    <current>{ $start }-{ ($start + 20) - 1 }</current>
+    {
+      if ($total > $start) then (
+        <next>{ $start + 20 }-{ ($start + 40) - 1 }</next>,
+        if ($start > 20) then
+          <prev>{ $start - 20 }-{ $start - 1 }</prev>
+        else (
+        )
+      ) else (
+      )
+    }
+  </json:value>
+};
+
+declare function api:getLemma($request as map(*)) {
+  let $lemma as xs:string? := $request?parameters?lemma
   let $item := root($config:collection-root//id($lemma))
-  return if (exists($item)) then (
-    $config:response200XML,
+  return if (exists($item)) then
     let $data-collection := "/db/apps/DillmannData/"
     return $config:collection-root//id($lemma)
-  ) else (
-    $config:response400, <info>{ $lemma || "is not a lemma unique id of any entry." }</info>
-  )
+  else
+    roaster:response(400, <info>{ $lemma || "is not a lemma unique id of any entry." }</info>)
 };
 
-declare %rest:GET %rest:path("/api/Dillmann/{$lemma}/json") %output:method("json") function api:getLemmaJson(
-  $lemma as xs:string?
-) {
+declare function api:getLemmaJson($request as map(*)) {
+  let $lemma as xs:string? := $request?parameters?lemma
   let $item := $config:collection-root//id($lemma)
-  return if (exists($item)) then (
-    $config:response200Json, $item
-  ) else (
-    $config:response400, map {"info": ($lemma || "is not a lemma unique id of any entry.")}
-  )
+  return if (exists($item)) then
+    $item
+  else
+    roaster:response(400, map {"info": ($lemma || "is not a lemma unique id of any entry.")})
 };
 
-declare %rest:GET %rest:path("/api/Dillmann/{$lemma}/txt") %output:method("text") function api:getLemmaTXT(
-  $lemma as xs:string?
-) {
+declare function api:getLemmaTXT($request as map(*)) {
+  let $lemma as xs:string? := $request?parameters?lemma
   let $item := root($config:collection-root//id($lemma))//tei:TEI
-  return if (exists($item)) then (
-    $config:response200, transform:transform($item, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ())
-  ) else (
-    $config:response400, $lemma || "is not a lemma unique id of any entry."
-  )
+  return if (exists($item)) then
+    transform:transform($item, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ())
+  else
+    roaster:response(400, $lemma || "is not a lemma unique id of any entry.")
 };
 
 (: get 1000 to 1000 the all as txt :)
-declare
-  %rest:GET
-  %rest:path("/api/Dillmann/all/txt")
-  %rest:query-param("start", "{$start}", 1)
-  %rest:query-param("total", "{$total}", 1000)
-  %output:method("text")
-function api:getHugeTXT($start as xs:integer*, $total as xs:integer*) {
-  (
-    $config:response200,
-    let $filecontent :=
-      for $d in subsequence($config:collection-root//tei:entry[starts-with(@xml:id, "L")], $start, $total)
-      order by $d/@n
-      return transform:transform($d, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ())
-    return string-join($filecontent, " &#13;")
-  )
+declare function api:getHugeTXT($request as map(*)) {
+  let $start as xs:integer* := $request?parameters?start
+  let $total as xs:integer* := $request?parameters?total
+  let $filecontent :=
+    for $d in subsequence($config:collection-root//tei:entry[starts-with(@xml:id, "L")], $start, $total)
+    order by $d/@n
+    return transform:transform($d, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ())
+  return string-join($filecontent, " &#13;")
 };
 
-declare %rest:GET %rest:path("/api/Dillmann/number/{$n}") %output:method("json") function api:getLemmaNumber(
-  $n as xs:string?
-) {
-  (
-    $config:response200Json,
-    let $match := $config:collection-root//tei:entry[@n = $n]
-    let $entry := string($match/@xml:id)
-    return map {"number": $n, "lemma": $entry}
-  )
+declare function api:getLemmaNumber($request as map(*)) {
+  let $n as xs:string? := $request?parameters?n
+  let $match := $config:collection-root//tei:entry[@n = $n]
+  let $entry := string($match/@xml:id)
+  return map {"number": $n, "lemma": $entry}
 };
 
 (: format of $n must be c0000 :)
-declare %rest:GET %rest:path("/api/Dillmann/column/{$n}") %output:method("json") function api:getLemmaColumn(
-  $n as xs:string?
-) {
-  (
-    $config:response200Json,
-    let $match := $config:collection-root//id($n)
-    let $entry := string(root($match)//tei:entry/@xml:id)
-    return map {"column": $n, "lemma": $entry}
-  )
+declare function api:getLemmaColumn($request as map(*)) {
+  let $n as xs:string? := $request?parameters?n
+  let $match := $config:collection-root//id($n)
+  let $entry := string(root($match)//tei:entry/@xml:id)
+  return map {"column": $n, "lemma": $entry}
 };
 
-declare
-  %rest:GET %rest:path("/api/Dillmann/otherlemmas") %rest:query-param("lemma", "{$lemma}", "") %output:method("json")
-function api:getsamelemma($lemma as xs:string*) {
-  (
-    $config:response200Json,
-    let $eval-string := concat(" $config:collection-root//tei:form/tei:foreign[ft:query(.,'", $lemma, "')]")
-    let $hits :=
-      for $hit in util:eval($eval-string)
-      order by ft:score($hit) descending
-      return $hit
-    let $response := if (count($hits) ge 1) then
-      for $hit in $hits
-      let $hitID := string(root($hit)//tei:entry/@xml:id)
-      return map {"id": $hitID, "hit": $hit/text()}
-    else
-      "this is all new!"
+declare function api:getsamelemma($request as map(*)) {
+  let $lemma as xs:string* := $request?parameters?lemma
+  let $eval-string := concat(" $config:collection-root//tei:form/tei:foreign[ft:query(.,'", $lemma, "')]")
+  let $hits :=
+    for $hit in util:eval($eval-string)
+    order by ft:score($hit) descending
+    return $hit
+  let $response := if (count($hits) ge 1) then
+    for $hit in $hits
+    let $hitID := string(root($hit)//tei:entry/@xml:id)
+    return map {"id": $hitID, "hit": $hit/text()}
+  else
+    "this is all new!"
 
-    return map {"response": $response, "total": count($hits)}
-  )
+  return map {"response": $response, "total": count($hits)}
 };
