@@ -88,7 +88,6 @@ declare function api:searchDillmann($request as map(*)) {
   let $q as xs:string* := $request?parameters?q
   return if ($q = "") then (
   ) else
-    let $login := xmldb:login("/db/apps/BetMas/data", "Pietro", "Hdt7.10")
     let $data-collection := "/db/apps/DillmannData"
 
     let $hits :=

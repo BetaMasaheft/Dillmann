@@ -33,7 +33,7 @@ declare function app:number-of-matches($arg as xs:string?, $pattern as xs:string
 
 declare function app:personslist($node as element(), $model as map(*)) {
   if (contains(sm:get-user-groups(sm:id()//sm:real/sm:username/string()), "lexicon")) then (
-    let $BMpersons := collection("/db/apps/BetMas/data/persons/")//tei:person[tei:persName[@xml:lang = "gez"][not(
+    let $BMpersons := collection("/db/apps/BetMasData/persons/")//tei:person[tei:persName[@xml:lang = "gez"][not(
       @type = "normalized"
     )]]
     let $hits :=
@@ -1187,7 +1187,7 @@ declare function app:revisions($term) {
 declare function app:cite($term) {
   <div class="w3-panel w3-card-2 w3-pale-blue w3-hide" id="cite">
     <ul>
-      { root($term)//tei:form[1]/tei:foreign[1] }, lemma contributed by 
+      { root($term)//tei:form[1]/tei:foreign[1] }, lemma contributed by
                {
         let $ids := (root($term)//tei:revisionDesc/tei:change/@who)
         let $cleanids :=
@@ -1197,8 +1197,8 @@ declare function app:cite($term) {
         let $time := max(root($term)//tei:revisionDesc/tei:change/xs:date(@when))
         order by $time descending
         return <author>{ app:editorKey(string($author)) }</author>
-      } to the <i>Online Lexicon Linguae Aethiopicae</i>, ed. Alessandro Bausi,  
-               
+      } to the <i>Online Lexicon Linguae Aethiopicae</i>, ed. Alessandro Bausi,
+
 {
         let $time := max(root($term)//tei:revisionDesc/tei:change/xs:date(@when))
         return <date type="lastModified">last modified on { format-date($time, "[Y0001]-[M01]-[D01]") }</date>
