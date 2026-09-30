@@ -1001,7 +1001,7 @@
         <dillmanAttestedAbk/>
         <dillmanExplanation>Encomia Synaxarii, Actis singulorum dierum addita; citantur secundum menses et dies</dillmanExplanation>
         <normalization/>
-        <bmID>LIT2375Synaxa#Nahase</bmID>>
+        <bmID>LIT2375Synaxa#Nahase</bmID>
     </abbreviatur>
     <abbreviatur>
         <reference>Enc. Pag.</reference>
@@ -1373,6 +1373,7 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Herm. p.</reference>
+        <dillmanExplanation>Hermae pastor.</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
@@ -1415,6 +1416,7 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Hos.</reference>
+        <dillmanExplanation>Hosea.</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
@@ -1735,6 +1737,14 @@
         <bmID/>
     </abbreviatur>
     <abbreviatur>
+        <reference>lit.</reference>
+        <dillmanProposedAbk>lit.</dillmanProposedAbk>
+        <dillmanAttestedAbk/>
+        <dillmanExplanation>literally</dillmanExplanation>
+        <normalization/>
+        <bmID/>
+    </abbreviatur>
+    <abbreviatur>
         <reference>Lit.</reference>
         <dillmanProposedAbk>Lit.</dillmanProposedAbk>
         <dillmanAttestedAbk/>
@@ -1986,10 +1996,12 @@
     </abbreviatur>
     <abbreviatur>
         <reference>Nah.</reference>
+        <dillmanExplanation>Nahum.</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
         <reference>Neh.</reference>
+        <dillmanExplanation>Nehemia.</dillmanExplanation>
         <bmID/>
     </abbreviatur>
     <abbreviatur>
