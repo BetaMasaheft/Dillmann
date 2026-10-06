@@ -97,7 +97,7 @@ $(document).ready(function () {
       var items = [];
       var listitems = data.items;
       var numberofitems = "";
-      if ($.isArray(listitems)) {
+      if (Array.isArray(listitems)) {
         numberofitems += listitems.length;
       } else {
         numberofitems += 1;
