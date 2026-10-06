@@ -10,7 +10,9 @@
     "deploy:dev": "ant && EXISTDB_SERVER=http://localhost:8080 EXISTDB_USER=admin EXISTDB_PASS=admin xst package install local-files build/*.xar",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "vendor:copy": "node scripts/copy-vendor-libs.js",
+    "vendor": "npm install && npm run vendor:copy"
   },
   "repository": {
     "type": "git",
@@ -23,8 +25,18 @@
   },
   "homepage": "https://betamasaheft.eu/Dillmann/",
   "dependencies": {
-    "bootstrap": "^3.4.1",
-    "jquery": "^1.12.4"
+    "ace-builds": "1.2.6",
+    "alpheios-components": "3.4.3-incr-3.4.x.20220428394",
+    "alpheios-embedded": "3.4.2-incr-3.4.x.20220429024",
+    "bootstrap": "3.4.1",
+    "datatables.net-bs": "1.13.11",
+    "font-awesome": "4.7.0",
+    "jquery": "4.0.0",
+    "jquery-migrate": "4.0.2",
+    "jquery-ui-dist": "1.12.1",
+    "jquery.easing": "1.4.1",
+    "virtual-keyboard": "1.26.22",
+    "w3-css": "4.1.0"
   },
   "devDependencies": {
     "@existdb/xst": "^4.1.2",

@@ -9,6 +9,20 @@
     <property name="git.repo.path" value="${basedir}/.git" />
     <available file="${git.repo.path}" type="dir" property="git.present" />
 
+    <!-- Frontend vendor libraries (jQuery, Font Awesome, etc.) are npm dependencies, not committed
+         binaries. This installs them and copies the exact files the app loads into
+         resources/{js,css,fonts}/external - see package.json's "dependencies" and
+         scripts/copy-vendor-libs.js. -->
+    <target name="vendor">
+        <exec executable="npm" failonerror="true">
+            <arg value="install"/>
+        </exec>
+        <exec executable="npm" failonerror="true">
+            <arg value="run"/>
+            <arg value="vendor:copy"/>
+        </exec>
+    </target>
+
     <target name="clean">
         <echo message="Deleting xar files..." />
         <delete dir="${build.dir}" failonerror="false" />
@@ -39,7 +53,7 @@
       </copy>
 	</target>
 
-    <target name="xar" depends="clean,templates" description="create xar file">
+    <target name="xar" depends="clean,templates,vendor" description="create xar file">
         <echo message="------------------------------------------------------------" />
         <echo message="Creating xar file..." />
         <echo message="------------------------------------------------------------" />
@@ -51,6 +65,7 @@
                 <exclude name=".github/**" />
                 <exclude name=".vscode/**" />
                 <exclude name="node_modules/**" />
+                <exclude name="scripts/**" />
                 <exclude name=".gitignore" />
                 <exclude name=".dockerignore" />
                 <exclude name="test/cypress/screenshots/**" />
