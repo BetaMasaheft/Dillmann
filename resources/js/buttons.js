@@ -23,7 +23,7 @@ $(document).ready(function () {
   }
 });
 
-$("#addsense").bind("DOMSubtreeModified", function () {
+$("#addsense").on("DOMSubtreeModified", function () {
   for (var i = 0; i < mapping.length; i++) {
     matchingadd(mapping[i].button, mapping[i].string);
   }

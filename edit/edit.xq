@@ -332,13 +332,12 @@ else
           <link href="resources/images/favicon.ico" rel="shortcut icon" />
           <meta content="width=device-width, initial-scale=1.0" name="viewport" />
           <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-          <link href="resources/css/bootstrap-3.0.3.min.css" rel="stylesheet" type="text/css" />
-          <link href="resources/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+          <link href="resources/css/external/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+          <link href="resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
           <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-          <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" />
-          <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript" />
-          <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript" />
-          <script src="resources/scripts/bootstrap-3.0.3.min.js" type="text/javascript" />
+          <script src="resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+          <script src="resources/js/external/jquery-migrate/jquery-migrate.min.js" type="text/javascript" />
+          <script src="resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
           <title>Save Confirmation</title>
           <style />
         </head>
@@ -377,11 +376,11 @@ else
           <link href="resources/images/favicon.ico" rel="shortcut icon" />
           <meta content="width=device-width, initial-scale=1.0" name="viewport" />
           <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-          <link href="resources/css/bootstrap-3.0.3.min.css" rel="stylesheet" type="text/css" />
-          <link href="resources/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+          <link href="resources/css/external/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+          <link href="resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
           <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-          <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" />
-          <script src="resources/scripts/bootstrap-3.0.3.min.js" type="text/javascript" />
+          <script src="resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+          <script src="resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
           <title>Save Confirmation</title>
         </head>
         <body>
@@ -392,14 +391,8 @@ else
   There is probably an error in the content somewhere. Below you can see the report from the schema and the XML produced: check it out or send the link or a screenshoot to somebody for help.</p>
             <pre>{ validation:jing-report($temporary, $schema) }</pre>
             <div id="editorContainer"><div id="ACEeditor">{ $temporary//tei:entry }</div></div>
-            <script
-              charset="utf-8"
-              src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"
-              type="text/javascript" />
-            <script
-              charset="utf-8"
-              src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js"
-              type="text/javascript" />
+            <script charset="utf-8" src="resources/js/external/ace/ace.js" type="text/javascript" />
+            <script charset="utf-8" src="resources/js/external/ace/ext-language_tools.js" type="text/javascript" />
             <script src="resources/js/ACEsettings.js" />
           </div>
         </body>

@@ -2002,11 +2002,8 @@ declare function app:DoUpdate($node as node()*, $model as map(*)) {
   There is probably an error in the content somewhere. Below you can see the report from the schema and the XML produced: check it out or send the link or a screenshoot to somebody for help.</p>
         <pre>{ validation:jing-report($temporary, $schema) }</pre>
         <div id="editorContainer"><div id="ACEeditor">{ $temporary//tei:entry }</div></div>
-        <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" />
-        <script
-          charset="utf-8"
-          src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js"
-          type="text/javascript" />
+        <script charset="utf-8" src="resources/js/external/ace/ace.js" type="text/javascript" />
+        <script charset="utf-8" src="resources/js/external/ace/ext-language_tools.js" type="text/javascript" />
         <script src="resources/js/ACEsettings.js" />
       </div>
     )
