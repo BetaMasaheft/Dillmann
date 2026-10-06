@@ -4,9 +4,9 @@ const testEntryId = "L111j0m1v77fds7qynv79wee76jx62ae1";
 // See betmas-e2e Plan/02_contributor.md §5 — update an existing entry.
 // Read-only policy: by default this spec covers opening and filling the
 // update form only; the edit/edit.xq POST is blocked by support/read-only.js.
-// The full Confirm flow runs only with CYPRESS_ALLOW_WRITES=1 (disposable
+// The full Confirm flow runs only with --expose ALLOW_WRITES=1 (disposable
 // local stack only — it persists a new entry version, so no restore cycle).
-const itWrites = Cypress.env("ALLOW_WRITES") ? it : it.skip;
+const itWrites = Cypress.expose("ALLOW_WRITES") ? it : it.skip;
 
 describe("Single Lemma", () => {
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe("Single Lemma", () => {
       cy.get("#msg").clear().type("cypress smoke — not saved");
     });
 
-    // Write test (skipped unless CYPRESS_ALLOW_WRITES=1): catches the known
+    // Write test (skipped unless --expose ALLOW_WRITES=1): catches the known
     // submit failure modes — session loss on the form page (#387) and
     // transformer/upconversion errors on save (#535).
     itWrites("submits the edit via Confirm and saves successfully (writes a new version)", () => {

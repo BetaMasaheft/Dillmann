@@ -71,7 +71,7 @@ This project includes both smoke tests and end-to-end (E2E) tests to ensure the 
 
 - **Cypress E2E tests** are located in the `test/cypress/e2e/` directory and cover user interactions and application flows. The Cypress configuration is in `cypress.config.js`. Lexicon contributor flows (betmas-e2e Plan/02_contributor §3–§5) are in `user_admin.cy.js` and `editor.cy.js`; betmas-e2e keeps only a thin production login smoke against Dillmann via BetMas.
 
-  The suite is **read-only by default**: `test/cypress/support/read-only.js` blocks every request that would persist data (create/update/delete) and fails the test that attempted it. The tests that actually save entries are skipped by default; to run them against a **disposable local stack only**, set `CYPRESS_ALLOW_WRITES=1` — this disables the guard and enables the write tests in `editor.cy.js` and `user_admin.cy.js`. Never use it against production.
+  The suite is **read-only by default**: `test/cypress/support/read-only.js` blocks every request that would persist data (create/update/delete) and fails the test that attempted it. The tests that actually save entries are skipped by default; to run them against a **disposable local stack only**, pass `--expose ALLOW_WRITES=1` to `cypress run` — this disables the guard and enables the write tests in `editor.cy.js` and `user_admin.cy.js`. Never use it against production.
 
 To run all tests using Docker Compose, ensure that exist-db has started and finished indexing the collections. Then:
 

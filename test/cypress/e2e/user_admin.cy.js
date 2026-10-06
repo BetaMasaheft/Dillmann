@@ -6,9 +6,9 @@ const novelLemma = `zzzcypress${Date.now()}`;
 // See betmas-e2e Plan/02_contributor.md §3–§4; edit form (§5) is in editor.cy.js.
 // The read-only policy (support/read-only.js) blocks any save endpoint, so
 // these tests stop at the filled form by construction, not by discipline.
-// The Confirm write test runs only with CYPRESS_ALLOW_WRITES=1 (disposable
+// The Confirm write test runs only with --expose ALLOW_WRITES=1 (disposable
 // local stack only — it persists a new entry under DillmannData/new).
-const itWrites = Cypress.env("ALLOW_WRITES") ? it : it.skip;
+const itWrites = Cypress.expose("ALLOW_WRITES") ? it : it.skip;
 
 describe("User page", () => {
   beforeEach(() => {
@@ -69,7 +69,7 @@ describe("User page", () => {
       cy.get("#msg").type("cypress smoke — not saved");
     });
 
-    // Write test (skipped unless CYPRESS_ALLOW_WRITES=1): Plan §4 step 6 —
+    // Write test (skipped unless --expose ALLOW_WRITES=1): Plan §4 step 6 —
     // Confirm saves the entry to DillmannData/new and shows the result link.
     itWrites("saves a novel lemma via Confirm (writes to DillmannData/new)", () => {
       cy.get("#form").type(novelLemma);
