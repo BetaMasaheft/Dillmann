@@ -329,15 +329,20 @@ else
   :)
       return <html>
         <head>
-          <link href="resources/images/favicon.ico" rel="shortcut icon" />
+          <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
           <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-          <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-          <link href="resources/css/external/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-          <link href="resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
-          <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-          <script src="resources/js/external/jquery/jquery.min.js" type="text/javascript" />
-          <script src="resources/js/external/jquery-migrate/jquery-migrate.min.js" type="text/javascript" />
-          <script src="resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
+          <link href="{ config:appBase() }/resources/images/minilogo.ico" rel="shortcut icon" />
+          <link
+            href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+            rel="stylesheet"
+            type="text/css" />
+          <link href="{ config:appBase() }/resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
+          <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+          <script src="{ config:appBase() }/resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+          <script
+            src="{ config:appBase() }/resources/js/external/jquery-migrate/jquery-migrate.min.js"
+            type="text/javascript" />
+          <script src="{ config:appBase() }/resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
           <title>Save Confirmation</title>
           <style />
         </head>
@@ -366,21 +371,24 @@ else
               { transform:transform($rootitem, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ()) }
             </div>
             <div id="diff" />
-            <script src="resources/js/diff.js" type="application/javascript" />
+            <script src="{ config:appBase() }/resources/js/diff.js" type="application/javascript" />
           </div>
         </body>
       </html>
     ) else (
       <html>
         <head>
-          <link href="resources/images/favicon.ico" rel="shortcut icon" />
+          <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
           <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-          <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-          <link href="resources/css/external/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-          <link href="resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
-          <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-          <script src="resources/js/external/jquery/jquery.min.js" type="text/javascript" />
-          <script src="resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
+          <link href="{ config:appBase() }/resources/images/minilogo.ico" rel="shortcut icon" />
+          <link
+            href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+            rel="stylesheet"
+            type="text/css" />
+          <link href="{ config:appBase() }/resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
+          <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+          <script src="{ config:appBase() }/resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+          <script src="{ config:appBase() }/resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
           <title>Save Confirmation</title>
         </head>
         <body>
@@ -391,9 +399,15 @@ else
   There is probably an error in the content somewhere. Below you can see the report from the schema and the XML produced: check it out or send the link or a screenshoot to somebody for help.</p>
             <pre>{ validation:jing-report($temporary, $schema) }</pre>
             <div id="editorContainer"><div id="ACEeditor">{ $temporary//tei:entry }</div></div>
-            <script charset="utf-8" src="resources/js/external/ace/ace.js" type="text/javascript" />
-            <script charset="utf-8" src="resources/js/external/ace/ext-language_tools.js" type="text/javascript" />
-            <script src="resources/js/ACEsettings.js" />
+            <script
+              charset="utf-8"
+              src="{ config:appBase() }/resources/js/external/ace/ace.js"
+              type="text/javascript" />
+            <script
+              charset="utf-8"
+              src="{ config:appBase() }/resources/js/external/ace/ext-language_tools.js"
+              type="text/javascript" />
+            <script src="{ config:appBase() }/resources/js/ACEsettings.js" />
           </div>
         </body>
       </html>

@@ -20,6 +20,24 @@ declare variable $config:ppw := environment-variable("ExistAdminPw");
 
 declare variable $config:appUrl := "https://betamasaheft.eu";
 
+(:~
+ : The path prefix under which the app's static resources are served, for use as
+ : `{ config:appBase() }/resources/...`. Direct access (mounted as an eXist app) yields
+ : "<context>/apps/gez-en"; behind nginx, which publishes the app under /Dillmann (detected via
+ : the `nginx-request-uri` header), it is "/Dillmann". Not $config:appUrl: that is the public
+ : origin, for canonical links and redirects, never for asset paths.
+ : Returns "" when there is no request (XQSuite, post-install), where request:get-header()
+ : would raise err:XPDY0002.
+ :)
+declare function config:appBase() as xs:string {
+  if (not(request:exists())) then
+    ""
+  else if (request:get-header("nginx-request-uri")) then
+    "/Dillmann"
+  else
+    request:get-context-path() || "/apps/gez-en"
+};
+
 declare variable $config:sparqlPrefixes :=
   "PREFIX lexicog: <http://www.w3.org/ns/lemon/lexicog#>
         PREFIX ontolex: <http://www.w3.org/ns/lemon/ontolex#>
@@ -183,4 +201,36 @@ declare function config:get-fonts-dir() as xs:string? {
     $repoDir || "/fonts"
   else (
   )
+};
+
+(:~
+ : Injects the config:appBase() value as a client-side global, for scripts that load
+ : further resources at runtime. Call like <script data-template="config:appBaseScript" />.
+ :)
+declare function config:appBaseScript($node as node(), $model as map(*)) as element(script) {
+  <script type="text/javascript">{ 'var appBase = "' || config:appBase() || '";' }</script>
+};
+
+(:~
+ : Call like <a data-template="config:prefix-href"  data-template-href="/bladiblah"/>
+ : Results in <a href="<mount path>/bladiblah"/>
+ :)
+declare function config:prefix-href($node as node(), $model as map(*), $href as xs:string) as element(*) {
+  element {name($node)} {
+    attribute href { config:appBase() || $href },
+    $node/@* except ($node/@data-template, $node/@data-template-href),
+    $node/node()!templates:process(., $model)
+  }
+};
+
+(:~
+ : Call like <script data-template="config:prefix-src"  data-template-src="/bladiblah"/>
+ : Results in <script src="<mount path>/bladiblah"/>
+ :)
+declare function config:prefix-src($node as node(), $model as map(*), $src as xs:string) as element(*) {
+  element {name($node)} {
+    attribute src { config:appBase() || $src },
+    $node/@* except ($node/@data-template, $node/@data-template-src),
+    $node/node()!templates:process(., $model)
+  }
 };

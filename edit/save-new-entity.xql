@@ -61,15 +61,20 @@ let $file := concat($newid, ".xml")
 return if (collection($data-collection)//id($newid)) then (
   <html>
     <head>
-      <link href="resources/images/favicon.ico" rel="shortcut icon" />
+      <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
       <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-      <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-      <link href="resources/css/external/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-      <link href="resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
-      <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-      <script src="resources/js/external/jquery/jquery.min.js" type="text/javascript" />
-      <script src="resources/js/external/jquery-migrate/jquery-migrate.min.js" type="text/javascript" />
-      <script src="resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
+      <link href="{ config:appBase() }/resources/images/minilogo.ico" rel="shortcut icon" />
+      <link
+        href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+        rel="stylesheet"
+        type="text/css" />
+      <link href="{ config:appBase() }/resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
+      <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+      <script src="{ config:appBase() }/resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+      <script
+        src="{ config:appBase() }/resources/js/external/jquery-migrate/jquery-migrate.min.js"
+        type="text/javascript" />
+      <script src="{ config:appBase() }/resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
       <title>This id already exists!</title>
     </head>
     <body>
@@ -306,15 +311,20 @@ let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:u
  :)(: confirmation page with instructions for editors :)
     return <html>
       <head>
-        <link href="resources/images/favicon.ico" rel="shortcut icon" />
+        <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-        <link href="resources/css/external/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
-        <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-        <script src="resources/js/external/jquery/jquery.min.js" type="text/javascript" />
-        <script src="resources/js/external/jquery-migrate/jquery-migrate.min.js" type="text/javascript" />
-        <script src="resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
+        <link href="{ config:appBase() }/resources/images/minilogo.ico" rel="shortcut icon" />
+        <link
+          href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+          rel="stylesheet"
+          type="text/css" />
+        <link href="{ config:appBase() }/resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
+        <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="{ config:appBase() }/resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+        <script
+          src="{ config:appBase() }/resources/js/external/jquery-migrate/jquery-migrate.min.js"
+          type="text/javascript" />
+        <script src="{ config:appBase() }/resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
         <title>Save Confirmation</title>
       </head>
       <body>
@@ -340,14 +350,17 @@ let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:u
   ) else (
     <html>
       <head>
-        <link href="resources/images/favicon.ico" rel="shortcut icon" />
+        <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-        <link href="resources/css/external/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
-        <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-        <script src="resources/js/external/jquery/jquery.min.js" type="text/javascript" />
-        <script src="resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
+        <link href="{ config:appBase() }/resources/images/minilogo.ico" rel="shortcut icon" />
+        <link
+          href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+          rel="stylesheet"
+          type="text/css" />
+        <link href="{ config:appBase() }/resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
+        <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+        <script src="{ config:appBase() }/resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+        <script src="{ config:appBase() }/resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
         <title>Save Confirmation</title>
       </head>
       <body>
@@ -359,10 +372,13 @@ let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:u
             <pre>{ validation:jing-report($item, $schema) }</pre>
           </div>
           <div class="col-md-6"><div id="editorContainer"><div id="ACEeditor">{ $item//t:entry }</div></div></div>
-          <script charset="utf-8" src="resources/js/external/ace/ace.js" type="text/javascript" />
-          <script charset="utf-8" src="resources/js/external/ace/ext-language_tools.js" type="text/javascript" />
+          <script charset="utf-8" src="{ config:appBase() }/resources/js/external/ace/ace.js" type="text/javascript" />
+          <script
+            charset="utf-8"
+            src="{ config:appBase() }/resources/js/external/ace/ext-language_tools.js"
+            type="text/javascript" />
         </div>
-        <script src="resources/js/ACEsettings.js" />
+        <script src="{ config:appBase() }/resources/js/ACEsettings.js" />
       </body>
     </html>
   )
