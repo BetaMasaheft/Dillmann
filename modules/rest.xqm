@@ -86,16 +86,19 @@ ORDER BY ?sequence"
 declare function api:searchDillmann($request as map(*)) {
   let $element as xs:string? := $request?parameters?element
   let $q as xs:string* := $request?parameters?q
-  return if ($q = "") then (
+  return if (empty($q) or $q = "") then (
   ) else
     let $data-collection := "/db/apps/DillmannData"
-
+    let $cleanQ := replace(string-join($q, ''), '([\\+\-\!\(\)\{\}\[\]\^"~\*\?:\/])', '\\$1')
     let $hits :=
-      for $hit in
+      try {for $hit in
         $config:collection-root//*[local-name() = $element and
-          namespace-uri() = "http://www.tei-c.org/ns/1.0"][ft:query(*, $q)]
+          namespace-uri() = "http://www.tei-c.org/ns/1.0"][ft:query(*, $cleanQ)]
       order by ft:score($hit) descending
       return $hit
+      } catch * {
+                    ()
+                }
     return if (count($hits) gt 0) then (
       <json:value>
         {
