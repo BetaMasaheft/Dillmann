@@ -89,7 +89,7 @@ declare function api:searchDillmann($request as map(*)) {
 	return if (empty($q) or $q = "") then (
 	) else
 		let $data-collection := "/db/apps/DillmannData"
-		let $cleanQ := replace(string-join($q, ""), '([\\+\-\!\(\)\{\}\[\]\^"~\*\?:\/])', "\\$1")
+		let $cleanQ := replace(string-join($q, ""), '([+\-!()\[\]{}^"~*?:/])', '\\$1')
 		let $hits := try {
 			for $hit in
 				$config:collection-root//*[local-name() = $element and
