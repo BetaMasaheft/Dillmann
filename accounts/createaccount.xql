@@ -46,16 +46,20 @@ let $sendnotification :=
 return if (sm:user-exists($user)) then
   <html>
     <head>
-      <link href="resources/images/favicon.ico" rel="shortcut icon" />
+      <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
       <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-      <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-      <link href="resources/css/bootstrap-3.0.3.min.css" rel="stylesheet" type="text/css" />
-      <link href="resources/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-      <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-      <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" />
-      <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript" />
-      <script src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript" />
-      <script src="resources/scripts/bootstrap-3.0.3.min.js" type="text/javascript" />
+      <link href="{ config:appBase() }/resources/images/minilogo.ico" rel="shortcut icon" />
+      <link
+        href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+        rel="stylesheet"
+        type="text/css" />
+      <link href="{ config:appBase() }/resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
+      <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+      <script src="{ config:appBase() }/resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+      <script
+        src="{ config:appBase() }/resources/js/external/jquery-migrate/jquery-migrate.min.js"
+        type="text/javascript" />
+      <script src="{ config:appBase() }/resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
       <title>Save Confirmation</title>
       <style />
     </head>
@@ -70,16 +74,20 @@ return if (sm:user-exists($user)) then
 else
   <html>
     <head>
-      <link href="resources/images/favicon.ico" rel="shortcut icon" />
+      <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
       <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-      <link href="resources/images/minilogo.ico" rel="shortcut icon" />
-      <link href="resources/css/bootstrap-3.0.3.min.css" rel="stylesheet" type="text/css" />
-      <link href="resources/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-      <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-      <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" />
-      <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js" type="text/javascript" />
-      <script src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript" />
-      <script src="resources/scripts/bootstrap-3.0.3.min.js" type="text/javascript" />
+      <link href="{ config:appBase() }/resources/images/minilogo.ico" rel="shortcut icon" />
+      <link
+        href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+        rel="stylesheet"
+        type="text/css" />
+      <link href="{ config:appBase() }/resources/css/external/font-awesome/font-awesome.min.css" rel="stylesheet" />
+      <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+      <script src="{ config:appBase() }/resources/js/external/jquery/jquery.min.js" type="text/javascript" />
+      <script
+        src="{ config:appBase() }/resources/js/external/jquery-migrate/jquery-migrate.min.js"
+        type="text/javascript" />
+      <script src="{ config:appBase() }/resources/js/external/bootstrap/bootstrap.min.js" type="text/javascript" />
       <title>Save Confirmation</title>
       <style />
     </head>

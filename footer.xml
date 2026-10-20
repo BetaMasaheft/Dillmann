@@ -15,13 +15,13 @@
         </div>
         <div class="w3-third">
             <a class="poweredby" href="http://exist-db.org">
-                <img src="resources/images/powered-by.svg" alt="Powered by eXist-db"/>
+                <img data-template="config:prefix-src" data-template-src="/resources/images/powered-by.svg" alt="Powered by eXist-db"/>
             </a>
             <a class="poweredby" href="http://www.tei-c.org/">
-                <img src="resources/images/We-use-TEI.png" alt="We use TEI"/>
+                <img data-template="config:prefix-src" data-template-src="/resources/images/We-use-TEI.png" alt="We use TEI"/>
             </a>
             <a class="poweredby" href="https://www.traces.uni-hamburg.de/en.html">
-                <img src="resources/images/traces.png" alt="Powered by eXist-db"/>
+                <img data-template="config:prefix-src" data-template-src="/resources/images/traces.png" alt="Powered by eXist-db"/>
             </a>
         </div>
     </div>

@@ -5,14 +5,14 @@
  * request to an app host is blocked and fails the test. Covers browser
  * traffic (cy.intercept) and cy.request.
  *
- * Escape hatch: CYPRESS_ALLOW_WRITES=1 disables the guard AND un-skips the
+ * Escape hatch: --expose ALLOW_WRITES=1 disables the guard AND un-skips the
  * write tests (editor.cy.js, user_admin.cy.js). Only use it against a
  * disposable local stack (docker compose) — never against production.
  */
 
 import { isDataWriteRequest, DEFAULT_APP_HOSTNAMES } from "./read-only-policy.js";
 
-const allowWrites = () => Boolean(Cypress.env("ALLOW_WRITES"));
+const allowWrites = () => Boolean(Cypress.expose("ALLOW_WRITES"));
 
 let readOnlyViolations = [];
 

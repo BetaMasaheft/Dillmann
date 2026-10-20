@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -11,6 +12,14 @@ updates:
         patterns:
           - "*"
 
+  # Maintain npm dependencies. Dependabot allows only one npm entry per directory
+  # (and target-branch), so production and development are separate groups here.
+  # Production = frontend vendor libraries (copied into resources/{js,css,fonts}/external
+  # by the Ant "vendor" target - see scripts/copy-vendor-libs.js).
+  # Libraries that are at their latest release are tracked, so a new release opens a PR.
+  # Libraries that are behind (a major upgrade is pending, or the API differs) are ignored
+  # until they are upgraded deliberately - remove the entry from the ignore list below
+  # once that is done. Keep the list in sync with package.json "dependencies".
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -18,9 +27,24 @@ updates:
     commit-message:
       prefix: "chore(deps):"
     groups:
-      npm-dependencies:
-        patterns:
-          - "*"
+      npm-production:
+        dependency-type: "production"
         update-types:
           - "minor"
           - "patch"
+      npm-development:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # ace-builds: 1.2.6 -> 1.44.0, 40 minor versions behind
+      - dependency-name: "ace-builds"
+      # bootstrap: 3.4.1 -> 5.3.x, markup and JS API differ
+      - dependency-name: "bootstrap"
+      # datatables.net-bs: 1.13.11 -> 3.x
+      - dependency-name: "datatables.net-bs"
+      # jquery-ui-dist: 1.12.1 -> 1.13.3
+      - dependency-name: "jquery-ui-dist"
+      # virtual-keyboard: 1.26.22 -> 1.30.x
+      - dependency-name: "virtual-keyboard"
