@@ -871,7 +871,7 @@ declare function app:editineXide($id as xs:string, $sources as node()) {
 this function just print results from a query stored in a map. It is not used as far as I can see
 declare
     %templates:default("start", 1)
-function app:show-hits($node as node()*, $model as map(*), $start as xs:int) {
+function app:show-hits($node as node()*, $model as map(*), $start as xs:integer) {
 
     for $hit at $p in subsequence($model("hits"), $start, 10)
     let $id := data($hit/@xml:id)
@@ -2437,10 +2437,10 @@ declare
 function app:paginate(
   $node as node(),
   $model as map(*),
-  $start as xs:int,
-  $per-page as xs:int,
-  $min-hits as xs:int,
-  $max-pages as xs:int
+  $start as xs:integer,
+  $per-page as xs:integer,
+  $min-hits as xs:integer,
+  $max-pages as xs:integer
 ) {
   if ($min-hits < 0 or count($model("hits")) >= $min-hits) then
     let $count := xs:integer(ceiling(count($model("hits"))) div $per-page) + 1
