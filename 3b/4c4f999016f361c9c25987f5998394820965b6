@@ -1,0 +1,20 @@
+modules/app.xql
+  s_b38300ce07f8cc::t_27ee1bb0eacfcd 2440-2443
+  s_b38300ce07f8cc::t_944b94ec35491d 874
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3b4c4f999016f361c9c25987f5998394820965b6",
+  "prompts": {},
+  "sessions": {
+    "s_b38300ce07f8cc": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "deb7d6b3-2e92-4d73-83df-b7009b5ecaa3",
+        "model": "grok-4.7"
+      },
+      "human_author": "duncdrum <d.paterson@me.com>"
+    }
+  }
+}
