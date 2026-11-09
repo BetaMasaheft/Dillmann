@@ -80,9 +80,12 @@ else
   let $backup-collection := xmldb:encode-uri("/db/apps/gez-en/EditorBackups/")
   let $targetfileuri := base-uri($record)
   let $filename := $record//tei:form/tei:foreign/text()
+  let $path :=
+    for $doc in collection("/db/apps/DillmannData")
+    where contains(document-uri($doc), $id)
+    return substring-before(substring-after(base-uri($doc), "apps/"), $id)
 
-  (: saves a copy of the file before editing in a backup folder in order to be able to mechanically restore in case of editing errors since no actual versioning is in place. :)
-  (: Collection is created during installation via post-install.xql :)
+  (: saves a copy of the file before editing in a backup folder in order to be able to mechanically restore in case of editing errors since no actual versioning is in place. :)(: Collection is created during installation via post-install.xql :)
   let $backupfilename := (
     $id || "BACKUP" || format-dateTime(current-dateTime(), "[Y,4][M,2][D,2][H01][m01][s01]") || ".xml"
   )
@@ -326,8 +329,7 @@ if ( mail:send-email($contributorMessage, 'public.uni-hamburg.de', ()) ) then
 else
   util:log("info", 'message not sent to contributor')
 
-  :)
-      return <html>
+  :) return <html>
         <head>
           <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
           <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -353,13 +355,19 @@ else
                 { $filename }
               </a> has been updated successfully!</p>
             <p id="msg">{ $cU } left this message after editing: { $msg }</p>
-            {
-              if ($notifyEditors = "yes") then
-                <p id="notifyEditors">A notification email has been sent to the editors.</p>
-              else
-                <p
-                >You have not notified the editors about this change. If you wish to do so, please tick the corresponding box next time.</p>
-            }
+            <p>But <span class="label label-warning confirmationwarning">WAIT!</span> you are <span
+                class="label label-warning confirmationwarning"
+              >not yet done</span>...</p>
+            <p>Download the file to your DillmannData folder <span class="label label-warning confirmationwarning">
+                { $path }
+              </span>.<br />
+              <a class="btn btn-primary" download="{ $id }" href="/Dillmann/lemma/{ $id }.xml" id="downloaded">
+                <i aria-hidden="true" class="fa fa-download" /> Download</a>
+              <br />
+                                open it up and check it is valid and complete. <br />
+              <span class="label label-warning confirmationwarning">DO THIS!</span>
+              <br />
+              <b>synchronize to GitHub through commit/pull request/merge</b>.</p>
             <p class="lead">Thank you!</p>
           </div>
           <div class="alert alert-info">
