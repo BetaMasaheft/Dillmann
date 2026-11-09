@@ -13,6 +13,8 @@ import module namespace app = "http://betamasaheft.aai.uni-hamburg.de:8080/exist
 
 declare option output:method "html5";
 declare option output:media-type "text/html";
+(: eXist 7 percent-encodes non-ASCII hrefs by default. Leave them as Unicode so links match eXist 6. :)
+declare option output:escape-uri-attributes "no";
 
 let $config := map {$templates:CONFIG_APP_ROOT: $config:app-root, $templates:CONFIG_STOP_ON_ERROR: true()}
 (:
@@ -21,7 +23,7 @@ let $config := map {$templates:CONFIG_APP_ROOT: $config:app-root, $templates:CON
  : module cannot see the application modules, but the inline function
  : below does see them.
  :)
-let $lookup := function ($functionName as xs:string, $arity as xs:int) {
+let $lookup := function ($functionName as xs:string, $arity as xs:integer) {
   try { function-lookup(xs:QName($functionName), $arity) } catch * { () }
 }
 (:

@@ -220,17 +220,18 @@ declare function app:userPage($node as element(), $model as map(*)) {
                       for $itemchanged in $changes
                       let $root := root($itemchanged)
                       let $id := $root//tei:entry/@xml:id
-                      group by $ID := $id
-                      let $form := root($ID)//tei:entry/tei:form/tei:foreign/text()
-                      let $maxchange := max(root($ID)//tei:change[@who = $userinitials]/xs:date(@when))
+                      group by $ID := string($id)
+                      let $entry := $root[1]
+                      let $form := $entry//tei:entry/tei:form/tei:foreign/text()
+                      let $maxchange := max($entry//tei:change[@who = $userinitials]/xs:date(@when))
                       let $maxdate := xs:date($maxchange)
                       order by $maxchange descending
                       return (
                         <tr style="font-weight:bold;  border-top: 4px solid #5bc0de">
                           <td>
-                            <a href="/Dillmann/lemma/{ string($ID) }">{ $form }</a>
+                            <a href="/Dillmann/lemma/{ $ID }">{ $form }</a>
                             {
-                              if (root($ID)//tei:nd) then (
+                              if ($entry//tei:nd) then (
                                 " ", <label class="w3-tag w3-lightgreen">NEW</label>
                               ) else (
                               )
@@ -1306,7 +1307,7 @@ declare function app:itemcontent($id, $viewtype) {
                               if ($term//tei:cb) then (
                                 xs:integer($column) - 2
                               ) else
-                                $column
+                                xs:integer($column)
                             else (
                               xs:integer($column) - 1
                             ),
@@ -1320,9 +1321,9 @@ declare function app:itemcontent($id, $viewtype) {
                       <i aria-hidden="true" class="fa fa-columns" />
                       {
                         if ($term//tei:cb) then (
-                          string(number(format-number($column, "#")) - 1) || "/" || format-number($column, "#")
+                          string(xs:integer($column) - 1) || "/" || format-number(xs:integer($column), "#")
                         ) else (
-                          " " || format-number($column, "#")
+                          " " || format-number(xs:integer($column), "#")
                         )
                       }
                     </a>
