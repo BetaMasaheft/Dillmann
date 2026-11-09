@@ -1,0 +1,24 @@
+modules/app.xql
+  s_b38300ce07f8cc::t_92dbbea14b6cb7 1310
+  s_b38300ce07f8cc::t_d4b07355bcb60c 223-226,232,234
+  s_b38300ce07f8cc::t_15db59f1dac01e 1324,1326
+modules/view.xql
+  s_b38300ce07f8cc::t_83e54c128ce4c6 16-17
+  s_b38300ce07f8cc::t_3754146ca27742 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9019a48c4a08da1d7e2c9848ca009165d6318268",
+  "prompts": {},
+  "sessions": {
+    "s_b38300ce07f8cc": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "deb7d6b3-2e92-4d73-83df-b7009b5ecaa3",
+        "model": "grok-4.7"
+      },
+      "human_author": "duncdrum <d.paterson@me.com>"
+    }
+  }
+}
