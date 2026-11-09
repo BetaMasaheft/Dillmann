@@ -308,8 +308,7 @@ else
   util:log("info", 'message not sent to editor')
 ) :)(:
 let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:username/string(), 'created')
- :)(: confirmation page with instructions for editors :)
-    return <html>
+ :)(: confirmation page with instructions for editors :) return <html>
       <head>
         <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -334,14 +333,20 @@ let $log := log:add-log-message('/Dillmann/lemma/'||$newid,sm:id()//sm:real/sm:u
                         <a
               href="/Dillmann/lemma/{ substring-before($file, ".xml") }"
               target="_blank"
-            ><span class="lead">{ $form }</span></a> has been saved!</p>
-          {
-            if ($editorsnotification = "yes") then (
-              <p>A notification email has been sent to you for your records and to the editors.</p>
-            ) else
-              <p
-              >You have not notified the editors about this change. If you wish to do so, please tick the corresponding box next time.</p>
-          }
+            ><span class="lead">{ $form }</span></a> has been created!</p>
+          <p>But <span class="label label-warning confirmationwarning">WAIT!</span> you are <span
+              class="label label-warning confirmationwarning"
+            >not yet done</span>...</p>
+          <p>Download the file in your <span
+              class="label label-warning confirmationwarning"
+            >DillmannData/new</span> folder.<br />
+            <a class="btn btn-primary" download="{ $file }" href="/{ $file }" id="downloaded">
+              <i aria-hidden="true" class="fa fa-download" /> Download</a>
+            <br />
+                                open it up and check it is valid and complete. <br />
+            <span class="label label-warning confirmationwarning">DO THIS!</span>
+            <br />
+            <b>synchronize to GitHub through commit/pull request/merge</b>.</p>
           <a href="/Dillmann/newentry.html">Create another entry!</a>
           <a class="btn btn-info" href="/Dillmann/" role="button">Home</a>
         </div>
