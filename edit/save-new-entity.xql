@@ -13,6 +13,7 @@ import module namespace mail = "http://exist-db.org/xquery/mail";
 import module namespace util = "http://exist-db.org/xquery/util";
 import module namespace xmldb = "http://exist-db.org/xquery/xmldb";
 import module namespace validation = "http://exist-db.org/xquery/validation";
+import module namespace idmanager = "https://www.betamasaheft.uni-hamburg.de/gez-en/idmanager" at "../modules/idmanager.xqm";
 import module namespace log = "http://www.betamasaheft.eu/Dillmann/log" at "../modules/log.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=yes";
@@ -51,14 +52,47 @@ let $cU := sm:id()//sm:real/sm:username/string()
 let $app-collection := "/db/apps/gez-en"
 let $data-collection := "/db/apps/DillmannData"
 let $newdata-collection := "/db/apps/DillmannData/new"
-let $next-id-file-path := concat($app-collection, "/edit/next-id.xml")
 
-let $nexN := max(collection($data-collection)//t:entry/@n) + 1
-let $Newid := doc($next-id-file-path)/data/id[1]/text()
-let $newid := $Newid
+(: entry/@n is sequential and issued by betmas-id-manager, so concurrent
+   creations cannot receive the same number. :)
+let $idResult := idmanager:next-entry-n()
+let $nexN := if ($idResult?status = 201) then
+  xs:integer($idResult?body?id)
+else (
+)
+
+(: xml:id is random: "L" + 32 alphanumerics. Not issued by the id-manager;
+   uniqueness is checked against the corpus below. :)
+let $newid := "L" || replace(util:uuid(), "-", "")
 let $file := concat($newid, ".xml")
 
-return if (collection($data-collection)//id($newid)) then (
+return if (empty($nexN)) then (
+  <html>
+    <head>
+      <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
+      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+      <link
+        href="{ config:appBase() }/resources/css/external/bootstrap/bootstrap.min.css"
+        rel="stylesheet"
+        type="text/css" />
+      <link href="{ config:appBase() }/resources/css/style.css" rel="stylesheet" type="text/css" />
+      <title>Entry could not be created</title>
+    </head>
+    <body>
+      <div id="confirmation">
+        <p>Dear { sm:id()//sm:real/sm:username/string() }, unfortunately the entry
+          <span class="lead">
+            { $form }
+          </span> could not be created: the id-management
+          service returned status {
+            $idResult?status
+          }. Nothing was saved.
+          Please try again later.</p>
+        <a class="btn btn-success" href="/Dillmann/newentry.html">back</a>
+      </div>
+    </body>
+  </html>
+) else if (collection($data-collection)//id($newid)) then (
   <html>
     <head>
       <link href="{ config:appBase() }/resources/images/favicon.ico" rel="shortcut icon" />
@@ -234,9 +268,6 @@ type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"'
     let $updateFuseki := try { updatefuseki:entry($record, "INSERT") } catch * {
       util:log("warn", "failed to update fuseki")
     }
-    (: update the next-id.xml file :)
-    let $remove-used-id := update delete doc($next-id-file-path)/data/id[1]
-
     (: permissions :)
     let $assigntoGroup := sm:chgrp(xs:anyURI($newdata-collection || "/" || $file), "lexicon")
     let $setpermissions := sm:chmod(xs:anyURI($newdata-collection || "/" || $file), "rwxrwxr-x")

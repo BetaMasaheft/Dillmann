@@ -14,6 +14,17 @@ import module namespace http = "http://expath.org/ns/http-client" at "java:org.e
 import module namespace templates = "http://exist-db.org/xquery/html-templating";
 import module namespace lib = "http://exist-db.org/xquery/html-templating/lib";
 
+(:~
+ : betmas-id-manager base URL (env: ID_MANAGER_URL). Issues the sequential
+ : entry/@n for new Dillmann entries. The default is the id-manager's own
+ : standalone Node service run locally on port 8081 (PORT=8081); containerised
+ : deployments override it with the sibling service's address on the
+ : compose network (see docker-compose.yml).
+ :)
+declare variable $config:idManagerUrl := (
+  environment-variable("ID_MANAGER_URL")[normalize-space(.) ne ""], "http://localhost:8081"
+)[1];
+
 declare variable $config:ADMIN := environment-variable("ExistAdmin");
 
 declare variable $config:ppw := environment-variable("ExistAdminPw");
