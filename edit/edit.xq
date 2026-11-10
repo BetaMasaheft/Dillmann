@@ -77,7 +77,6 @@ return if (not($isAuthenticated)) then
   </html>
 else
   let $rootitem := root($record)//tei:TEI
-  let $backup-collection := xmldb:encode-uri("/db/apps/gez-en/EditorBackups/")
   let $targetfileuri := base-uri($record)
   let $filename := $record//tei:form/tei:foreign/text()
   let $path :=
@@ -85,22 +84,12 @@ else
     where contains(document-uri($doc), $id)
     return substring-before(substring-after(base-uri($doc), "apps/"), $id)
 
-  (: saves a copy of the file before editing in a backup folder in order to be able to mechanically restore in case of editing errors since no actual versioning is in place. :)(: Collection is created during installation via post-install.xql :)
-  let $backupfilename := (
-    $id || "BACKUP" || format-dateTime(current-dateTime(), "[Y,4][M,2][D,2][H01][m01][s01]") || ".xml"
-  )
+  (: Git (DillmannData) is the authoritative version store, so no backup copy is kept. $before is an in-memory snapshot of the record taken before any update, used only to produce the diff shown after saving. :)
   let $item := doc($targetfileuri)
-  let $store := try {
-    if (xmldb:collection-available($backup-collection)) then
-      xmldb:store($backup-collection, $backupfilename, $item)
-    else (
-    )
-  } catch * { util:log("warn", "Could not store backup: " || $err:description) }
+  let $before := document { $item/node() }
+  (: forces the snapshot to be built now: eXist evaluates the let lazily, and without this $before would reflect the updates made below :)
+  let $snapshotSize := count($before//*)
 
-  let $log := if ($store) then
-    log:add-log-message($backupfilename, sm:id()//sm:real/sm:username/string(), "backup")
-  else (
-  )
   return if (contains($parametersName, "sense")) then (
     let $eachsense := <senses>
       {
@@ -285,11 +274,7 @@ return :) <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="la">
 
       let $log := log:add-log-message($id, sm:id()//sm:real/sm:username/string(), "updated")
       (: this section produces the diffs. it does not yet recurse the content for a deeper deep although there is a local function ready to do that :)
-      let $backupedfile := if ($store and doc-available(concat($backup-collection, "/", $backupfilename))) then
-        doc(concat($backup-collection, "/", $backupfilename))
-      else
-        $item
-      let $diff := local:mergeMain($backupedfile//tei:entry/*, $rootitem//tei:entry/*)
+      let $diff := local:mergeMain($before//tei:entry/*, $rootitem//tei:entry/*)
       (:
 (: nofity editor and contributor :)
 let $sendmails := if($cU = 'Andreas') then () else
@@ -373,7 +358,7 @@ else
           <div class="alert alert-info">
             <div id="Lid" style="display: none;">{ $id }</div>
             <div id="old" style="display: none;">
-              { transform:transform($backupedfile, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ()) }
+              { transform:transform($before, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ()) }
             </div>
             <div id="new" style="display: none;">
               { transform:transform($rootitem, "xmldb:exist:///db/apps/gez-en/xslt/txt.xsl", ()) }

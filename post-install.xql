@@ -13,9 +13,5 @@ declare variable $dir external;
 (: the target collection into which the app is deployed :)
 declare variable $target external;
 
-(: Create EditorBackups collection if it doesn't exist :)
-let $backup-collection := concat($target, "/EditorBackups")
-return if (not(xmldb:collection-available($backup-collection))) then
-  xmldb:create-collection($target, "EditorBackups")
-else (
-)
+(: nothing to set up at install time :)
+()
