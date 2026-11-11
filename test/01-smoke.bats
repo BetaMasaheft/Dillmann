@@ -14,8 +14,8 @@
 }
 
 @test "container reports healthy to docker" {
-  result=$(docker ps | grep -c 'healthy')
-  [ "$result" -eq 1 ]
+  result=$(docker inspect --format '{{.State.Health.Status}}' exist)
+  [ "$result" == 'healthy' ]
 }
 
 @test "logs show clean start" {
