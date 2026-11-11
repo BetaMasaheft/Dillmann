@@ -11,3 +11,7 @@ test/cypress/downloads/
 resources/js/external
 resources/css/external
 resources/fonts/external
+
+# Generated at first container start by post-install.xql from environment
+# variables; must never be committed or baked into a xar
+services.xml

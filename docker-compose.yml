@@ -22,6 +22,19 @@ services:
     networks:
       - backend
 
+  id-manager:
+    build:
+      # Built from git, not a sibling checkout, so CI (which only checks out
+      # this repo) can build it. Pinned to the branch carrying the
+      # dillmann-entries type (betmas-id-manager PR #16); once that is
+      # released, switch to image: ghcr.io/betamasaheft/betmas-id-manager:<tag>.
+      context: https://github.com/BetaMasaheft/betmas-id-manager.git#feat/dillmann-entries-type
+    container_name: id-manager
+    volumes:
+      - id-manager-data:/data
+    networks:
+      - backend
+
   existdb:
     build:
       context: .
@@ -32,6 +45,7 @@ services:
       - "8080:8080"
     environment:
       - EXISTDB_ADMIN_PASSWORD=admin
+      - ID_MANAGER_URL=http://id-manager:8080
     healthcheck:
       test:
         [
@@ -58,3 +72,6 @@ services:
 networks:
   backend:
     driver: bridge
+
+volumes:
+  id-manager-data:
