@@ -109,6 +109,32 @@ declare variable $config:expath-descriptor := doc(concat($config:app-root, "/exp
 declare variable $config:data := $config:app-root || "/data";
 
 (:~
+ : Resolve an external service endpoint. A deployment relocates a service by
+ : setting the corresponding environment variable on the eXist process (e.g.
+ : `docker run -e ID_MANAGER_URL=...`); post-install.xql captures set variables
+ : into services.xml at the app root on first container start, because
+ : fn:environment-variable is a DBA-only read in eXist and request-time code
+ : (running as guest) cannot see them. Falls back to the given default when
+ : the document or entry is missing.
+ :)
+declare function config:service-url($env-name as xs:string, $default as xs:string) as xs:string {
+  try {
+    (
+      doc($config:app-root || "/services.xml")//service[@env eq $env-name][normalize-space(.) ne ""]/string(), $default
+    )[1]
+  } catch * { $default }
+};
+
+(:~
+ : betmas-id-manager base URL (env: ID_MANAGER_URL). Issues the sequential
+ : entry/@n for new Dillmann entries. The default is the id-manager's own
+ : standalone Node service run locally on port 8081 (PORT=8081); containerised
+ : deployments override it with the sibling service's address on the
+ : compose network (see docker-compose.yml).
+ :)
+declare variable $config:idManagerUrl := config:service-url("ID_MANAGER_URL", "http://localhost:8081");
+
+(:~
  : Resolve the given path using the current application context.
  : If the app resides in the file system,
  :)

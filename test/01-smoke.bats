@@ -14,8 +14,15 @@
 }
 
 @test "container reports healthy to docker" {
-  result=$(docker ps | grep -c 'healthy')
-  [ "$result" -eq 1 ]
+  # "Server has started" is logged before docker's first healthcheck passes,
+  # so give the status a moment to settle.
+  for _ in $(seq 1 30); do
+    result=$(docker inspect --format '{{.State.Health.Status}}' exist)
+    [ "$result" == 'healthy' ] && break
+    sleep 2
+  done
+  echo "health status: $result" >&3
+  [ "$result" == 'healthy' ]
 }
 
 @test "logs show clean start" {
