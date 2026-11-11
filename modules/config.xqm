@@ -14,10 +14,6 @@ import module namespace http = "http://expath.org/ns/http-client" at "java:org.e
 import module namespace templates = "http://exist-db.org/xquery/html-templating";
 import module namespace lib = "http://exist-db.org/xquery/html-templating/lib";
 
-declare variable $config:ADMIN := environment-variable("ExistAdmin");
-
-declare variable $config:ppw := environment-variable("ExistAdminPw");
-
 declare variable $config:appUrl := "https://betamasaheft.eu";
 
 (:~
