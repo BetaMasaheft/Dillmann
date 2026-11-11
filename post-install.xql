@@ -13,13 +13,6 @@ declare variable $dir external;
 (: the target collection into which the app is deployed :)
 declare variable $target external;
 
-(: Create EditorBackups collection if it doesn't exist :)
-let $backup-collection := concat($target, "/EditorBackups")
-let $_ := if (not(xmldb:collection-available($backup-collection))) then
-  xmldb:create-collection($target, "EditorBackups")
-else (
-)
-
 (: Capture external-service endpoint overrides while running as DBA:
    fn:environment-variable is a DBA-only read in eXist, so request-time code
    (guest) cannot see these. config:service-url() reads the stored document
