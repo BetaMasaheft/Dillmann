@@ -45,6 +45,21 @@ declare function local:viewxql($id) {
   </dispatch>
 };
 
+declare function local:viewpermanent($sha, $id) {
+  <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    <forward url="{ $exist:controller }/permanent.html">
+      { $login("org.exist.login", (), false()) }
+      <set-header name="Cache-Control" value="no-cache" />
+    </forward>
+    <view>
+      <forward url="{ $exist:controller }/modules/view.xql">
+        <add-parameter name="id" value="{ $id }" />
+        <add-parameter name="sha" value="{ $sha }" />
+      </forward>
+    </view>
+  </dispatch>
+};
+
 if ($exist:path eq "") then
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist"><redirect url="{ request:get-uri() }/" /></dispatch>
 
@@ -107,6 +122,9 @@ else if (ends-with($exist:resource, ".pdf")) then
       <forward url="{ $exist:controller }/modules/view.xql" />
     </error-handler>
   </dispatch>
+else if (matches($exist:path, "/permanent/[0-9a-f]{7,40}/L[a-z0-9]{32}$")) then
+  (: permanent link to the version of a lemma at a commit of DillmannData: /permanent/{sha}/{id} :)
+  local:viewpermanent(tokenize($exist:path, "/")[last() - 1], $exist:resource)
 else if (contains($exist:path, "lemma/")) then
   local:viewxql($exist:resource)
 

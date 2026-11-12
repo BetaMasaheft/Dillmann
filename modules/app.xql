@@ -1180,6 +1180,149 @@ declare function app:editorKey($key as xs:string) {
 };
 
 (: prints the information in revisionDesc :)
+(:~
+ : Panel listing the Git history of the record, filled in by
+ : resources/js/permanentID.js from the GitHub API. Git (DillmannData) is the
+ : authoritative store: only merged commits are listed, so a record which
+ : has not been merged yet has no permalinks.
+ :)
+declare function app:permalinks($id as xs:string, $term) {
+  <div class="w3-panel w3-card-2 w3-pale-blue w3-hide" id="permalinks">
+    <p>Permanent links to the versions of this lemma in the
+      <a
+        href="https://github.com/BetaMasaheft/DillmannData"
+        target="_blank"
+      >DillmannData</a> repository.</p>
+    <div
+      data-id="{ $id }"
+      data-path="{ substring-after(base-uri($term), $config:data-root || "/") }"
+      id="permanentIDs"
+      style="max-height:250px;overflow:auto"
+    ><a class="w3-btn" id="LoadPermanentIDs">Load permalinks to see the revision history on GitHub</a></div>
+    <script src="{ config:appBase() }/resources/js/permanentID.js" type="text/javascript" />
+  </div>
+};
+
+(:~
+ : Fetches a record as it was at a given commit of DillmannData. The path
+ : within the repository is the one of the live record, as in eXist the data
+ : collection mirrors the repository layout. Returns the TEI document, or the
+ : empty sequence if the id/sha are malformed or GitHub has no such file.
+ :)
+declare function app:recordAtSha($id as xs:string, $sha as xs:string) as document-node()? {
+  if (matches($sha, "^[0-9a-f]{7,40}$") and matches($id, "^L[a-z0-9]{32}$")) then
+    let $live := $config:collection-root//id($id)
+    let $path := substring-after(base-uri($live), $config:data-root || "/")
+    where $path ne ""
+    return try { doc($config:dataRawUrl || "/" || $sha || "/" || $path) } catch * {
+      util:log("warn", "app:recordAtSha " || $id || "@" || $sha || ": " || $err:description)
+    }
+  else (
+  )
+};
+
+(:~
+ : The permanent view of a lemma: the senses as they were at the requested
+ : commit, with a notice linking to the live entry and to the file on GitHub.
+ : Parameters id and sha are passed on by the controller.
+ :)
+declare function app:permanentitem($node as node(), $model as map(*)) {
+  let $id := request:get-parameter("id", "")
+  let $sha := request:get-parameter("sha", "")
+  let $doc := app:recordAtSha($id, $sha)
+  return if (empty($doc)) then
+    <div class="w3-panel w3-card-4 w3-sand w3-margin">
+      <p>No version of the lemma <b>{ $id }</b> could be found at <b>
+          { $sha }
+        </b>. The permalink may be wrong,
+        or the record has not been merged into the
+        <a
+          href="https://github.com/BetaMasaheft/DillmannData"
+        >DillmannData</a> repository.</p>
+      <a href="/Dillmann/lemma/{ $id }">see the current version</a>
+    </div>
+  else
+    let $term := $doc//id($id)
+    let $path := substring-after(base-uri($doc), $config:dataRawUrl || "/" || $sha || "/")
+    return <div class="w3-container">
+      <div class="w3-panel w3-pale-yellow w3-card-2">
+        <p>This is the version of this lemma at commit <code>{ $sha }</code>. It may differ from the
+          <a
+            href="/Dillmann/lemma/{ $id }"
+          >current version</a>. See this version
+          <a
+            href="https://github.com/BetaMasaheft/DillmannData/blob/{ $sha }/{ $path }"
+            target="_blank"
+          >on GitHub</a>.</p>
+      </div>
+      <div class="w3-bar w3-xlarge">
+        <span id="lemma">{ string-join(root($term)//tei:form/tei:foreign/text(), " et ") }</span>
+      </div>
+      { app:senses($term) }
+      { app:cite($term, $sha) }
+      <div class="w3-bar">
+        <a class="w3-bar-item w3-button w3-pale-green" onclick="togglElements('cite')">Cite this version</a>
+      </div>
+    </div>
+};
+
+(:~
+ : The sense panels of an entry (Dillmann, TraCES, ...), shared by the live
+ : lemma page and the permanent (versioned) view.
+ :)
+declare function app:senses($term) {
+  for $sense in $term//tei:sense[not(@n)]
+  let $s := (replace($sense/@source, "#", "") || $sense/@xml:lang)
+  order by $sense/@source
+  return <div class="w3-panel entry">
+    <h3>
+      {
+        if ($sense/@source = "#traces") then
+          "TraCES*"
+        else
+          "Dillmann"
+      }
+      {
+        if ($sense/@source) then (
+          let $s := substring-after($sense/@source, "#")
+          return <a class="w3-tooltip" href="#">
+            <i aria-hidden="true" class="fa fa-info-circle" />
+            <span class="w3-text">
+              { root($term)//tei:sourceDesc//tei:ref[@xml:id = $s]//text() } and follow-up projects, {
+                switch ($sense/@xml:lang)
+                  case "la" return
+                    "Latin"
+                  case "ru" return
+                    "Russian"
+                  case "en" return
+                    "English"
+                  case "de" return
+                    "Deutsch"
+                  case "it" return
+                    "Italian"
+                  default return
+                    string($sense/@xml:id)
+              }
+            </span>
+          </a>
+        ) else (
+        )
+      }
+    </h3>
+    <div>
+      <a class="w3-right w3-button w3-tiny w3-gray" onclick="toggletabletextview('{ $s }')">Table/Text</a>
+      <div id="{ $s }">
+        <div class="w3-show" id="textView{ $s }" style="text-decoration:none;">
+          { transform:transform($sense, "xmldb:exist:///db/apps/gez-en/xslt/text.xsl", ()) }
+        </div>
+        <div class="w3-hide" id="tabularView{ $s }">
+          { transform:transform($sense, "xmldb:exist:///db/apps/gez-en/xslt/table.xsl", ()) }
+        </div>
+      </div>
+    </div>
+  </div>
+};
+
 declare function app:revisions($term) {
   <div class="w3-panel w3-card-2 w3-pale-blue w3-hide" id="revisions">
     <ul>
@@ -1195,6 +1338,13 @@ declare function app:revisions($term) {
 };
 
 declare function app:cite($term) {
+  app:cite($term, ())
+};
+
+(:~
+ : $sha, when given, makes the cited URL the permanent URL of that version.
+ :)
+declare function app:cite($term, $sha as xs:string?) {
   <div class="w3-panel w3-card-2 w3-pale-blue w3-hide" id="cite">
     <ul>
       { root($term)//tei:form[1]/tei:foreign[1] }, lemma contributed by
@@ -1213,7 +1363,14 @@ declare function app:cite($term) {
         let $time := max(root($term)//tei:revisionDesc/tei:change/xs:date(@when))
         return <date type="lastModified">last modified on { format-date($time, "[Y0001]-[M01]-[D01]") }</date>
       }
-      <idno type="url">{ ($config:appUrl || "/Dillmann/lemma/" || string(root($term)//tei:entry/@xml:id)) }</idno>
+      <idno type="url">
+        {
+          if ($sha) then
+            $config:appUrl || "/Dillmann/permanent/" || $sha || "/" || string(root($term)//tei:entry/@xml:id)
+          else
+            $config:appUrl || "/Dillmann/lemma/" || string(root($term)//tei:entry/@xml:id)
+        }
+      </idno>
       <date type="accessed">, accessed on { format-date(current-date(), "[Y0001]-[M01]-[D01]") }</date>
     </ul>
   </div>
@@ -1371,58 +1528,7 @@ declare function app:itemcontent($id, $viewtype) {
           <span class="navlemma">{ $col//id($next)//tei:form/tei:foreign/text() }</span>
           <i aria-hidden="true" class="fa fa-chevron-right" />
         </a>
-        {
-          for $sense in $term//tei:sense[not(@n)]
-          let $s := (replace($sense/@source, "#", "") || $sense/@xml:lang)
-          order by $sense/@source
-          return <div class="w3-panel entry">
-            <h3>
-              {
-                if ($sense/@source = "#traces") then
-                  "TraCES*"
-                else
-                  "Dillmann"
-              }
-              {
-                if ($sense/@source) then (
-                  let $s := substring-after($sense/@source, "#")
-                  return <a class="w3-tooltip" href="#">
-                    <i aria-hidden="true" class="fa fa-info-circle" />
-                    <span class="w3-text">
-                      { root($term)//tei:sourceDesc//tei:ref[@xml:id = $s]//text() } and follow-up projects, {
-                        switch ($sense/@xml:lang)
-                          case "la" return
-                            "Latin"
-                          case "ru" return
-                            "Russian"
-                          case "en" return
-                            "English"
-                          case "de" return
-                            "Deutsch"
-                          case "it" return
-                            "Italian"
-                          default return
-                            string($sense/@xml:id)
-                      }
-                    </span>
-                  </a>
-                ) else (
-                )
-              }
-            </h3>
-            <div>
-              <a class="w3-right w3-button w3-tiny w3-gray" onclick="toggletabletextview('{ $s }')">Table/Text</a>
-              <div id="{ $s }">
-                <div class="w3-show" id="textView{ $s }" style="text-decoration:none;">
-                  { transform:transform($sense, "xmldb:exist:///db/apps/gez-en/xslt/text.xsl", ()) }
-                </div>
-                <div class="w3-hide" id="tabularView{ $s }">
-                  { transform:transform($sense, "xmldb:exist:///db/apps/gez-en/xslt/table.xsl", ()) }
-                </div>
-              </div>
-            </div>
-          </div>
-        }
+        { app:senses($term) }
         <div class="w3-bar">
           <a class="w3-bar-item w3-button w3-pale-green" onclick="togglElements('revisions')">Revisions</a>
           {
@@ -1442,9 +1548,11 @@ declare function app:itemcontent($id, $viewtype) {
             target="_blank"
           ><i aria-hidden="true" class="fa fa-envelope-o" /></a>
           <a class="w3-bar-item w3-button w3-pale-green" onclick="togglElements('cite')">Cite this lemma</a>
+          <a class="w3-bar-item w3-button w3-pale-green" onclick="togglElements('permalinks')">Permalinks</a>
         </div>
         { app:revisions($term) }
         { app:cite($term) }
+        { app:permalinks($id, $term) }
         <div />
       </div>
       <div class="w3-rest"><div id="showroot" /></div>
