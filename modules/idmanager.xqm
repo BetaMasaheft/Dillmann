@@ -19,7 +19,7 @@ import module namespace config = "http://betamasaheft.aai.uni-hamburg.de:8080/ex
  : map { "status": xs:integer, "body": map(*)? }. Network-level failures
  : surface as status 503 instead of an uncaught error.
  :)
-declare %private function local:send($method as xs:string, $path as xs:string, $body as map(*)?) as map(*) {
+declare %private function idmanager:send($method as xs:string, $path as xs:string, $body as map(*)?) as map(*) {
   let $href := $config:idManagerUrl || $path
   let $bodyJson := if (exists($body)) then
     serialize($body, map {"method": "json"})
@@ -59,19 +59,19 @@ declare %private function local:send($method as xs:string, $path as xs:string, $
  : ?body?id as a string), 503 service unreachable.
  :)
 declare function idmanager:next-entry-n() as map(*) {
-  local:send("POST", "/ids/dillmann-entries", map {})
+  idmanager:send("POST", "/ids/dillmann-entries", map {})
 };
 
 (:~
  : Admin/seeding operation: set the entry counter.
  :)
 declare function idmanager:reset-counter($value as xs:integer) as map(*) {
-  local:send("POST", "/types/dillmann-entries/reset", map {"value": $value})
+  idmanager:send("POST", "/types/dillmann-entries/reset", map {"value": $value})
 };
 
 (:~
  : Current state of the types known to the service (200 on success).
  :)
 declare function idmanager:list-types() as map(*) {
-  local:send("GET", "/types", ())
+  idmanager:send("GET", "/types", ())
 };

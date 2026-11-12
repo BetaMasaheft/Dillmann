@@ -238,11 +238,11 @@ else if (ends-with($exist:resource, ".html")) then
     </error-handler>
   </dispatch>
 
-else if (contains($exist:path, "edit/edit.xq")) then
-  (: edit.xq requires authentication :)
-  (: Ensure login:set-user is called to establish session from cookie :)
+else if (matches($exist:path, "edit/[^/]+\.xql?$")) then
+  (: the edit scripts (edit.xq, save-new-entity.xql, update.xq, ...) require authentication :)
+  (: Ensure login:set-user is called to establish session from cookie, otherwise they run as guest :)
   <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    <forward url="{ $exist:controller }/edit/edit.xq">
+    <forward url="{ $exist:controller }/edit/{ $exist:resource }">
       { $login("org.exist.login", (), false()) }
       <set-header name="Cache-Control" value="no-cache" />
     </forward>

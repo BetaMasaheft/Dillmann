@@ -1878,7 +1878,7 @@ declare function app:buttons($name) {
   </div>
 };
 
-declare function app:upconvertSense($senseAndSource) as node() {
+declare function app:upconvertSense($senseAndSource) as node()* {
   let $newTextsource := $senseAndSource/source
   let $newText := $senseAndSource/sense
   let $newsense := transform:transform(
