@@ -44,16 +44,15 @@ describe("User page", () => {
     });
   });
 
-  // Plan §4 — Confirm intentionally not clicked (side effects).
-  // Skipped: the New Entry UI is currently disabled app-side — app:newentry
-  // (app.xql) is not referenced by any template and there is no newentry.html
-  // route (CI: 'New Entry' never renders). Bodies kept so the flow can be
-  // re-enabled when the route returns; cf. closed issues #461/#469.
-  describe.skip("Create new entry", () => {
+  // Plan §4 — the Confirm test saves a new entry to DillmannData/new, so it
+  // needs --expose ALLOW_WRITES=1 (CI sets it: the stack is disposable).
+  // It also guards against the save running as guest instead of the logged-in user.
+  describe("Create new entry", () => {
     beforeEach(() => {
       // the duplicate check is a GET fired on keyup (resources/js/checkforlemma.js)
       cy.intercept("GET", "**/api/Dillmann/otherlemmas*").as("lemmaCheck");
-      cy.contains("New Entry").click();
+      // the "New Entry" link lives on the home page, not on the user page
+      cy.visit("newentry.html");
     });
 
     it("warns when trying to create a lemma that already exists", () => {
