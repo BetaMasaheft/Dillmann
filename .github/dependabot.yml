@@ -44,6 +44,11 @@ updates:
       - dependency-name: "bootstrap"
       # datatables.net-bs: 1.13.11 -> 3.x
       - dependency-name: "datatables.net-bs"
+      # jquery: pinned to 3.x, bootstrap 3.4.1 JS refuses to run on jQuery 4
+      - dependency-name: "jquery"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "jquery-migrate"
+        update-types: ["version-update:semver-major"]
       # jquery-ui-dist: 1.12.1 -> 1.13.3
       - dependency-name: "jquery-ui-dist"
       # virtual-keyboard: 1.26.22 -> 1.30.x

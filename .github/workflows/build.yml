@@ -91,3 +91,6 @@ jobs:
 
       - name: Run Cypress e2e test
         uses: cypress-io/github-action@v7
+        with:
+          # the CI stack is disposable, so let the write tests (new entry, edit) run
+          command: npx cypress run --expose ALLOW_WRITES=1

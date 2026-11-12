@@ -227,6 +227,9 @@ $(document).ready(function () {
     var trimvid2 = vid2.replace("፡", "");
     var apiurl = "/api/Dillmann/search/form?q=";
     $.getJSON(apiurl + trimvid2, function (data) {
+      if (!data || !data["0"]) {
+        return;
+      }
       var newurl2 = data["0"].id;
       var newa2 = ' </br> Or go directly to <a target="_blank" href="/Dillmann/lemma/' + newurl2 + '">' + vid2 + "</a>";
       $(v2tooltip).append(newa2);
@@ -242,6 +245,9 @@ $(document).ready(function () {
     //  console.log(trimvid)
     var apiurl = "/api/Dillmann/search/form?q=";
     $.getJSON(apiurl + trimvid, function (data) {
+      if (!data || !data["0"]) {
+        return;
+      }
       var newurl = data["0"].id;
       var newa = ' </br> Or go directly to <a target="_blank" href="/Dillmann/lemma/' + newurl + '">' + vid + "</a>";
       $(vtooltip).append(newa);
@@ -261,6 +267,9 @@ $(document).ready(function () {
     var trimvid = vid.replace("፡", "");
     var apiurl = "/api/Dillmann/search/form?q=";
     $.getJSON(apiurl + trimvid, function (data) {
+      if (!data || !data["0"]) {
+        return;
+      }
       var newurl = data["0"].id;
       var newa = ' <a target="_blank" href="' + newurl + '">' + vid + "</a>";
       $(v).replaceWith(newa);
@@ -275,6 +284,9 @@ $(document).ready(function () {
       var trimvid = vid.replace("፡", "");
       var apiurl = "/api/Dillmann/search/form?q=";
       $.getJSON(apiurl + trimvid, function (data) {
+        if (!data || !data["0"]) {
+          return;
+        }
         var newurl = data["0"].id;
         var newa = ' <a target="_blank" href="' + newurl + '">' + vid + "</a>";
         $(v).replaceWith(newa);
@@ -302,6 +314,9 @@ $(document).ready(function () {
     var vid = $(this).data("value");
     var apiurl = "/api/Dillmann/column/";
     $.getJSON(apiurl + vid, function (data) {
+      if (!data || !data["0"]) {
+        return;
+      }
       var newurl = data.lemma;
       var newa =
         ' <a target="_blank" href="/Dillmann/lemma/' +
