@@ -384,7 +384,16 @@ declare function app:logging($node as node(), $model as map(*)) {
   let $paramstobelogged :=
     for $p in $parameterslist
     for $value in request:get-parameter($p, ())
-    return ($p || "=" || $value)
+    return (
+      $p ||
+        "=" ||
+        (
+          if ($p = ("password", "pass", "pwd")) then
+            "***"
+          else
+            $value
+        )
+    )
   let $logparams := if (count($paramstobelogged) >= 1) then
     "?" || string-join($paramstobelogged, "&amp;")
   else (
