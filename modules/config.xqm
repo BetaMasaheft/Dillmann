@@ -102,6 +102,9 @@ declare variable $config:data-root := "/db/apps/DillmannData";
 
 declare variable $config:collection-root := collection($config:data-root);
 
+(: Raw file access to the authoritative Git copy of the data, used by the permanent (per-commit) views. :)
+declare variable $config:dataRawUrl := "https://raw.githubusercontent.com/BetaMasaheft/DillmannData";
+
 declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
 declare variable $config:expath-descriptor := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
