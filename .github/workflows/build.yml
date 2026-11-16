@@ -9,7 +9,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       GH_TOKEN: ${{ secrets.CI_BOT_PAT }}
       EXIST_VERSION: ${{ matrix.exist-version }}
