@@ -6,7 +6,7 @@ ADD https://github.com/BetaMasaheft/DillmannData/releases/latest/download/dill-d
 
 # roaster isn't bundled with the base image and the autodeploy trigger doesn't
 # fetch missing dependencies over the network, so it has to be staged locally
-ADD https://github.com/eeditiones/roaster/releases/download/v1.12.2/roaster-1.12.2.xar /exist/autodeploy/002-roaster.xar
+ADD https://github.com/eeditiones/roaster/releases/download/v2.1.4/roaster-2.1.4.xar /exist/autodeploy/002-roaster.xar
 
 COPY build/*.xar /exist/autodeploy/
 
